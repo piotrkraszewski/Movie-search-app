@@ -10,12 +10,16 @@
   right:0;
   z-index: 2;
   min-width: 95%;
-  /* max-width: 100%; */
+  animation: fadein ease-out 0.5s;
+  animation: fadein ease-in 0.5s;
 }
 
 .myform{
   color: rgb(240, 240, 240);
+  padding-left: 10px;
+  padding-bottom: 5px;
 }
 .myform:focus{
   color: rgb(240, 240, 240);
+  outline-width: 0;
 }

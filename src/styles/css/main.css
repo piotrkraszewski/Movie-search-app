@@ -9836,12 +9836,6 @@ footer a:hover, footer a:active {
   border-bottom: solid 1px white;
 }
 
-.search-container .searchbox .twitter-typeahead .form-control,
-.search-container .searchbox .typeahead .form-control {
-  animation: fadein ease-in 0.5s;
-  border: none;
-}
-
 .search-container .searchbox .twitter-typeahead .searchbox__input.tt-hint,
 .search-container .searchbox .typeahead .searchbox__input.tt-hint {
   opacity: 0 !important;
@@ -9854,7 +9848,6 @@ footer a:hover, footer a:active {
 
 .tt-dropdown-menu {
   animation: fadein ease-out 0.5s;
-  max-width: 90%;
   margin-top: 2px;
   padding: 5px 0;
   background: rgba(0, 0, 0, 0.85);
@@ -9874,7 +9867,19 @@ footer a:hover, footer a:active {
   margin: 5px 0;
 }
 
+.tt-suggestion.active {
+  color: #343434;
+  background-color: #00FC87;
+  border-radius: 4px;
+}
+
 .tt-suggestion.tt-cursor, .tt-suggestion:hover {
+  color: #343434;
+  background-color: #00FC87;
+  border-radius: 4px;
+}
+
+.tt-suggestion:focus {
   color: #343434;
   background-color: #00FC87;
   border-radius: 4px;

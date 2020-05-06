@@ -1,34 +1,47 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import TMDBLogo from './images/tmdb.svg'
 import './styles/css/main.css'
 import './Search.css'
 
-
 export default function SearchBox (props) {
-  const [suggestions, setSuggestions] = useState([])
-  const [text, setText] = useState('')
-  const items = ['star Wars', 'star Trek', 'interstellar', 'anime']
+  // ==== sugeston hide on click away ====
+  const [show, setShow] = useState(true)
+  const node = useRef()
   
-  const handleClick = e => {
-    e.target.select()
-  }
+  useEffect(() => {
+    // add when mounted
+    document.addEventListener("mousedown", handleClick);
+    // return function to be called when unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
 
-  const handleChange = e => {
-    const value = e.target.value
-    setText(value)
-    if (value.length > 0){
-      const regex = new RegExp(`^${value}`, 'i')
-      const newItems = items.sort().filter(val => regex.test(val))
-      setSuggestions(newItems)
-    } else {
-      setSuggestions([])
+  const handleClick = e => {
+    if (node.current.contains(e.target)) { // inside click
+      setShow(true)
+    } else {                               // outside click 
+      setShow(false)
     }
-  }
+  };
+   // ==== END sugeston hide on clic kaway ====
+
   
-  const suggestionsSelected = (value) =>{
-    setText(value)
-    setSuggestions([])
-  }
+const renderSugestions = () => {
+  return (
+    <div style={{visibility: show ? "visible" : "hidden"}}>
+      <ul className='list tt-dropdown-menu '>
+      {props.suggestions.map((item, index) => 
+        <li 
+          className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
+          onClick={()=> props.suggestionsSelected(item)}
+        >
+          {item[0]}
+        </li>)}
+      </ul>
+    </div>
+  )
+}
 
   return (
     <div className='col-xs-12 search-container nopadding'>
@@ -36,22 +49,19 @@ export default function SearchBox (props) {
         <div className='col-xs-12 col-sm-6 col-lg-5'>
           <img src={TMDBLogo} className='logo' alt='The Movie Database' />
         </div>
-        <div className='col-xs-12 col-sm-6 col-lg-7'>
-          <form className='searchbox'>
+        <div className='col-xs-12 col-sm-6 col-lg-7' ref={node}>
+          <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
-              onClick={handleClick}
-              onChange={handleChange}
-              className='searchbox__input typeahead form-control myform'
+              onChange={props.handleChange}
+              className='searchbox__input typeahead myform'
               type='text'
               placeholder='Search Movie Title...'
-              // id='q'
               autocomplete="off"
-              value={text}
+              value={props.text}
+              onKeyPress={props.enterPressed}
             />
           </form>
-        {<ul className='list tt-dropdown-menu '>
-          {suggestions.map(i => <li className='tt-suggestion' onClick={()=> suggestionsSelected(i)}>{i}</li>)}
-        </ul>}
+          {renderSugestions()}
         </div>
       </div>
     </div>
