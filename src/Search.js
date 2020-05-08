@@ -5,7 +5,7 @@ import './Search.css'
 
 export default function SearchBox (props) {
   // ==== sugeston hide on click away ====
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   const node = useRef()
   
   useEffect(() => {
@@ -29,8 +29,7 @@ export default function SearchBox (props) {
   
 const renderSugestions = () => {
   return (
-    <div style={{visibility: show ? "visible" : "hidden"}}>
-      <ul className='list tt-dropdown-menu '>
+      <ul className={(show && props.text) ? 'animate list tt-dropdown-menu' : 'list tt-dropdown-menu'} style={{visibility: show ? "visible" : "hidden"}}>
       {props.suggestions.map((item, index) => 
         <li 
           className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
@@ -39,7 +38,6 @@ const renderSugestions = () => {
           {item[0]}
         </li>)}
       </ul>
-    </div>
   )
 }
 

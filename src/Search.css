@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .list {
   color: rgb(240, 240, 240);
   background-color: rgba(0, 0, 0, 0.8);
@@ -10,8 +19,11 @@
   right:0;
   z-index: 2;
   min-width: 95%;
-  animation: fadein ease-out 0.5s;
-  animation: fadein ease-in 0.5s;
+}
+
+.animate {
+  animation: fadeIn ease-out 0.5s;
+  animation: fadeIn ease-in 0.5s;
 }
 
 .myform{

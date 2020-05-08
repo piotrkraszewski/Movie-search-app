@@ -9846,17 +9846,6 @@ footer a:hover, footer a:active {
   color: white;
 }
 
-.tt-dropdown-menu {
-  animation: fadein ease-out 0.5s;
-  margin-top: 2px;
-  padding: 5px 0;
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
-  color: #fafafa;
-}
-
 .tt-suggestion {
   padding: 3px 20px;
   font-size: 18px;

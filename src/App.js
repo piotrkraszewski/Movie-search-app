@@ -52,7 +52,7 @@ export default function App () {
   const handleChange = e => {
     const value = e.target.value
     setText(value)
-    if (value.length > 0){
+    if (value.length >= 1){
       let url = `https://api.themoviedb.org/3/search/movie?query=%${value}&api_key=cfe422613b250f702980a3bbf9e90716`
       axios.get(url).then(response => {
         let res = response.data.results
@@ -73,10 +73,11 @@ export default function App () {
   // ==== END Search state and functions ====
 
   return (
-      <div className="container" id='app' {...ArrowKeysReact.events} tabIndex="1">
+      <div className="container" id='app' {...ArrowKeysReact.events} tabIndex="1" style={{outline: 0}}>
         <div className='row'>
-        <div className='col-12 col-lg-10 offset-lg-1'>
-            <Search handleChange={handleChange} suggestionsSelected={suggestionsSelected} text={text} suggestions={suggestions} cursor={cursor} enterPressed={enterPressed}/>
+        <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
+            <Search handleChange={handleChange} suggestionsSelected={suggestionsSelected} text={text} suggestions={suggestions} cursor={cursor} enterPressed={enterPressed}
+            />
             <Card data={data}/>
         </div>
         </div>
