@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import './styles/css/main.css'
+import './Card.css'
 import numeral from 'numeral'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 function nestedDataToString(nestedData) {
   let nestedArray = [],
@@ -44,17 +46,25 @@ let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
   if(data.poster_path== null){
     posterIMG = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
   }
+
+  if(data.backdrop_path == null){
+    backdropIMG = 'https://lh3.googleusercontent.com/ZdEaJCCAfkI-PrkHmY0XYFfbdFlgDBFC6jJCLj9hN5THcsKd9GpE0j8pS8HM3z-QCrlkPvUxqxks6yXHO2X4H16YHoMLYcKg7genJH34cWzNiobbZhxQow1tqav6TfXVbrHQ1keP80bVGOgdJt4_UkQMLTq3HqlmJquH5Mvubn7ixo7rno31drUkYIeFgB5mxW4psxvbFvgRTM5CbP8J-GTQ5Ur20j-pBBhU6K2Du4C30G-gPyII7ZAvxzFVTdx_P_VAJLbjrUQ4XIv5PFnbUepa4sQFeJw1Brv4lNtmogTTRZFB2ZuZkP0U_WbFAKgHcgcr8T6WHp1kGG2zyMn3O7x7Qx0vLSNn35Fe2EtyxGg2N8mRuIIoPRC8GYxLxuXZQ1Ol-xls2A9YCVfbF3T7Wb8FG7D7SytqmXl9GEIihcnZNlfOlIKjRs9eOcuOHSIBK5zi0P4ztyJTRE0ztuPDrJ6Cpsfyt4Buofv3VKkysOu_vd936QaWGy1MLLigpOOqv1UWXWq8jbCgkbNEWBbEXAkEyhgda8jDQxy35kTwPFDnPz7Y1-jX1tOweIN498XKBLUZ95QcCG2oiRM2pymRdPVDzij3oydewERzjdnJA4ZhcTsozP6tlWSvOBzZt6uGw-Y-Ve12SE7Q2N07-7YhQ58KbGZTlEjkw9M3YEC6D35dm880Fuz7QY1ZROisPw=w1499-h843-no?authuser=0'
+  }
     
   useEffect(() => {
     document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
   })
-
   
-
   return (
-    <div className="col-12 cardcont nopadding row">
+    <TransitionGroup className='helo nomargin'>
+    <CSSTransition 
+      key={props.movieID}
+      timeout={2000}
+      classNames='fade'
+      >
+    <div className='col-12 cardcont nopadding row'>
 
-      <div className="meta-data-container col-12 col-md-7">
+      <div className='meta-data-container col-12 col-md-7 col-lg-8'>
         <h1>{data.original_title}</h1>
         <span className="tagline">{data.tagline}</span>
         <p>{data.overview}</p>
@@ -70,9 +80,11 @@ let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
         </div> 
       </div>
 
-      <div className="poster-container nopadding order-md-first col-12 col-md-5">
+      <div className="poster-container nopadding order-md-first col-12 col-md-5 col-lg-4">
         <img id="postertest" className='poster' src={posterIMG}/>
       </div>
     </div>
+  </CSSTransition>
+  </TransitionGroup>
   )
 }

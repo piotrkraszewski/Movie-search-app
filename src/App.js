@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Search from './Search'
 import Card from './Card'
 import axios from 'axios'
@@ -11,76 +11,128 @@ export default function App () {
   // ==== Fetch first page ====
   const [movieID, setMovieID] = useState(157336)
   const url = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
-  const [data, setData] = useState({});
-  
+  const [data, setData] = useState({})
+
   useEffect(() => {
-    async function fetchApi(){
+    document.body.style.backgroundImage = "url(https://lh3.googleusercontent.com/ZdEaJCCAfkI-PrkHmY0XYFfbdFlgDBFC6jJCLj9hN5THcsKd9GpE0j8pS8HM3z-QCrlkPvUxqxks6yXHO2X4H16YHoMLYcKg7genJH34cWzNiobbZhxQow1tqav6TfXVbrHQ1keP80bVGOgdJt4_UkQMLTq3HqlmJquH5Mvubn7ixo7rno31drUkYIeFgB5mxW4psxvbFvgRTM5CbP8J-GTQ5Ur20j-pBBhU6K2Du4C30G-gPyII7ZAvxzFVTdx_P_VAJLbjrUQ4XIv5PFnbUepa4sQFeJw1Brv4lNtmogTTRZFB2ZuZkP0U_WbFAKgHcgcr8T6WHp1kGG2zyMn3O7x7Qx0vLSNn35Fe2EtyxGg2N8mRuIIoPRC8GYxLxuXZQ1Ol-xls2A9YCVfbF3T7Wb8FG7D7SytqmXl9GEIihcnZNlfOlIKjRs9eOcuOHSIBK5zi0P4ztyJTRE0ztuPDrJ6Cpsfyt4Buofv3VKkysOu_vd936QaWGy1MLLigpOOqv1UWXWq8jbCgkbNEWBbEXAkEyhgda8jDQxy35kTwPFDnPz7Y1-jX1tOweIN498XKBLUZ95QcCG2oiRM2pymRdPVDzij3oydewERzjdnJA4ZhcTsozP6tlWSvOBzZt6uGw-Y-Ve12SE7Q2N07-7YhQ58KbGZTlEjkw9M3YEC6D35dm880Fuz7QY1ZROisPw=w1499-h843-no?authuser=0)"
+    async function fetchApi () {
       const res = await axios.get(url)
-      setData(res.data)
+        setData(res.data)
+        console.log(res.data)
     }
     fetchApi()
   }, [movieID])
+  // ==== END Fetch first page ====
 
 
   // ==== Search arrow up and down logic ====
   const [cursor, setCursor] = useState(0)
   ArrowKeysReact.config({
     up: () => {
-      cursor < 0
-      ? setCursor(4)
-      : setCursor(cursor - 1)
+      isNaN(cursor) ? setCursor(sliceNumber) : 
+      cursor < 0 ? setCursor(sliceNumber) : setCursor(prevState => prevState - 1)
     },
     down: () => {
-      cursor > 4
-      ? setCursor(0)
-      : setCursor(cursor + 1)
-    }})
+      isNaN(cursor) ? setCursor(0) : 
+      cursor > sliceNumber ? setCursor(0) : setCursor(prevState => prevState + 1)
+    }
+  })
 
-    const enterPressed = e => {
-      var code = e.keyCode || e.which;
-      if(code === 13) { // enter key
-        // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
+  useEffect(() => {
+    console.log(cursor)
+  }, [cursor])
+
+  const enterPressed = e => {
+    var code = e.keyCode || e.which
+    if (code === 13) { // enter key
+      // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
         suggestionsSelected(suggestions[cursor])
-      } 
-    }   
-
+    }
+  } // ==== END Search arrow up and down logic ====
+   
 
   // ==== Search state and functions ====
   const [suggestions, setSuggestions] = useState([])
-  const [text, setText] = useState('')
+  const [text, setText] = useState(null)
+  const [queryData, setQueryData] = useState([])
+  const [sliceNumber, setSliceNumber] = useState(5)
+  const [oldText, setOldText] = useState('')
 
   const handleChange = e => {
     const value = e.target.value
     setText(value)
-    if (value.length >= 1){
+    if (value.length >= 1) {
       let url = `https://api.themoviedb.org/3/search/movie?query=%${value}&api_key=cfe422613b250f702980a3bbf9e90716`
       axios.get(url).then(response => {
-        let res = response.data.results
-        let movies = res.map(a => [a.original_title, a.id]).slice(0,5)
+        const res = (response.data.results)
+        let movies = res.map(a => [a.original_title, a.id, `https://image.tmdb.org/t/p/w500${a.poster_path}`]).slice(0, sliceNumber)
         console.log(movies)
         setSuggestions(movies)
+        setQueryData(response.data.results)
       })
     } else {
-      setSuggestions([])
+      setCursor(-1)
+      setTimeout(() => {  // okno sugesti z opóŸnieniem gaœnie
+        setSuggestions([])
+      }, 500);
     }
   }
 
-  const suggestionsSelected = (value) =>{
-    setText('')
-    setSuggestions([])
-    setMovieID(value[1])
+  const suggestionsSelected = value => {
+    if (text && value !== undefined) {
+      setOldText(text)
+      setText('')
+      setMovieID(value[1])
+    }
+  } 
+
+  const handleClickOnInput = e => {
+    if (text === '') {
+      setText(oldText)
+      setOldText('')
+    }
   }
+// ==== END Search state and functions ====
+
+  
+// *** show more button ***
+  const showMore = e => {
+    setSliceNumber(sliceNumber + 5)
+  }
+  useEffect(() => {
+    console.log(sliceNumber)
+    let movies = queryData.map(a => [a.original_title, a.id, `https://image.tmdb.org/t/p/w500${a.poster_path}`]).slice(0, sliceNumber)
+    console.log(movies)
+    setSuggestions(movies)
+  },[sliceNumber])
   // ==== END Search state and functions ====
 
   return (
-      <div className="container" id='app' {...ArrowKeysReact.events} tabIndex="1" style={{outline: 0}}>
-        <div className='row'>
+    <div
+      className='container'
+      id='app'
+      {...ArrowKeysReact.events}
+      tabIndex='1'
+      style={{ outline: 0, }}
+    >
+      <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
-            <Search handleChange={handleChange} suggestionsSelected={suggestionsSelected} text={text} suggestions={suggestions} cursor={cursor} enterPressed={enterPressed}
-            />
-            <Card data={data}/>
-        </div>
+          <Search
+            handleChange={handleChange}
+            suggestionsSelected={suggestionsSelected}
+            text={text}
+            suggestions={suggestions}
+            cursor={cursor}
+            setCursor={setCursor}
+            enterPressed={enterPressed}
+            showMore={showMore}
+            sliceNumber={sliceNumber}
+            oldText={oldText}
+            handleClickOnInput={handleClickOnInput}
+          />
+          <Card data={data} movieID={movieID}/>
         </div>
       </div>
+    </div>
   )
 }

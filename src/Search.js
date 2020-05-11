@@ -4,15 +4,37 @@ import './styles/css/main.css'
 import './Search.css'
 
 export default function SearchBox (props) {
+
+// ==== Podœwietlenie tekstu ====
+function getHighlightedText(text, highlight, index) {
+  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  return <span> { parts.map((part, i) => 
+    <span 
+      key={i} 
+      style=
+      {(part.toLowerCase() === highlight.toLowerCase() && props.cursor !== index)
+        ? { color: '#00FC87', fontWeight: 'bold' } 
+        : part.toLowerCase() === highlight.toLowerCase() 
+          ? { fontWeight: 'bold'}
+          : {}} 
+    >
+        { part }
+    </span>)
+  } </span>;
+}
+// ==== END Podœwietlenie tekstu ====
+
+const onMouseEnterHandle = e => {
+  props.setCursor(parseInt(e.target.getAttribute('index')))
+}
+
   // ==== sugeston hide on click away ====
   const [show, setShow] = useState(false)
   const node = useRef()
   
   useEffect(() => {
-    // add when mounted
     document.addEventListener("mousedown", handleClick);
-    // return function to be called when unmounted
-    return () => {
+    return () => { // return function to be called when unmounted
       document.removeEventListener("mousedown", handleClick);
     };
   }, []);
@@ -24,20 +46,36 @@ export default function SearchBox (props) {
       setShow(false)
     }
   };
-   // ==== END sugeston hide on clic kaway ====
-
+  // ==== END sugeston hide on clic kaway ====
+  
+  
+  
   
 const renderSugestions = () => {
   return (
-      <ul className={(show && props.text) ? 'animate list tt-dropdown-menu' : 'list tt-dropdown-menu'} style={{visibility: show ? "visible" : "hidden"}}>
-      {props.suggestions.map((item, index) => 
-        <li 
-          className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
-          onClick={()=> props.suggestionsSelected(item)}
-        >
-          {item[0]}
-        </li>)}
-      </ul>
+    <ul className={(show && props.text) ? 'animate list tt-dropdown-menu' : 'animateOut list tt-dropdown-menu'} >
+    {props.suggestions.map((item, index) => 
+      <li 
+        className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
+        onClick={()=> props.suggestionsSelected(item)}
+        onMouseEnter={onMouseEnterHandle} 
+        index={index}
+        key={index}
+      >
+        <div className='row'>
+          <img src={item[2]} alt='' className='Image col-lg-2 col-md-3 col-sm-4 col-2'/>
+          <p className='col-lg-10 col-md-9 col-sm-8 col-10 textSugestion sugest'>
+            {getHighlightedText(item[0], props.text, index)}
+          </p>
+        </div>
+      </li>)}
+      <li><p 
+      onClick={props.showMore} 
+      index={props.sliceNumber}
+      className={props.cursor === props.sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
+        show more
+      </p></li>
+    </ul>
   )
 }
 
@@ -55,8 +93,9 @@ const renderSugestions = () => {
               type='text'
               placeholder='Search Movie Title...'
               autocomplete="off"
-              value={props.text}
+              value={props.text !== '' ? props.text : props.oldText}
               onKeyPress={props.enterPressed}
+              onClick={props.handleClickOnInput}
             />
           </form>
           {renderSugestions()}

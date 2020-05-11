@@ -12,11 +12,12 @@ body {
 }
 
 // outer-container for background image
+// it is in public/index.html
 #outer-container {
     background-image: linear-gradient(rgba(0, 0, 0, 0.85) 15%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 1) 90%);
     background-attachment: fixed;
     margin:0;
-    // height: 100vh; // for full browser height and no gradient break
+    height: 100vh; // for full browser height and no gradient break
 }
 
 #app {

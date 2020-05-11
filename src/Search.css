@@ -1,12 +1,3 @@
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .list {
   color: rgb(240, 240, 240);
   background-color: rgba(0, 0, 0, 0.8);
@@ -19,19 +10,44 @@
   right:0;
   z-index: 2;
   min-width: 95%;
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none
 }
 
 .animate {
-  animation: fadeIn ease-out 0.5s;
-  animation: fadeIn ease-in 0.5s;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.myform{
+.Image {
+  min-width: 40px;
+}
+.textSugestion {
+  /* justify-content: center; */
+  align-self: center;
+  /* flex-direction: column; */
+  font-size: 1.1rem;
+}
+.showMore {
+  text-align: center;
+}
+
+.myform {
   color: rgb(240, 240, 240);
   padding-left: 10px;
   padding-bottom: 5px;
 }
-.myform:focus{
+.myform:focus {
   color: rgb(240, 240, 240);
   outline-width: 0;
+}
+li:hover {
+  color: #343434;
+  background-color: #00FC87;
+  border-radius: 4px;
+}
+li:hover span{
+  color: #343434 !important;
 }
