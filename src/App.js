@@ -135,7 +135,9 @@ const handleClick = e => {
   
 // *** show more button ***
   const showMore = e => {
-    setSliceNumber(sliceNumber + 5)
+    suggestions.length > 0
+    ? setSliceNumber(sliceNumber + 5)
+    : console.log()
   }
   useEffect(() => {
     console.log(sliceNumber)

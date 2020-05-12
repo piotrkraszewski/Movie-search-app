@@ -55,7 +55,7 @@ const renderSugestions = () => {
       onClick={props.showMore} 
       index={props.sliceNumber}
       className={props.cursor === props.sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
-        show more
+        {props.suggestions.length > 0 ? 'show more' : 'no result'}
       </p></li>
     </ul>
   )
