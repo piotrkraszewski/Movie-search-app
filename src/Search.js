@@ -28,32 +28,14 @@ const onMouseEnterHandle = e => {
   props.setCursor(parseInt(e.target.getAttribute('index')))
 }
 
-  // ==== sugeston hide on click away ====
-  const [show, setShow] = useState(false)
-  const node = useRef()
   
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClick);
-    return () => { // return function to be called when unmounted
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
-
-  const handleClick = e => {
-    if (node.current.contains(e.target)) { // inside click
-      setShow(true)
-    } else {                               // outside click 
-      setShow(false)
-    }
-  };
-  // ==== END sugeston hide on clic kaway ====
   
   
   
   
 const renderSugestions = () => {
   return (
-    <ul className={(show && props.text) ? 'animate list tt-dropdown-menu' : 'animateOut list tt-dropdown-menu'} >
+    <ul className={(props.show && props.text) ? 'animate list tt-dropdown-menu' : 'animateOut list tt-dropdown-menu'} >
     {props.suggestions.map((item, index) => 
       <li 
         className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
@@ -85,7 +67,7 @@ const renderSugestions = () => {
         <div className='col-xs-12 col-sm-6 col-lg-5'>
           <img src={TMDBLogo} className='logo' alt='The Movie Database' />
         </div>
-        <div className='col-xs-12 col-sm-6 col-lg-7' ref={node}>
+        <div className='col-xs-12 col-sm-6 col-lg-7' ref={props.node}>
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
               onChange={props.handleChange}

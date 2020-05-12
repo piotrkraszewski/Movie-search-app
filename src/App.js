@@ -46,7 +46,25 @@ export default function App () {
     var code = e.keyCode || e.which
     if (code === 13) { // enter key
       // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
-        suggestionsSelected(suggestions[cursor])
+      // dodanie pojawienie paska po wcisnieciu enter
+      if (show){
+        if (cursor === sliceNumber){
+          showMore()
+        } else {
+          suggestionsSelected(suggestions[cursor])
+          setShow(false)
+          setText(oldText)
+        }
+      } else {
+        if (cursor === sliceNumber){
+          showMore()
+        } else {
+          setText(oldText)
+          setOldText('')
+        }
+      setShow(true)
+      console.log(show)
+    }
     }
   } // ==== END Search arrow up and down logic ====
    
@@ -94,6 +112,26 @@ export default function App () {
   }
 // ==== END Search state and functions ====
 
+// ==== sugeston hide on click away ====
+const [show, setShow] = useState(false)
+const node = useRef()
+
+useEffect(() => {
+  document.addEventListener("mousedown", handleClick);
+  return () => { // return function to be called when unmounted
+    document.removeEventListener("mousedown", handleClick);
+  };
+}, []);
+
+const handleClick = e => {
+  if (node.current.contains(e.target)) { // inside click
+    setShow(true)
+  } else {                               // outside click 
+    setShow(false)
+  }
+};
+// ==== END sugeston hide on clic kaway ====
+
   
 // *** show more button ***
   const showMore = e => {
@@ -129,6 +167,8 @@ export default function App () {
             sliceNumber={sliceNumber}
             oldText={oldText}
             handleClickOnInput={handleClickOnInput}
+            show={show}
+            node={node}
           />
           <Card data={data} movieID={movieID}/>
         </div>
