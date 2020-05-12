@@ -21,6 +21,16 @@
   pointer-events: auto;
 }
 
+.noResult{
+  height: 2rem;
+  margin-top: 0.3rem;
+}
+.noResult:hover{
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(240, 240, 240);
+  user-select: none;
+}
+
 .Image {
   min-width: 40px;
 }

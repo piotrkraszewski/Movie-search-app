@@ -22,43 +22,64 @@ function getHighlightedText(text, highlight, index) {
     </span>)
   } </span>;
 }
-// ==== END Podœwietlenie tekstu ====
 
 const onMouseEnterHandle = e => {
   props.setCursor(parseInt(e.target.getAttribute('index')))
 }
+// ==== END Podœwietlenie tekstu ====
 
-  
-  
-  
-  
-  
+
+  // == console log stuff ==
+useEffect(() => {
+  console.log('queryData.length: ' + props.queryData.length)
+  console.log('suggestions.length: ' + props.suggestions.length)
+  console.log('sliceNumber: ' + props.sliceNumber)
+}, [props.queryData, props.sliceNumber])
+  // == END console log stuff ==
+
+
 const renderSugestions = () => {
-  return (
-    <ul className={(props.show && props.text) ? 'animate list tt-dropdown-menu' : 'animateOut list tt-dropdown-menu'} >
-    {props.suggestions.map((item, index) => 
-      <li 
-        className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
-        onClick={()=> props.suggestionsSelected(item)}
-        onMouseEnter={onMouseEnterHandle} 
-        index={index}
-        key={index}
-      >
-        <div className='row'>
-          <img src={item[2]} alt='' className='Image col-lg-2 col-md-3 col-sm-4 col-2'/>
-          <p className='col-lg-10 col-md-9 col-sm-8 col-10 textSugestion sugest'>
-            {getHighlightedText(item[0], props.text, index)}
+  if (props.queryData.length > 0) {
+    return (
+      <ul 
+        className={(props.show && props.text) ? 'animate list tt-dropdown-menu' : 'animateOut list tt-dropdown-menu'} >
+      {props.suggestions.map((item, index) => 
+        <li 
+          className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
+          onClick={()=> props.suggestionsSelected(item)}
+          onMouseEnter={onMouseEnterHandle} 
+          index={index}
+          key={index}
+        >
+          <div className='row'>
+            <img src={item[2]} alt='' className='Image col-lg-2 col-md-3 col-sm-4 col-2'/>
+            <p className='col-lg-10 col-md-9 col-sm-8 col-10 textSugestion sugest'>
+              {getHighlightedText(item[0], props.text, index)}
+            </p>
+          </div>
+        </li>)}
+        
+        <li style={{visibility: props.queryData.length > props.suggestions.length ? "visible": "collapse"}}>
+          <p 
+            onClick={props.showMore} 
+            index={props.sliceNumber}
+            className={props.cursor === props.sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
+              {(props.suggestions.length > 0)
+                ? 'show more'
+                : 'no result'}
           </p>
-        </div>
-      </li>)}
-      <li><p 
-      onClick={props.showMore} 
-      index={props.sliceNumber}
-      className={props.cursor === props.sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
-        {props.suggestions.length > 0 ? 'show more' : 'no result'}
-      </p></li>
-    </ul>
-  )
+        </li>
+      </ul>
+    )
+  } else {
+    if (props.text ) {
+      return (
+          <ul className='animate list textSugestion showMore '>
+          <li className='noResult'>no result</li>
+        </ul>
+        )
+    } 
+  }
 }
 
   return (

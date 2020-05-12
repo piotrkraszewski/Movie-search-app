@@ -77,8 +77,9 @@ export default function App () {
   const [oldText, setOldText] = useState('')
 
   const handleChange = e => {
-    const value = e.target.value
+    const value = e.target.value.replace(/[^\w\s]/gi, '') 
     setText(value)
+    if (value.length === 0) { setOldText('') }
     if (value.length >= 1) {
       let url = `https://api.themoviedb.org/3/search/movie?query=%${value}&api_key=cfe422613b250f702980a3bbf9e90716`
       axios.get(url).then(response => {
@@ -87,6 +88,7 @@ export default function App () {
         console.log(movies)
         setSuggestions(movies)
         setQueryData(response.data.results)
+        setOldText(value)
       })
     } else {
       setCursor(-1)
@@ -171,6 +173,7 @@ const handleClick = e => {
             handleClickOnInput={handleClickOnInput}
             show={show}
             node={node}
+            queryData={queryData}
           />
           <Card data={data} movieID={movieID}/>
         </div>
