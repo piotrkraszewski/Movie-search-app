@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState} from 'react'
 import TMDBLogo from './images/tmdb.svg'
 import './styles/css/main.css'
 import './Search.css'
+import Scroolbar from './Scroolbar/Scroolbar'
+
 
 export default function SearchBox (props) {
 
