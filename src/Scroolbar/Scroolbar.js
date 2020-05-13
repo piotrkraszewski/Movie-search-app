@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ScrollBar from 'react-perfect-scrollbar';
-import './styles.scss';
-import './example.scss';
+import '../styles/main.scss'
+import './ScroolbarStyle.scss';
 
 export default class Example extends Component {
   componentDidMount() {
@@ -9,12 +9,11 @@ export default class Example extends Component {
   }
 
   render() {
+    const {show, text} = this.props
     return (
-        <div className="example">
-          <ScrollBar>
+          <ScrollBar className={(show && text) ? 'scroolBar' : 'offScroolBar scroolBar'}>
             {this.props.children}
           </ScrollBar>
-        </div>
     )
   }
 }

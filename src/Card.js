@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
-import './styles/css/main.css'
+import './styles/main.scss'
 import './Card.css'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'

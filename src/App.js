@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Search from './Search'
 import Card from './Card'
 import axios from 'axios'
-import './styles/css/main.css'
+import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
 
 // myKey c61f42f858306ba4c3de925ee77d581d

@@ -3,13 +3,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   list-style-type: none;
   padding: 0;
-  margin: auto;
-  border-radius: 5px;
-  position: absolute;
-  left:0;
-  right:0;
-  z-index: 2;
-  min-width: 95%;
+  margin-right: 5%;
 
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
@@ -22,26 +16,24 @@
 }
 
 .noResult{
-  height: 2rem;
+  position: absolute;
+  height: 2rem; 
   margin-top: 0.3rem;
+  width: 100%;
+  align-self: center;
+  font-size: 1.1rem;
 }
 .noResult:hover{
-  background-color: rgba(0, 0, 0, 0);
-  color: rgb(240, 240, 240);
   user-select: none;
 }
 
-.Image {
-  min-width: 40px;
-}
 .textSugestion {
-  /* justify-content: center; */
   align-self: center;
-  /* flex-direction: column; */
   font-size: 1.1rem;
 }
 .showMore {
   text-align: center;
+  border-radius: 5px;
 }
 
 .myform {
@@ -53,15 +45,24 @@
   color: rgb(240, 240, 240);
   outline-width: 0;
 }
-li:hover {
+.tt-suggestion:hover {
   color: #343434;
   background-color: #00FC87;
   border-radius: 4px;
 }
-li:hover span{
+.tt-suggestion:hover span{
   color: #343434 !important;
 }
 
-.area{
-  max-height: 20px;
+.searchInside{
+  padding-left: 0;
+}
+.myRow {
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchInside{
+    padding: 0 1rem !important;
+  }
 }

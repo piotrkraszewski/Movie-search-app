@@ -46,7 +46,6 @@
   padding: 3px 20px;
   font-size: 18px;
   line-height: 24px;
-
   p {
     margin: 5px 0; // suggestion list spacing
   }
@@ -56,14 +55,6 @@
     background-color: $limeGreen;
     border-radius: 4px;
   }
-
-  // hover styles
-  // &.tt-cursor,
-  // &:hover  {
-  //   color: $darkGrey;
-  //   background-color: $limeGreen;
-  //   border-radius: 4px;
-  // }
 
   &:focus {
     color: $darkGrey;

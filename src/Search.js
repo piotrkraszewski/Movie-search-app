@@ -1,11 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react'
 import TMDBLogo from './images/tmdb.svg'
-import './styles/css/main.css'
+import './styles/main.scss'
 import './Search.css'
 import Scroolbar from './Scroolbar/Scroolbar'
 
 
 export default function SearchBox (props) {
+  const {show, text, suggestions, cursor, queryData, showMore, sliceNumber, oldText, node, handleChange, enterPressed, handleClickOnInput, suggestionsSelected, setCursor} = props
+
 
 // ==== Podœwietlenie tekstu ====
 function getHighlightedText(text, highlight, index) {
@@ -26,61 +28,63 @@ function getHighlightedText(text, highlight, index) {
 }
 
 const onMouseEnterHandle = e => {
-  props.setCursor(parseInt(e.target.getAttribute('index')))
+  setCursor(parseInt(e.target.getAttribute('index')))
 }
 // ==== END Podœwietlenie tekstu ====
 
 
   // == console log stuff ==
 useEffect(() => {
-  console.log('queryData.length: ' + props.queryData.length)
-  console.log('suggestions.length: ' + props.suggestions.length)
-  console.log('sliceNumber: ' + props.sliceNumber)
-}, [props.queryData, props.sliceNumber])
+  console.log('queryData.length: ' + queryData.length)
+  console.log('suggestions.length: ' + suggestions.length)
+  console.log('sliceNumber: ' + sliceNumber)
+}, [queryData, sliceNumber])
   // == END console log stuff ==
 
 
 const renderSugestions = () => {
-  if (props.queryData.length > 0) {
+  if (queryData.length > 0) {
     return (
+      <Scroolbar show={show} text={text}>
       <ul 
-        className={(props.show && props.text) ? 'animate list tt-dropdown-menu' : 'animateOut list tt-dropdown-menu'} >
-      {props.suggestions.map((item, index) => 
+        className={(show && text) ? 'animate list' : 'list'} >
+      {suggestions.map((item, index) => 
         <li 
-          className={props.cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
-          onClick={()=> props.suggestionsSelected(item)}
+          className={cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
+          onClick={()=> suggestionsSelected(item)}
           onMouseEnter={onMouseEnterHandle} 
           index={index}
           key={index}
         >
           <div className='row'>
-            <img src={item[2]} alt='' className='Image col-lg-2 col-md-3 col-sm-4 col-2'/>
+            <img src={item[2]} alt='' className='col-lg-2 col-md-3 col-sm-4 col-2'/>
             <p className='col-lg-10 col-md-9 col-sm-8 col-10 textSugestion sugest'>
-              {getHighlightedText(item[0], props.text, index)}
+              {getHighlightedText(item[0], text, index)}
             </p>
           </div>
         </li>)}
         
-        <li style={{visibility: props.queryData.length > props.suggestions.length ? "visible": "collapse"}}>
+        <li style={{visibility: queryData.length > suggestions.length ? "visible": "collapse"}}>
           <p 
-            onClick={props.showMore} 
-            index={props.sliceNumber}
-            className={props.cursor === props.sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
-              {(props.suggestions.length > 0)
+            onClick={showMore} 
+            index={sliceNumber}
+            className={cursor === sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
+              {(suggestions.length > 0)
                 ? 'show more'
                 : 'no result'}
           </p>
         </li>
       </ul>
+      </Scroolbar>
     )
   } else {
-    if (props.text ) {
+    if (text) {
       return (
-          <ul className='animate list textSugestion showMore '>
-          <li className='noResult'>no result</li>
+        <ul className='animate list showMore noResult'>
+          <li>no result</li>
         </ul>
         )
-    } 
+      } 
   }
 }
 
@@ -90,17 +94,17 @@ const renderSugestions = () => {
         <div className='col-xs-12 col-sm-6 col-lg-5'>
           <img src={TMDBLogo} className='logo' alt='The Movie Database' />
         </div>
-        <div className='col-xs-12 col-sm-6 col-lg-7' ref={props.node}>
+        <div className='col-xs-12 col-sm-6 col-lg-7 searchInside' ref={node}>
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
-              onChange={props.handleChange}
+              onChange={handleChange}
               className='searchbox__input typeahead myform'
               type='text'
               placeholder='Search Movie Title...'
               autocomplete="off"
-              value={props.text !== '' ? props.text : props.oldText}
-              onKeyPress={props.enterPressed}
-              onClick={props.handleClickOnInput}
+              value={text !== '' ? text : oldText}
+              onKeyPress={enterPressed}
+              onClick={handleClickOnInput}
             />
           </form>
           {renderSugestions()}
