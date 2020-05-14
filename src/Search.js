@@ -57,7 +57,7 @@ const renderSugestions = () => {
           key={index}
         >
           <div className='row'>
-            <img src={item[2]} alt='' className='col-lg-2 col-md-3 col-sm-4 col-2'/>
+            <img src={item[2]} className='col-lg-2 col-md-3 col-sm-4 col-2 Image'/>
             <p className='col-lg-10 col-md-9 col-sm-8 col-10 textSugestion sugest'>
               {getHighlightedText(item[0], text, index)}
             </p>
@@ -91,10 +91,10 @@ const renderSugestions = () => {
   return (
     <div className='col-xs-12 search-container nopadding'>
       <div className='row'>
-        <div className='col-xs-12 col-sm-6 col-lg-5'>
+        <div className='col-xs-12 col-sm-3 col-lg-3'>
           <img src={TMDBLogo} className='logo' alt='The Movie Database' />
         </div>
-        <div className='col-xs-12 col-sm-6 col-lg-7 searchInside' ref={node}>
+        <div className='col-xs-12 col-sm-9 col-lg-9 searchInside' ref={node}>
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
               onChange={handleChange}

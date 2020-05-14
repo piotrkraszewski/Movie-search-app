@@ -151,7 +151,7 @@ const handleClick = e => {
 
   return (
     <div
-      className='container'
+      className='container-fluid w-95 h-95'
       id='app'
       {...ArrowKeysReact.events}
       tabIndex='1'

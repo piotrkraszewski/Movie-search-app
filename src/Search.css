@@ -7,7 +7,11 @@
 
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
-  pointer-events: none
+  pointer-events: none;
+}
+
+.Image{
+  /* max-width: 110px; */
 }
 
 .animate {
@@ -29,7 +33,7 @@
 
 .textSugestion {
   align-self: center;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 .showMore {
   text-align: center;
