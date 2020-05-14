@@ -47,9 +47,9 @@ let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
     posterIMG = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
   }
 
-  if(data.backdrop_path == null){
-    backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
-  }
+  // if(data.backdrop_path == null){
+  //   backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
+  // }
 
   useEffect(() => {
     document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
