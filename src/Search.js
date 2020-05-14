@@ -68,10 +68,13 @@ const renderSugestions = () => {
           <p 
             onClick={showMore} 
             index={sliceNumber}
-            className={cursor === sliceNumber ?'active textSugestion showMore tt-suggestion' : 'textSugestion showMore tt-suggestion'}>
-              {(suggestions.length > 0)
-                ? 'show more'
-                : 'no result'}
+            className={cursor === sliceNumber 
+            ? 'active textSugestion showMore tt-suggestion' 
+            : 'textSugestion showMore tt-suggestion'}
+            >
+              { sliceNumber >= 10 ? 'full screen search' 
+              : suggestions.length > 0 ? 'show more' 
+              : 'no result'}
           </p>
         </li>
       </ul>
