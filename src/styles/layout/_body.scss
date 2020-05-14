@@ -1,15 +1,10 @@
 /* body */
-html {
-  height: 100%;
-}
-
 body {
     background: black;
     background-repeat: no-repeat;
     font-family: $lato;
     font-size: 18px;
     background-size: cover;
-    height: 100%;
 }
 
 // outer-container for background image
@@ -19,7 +14,17 @@ body {
     background-attachment: fixed;
     margin:0;
     height: 100vh; // for full browser height and no gradient break
-    
+}
+
+@media only screen and (max-width: 575px) {
+  body{
+    // background-repeat: repeat;
+    // height: 1000px;
+    background-size: 2500px;
+  }
+  #outer-container{
+    height: 1300px;
+  }
 }
 
 #app {
