@@ -1,4 +1,5 @@
 {
+  "homepage": "http://piotrkraszewski.github.io/movie-search-app", 
   "name": "my-movie-search",
   "version": "0.1.0",
   "private": true,
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "imports-loader": "^0.8.0"
   }
 }
