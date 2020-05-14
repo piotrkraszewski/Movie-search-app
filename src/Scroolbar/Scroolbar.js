@@ -11,9 +11,9 @@ export default class Example extends Component {
   render() {
     const {show, text} = this.props
     return (
-          <ScrollBar className={(show && text) ? 'scroolBar' : 'offScroolBar scroolBar'}>
-            {this.props.children}
-          </ScrollBar>
+      <ScrollBar className={(show && text) ? 'scroolBar' : 'offScroolBar scroolBar'}>
+        {this.props.children}
+      </ScrollBar>
     )
   }
 }
