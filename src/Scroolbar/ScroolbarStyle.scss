@@ -17,7 +17,10 @@
 
 @media only screen and (max-width: 575px) {
   .scroolBar{
-    height: 1100px;
+    height: 1150px;
+  }
+  .offScroolBar{  // potrzebne
+    height: 0;
   }
 }
 
