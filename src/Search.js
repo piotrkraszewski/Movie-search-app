@@ -57,8 +57,8 @@ const renderSugestions = () => {
           key={index}
         >
           <div className='row'>
-            <img src={item[2]} className='col-lg-2 col-md-3 col-sm-4 col-2 Image'/>
-            <p className='col-lg-10 col-md-9 col-sm-8 col-10 textSugestion sugest'>
+            <img src={item[2]} className='col-lg-2 col-md-3 col-sm-4 col-3 Image'/>
+            <p className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
               {getHighlightedText(item[0], text, index)}
             </p>
           </div>
