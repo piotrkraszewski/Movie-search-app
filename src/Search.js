@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import TMDBLogo from './images/tmdb.svg'
 import './styles/main.scss'
-import './Search.css'
 import Scroolbar from './Scroolbar/Scroolbar'
 
 
