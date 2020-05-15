@@ -18,20 +18,14 @@ body {
 
 @media only screen and (max-width: 575px) {
   body{
+    // background-repeat: repeat;
+    // height: 1000px;
     background-size: 2500px;
   }
   #outer-container{
     height: 1300px;
   }
 }
-
-@media only screen and (max-height: 300px) {
-  #outer-container{
-    // adjust dark gradient for mobile keybord
-    background-image: linear-gradient(rgba(0, 0, 0, 0.85) 33%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.35) 85%);
-  }
-}
-
 
 #app {
     animation: fadein ease-out 1.4s;
