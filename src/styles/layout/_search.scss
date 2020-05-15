@@ -27,11 +27,11 @@
   }
 }
 
-// My new styles
+// === My new styles ===
 
 .list {
-  color: rgb(240, 240, 240);
-  background-color: rgba(0, 0, 0, 0.8);
+  color: $lightGrey;
+  background-color: $transparentBackground;
   list-style-type: none;
   padding: 0;
   margin-right: 2.5%;
@@ -68,7 +68,7 @@
 }
 
 .myform {
-  color: rgb(240, 240, 240);
+  color: $lightGrey;
   padding-left: 10px;
   padding-bottom: 5px;
   width: 100%; 
@@ -78,16 +78,17 @@
   border-bottom: solid 1px white;
 }
 .myform:focus {
-  color: rgb(240, 240, 240);
+  color: $lightGrey;
   outline-width: 0;
 }
+
 .tt-suggestion:hover {
-  color: #343434;
-  background-color: #00FC87;
+  color: $darkGrey;
+  background-color: $limeGreen;
   border-radius: 4px;
 }
 .tt-suggestion:hover span{
-  color: #343434 !important;
+  color: $darkGrey !important;
 }
 
 .searchInside{
@@ -102,7 +103,7 @@
     margin-right: 0;
   }
   .tt-suggestion:hover {
-    color: rgb(240, 240, 240);
-    background-color: rgba(0, 0, 0, 0.8);
+    color: $lightGrey;
+    background-color: $transparentBackground;
   }
 }
