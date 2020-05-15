@@ -10,10 +10,6 @@
   pointer-events: none;
 }
 
-.Image{
-  /* max-width: 110px; */
-}
-
 .animate {
   opacity: 1;
   pointer-events: auto;
@@ -71,5 +67,9 @@
   }
   .list{
     margin-right: 0;
+  }
+  .tt-suggestion:hover {
+    color: rgb(240, 240, 240);
+    background-color: rgba(0, 0, 0, 0.8);
   }
 }
