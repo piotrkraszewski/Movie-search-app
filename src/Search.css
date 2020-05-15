@@ -40,6 +40,11 @@
   color: rgb(240, 240, 240);
   padding-left: 10px;
   padding-bottom: 5px;
+  width: 100%; 
+      background: none;
+      border: none;
+      border-radius: 0;
+      border-bottom: solid 1px white;
 }
 .myform:focus {
   color: rgb(240, 240, 240);
@@ -57,9 +62,7 @@
 .searchInside{
   padding-left: 0;
 }
-.myRow {
-  margin-right: 50px;
-}
+
 
 @media only screen and (max-width: 575px) {
   .searchInside{

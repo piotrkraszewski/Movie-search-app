@@ -101,7 +101,7 @@ const renderSugestions = () => {
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
               onChange={handleChange}
-              className='searchbox__input typeahead myform'
+              className='myform'
               type='text'
               placeholder='Search Movie Title...'
               autocomplete="off"

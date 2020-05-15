@@ -1,62 +1,16 @@
-// container
 .search-container {
   margin: 20px 0;
-
-  .searchbox {
-    label {
-      width: 100%;
-      position: relative;
-
-      &:before {
-        color: white;
-        content: "\f4a4";
-        font-family: $Ionicons;
-        position: absolute;
-        font-weight: lighter;
-        bottom: 2px;
-        left: 0;
-        font-size: 22px;
-      }
-    }
-
-    // main input
-    .twitter-typeahead,
-    .typeahead {
-      width: 100%; // full width input search
-      background: none;
-      border: none;
-      border-radius: 0;
-      border-bottom: solid 1px white;
-
-      .searchbox__input {
-        &.tt-hint {
-          opacity: 0 !important;
-        }
-      }
-
-      .tt-input {
-        color: white;
-      }
-    }
-  }
 }
 
 // suggestions text
 .tt-suggestion {
   padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
+
   p {
     margin: 5px 0; // suggestion list spacing
   }
 
-  &.active{
-    color: $darkGrey;
-    background-color: $limeGreen;
-    border-radius: 4px;
-  }
-
-  &:focus {
+  &.active, &:focus {
     color: $darkGrey;
     background-color: $limeGreen;
     border-radius: 4px;
@@ -67,9 +21,8 @@
   }
 }
 
-// sm up
 @include media-breakpoint-up(sm) {
   .searchbox {
-    margin-top: 8px;
+    margin-top: 8px; //important
   }
 }
