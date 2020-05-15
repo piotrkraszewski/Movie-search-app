@@ -72,8 +72,7 @@ const renderSugestions = () => {
             ? 'active textSugestion showMore tt-suggestion' 
             : 'textSugestion showMore tt-suggestion'}
             >
-              
-              { sliceNumber >= 10 ? 'full search' 
+              { sliceNumber >= 10 ? 'full screen search' 
               : suggestions.length > 0 ? 'show more' 
               : 'no result'}
           </p>
@@ -96,13 +95,13 @@ const renderSugestions = () => {
     <div className='col-xs-12 search-container nopadding'>
       <div className='row'>
         <div className='col-xs-12 col-sm-3 col-lg-3'>
-          <img src={TMDBLogo} className='logo' alt='The Movie Database'/>
+          <img src={TMDBLogo} className='logo' alt='The Movie Database' />
         </div>
         <div className='col-xs-12 col-sm-9 col-lg-9 searchInside' ref={node}>
-          <form onSubmit={e => { e.preventDefault()}}>
+          <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
               onChange={handleChange}
-              className='myform'
+              className='searchbox__input typeahead myform'
               type='text'
               placeholder='Search Movie Title...'
               autocomplete="off"
