@@ -44,13 +44,19 @@
 // suggestions text
 .tt-suggestion {
   padding: 3px 20px;
-  // font-size: 18px;
+  font-size: 18px;
   line-height: 24px;
   p {
     margin: 5px 0; // suggestion list spacing
   }
 
-  &.active, &:focus{
+  &.active{
+    color: $darkGrey;
+    background-color: $limeGreen;
+    border-radius: 4px;
+  }
+
+  &:focus {
     color: $darkGrey;
     background-color: $limeGreen;
     border-radius: 4px;
