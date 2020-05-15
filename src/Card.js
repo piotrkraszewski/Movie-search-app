@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
 import './styles/main.scss'
-import './Card.css'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -56,7 +55,7 @@ let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
   })
 
   return (
-    <TransitionGroup className='helo nomargin'>
+    <TransitionGroup className='TransitionGroup'>
     <CSSTransition 
       key={props.movieID}
       timeout={2000}

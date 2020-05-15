@@ -98,3 +98,34 @@ p {
   }
 }
 // END sm up
+
+// === My Animation ===
+
+body {
+  transition: background-image 2s ease-in-out;
+}
+
+.TransitionGroup {
+  position: absolute;
+  margin-right: 15px;
+}
+
+.fade-enter {
+  opacity: 0;
+  position: absolute;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms linear 1000ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms linear;
+}
+.fade-exit-done {
+  opacity: 0;
+}
