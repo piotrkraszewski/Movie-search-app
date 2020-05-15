@@ -56,7 +56,7 @@ let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
   })
 
   return (
-    <TransitionGroup className='helo nomargin'>
+    <TransitionGroup className='nomargin'>
     <CSSTransition 
       key={props.movieID}
       timeout={2000}
