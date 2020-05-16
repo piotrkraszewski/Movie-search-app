@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Search from './Search'
 import Card from './Card'
+// import FullscreenSearch from './FullscreenSearch'
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
+import numeral from 'numeral'
 
 // myKey c61f42f858306ba4c3de925ee77d581d
 
@@ -24,6 +26,56 @@ export default function App () {
   }, [movieID])
   // ==== END Fetch first page ====
 
+  // ==== CARD COMPONENT LOGIC ====
+  function nestedDataToString(nestedData) {
+    let nestedArray = [],
+        resultString;
+    if(nestedData !== undefined){
+      nestedData.forEach(function(item){
+        nestedArray.push(item.name);
+      });
+    }
+    resultString = nestedArray.join(', '); // array to string
+    return resultString;
+  }
+
+let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
+    production = data.production_companies,
+    productionCountries = data.production_countries,
+    genres = data.genres,
+    totalRevenue = data.revenue,
+    productionList = nestedDataToString(production),
+    productionCountriesList = nestedDataToString(productionCountries),
+    noData = '-',
+    genresList = nestedDataToString(genres),
+    backdropIMG = 'https://image.tmdb.org/t/p/original' + data.backdrop_path
+
+
+  // conditional statements for no data
+  if (data.vote_average === 'undefined' || data.vote_average === 0) {
+    data.vote_average = noData
+  }
+
+  // dodaje $ i przecinki
+  if (totalRevenue === 'undefined' || totalRevenue === 0) {
+    totalRevenue = noData
+  } else {
+    totalRevenue = numeral(data.revenue).format('($0,0)');
+  }
+
+  if(data.poster_path== null){
+    posterIMG = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
+  }
+
+  if(data.backdrop_path == null){
+    backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
+  }
+
+  useEffect(() => {
+    document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
+  })
+
+  // ==== END CARD LOGIC ====
 
   // ==== Search arrow up and down logic ====
   const [cursor, setCursor] = useState(0)
@@ -177,7 +229,8 @@ const handleClick = e => {
             node={node}
             queryData={queryData}
           />
-          <Card data={data} movieID={movieID}/>
+          <Card data={data} movieID={movieID} nestedDataToString={nestedDataToString} genresList={genresList} productionList={productionList} totalRevenue={totalRevenue} posterIMG={posterIMG}/>
+          {/* <FullscreenSearch data={data} movieID={movieID}/> */}
         </div>
       </div>
     </div>

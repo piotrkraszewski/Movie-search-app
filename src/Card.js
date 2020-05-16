@@ -1,58 +1,13 @@
 import React, {useEffect, useState, useRef} from 'react'
 import './styles/main.scss'
-import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
-function nestedDataToString(nestedData) {
-  let nestedArray = [],
-      resultString;
-  if(nestedData !== undefined){
-    nestedData.forEach(function(item){
-      nestedArray.push(item.name);
-    });
-  }
-  resultString = nestedArray.join(', '); // array to string
-  return resultString;
-}
+
 
 export default function Card(props) {
-let data = props.data
-
-let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
-    production = data.production_companies,
-    productionCountries = data.production_countries,
-    genres = data.genres,
-    totalRevenue = data.revenue,
-    productionList = nestedDataToString(production),
-    productionCountriesList = nestedDataToString(productionCountries),
-    noData = '-',
-    genresList = nestedDataToString(genres),
-    backdropIMG = 'https://image.tmdb.org/t/p/original' + data.backdrop_path
+let {data, genresList, productionList, totalRevenue, posterIMG} = props
 
 
-  // conditional statements for no data
-  if (data.vote_average === 'undefined' || data.vote_average === 0) {
-    data.vote_average = noData
-  }
-
-  // dodaje $ i przecinki
-  if (totalRevenue === 'undefined' || totalRevenue === 0) {
-    totalRevenue = noData
-  } else {
-    totalRevenue = numeral(data.revenue).format('($0,0)');
-  }
-
-  if(data.poster_path== null){
-    posterIMG = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
-  }
-
-  if(data.backdrop_path == null){
-    backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
-  }
-
-  useEffect(() => {
-    document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
-  })
 
   return (
     <TransitionGroup className='TransitionGroup'>
