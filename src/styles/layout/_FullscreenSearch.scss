@@ -1,0 +1,38 @@
+.cardFS{
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.85);
+  // margin-bottom: 1rem;
+}
+
+.FS-title{
+  color: $limeGreen;
+  padding: 8px;
+  font-weight: bold;
+  font-family: $lato;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.posterImage{
+  width: 100%;
+  border-radius: 7px;
+  align-items: center;
+}
+
+.cardContainer{
+  padding: 1%;
+}
+
+// ==== coppied over from card.scss - meybe delete later ===
+
+// sm up
+@media (max-width: 474px) {
+  .FS-title{
+    font-size: 0.7em;
+  }
+}
+
+// // md up
+@include media-breakpoint-up(md) {
+  
+}
