@@ -8,7 +8,7 @@ import ArrowKeysReact from 'arrow-keys-react'
 
 // myKey c61f42f858306ba4c3de925ee77d581d
 
-export default function App () {
+export default function App (props) {
   // ==== Fetch first page ====
   const [movieID, setMovieID] = useState(157336)
   const url = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
@@ -32,6 +32,7 @@ export default function App () {
   const [queryData, setQueryData] = useState([])
   const [sliceNumber, setSliceNumber] = useState(5)
   const [oldText, setOldText] = useState('')
+  const [cursor, setCursor] = useState(0)
 
   const handleChange = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
@@ -106,79 +107,6 @@ export default function App () {
   }
   // ==== END sugeston hide on clic kaway ====
 
-  // ==== Search arrow up and down logic ====
-  const [cursor, setCursor] = useState(0)
-  ArrowKeysReact.config({
-    up: () => {
-      isNaN(cursor)
-        ? setCursor(sliceNumber)
-        : cursor < 0
-        ? setCursor(sliceNumber)
-        : setCursor(prevState => prevState - 1)
-    },
-    down: () => {
-      isNaN(cursor)
-        ? setCursor(0)
-        : cursor > sliceNumber
-        ? setCursor(0)
-        : setCursor(prevState => prevState + 1)
-    }
-  })
-
-  useEffect(() => {
-    console.log(cursor)
-  }, [cursor])
-
-  const enterPressed = e => {
-    var code = e.keyCode || e.which
-    if (code === 13) {
-      // enter key
-      // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
-      // dodanie pojawienie paska po wcisnieciu enter
-      if (show) {
-        if (cursor === sliceNumber) {
-          showMore()
-        } else {
-          suggestionsSelected(suggestions[cursor])
-          setShow(false)
-          setText(oldText)
-        }
-      } else {
-        if (cursor === sliceNumber) {
-          showMore()
-        } else {
-          setText(oldText)
-          setOldText('')
-        }
-        setShow(true)
-        console.log(show)
-      }
-    }
-  } // ==== END Search arrow up and down logic ====
-
-  // *** show more button ***
-  const showMore = e => {
-    sliceNumber >= 10
-      ? console.log('full screen search clicked')
-      : suggestions.length > 0
-      ? setSliceNumber(sliceNumber + 5)
-      : console.log()
-  }
-
-  useEffect(() => {
-    console.log(sliceNumber)
-    let movies = queryData
-      .map(a => [
-        a.original_title,
-        a.id,
-        `https://image.tmdb.org/t/p/w500${a.poster_path}`
-      ])
-      .slice(0, sliceNumber)
-    console.log(movies)
-    setSuggestions(movies)
-  }, [sliceNumber])
-  // ==== END Search state and functions ====
-
   return (
     <div
       className='container-fluid w-95 h-95'
@@ -189,29 +117,15 @@ export default function App () {
     >
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
-          <Search
-            handleChange={handleChange}
-            suggestionsSelected={suggestionsSelected}
-            text={text}
-            suggestions={suggestions}
-            cursor={cursor}
-            setCursor={setCursor}
-            enterPressed={enterPressed}
-            showMore={showMore}
-            sliceNumber={sliceNumber}
-            oldText={oldText}
-            handleClickOnInput={handleClickOnInput}
-            show={show}
-            node={node}
-            queryData={queryData}
+          <Search {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData}}
           />
-          {/* <Card
+          <Card
             data={data}
             movieID={movieID}
-          /> */}
-          <FullscreenSearch 
-            suggestions={suggestions}
           />
+          {/* <FullscreenSearch 
+            suggestions={suggestions}
+          /> */}
         </div>
       </div>
     </div>

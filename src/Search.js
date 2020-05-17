@@ -2,11 +2,85 @@ import React, {useEffect, useRef, useState} from 'react'
 import TMDBLogo from './images/tmdb.svg'
 import './styles/main.scss'
 import Scroolbar from './Scroolbar/Scroolbar'
+import ArrowKeysReact from 'arrow-keys-react'
 
 
 export default function SearchBox (props) {
-  const {show, text, suggestions, cursor, queryData, showMore, sliceNumber, oldText, node, handleChange, enterPressed, handleClickOnInput, suggestionsSelected, setCursor} = props
+  const {show, setShow, setText, setOldText, cursor, setCursor, text, suggestions, setSuggestions, queryData, sliceNumber, setSliceNumber, oldText, node, handleChange, handleClickOnInput, suggestionsSelected} = props
 
+
+    // ==== Search arrow up and down logic ====
+    
+    ArrowKeysReact.config({
+      up: () => {
+        isNaN(cursor)
+          ? setCursor(sliceNumber)
+          : cursor < 0
+          ? setCursor(sliceNumber)
+          : setCursor(prevState => prevState - 1)
+      },
+      down: () => {
+        isNaN(cursor)
+          ? setCursor(0)
+          : cursor > sliceNumber
+          ? setCursor(0)
+          : setCursor(prevState => prevState + 1)
+      }
+    })
+  
+    useEffect(() => {
+      console.log(cursor)
+    }, [cursor])
+  
+    const enterPressed = e => {
+      var code = e.keyCode || e.which
+      if (code === 13) {
+        // enter key
+        // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
+        // dodanie pojawienie paska po wcisnieciu enter
+        if (show) {
+          if (cursor === sliceNumber) {
+            showMore()
+          } else {
+            suggestionsSelected(suggestions[cursor])
+            setShow(false)
+            setText(oldText)
+          }
+        } else {
+          if (cursor === sliceNumber) {
+            showMore()
+          } else {
+            setText(oldText)
+            setOldText('')
+          }
+          setShow(true)
+          console.log(show)
+        }
+      }
+    } // ==== END Search arrow up and down logic ====
+
+  // *** show more button ***
+  const showMore = e => {
+    sliceNumber >= 10
+      ? console.log('full screen search clicked')
+      : suggestions.length > 0
+      ? setSliceNumber(sliceNumber + 5)
+      : console.log()
+  }
+
+  useEffect(() => {
+    console.log(sliceNumber)
+    let movies = queryData
+      .map(a => [
+        a.original_title,
+        a.id,
+        `https://image.tmdb.org/t/p/w500${a.poster_path}`
+      ])
+      .slice(0, sliceNumber)
+    console.log(movies)
+    setSuggestions(movies)
+  }, [sliceNumber])
+  // END show more button
 
 // ==== Podœwietlenie tekstu ====
 function getHighlightedText(text, highlight, index) {
