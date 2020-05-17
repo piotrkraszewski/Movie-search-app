@@ -119,13 +119,8 @@ export default function App (props) {
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           <Search {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData}}
           />
-          <Card
-            data={data}
-            movieID={movieID}
-          />
-          {/* <FullscreenSearch 
-            suggestions={suggestions}
-          /> */}
+          {/* <Card {...{data, movieID}} /> */}
+          <FullscreenSearch {...{suggestions}} />
         </div>
       </div>
     </div>
