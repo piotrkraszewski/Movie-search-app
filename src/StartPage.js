@@ -4,14 +4,14 @@ import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 export default function FullscreenSearch(props) {
-  let {suggestions} = props
+  let {suggestions, suggestionsSelected} = props
 
   // useEffect(() => {
   //   document.body.style.backgroundImage = '#222'
   // })
 
   const handleClickOnMovie = () =>{
-
+    
   }
 
   return (
@@ -21,10 +21,10 @@ export default function FullscreenSearch(props) {
       timeout={2000}
       classNames='fade'
     >
-    <div className='row'>
+    <div className='row startPage'>
       {suggestions.map((item, index) => 
         <div className='cardContainer col-xl-2 col-md-3 col-4'>
-          <div className='cardFS' onClick={handleClickOnMovie}>
+          <div className='cardFS' onClick={() => suggestionsSelected(item)}>
             <img className='posterImage' src={item[2]}/>
             <h1 className='FS-title'>{item[0]}</h1>
           </div>

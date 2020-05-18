@@ -177,7 +177,6 @@ const renderSugestions = () => {
               className='myform'
               type='text'
               placeholder='Search Movie Title...'
-              autocomplete="off"
               value={text !== '' ? text : oldText}
               onKeyPress={enterPressed}
               onClick={handleClickOnInput}

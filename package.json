@@ -1,9 +1,10 @@
 {
-  "homepage": "http://piotrkraszewski.github.io/movie-search-app", 
+  "homepage": "http://piotrkraszewski.github.io/movie-search-app",
   "name": "my-movie-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@n8tb1t/use-scroll-position": "^1.0.43",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -28,7 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject", 
+    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

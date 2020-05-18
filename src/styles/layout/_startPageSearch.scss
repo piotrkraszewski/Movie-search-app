@@ -1,0 +1,35 @@
+.st-search {
+  padding: 0;
+  margin: 20px 0;
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: $transparentBackground;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.myForm1{
+  outline: none;
+  color: $lightGrey;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  width: 99%; 
+  transform: translate(0.5%, 0);
+  background: none;
+  border: none;
+  border-bottom: solid 1px $limeGreen;
+  height: 40px;
+}
+
+@media only screen and (max-width: 575px) {
+  .st-search {
+    margin: 0;
+    height: 40px;
+  }
+  .myForm1{
+    height: 40px;
+  }
+}
+

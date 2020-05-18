@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import Search from './MovieCardSearch'
 import Card from './MovieCard'
 import FullscreenSearch from './StartPage'
+import StartPageSearch from './StartPageSearch'
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
 
-// myKey c61f42f858306ba4c3de925ee77d581d
 
 export default function App (props) {
   // ==== Fetch first page ====
@@ -30,7 +30,7 @@ export default function App (props) {
   const [suggestions, setSuggestions] = useState([])
   const [text, setText] = useState(null)
   const [queryData, setQueryData] = useState([])
-  const [sliceNumber, setSliceNumber] = useState(5)
+  const [sliceNumber, setSliceNumber] = useState(20)
   const [oldText, setOldText] = useState('')
   const [cursor, setCursor] = useState(0)
 
@@ -117,10 +117,11 @@ export default function App (props) {
     >
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
-          <Search {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData}}
-          />
+          {/* <Search {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData}}
+          /> */}
           {/* <Card {...{data, movieID}} /> */}
-          <FullscreenSearch {...{suggestions}} />
+          <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput, node}}/>
+          <FullscreenSearch {...{suggestions, suggestionsSelected}} />
         </div>
       </div>
     </div>
