@@ -1,37 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react'
-import './styles/main.scss'
-import numeral from 'numeral'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import React from 'react'
+import StartPageCard from './StartPageCard'
+import StartPageSearch from './StartPageSearch'
 
-export default function FullscreenSearch(props) {
-  let {suggestions, suggestionsSelected} = props
 
-  // useEffect(() => {
-  //   document.body.style.backgroundImage = '#222'
-  // })
-
-  const handleClickOnMovie = () =>{
-    
-  }
+export default function StartPage(props) {
+  const {text, oldText, handleChange, handleClickOnInput, node, suggestions, suggestionsSelected} = props
 
   return (
-    <TransitionGroup className='TransitionGroup'>
-    <CSSTransition 
-      key={props.movieID}
-      timeout={2000}
-      classNames='fade'
-    >
-    <div className='row startPage'>
-      {suggestions.map((item, index) => 
-        <div className='cardContainer col-xl-2 col-md-3 col-4'>
-          <div className='cardFS' onClick={() => suggestionsSelected(item)}>
-            <img className='posterImage' src={item[2]}/>
-            <h1 className='FS-title'>{item[0]}</h1>
-          </div>
-      </div>
-    )}
-      </div>
-  </CSSTransition>
-  </TransitionGroup>
+    <div>
+      <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput, node}}/>
+      <StartPageCard {...{suggestions, suggestionsSelected}} />
+    </div>
   )
 }

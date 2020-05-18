@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Search from './MovieCardSearch'
-import Card from './MovieCard'
-import FullscreenSearch from './StartPage'
-import StartPageSearch from './StartPageSearch'
+import StartPage from './StartPage';
+import Movie from './Movie';
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
+import {Route, Switch} from 'react-router-dom';
 
 
 export default function App (props) {
@@ -84,28 +83,7 @@ export default function App (props) {
   }
   // ==== END Search state and functions ====
 
-  // ==== sugeston hide on click away ====
-  const [show, setShow] = useState(false)
-  const node = useRef()
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClick)
-    return () => {
-      // return function to be called when unmounted
-      document.removeEventListener('mousedown', handleClick)
-    }
-  }, [])
-
-  const handleClick = e => {
-    if (node.current.contains(e.target)) {
-      // inside click
-      setShow(true)
-    } else {
-      // outside click
-      setShow(false)
-    }
-  }
-  // ==== END sugeston hide on clic kaway ====
+  
 
   return (
     <div
@@ -117,11 +95,14 @@ export default function App (props) {
     >
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
-          {/* <Search {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData}}
-          /> */}
-          {/* <Card {...{data, movieID}} /> */}
-          <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput, node}}/>
-          <FullscreenSearch {...{suggestions, suggestionsSelected}} />
+          <Switch>
+          <Route exact path='/' render={() => 
+              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, suggestionsSelected}} />} />
+
+            <Route exact path='/movie' render={() => 
+              <Movie {...{text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, queryData, data, movieID}} />} />
+
+          </Switch>
         </div>
       </div>
     </div>
