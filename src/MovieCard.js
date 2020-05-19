@@ -40,8 +40,8 @@ if (totalRevenue === 'undefined' || totalRevenue === 0) {
 }
 
 if (data.poster_path == null) {
-  posterIMG =
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
+  posterIMG = require('./images/no_image.png')
+    // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
 }
 
 if (data.backdrop_path == null) {

@@ -19,7 +19,7 @@ export default function FullscreenSearch(props) {
         <div className='cardContainer col-xl-2 col-md-3 col-4'>
           <Link to={`/movie/${item[1]}`} className='linkStyle'>
             <div className='cardFS' onClick={() => suggestionsSelectedFullscreen(item)}>
-              <img className='posterImage' src={item[2]}/>
+              <img className='posterImage' src={item[2] !== 'https://image.tmdb.org/t/p/w500null' ? item[2] : require('./images/no_image.png')}/>
               <h1 className='FS-title'>{item[0]}</h1>
             </div>
           </Link>
