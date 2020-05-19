@@ -4,12 +4,20 @@ import StartPageSearch from './StartPageSearch'
 
 
 export default function StartPage(props) {
-  const {text, oldText, handleChange, handleClickOnInput, node, suggestions, suggestionsSelected} = props
+  const {text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID} = props
+
+  const suggestionsSelectedFullscreen = value => {
+    if (text && value !== undefined) {
+      // setOldText(text)
+      // setText('')
+      setMovieID(value[1])
+    }
+  }
 
   return (
     <div>
-      <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput, node}}/>
-      <StartPageCard {...{suggestions, suggestionsSelected}} />
+      <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput}}/>
+      <StartPageCard {...{suggestions, suggestionsSelectedFullscreen}} />
     </div>
   )
 }

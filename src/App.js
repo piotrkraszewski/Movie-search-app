@@ -10,8 +10,8 @@ import {Route, Switch} from 'react-router-dom';
 export default function App (props) {
   // ==== Fetch first page ====
   const [movieID, setMovieID] = useState(157336)
-  const url = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
   const [data, setData] = useState({})
+  const url = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
 
   useEffect(() => {
     document.body.style.backgroundImage = 'url(https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg)'
@@ -67,14 +67,6 @@ export default function App (props) {
     }
   }
 
-  const suggestionsSelected = value => {
-    if (text && value !== undefined) {
-      setOldText(text)
-      setText('')
-      setMovieID(value[1])
-    }
-  }
-
   const handleClickOnInput = e => {
     if (text === '') {
       setText(oldText)
@@ -83,6 +75,8 @@ export default function App (props) {
   }
   // ==== END Search state and functions ====
 
+
+  
 
   return (
     <div
@@ -96,10 +90,10 @@ export default function App (props) {
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           <Switch>
           <Route exact path='/' render={() => 
-              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, suggestionsSelected}} />} />
+              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID}} />} />
 
-            <Route exact path={`/movie/:id`} render={routeProps => 
-              <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, queryData, data}} />} />
+            <Route exact path={`/movie/:${movieID}`} render={routeProps => 
+              <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data}} />} />
 
           </Switch>
         </div>
