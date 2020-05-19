@@ -9,6 +9,11 @@
 .cardFS{
   border-radius: 15px;
   background: rgba(0, 0, 0, 0.85);
+  transition: all .5s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+    transition: all .3s ease-in-out;
+  }
 }
 
 .posterImage{

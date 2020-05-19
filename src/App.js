@@ -8,7 +8,7 @@ import {Route, Switch} from 'react-router-dom';
 
 
 export default function App (props) {
-  // ==== Fetch first page ====
+  // ==== Fetch first movie page ====
   const [movieID, setMovieID] = useState(157336)
   const [data, setData] = useState({})
   const url = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
@@ -19,14 +19,36 @@ export default function App (props) {
     async function fetchApi () {
       const res = await axios.get(url)
       setData(res.data)
-      console.log(res.data)
+      // console.log(res.data)
     }
     fetchApi()
   }, [movieID])
-  // ==== END Fetch first page ====
+  // ==== END Fetch first movie page ====
+
+  // ==== Fetch StartPage ====
+  const [popularMovies, setPopularMovies] = useState()
+  const [suggestions, setSuggestions] = useState([])
+  useEffect(() => {
+    let urlStartPage = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
+    async function fetchStartPage () {
+      const response = await axios.get(urlStartPage)
+      const res = response.data.results
+      console.log(res)
+      let movies = res
+          .map(a => [
+            a.original_title,
+            a.id,
+            `https://image.tmdb.org/t/p/w500${a.poster_path}`,
+          ])
+          setPopularMovies(movies)
+          setSuggestions(movies)
+          // setQueryData(response.data.results)
+    }
+    fetchStartPage () 
+  }, [movieID])
+
 
   // ==== Search state and functions ====
-  const [suggestions, setSuggestions] = useState([])
   const [text, setText] = useState(null)
   const [queryData, setQueryData] = useState([])
   const [sliceNumber, setSliceNumber] = useState(20)

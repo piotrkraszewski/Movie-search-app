@@ -13,7 +13,6 @@ export default function FullscreenSearch(props) {
       timeout={2000}
       classNames='fade'
     >
-    <Route render={({history}) => (
 
     <div className='row startPage'>
       {suggestions.map((item, index) => 
@@ -27,7 +26,6 @@ export default function FullscreenSearch(props) {
       </div>
       )}
   </div>
-  )} />
   </CSSTransition>
   </TransitionGroup>
   )
