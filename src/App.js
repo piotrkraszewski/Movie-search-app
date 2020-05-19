@@ -83,7 +83,6 @@ export default function App (props) {
   }
   // ==== END Search state and functions ====
 
-  
 
   return (
     <div
@@ -99,8 +98,8 @@ export default function App (props) {
           <Route exact path='/' render={() => 
               <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, suggestionsSelected}} />} />
 
-            <Route exact path='/movie' render={() => 
-              <Movie {...{text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, queryData, data, movieID}} />} />
+            <Route exact path={`/movie/:id`} render={routeProps => 
+              <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, queryData, data}} />} />
 
           </Switch>
         </div>

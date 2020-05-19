@@ -4,8 +4,9 @@ import MovieCard from './MovieCard'
 
 
 export default function Movie(props) {
-  const {text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, queryData, data, movieID} = props
+  const {text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, queryData, data } = props
 
+  const movieID = parseInt(props.routeProps.match.params.id)
 
 // ==== sugeston hide on click away ====
   const [show, setShow] = useState(false)

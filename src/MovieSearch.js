@@ -3,6 +3,7 @@ import TMDBLogo from './images/tmdb.svg'
 import './styles/main.scss'
 import Scroolbar from './Scroolbar/Scroolbar'
 import ArrowKeysReact from 'arrow-keys-react'
+import {Link} from 'react-router-dom';
 
 
 export default function SearchBox (props) {
@@ -168,7 +169,9 @@ const renderSugestions = () => {
     <div className='col-xs-12 search-container nopadding'>
       <div className='row'>
         <div className='col-xs-12 col-sm-3 col-lg-3'>
+        <Link to='/'>
           <img src={TMDBLogo} className='logo' alt='The Movie Database' />
+        </Link>
         </div>
         <div className='col-xs-12 col-sm-9 col-lg-9 searchInside' ref={node}>
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
