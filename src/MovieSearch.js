@@ -123,6 +123,7 @@ const renderSugestions = () => {
       <ul 
         className={(show && text) ? 'animate list' : 'list'} >
       {suggestions.map((item, index) => 
+      <Link to={`/movie/${item[1]}`} className='linkStyle'>
         <li 
           className={cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
           onClick={()=> suggestionsSelected(item)}
@@ -136,7 +137,8 @@ const renderSugestions = () => {
               {getHighlightedText(item[0], text, index)}
             </p>
           </div>
-        </li>)}
+        </li>
+      </Link>)}
         
         <li style={{visibility: queryData.length > suggestions.length ? "visible": "collapse"}}>
           <p 

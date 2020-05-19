@@ -26,6 +26,11 @@
   text-align: center;
 }
 
+.linkStyle{
+  text-decoration:none !important;
+  color: white;
+}
+
 @media only screen and (max-width: 575px) {
   .startPage{
     margin-top: 50px;

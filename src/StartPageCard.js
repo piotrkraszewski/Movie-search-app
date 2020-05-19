@@ -18,7 +18,7 @@ export default function FullscreenSearch(props) {
     <div className='row startPage'>
       {suggestions.map((item, index) => 
         <div className='cardContainer col-xl-2 col-md-3 col-4'>
-          <Link to={`/movie/${item[1]}`}>
+          <Link to={`/movie/${item[1]}`} className='linkStyle'>
             <div className='cardFS' onClick={() => suggestionsSelectedFullscreen(item)}>
               <img className='posterImage' src={item[2]}/>
               <h1 className='FS-title'>{item[0]}</h1>
