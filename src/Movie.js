@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 export default function Movie(props) {
-  const {routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data } = props
+  const {routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data,fetchStartPage } = props
   const movieID = parseInt(props.routeProps.match.params.id)
 
 
@@ -42,7 +42,7 @@ export default function Movie(props) {
 
   return (
     <div>
-      <MovieSearch {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData}}/> 
+      <MovieSearch {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData, fetchStartPage}}/> 
 
       <MovieCard {...{data, movieID}} />
     </div>

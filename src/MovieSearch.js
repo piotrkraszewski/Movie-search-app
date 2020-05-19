@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 
 
 export default function SearchBox (props) {
-  const {show, setShow, setText, setOldText, cursor, setCursor, text, suggestions, setSuggestions, queryData, sliceNumber, setSliceNumber, oldText, node, handleChange, handleClickOnInput, suggestionsSelected} = props
+  const {show, setShow, setText, setOldText, cursor, setCursor, text, suggestions, setSuggestions, queryData, sliceNumber, setSliceNumber, oldText, node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
 
 
     // ==== Search arrow up and down logic ====
@@ -172,7 +172,7 @@ const renderSugestions = () => {
       <div className='row'>
         <div className='col-xs-12 col-sm-3 col-lg-3'>
         <Link to='/'>
-          <img src={TMDBLogo} className='logo' alt='The Movie Database' />
+          <img src={TMDBLogo} className='logo' alt='The Movie Database' onClick={fetchStartPage}/>
         </Link>
         </div>
         <div className='col-xs-12 col-sm-9 col-lg-9 searchInside' ref={node}>

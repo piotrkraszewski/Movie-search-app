@@ -28,28 +28,33 @@ export default function App (props) {
   // ==== Fetch StartPage ====
   const [popularMovies, setPopularMovies] = useState()
   const [suggestions, setSuggestions] = useState([])
+  const [text, setText] = useState(null)
+  let urlStartPage = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
+  
+  async function fetchStartPage() {
+    const response = await axios.get(urlStartPage)
+    const res = response.data.results
+    let movies = res
+        .map(a => [
+          a.original_title,
+          a.id,
+          `https://image.tmdb.org/t/p/w500${a.poster_path}`,
+        ])
+        // setPopularMovies(movies)
+        setSuggestions(movies)
+        // setQueryData(response.data.results)
+  }
+
   useEffect(() => {
-    let urlStartPage = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
-    async function fetchStartPage () {
-      const response = await axios.get(urlStartPage)
-      const res = response.data.results
-      console.log(res)
-      let movies = res
-          .map(a => [
-            a.original_title,
-            a.id,
-            `https://image.tmdb.org/t/p/w500${a.poster_path}`,
-          ])
-          setPopularMovies(movies)
-          setSuggestions(movies)
-          // setQueryData(response.data.results)
-    }
-    fetchStartPage () 
-  }, [movieID])
+    fetchStartPage() 
+  }, [])
+
+  useEffect(() => {
+    if(text === '' ){fetchStartPage()}
+  })
 
 
   // ==== Search state and functions ====
-  const [text, setText] = useState(null)
   const [queryData, setQueryData] = useState([])
   const [sliceNumber, setSliceNumber] = useState(20)
   const [oldText, setOldText] = useState('')
@@ -115,7 +120,7 @@ export default function App (props) {
               <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID}} />} />
 
             <Route exact path={`/movie/:${movieID}`} render={routeProps => 
-              <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data}} />} />
+              <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage}} />} />
 
           </Switch>
         </div>
