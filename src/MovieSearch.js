@@ -3,7 +3,7 @@ import TMDBLogo from './images/tmdb.svg'
 import './styles/main.scss'
 import Scroolbar from './Scroolbar/Scroolbar'
 import ArrowKeysReact from 'arrow-keys-react'
-import {Link} from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
 
 
 export default function SearchBox (props) {
@@ -61,12 +61,18 @@ export default function SearchBox (props) {
     } // ==== END Search arrow up and down logic ====
 
   // *** show more button ***
+  const history = useHistory()
+
   const showMore = e => {
-    sliceNumber >= 10
-      ? console.log('full screen search clicked')
-      : suggestions.length > 0
-      ? setSliceNumber(sliceNumber + 5)
-      : console.log()
+    if (sliceNumber >= 10){
+      history.push("/")
+      setSliceNumber(20)  // moze jakos inaczej to rozwiazaæ
+    } else {
+      if(suggestions.length > 0){
+        setSliceNumber(sliceNumber + 5)
+        console.log()
+      }
+    }
   }
 
   useEffect(() => {

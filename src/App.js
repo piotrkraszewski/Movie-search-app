@@ -56,7 +56,7 @@ export default function App (props) {
 
   // ==== Search state and functions ====
   const [queryData, setQueryData] = useState([])
-  const [sliceNumber, setSliceNumber] = useState(20)
+  const [sliceNumber, setSliceNumber] = useState(5)
   const [oldText, setOldText] = useState('')
   const [cursor, setCursor] = useState(0)
 

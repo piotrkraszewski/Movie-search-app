@@ -13,7 +13,7 @@ export default function StartPage(props) {
   return (
     <div>
       <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput}}/>
-      <StartPageCard {...{suggestions, suggestionsSelectedFullscreen}} />
+      <StartPageCard {...{text, suggestions, suggestionsSelectedFullscreen}} />
     </div>
   )
 }
