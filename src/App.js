@@ -4,7 +4,8 @@ import Movie from './Movie';
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
 export default function App (props) {
@@ -129,6 +130,15 @@ export default function App (props) {
   */
 // === END Check if input changed ===
 
+useEffect(() => {
+  console.log('suggenstions: ' + suggestions)
+}, [suggestions])
+
+const routes = [
+  { path: '/', name: 'StartPage', Component: StartPage },
+  { path: `/movie/:movieID`, name: 'Movie', Component: Movie }
+]
+
   return (
     <div
       className='container-fluid w-95 h-95'
@@ -139,14 +149,31 @@ export default function App (props) {
     >
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
-          <Switch>
-          <Route exact path='/' render={() => 
+          {routes.map(({ path, Component }) => (
+              <Route key={path} exact path={path}>
+                {({ match }) => (
+                  <CSSTransition
+                    in={match != null}
+                    timeout={2000}
+                    classNames="Swich"
+                    unmountOnExit
+                  >
+                    <div className="page">
+                      <Component {...{movieID, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}}/>
+                    </div>
+                  </CSSTransition>
+                )}
+              </Route>
+            ))}
+
+          {/* <Switch>
+            <Route exact path='/' render={() => 
               <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}} />} />
 
             <Route exact path={`/movie/:${movieID}`} render={routeProps => 
               <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage}} />} />
 
-          </Switch>
+          </Switch> */}
         </div>
       </div>
     </div>

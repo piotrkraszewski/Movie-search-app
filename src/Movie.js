@@ -5,8 +5,8 @@ import axios from 'axios'
 
 
 export default function Movie(props) {
-  const {routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data,fetchStartPage } = props
-  const movieID = parseInt(props.routeProps.match.params.id)
+  const {movieID, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data,fetchStartPage } = props
+  // const movieID = parseInt(routeProps)
 
 
   const suggestionsSelected = value => {

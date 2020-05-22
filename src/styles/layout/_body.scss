@@ -30,3 +30,25 @@ body {
 #app {
     animation: fadein ease-out 1.4s;
 }
+
+// ====== Swich animation ======
+
+.Swich-enter {
+  opacity: 0;
+  // position: absolute;
+}
+.Swich-enter.Swich-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms linear 1000ms;
+}
+
+.Swich-exit {
+  opacity: 1;
+}
+.Swich-exit.Swich-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms linear;
+}
+.Swich-exit-done {
+  opacity: 0;
+}
