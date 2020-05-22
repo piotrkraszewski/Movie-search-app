@@ -4,7 +4,7 @@ import StartPageSearch from './StartPageSearch'
 
 
 export default function StartPage(props) {
-  const {text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID} = props
+  const {text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions} = props
 
   const suggestionsSelectedFullscreen = value => {
     setMovieID(value[1])
@@ -13,7 +13,7 @@ export default function StartPage(props) {
   return (
     <div>
       <StartPageSearch {...{text, oldText, handleChange, handleClickOnInput}}/>
-      <StartPageCard {...{text, suggestions, suggestionsSelectedFullscreen}} />
+      <StartPageCard {...{text, oldText, suggestions, suggestionsSelectedFullscreen, change, startPageSuggestions}} />
     </div>
   )
 }

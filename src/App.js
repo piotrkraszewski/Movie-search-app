@@ -27,6 +27,7 @@ export default function App (props) {
 
   // ==== Fetch StartPage ====
   const [popularMovies, setPopularMovies] = useState()
+  const [startPageSuggestions, setStartPageSuggestions] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [text, setText] = useState(null)
   let urlStartPage = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
@@ -43,6 +44,7 @@ export default function App (props) {
         // setPopularMovies(movies)
         setSuggestions(movies)
         // setQueryData(response.data.results)
+        // setStartPageSuggestions(movies)
   }
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function App (props) {
   // ==== Search state and functions ====
   const [queryData, setQueryData] = useState([])
   const [sliceNumber, setSliceNumber] = useState(5)
-  const [oldText, setOldText] = useState('')
+  const [oldText, setOldText] = useState(null)
   const [cursor, setCursor] = useState(0)
 
   const handleChange = e => {
@@ -103,7 +105,29 @@ export default function App (props) {
   // ==== END Search state and functions ====
 
 
-  
+  // === Check if input changed ===
+  const [change, setChange] = useState(0)
+  /*
+  let timer = null
+  const handleCheck = () => {
+    // Clears running timer and starts a new one each time the user types
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      toggleCheck();
+    }, 1000);
+  }
+
+  const toggleCheck = () => {
+    setStartPageSuggestions(suggestions)
+    setChange(() => change + 1)
+    console.log(change)
+  }
+
+  if(text !== oldText){
+    handleCheck()
+  } 
+  */
+// === END Check if input changed ===
 
   return (
     <div
@@ -117,7 +141,7 @@ export default function App (props) {
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           <Switch>
           <Route exact path='/' render={() => 
-              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID}} />} />
+              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}} />} />
 
             <Route exact path={`/movie/:${movieID}`} render={routeProps => 
               <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage}} />} />

@@ -109,22 +109,25 @@ body {
   margin-right: 15px;
 }
 
-.fade-enter {
+
+// ====== movieCard fadeanim ation ======
+
+.fadeMovieCard-enter {
   opacity: 0;
   position: absolute;
 }
-.fade-enter.fade-enter-active {
+.fadeMovieCard-enter.fadeMovieCard-enter-active {
   opacity: 1;
   transition: opacity 1000ms linear 1000ms;
 }
 
-.fade-exit {
+.fadeMovieCard-exit {
   opacity: 1;
 }
-.fade-exit.fade-exit-active {
+.fadeMovieCard-exit.fadeMovieCard-exit-active {
   opacity: 0;
   transition: opacity 1000ms linear;
 }
-.fade-exit-done {
+.fadeMovieCard-exit-done {
   opacity: 0;
 }

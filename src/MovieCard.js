@@ -16,7 +16,7 @@ function nestedDataToString (nestedData) {
 }
 
 export default function Card(props) {
-let {data} = props
+let {data, movieID} = props
 
 let posterIMG = 'https://image.tmdb.org/t/p/w500' + data.poster_path,
     production = data.production_companies,
@@ -55,9 +55,9 @@ useEffect(() => {
   return (
     <TransitionGroup className='TransitionGroup'>
     <CSSTransition 
-      key={props.movieID}
+      key={props.data}
       timeout={2000}
-      classNames='fade'
+      classNames='fadeMovieCard'
       >
     <div className='col-12 cardcont nopadding row'>
 
