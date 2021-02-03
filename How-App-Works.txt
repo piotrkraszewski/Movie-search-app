@@ -1,0 +1,3 @@
+bower_components is needed for bootstrap to work with scss
+
+I don't know if jquery and typeahead is needed from bower. Right now there are commented out. probably will delete it soon.
