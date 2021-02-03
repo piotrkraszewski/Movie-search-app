@@ -4,7 +4,7 @@ import {Route, Link} from 'react-router-dom'
 import no_image from './images/no_image.png'
 
 export default function FullscreenSearch(props) {
-  let {suggestions, suggestionsSelectedFullscreen, text} = props
+  const {suggestions, suggestionsSelectedFullscreen, text} = props
 
   return (
     <TransitionGroup className='TransitionGroup'>
@@ -17,7 +17,7 @@ export default function FullscreenSearch(props) {
       <p className='Popular'>{text === '' || text === null ? 'Trending Now' : ''}</p>
       <div className='row startPage'>
         {suggestions.map((item, index) => 
-          <div className='cardContainer col-xl-2 col-md-3 col-4'>
+          <div className='cardContainer col-xl-2 col-md-3 col-4' key={index}>
             <Link to={`/movie/${item[1]}`} className='linkStyle'>
               <div className='cardFS' onClick={() => suggestionsSelectedFullscreen(item)}>
                 <img className='posterImage' src={item[2] !== 'https://image.tmdb.org/t/p/w500null' ? item[2] : no_image}/>

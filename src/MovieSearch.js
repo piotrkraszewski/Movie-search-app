@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import { useEffect } from 'react'
 import TMDBLogo from './images/tmdb.svg'
 import './styles/main.scss'
 import Scroolbar from './Scroolbar/Scroolbar'

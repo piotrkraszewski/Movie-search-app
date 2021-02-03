@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import MovieSearch from './MovieSearch'
 import MovieCard from './MovieCard'
-import axios from 'axios'
 
 
 export default function Movie(props) {
-  const {movieID, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data,fetchStartPage } = props
-  // const movieID = parseInt(routeProps)
+  const {movieID, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, movieData, fetchStartPage } = props
 
 
   const suggestionsSelected = value => {
@@ -44,7 +42,7 @@ export default function Movie(props) {
     <div>
       <MovieSearch {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData, fetchStartPage}}/> 
 
-      <MovieCard {...{data, movieID}} />
+      <MovieCard {...{movieData}} />
     </div>
   )
 }

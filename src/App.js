@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import StartPage from './StartPage';
 import Movie from './Movie';
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
 export default function App () {
   // ==== Fetch StartPage ====
-  const [startPageSuggestions, setStartPageSuggestions] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState(null)
   let startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
@@ -60,7 +59,7 @@ export default function App () {
   // ==== Search state and functions ====
   const [queryData, setQueryData] = useState([]) // all data that we get from API
   const [sliceNumber, setSliceNumber] = useState(5) //how many results are displayed on quick search
-  const [oldSearchbarText, setOldSearchbarText] = useState(null)
+  const [oldSearchbarText, setOldSearchbarText] = useState('')
   const [cursor, setCursor] = useState(0)
 
   const handleChange = e => {
@@ -88,7 +87,7 @@ export default function App () {
     } else {
       setCursor(-1)
       setTimeout(() => {
-        // okno sugesti z opóŸnieniem gaœnie
+        // suggestion window closes after 500ms - dont think it works
         setSuggestions([])
       }, 500)
     }
@@ -156,7 +155,7 @@ const routes = [
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data: movieData, fetchStartPage, startPageSuggestions}}/>
+                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, movieData, fetchStartPage}}/>
                     </div>
                   </CSSTransition>
                 )}
