@@ -1,71 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import StartPage from './StartPage';
 import Movie from './Movie';
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
-import {Route, Switch} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
-export default function App (props) {
-  // ==== Fetch first movie page ====
+export default function App () {
+  // ==== Fetch StartPage ====
+  const [startPageSuggestions, setStartPageSuggestions] = useState([])
+  const [suggestions, setSuggestions] = useState([])
+  const [searchbarText, setSearchbarText] = useState(null)
+  let startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
+  
+  async function fetchStartPage() {
+    const response = await axios.get(startPageUrl)
+    const res = response.data.results
+    let movies = res.map(a => [
+      a.original_title,
+      a.id,
+      `https://image.tmdb.org/t/p/w500${a.poster_path}`,
+    ])
+    setSuggestions(movies)
+  }
+
+  // Fetch StarPage on app lunch
+  useEffect(() => {
+    fetchStartPage() 
+  }, [])
+  
+  // if search is empty on main page it displays start page
+  // checks this condition every time
+  useEffect(() => {
+    if(searchbarText === '' ){fetchStartPage()}
+  })
+  // ==== END Fetch StartPage ====
+
+
+  // ==== Fetch movie page based on movieID parameter ====
   const [movieID, setMovieID] = useState(157336)
-  const [data, setData] = useState({})
-  const url = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
+  const [movieData, setMovieData] = useState({})
+  const movieUrl = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
 
   useEffect(() => {
     document.body.style.backgroundImage = 'url(https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg)'
       // 'url(https://wallpaperaccess.com/full/670449.jpg)'
-    async function fetchApi () {
-      const res = await axios.get(url)
-      setData(res.data)
-      // console.log(res.data)
+    async function fetchMovieFromApi () {
+      const res = await axios.get(movieUrl)
+      setMovieData(res.data)
     }
-    fetchApi()
+    fetchMovieFromApi()
   }, [movieID])
-  // ==== END Fetch first movie page ====
+  // ==== END Fetch movie page ====
 
-  // ==== Fetch StartPage ====
-  const [popularMovies, setPopularMovies] = useState()
-  const [startPageSuggestions, setStartPageSuggestions] = useState([])
-  const [suggestions, setSuggestions] = useState([])
-  const [text, setText] = useState(null)
-  let urlStartPage = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
-  
-  async function fetchStartPage() {
-    const response = await axios.get(urlStartPage)
-    const res = response.data.results
-    let movies = res
-        .map(a => [
-          a.original_title,
-          a.id,
-          `https://image.tmdb.org/t/p/w500${a.poster_path} `,
-        ])
-        // setPopularMovies(movies)
-        setSuggestions(movies)
-        // setQueryData(response.data.results)
-        // setStartPageSuggestions(movies)
-  }
-
-  useEffect(() => {
-    fetchStartPage() 
-  }, [])
-
-  useEffect(() => {
-    if(text === '' ){fetchStartPage()}
-  })
 
 
   // ==== Search state and functions ====
   const [queryData, setQueryData] = useState([])
-  const [sliceNumber, setSliceNumber] = useState(5)
+  const [sliceNumber, setSliceNumber] = useState(5) //how many results are displayed on quick search
   const [oldText, setOldText] = useState(null)
   const [cursor, setCursor] = useState(0)
 
   const handleChange = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
-    setText(value)
+    setSearchbarText(value)
     if (value.length === 0) {
       setOldText('')
     }
@@ -98,8 +98,8 @@ export default function App (props) {
   }
 
   const handleClickOnInput = e => {
-    if (text === '') {
-      setText(oldText)
+    if (searchbarText === '') {
+      setSearchbarText(oldText)
       setOldText('')
     }
   }
@@ -159,7 +159,7 @@ const routes = [
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component {...{movieID, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}}/>
+                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data: movieData, fetchStartPage, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}}/>
                     </div>
                   </CSSTransition>
                 )}
