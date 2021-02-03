@@ -40,7 +40,7 @@ export default function App (props) {
         .map(a => [
           a.original_title,
           a.id,
-          `https://image.tmdb.org/t/p/w500${a.poster_path}`,
+          `https://image.tmdb.org/t/p/w500${a.poster_path} `,
         ])
         // setPopularMovies(movies)
         setSuggestions(movies)
