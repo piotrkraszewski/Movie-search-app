@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useState} from 'react'
 import './styles/main.scss'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 

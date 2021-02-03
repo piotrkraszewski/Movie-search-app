@@ -104,7 +104,7 @@ export default function App () {
 
 
   // === Check if input changed ===
-  const [change, setChange] = useState(0)
+  // const [change, setChange] = useState(0)
   /*
   let timer = null
   const handleCheck = () => {
@@ -156,7 +156,7 @@ const routes = [
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data: movieData, fetchStartPage, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}}/>
+                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data: movieData, fetchStartPage, startPageSuggestions}}/>
                     </div>
                   </CSSTransition>
                 )}
