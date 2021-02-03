@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import {Route, Link} from 'react-router-dom'
 
 export default function FullscreenSearch(props) {
-  let {suggestions, suggestionsSelectedFullscreen, text} = props
+  let {suggestions, suggestionsSelectedFullscreen, text, oldText, change, startPageSuggestions} = props
 
   return (
     <TransitionGroup className='TransitionGroup'>

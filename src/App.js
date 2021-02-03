@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import StartPage from './StartPage';
 import Movie from './Movie';
 import axios from 'axios'
@@ -10,6 +10,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 export default function App () {
   // ==== Fetch StartPage ====
+  const [startPageSuggestions, setStartPageSuggestions] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState(null)
   let startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
@@ -57,12 +58,12 @@ export default function App () {
 
 
   // ==== Search state and functions ====
-  const [queryData, setQueryData] = useState([])    // all data that we get from API
+  const [queryData, setQueryData] = useState([]) // all data that we get from API
   const [sliceNumber, setSliceNumber] = useState(5) //how many results are displayed on quick search
   const [oldSearchbarText, setOldSearchbarText] = useState(null)
   const [cursor, setCursor] = useState(0)
 
-  const handleSearchChange = e => {
+  const handleChange = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
     setSearchbarText(value)
     if (value.length === 0) {
@@ -77,8 +78,6 @@ export default function App () {
             a.original_title,
             a.id,
             `https://image.tmdb.org/t/p/w500${a.poster_path}`,
-            // a.overview.substring(0, 150).concat('...'),
-            // a.release_date
           ])
           .slice(0, sliceNumber)
         console.log(movies)
@@ -117,11 +116,12 @@ export default function App () {
   }
 
   const toggleCheck = () => {
+    setStartPageSuggestions(suggestions)
     setChange(() => change + 1)
     console.log(change)
   }
 
-  if(searchbarText !== oldText){
+  if(text !== oldText){
     handleCheck()
   } 
   */
@@ -156,7 +156,7 @@ const routes = [
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component {...{movieID, setMovieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange: handleSearchChange, handleClickOnInput, queryData, data: movieData, fetchStartPage, change}}/>
+                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data: movieData, fetchStartPage, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}}/>
                     </div>
                   </CSSTransition>
                 )}
@@ -165,7 +165,7 @@ const routes = [
 
           {/* <Switch>
             <Route exact path='/' render={() => 
-              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID, change}} />} />
+              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}} />} />
 
             <Route exact path={`/movie/:${movieID}`} render={routeProps => 
               <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage}} />} />
