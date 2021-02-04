@@ -7,7 +7,7 @@ import {Link, useHistory } from 'react-router-dom';
 
 
 export default function SearchBox (props) {
-  const {show, setShow, setText, setOldText, cursor, setCursor, text, suggestions, setSuggestions, queryData, sliceNumber, setSliceNumber, oldText, node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
+  const {show, setShow, text, setText, oldText, setOldText, cursor, setCursor, suggestions, setSuggestions, queryData, sliceNumber, setSliceNumber,  node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
 
 
     // ==== Search arrow up and down logic ====
@@ -29,9 +29,9 @@ export default function SearchBox (props) {
       }
     })
   
-    useEffect(() => {
-      console.log(cursor)
-    }, [cursor])
+    // useEffect(() => {
+    //   console.log(cursor)
+    // }, [cursor])
   
     const enterPressed = e => {
       var code = e.keyCode || e.which
@@ -55,7 +55,6 @@ export default function SearchBox (props) {
             setOldText('')
           }
           setShow(true)
-          console.log(show)
         }
       }
     } // ==== END Search arrow up and down logic ====
@@ -70,13 +69,12 @@ export default function SearchBox (props) {
     } else {
       if(suggestions.length > 0){
         setSliceNumber(sliceNumber + 5)
-        console.log()
       }
     }
   }
 
   useEffect(() => {
-    console.log(sliceNumber)
+    console.dir(`sliceNumber: ${sliceNumber}`)
     let movies = queryData
       .map(a => [
         a.original_title,
@@ -84,7 +82,6 @@ export default function SearchBox (props) {
         `https://image.tmdb.org/t/p/w500${a.poster_path}`
       ])
       .slice(0, sliceNumber)
-    console.log(movies)
     setSuggestions(movies)
   }, [sliceNumber])
   // END show more button
@@ -96,7 +93,7 @@ function getHighlightedText(text, highlight, index) {
     <span 
       key={i} 
       style=
-      {(part.toLowerCase() === highlight.toLowerCase() && props.cursor !== index)
+      {(part.toLowerCase() === highlight.toLowerCase() && cursor !== index)
         ? { color: '#00FC87', fontWeight: 'bold' } 
         : part.toLowerCase() === highlight.toLowerCase() 
           ? { fontWeight: 'bold'}
@@ -111,15 +108,6 @@ const onMouseEnterHandle = e => {
   setCursor(parseInt(e.target.getAttribute('index')))
 }
 // ==== END Podœwietlenie tekstu ====
-
-
-  // == console log stuff ==
-useEffect(() => {
-  console.log('queryData.length: ' + queryData.length)
-  console.log('suggestions.length: ' + suggestions.length)
-  console.log('sliceNumber: ' + sliceNumber)
-}, [queryData, sliceNumber])
-  // == END console log stuff ==
 
 
 const renderSugestions = () => {

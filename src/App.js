@@ -5,7 +5,7 @@ import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Route } from 'react-router-dom'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 
 export default function App () {
@@ -17,12 +17,12 @@ export default function App () {
   async function fetchStartPage() {
     const response = await axios.get(startPageUrl)
     const res = response.data.results
-    let movies = res.map(a => [
+    const popularMovies = res.map(a => [
       a.original_title,
       a.id,
       `https://image.tmdb.org/t/p/w500${a.poster_path}`,
     ])
-    setSuggestions(movies)
+    setSuggestions(popularMovies)
   }
 
   // Fetch StarPage on app lunch
@@ -33,8 +33,8 @@ export default function App () {
   // if search is empty on main page it displays start page
   // checks this condition every time
   useEffect(() => {
-    if(searchbarText === '' ){fetchStartPage()}
-  })
+    if(searchbarText === '' ){fetchStartPage()} 
+  }, [searchbarText])
   // ==== END Fetch StartPage ====
 
 
@@ -72,14 +72,13 @@ export default function App () {
       let url = `https://api.themoviedb.org/3/search/movie?query=%${value}&api_key=cfe422613b250f702980a3bbf9e90716`
       axios.get(url).then(response => {
         const res = response.data.results
-        let movies = res
+        const movies = res
           .map(a => [
             a.original_title,
             a.id,
             `https://image.tmdb.org/t/p/w500${a.poster_path}`,
           ])
           .slice(0, sliceNumber)
-        console.log(movies)
         setSuggestions(movies)
         setQueryData(response.data.results)
         setOldSearchbarText(value)
@@ -126,9 +125,18 @@ export default function App () {
   */
 // === END Check if input changed ===
 
-useEffect(() => {
-  console.log('suggenstions: ' + suggestions)
-}, [suggestions])
+// ==== console log stuff ====
+  useEffect(() => {
+    console.log(`queryData.length: ${queryData.length}`)
+    console.log(`suggestions.length: ${suggestions.length}`)
+  }, [queryData])
+
+  useEffect(() => {
+    console.log('suggenstions: ' + suggestions)
+  }, [suggestions])
+
+// ==== END console log stuff ====
+
 
 const routes = [
   { path: '/', name: 'StartPage', Component: StartPage },
@@ -161,15 +169,6 @@ const routes = [
                 )}
               </Route>
             ))}
-
-          {/* <Switch>
-            <Route exact path='/' render={() => 
-              <StartPage {...{text, oldText, handleChange, handleClickOnInput, suggestions, setMovieID, change, startPageSuggestions}} />} />
-
-            <Route exact path={`/movie/:${movieID}`} render={routeProps => 
-              <Movie {...{routeProps, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, data, fetchStartPage}} />} />
-
-          </Switch> */}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import MovieCard from './MovieCard'
 
 
 export default function Movie(props) {
-  const {movieID, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, movieData, fetchStartPage } = props
+  const {text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, movieData, fetchStartPage } = props
 
 
   const suggestionsSelected = value => {

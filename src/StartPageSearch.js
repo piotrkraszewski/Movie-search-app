@@ -9,7 +9,7 @@ export default function StartPageSearch(props) {
   const [changeStyle, setChangeStyle] = useState(false)
   useScrollPosition(({ prevPos, currPos }) => {
     (currPos.y < -20) ? setChangeStyle(true) : setChangeStyle(false)    // is it implelented i scss?
-    console.log(changeStyle, currPos.y)
+    // console.log(changeStyle, currPos.y)
   })
 
   return (
