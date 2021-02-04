@@ -5,9 +5,13 @@ import { Link } from 'react-router-dom'
 import { AppContext } from './AppContext'
 import no_image from '../images/no_image.png'
 
-export default function FullscreenSearch(props) {
-  const {suggestions, suggestionsSelectedFullscreen } = props
-  const {searchbarText} = useContext(AppContext)
+
+export default function FullscreenSearch() {
+  const {searchbarText, suggestions, setMovieID} = useContext(AppContext)
+
+  const suggestionsSelectedFullscreen = value => {
+    setMovieID(value[1])
+  }
 
   return (
     <TransitionGroup className='TransitionGroup'>

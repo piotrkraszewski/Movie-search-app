@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import '../styles/main.scss'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import { AppContext } from './AppContext'
 
-
-export default function StartPageSearch(props) {
-  const {searchbarText, oldSearchbarText, handleChange, handleClickOnInput} = props
+export default function StartPageSearch() {
+  const {searchbarText, oldSearchbarText, handleChange, handleClickOnInput} = useContext(AppContext)
 
   const [changeStyle, setChangeStyle] = useState(false)
   useScrollPosition(({ prevPos, currPos }) => {

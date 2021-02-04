@@ -131,7 +131,9 @@ const routes = [
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           
-          <AppContext.Provider value={{movieData, searchbarText}}>
+          <AppContext.Provider 
+            value={{movieData, searchbarText, oldSearchbarText, suggestions, setMovieID, handleChange, handleClickOnInput}}
+          >
             {routes.map(({ path, Component }) => (
                 <Route key={path} exact path={path}>
                   {({ match }) => (
