@@ -140,7 +140,7 @@ const routes = [
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, movieData, fetchStartPage}}/>
+                      <Component {...{movieID, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, movieData, fetchStartPage}}/>
                     </div>
                   </CSSTransition>
                 )}

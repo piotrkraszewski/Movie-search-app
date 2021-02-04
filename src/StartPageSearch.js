@@ -4,7 +4,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 
 export default function StartPageSearch(props) {
-  const {text, oldText, handleChange, handleClickOnInput} = props
+  const {searchbarText, oldSearchbarText, handleChange, handleClickOnInput} = props
 
   const [changeStyle, setChangeStyle] = useState(false)
   useScrollPosition(({ prevPos, currPos }) => {
@@ -22,7 +22,7 @@ export default function StartPageSearch(props) {
               className={'myForm1 ' + (changeStyle && 'myForm-animation')}
               type='text'
               placeholder='Search Movie Title...'
-              value={text !== '' ? text : oldText}
+              value={searchbarText !== '' ? searchbarText : oldSearchbarText}
               onClick={handleClickOnInput}
             />
           </form>

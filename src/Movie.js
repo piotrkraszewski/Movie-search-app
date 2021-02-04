@@ -4,13 +4,13 @@ import MovieCard from './MovieCard'
 
 
 export default function Movie(props) {
-  const {text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, movieData, fetchStartPage } = props
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, movieData, fetchStartPage } = props
 
 
   const suggestionsSelected = value => {
-    if (text && value !== undefined) {
-      setOldText(text)
-      setText('')
+    if (searchbarText && value !== undefined) {
+      setOldSearchbarText(searchbarText)
+      setSearchbarText('')
       setMovieID(value[1])
     }
   }
@@ -40,7 +40,7 @@ export default function Movie(props) {
 
   return (
     <div>
-      <MovieSearch {...{show, setShow, text, setText, oldText, setOldText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData, fetchStartPage, setQueryData}}/> 
+      <MovieSearch {...{show, setShow, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData, fetchStartPage, setQueryData}}/> 
 
       <MovieCard {...{movieData}} />
     </div>

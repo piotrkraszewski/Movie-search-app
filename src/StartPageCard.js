@@ -4,7 +4,7 @@ import {Route, Link} from 'react-router-dom'
 import no_image from './images/no_image.png'
 
 export default function FullscreenSearch(props) {
-  const {suggestions, suggestionsSelectedFullscreen, text} = props
+  const {searchbarText, suggestions, suggestionsSelectedFullscreen } = props
 
   return (
     <TransitionGroup className='TransitionGroup'>
@@ -14,7 +14,7 @@ export default function FullscreenSearch(props) {
       classNames='fadeStartPage'
     >
     <div>
-      <p className='Popular'>{text === '' || text === null ? 'Trending Now' : ''}</p>
+      <p className='Popular'>{searchbarText === '' || searchbarText === null ? 'Trending Now' : ''}</p>
       <div className='row startPage'>
         {suggestions.map((item, index) => 
           <div className='cardContainer col-xl-2 col-md-3 col-4' key={index}>

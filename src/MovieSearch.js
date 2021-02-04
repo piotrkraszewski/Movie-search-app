@@ -7,12 +7,12 @@ import {Link, useHistory } from 'react-router-dom';
 
 
 export default function SearchBox (props) {
-  const {show, setShow, text, setText, oldText, setOldText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber,  node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
+  const {show, setShow, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber,  node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
 
 
   const gotoStarPage = () => {
     setQueryData([])
-    setText('')
+    setSearchbarText('')
     fetchStartPage()
   }
 
@@ -52,14 +52,14 @@ export default function SearchBox (props) {
           } else {
             suggestionsSelected(suggestions[cursor])
             setShow(false)
-            setText(oldText)
+            setSearchbarText(oldSearchbarText)
           }
         } else {
           if (cursor === sliceNumber) {
             showMore()
           } else {
-            setText(oldText)
-            setOldText('')
+            setSearchbarText(oldSearchbarText)
+            setOldSearchbarText('')
           }
           setShow(true)
         }
@@ -122,9 +122,9 @@ const onMouseEnterHandle = e => {
 const renderSugestions = () => {
   if (queryData.length > 0) {
     return (
-      <Scroolbar show={show} text={text}>
+      <Scroolbar show={show} text={searchbarText}>
       <ul 
-        className={(show && text) ? 'animate list' : 'list'} >
+        className={(show && searchbarText) ? 'animate list' : 'list'} >
       {suggestions.map((item, index) => 
       <Link to={`/movie/${item[1]}`} className='linkStyle'>
         <li 
@@ -137,7 +137,7 @@ const renderSugestions = () => {
           <div className='row'>
             <img src={item[2]} className='col-lg-2 col-md-3 col-sm-4 col-3 Image'/>
             <p className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
-              {getHighlightedText(item[0], text, index)}
+              {getHighlightedText(item[0], searchbarText, index)}
             </p>
           </div>
         </li>
@@ -160,7 +160,7 @@ const renderSugestions = () => {
       </Scroolbar>
     )
   } else {
-    if (text) {
+    if (searchbarText) {
       return (
         <ul className='animate list showMore noResult'>
           <li>no result</li>
@@ -185,7 +185,7 @@ const renderSugestions = () => {
               className='myform'
               type='text'
               placeholder='Search Movie Title...'
-              value={text !== '' ? text : oldText}
+              value={searchbarText !== '' ? searchbarText : oldSearchbarText}
               onKeyPress={enterPressed}
               onClick={handleClickOnInput}
             />
