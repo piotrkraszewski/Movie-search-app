@@ -1,10 +1,13 @@
-import './styles/main.scss'
+import { useContext } from 'react'
+import '../styles/main.scss'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { Link} from 'react-router-dom'
-import no_image from './images/no_image.png'
+import { Link } from 'react-router-dom'
+import { AppContext } from './AppContext'
+import no_image from '../images/no_image.png'
 
 export default function FullscreenSearch(props) {
-  const {searchbarText, suggestions, suggestionsSelectedFullscreen } = props
+  const {suggestions, suggestionsSelectedFullscreen } = props
+  const {searchbarText} = useContext(AppContext)
 
   return (
     <TransitionGroup className='TransitionGroup'>

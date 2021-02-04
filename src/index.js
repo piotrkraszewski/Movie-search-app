@@ -1,8 +1,6 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap'
+// import 'bootstrap'
 import "bootswatch/dist/darkly/bootstrap.min.css"
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom'

@@ -1,12 +1,12 @@
-import { useState, useEffect, createContext } from 'react'
-import StartPage from './StartPage';
-import Movie from './Movie';
+import { useState, useEffect } from 'react'
+import StartPage from './AppFiles/StartPage';
+import Movie from './AppFiles/Movie';
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Route } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
-import {AppContext} from './AppContext'
+import {AppContext} from './AppFiles/AppContext'
 
 export default function App () {
   // ==== Fetch StartPage ====
@@ -131,7 +131,7 @@ const routes = [
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           
-          <AppContext.Provider value={{movieData}}>
+          <AppContext.Provider value={{movieData, searchbarText}}>
             {routes.map(({ path, Component }) => (
                 <Route key={path} exact path={path}>
                   {({ match }) => (

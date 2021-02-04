@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './styles/main.scss'
+import '../styles/main.scss'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 

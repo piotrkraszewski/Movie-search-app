@@ -1,16 +1,16 @@
 import { useEffect, useContext } from 'react'
-import './styles/main.scss'
+import '../styles/main.scss'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { AppContext } from './AppContext'
-import no_image from './images/no_image.png'
+import no_image from '../images/no_image.png'
 
 
 function nestedDataToString(nestedData) {
   let nestedArray = [],
       resultString
   if (nestedData !== undefined) {
-    nestedData.forEach(function (item) {
+    nestedData.forEach(item => {
       nestedArray.push(item.name)
     })
   }

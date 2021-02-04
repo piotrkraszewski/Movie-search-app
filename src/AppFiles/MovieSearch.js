@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import TMDBLogo from './images/tmdb.svg'
-import './styles/main.scss'
-import Scroolbar from './Scroolbar/Scroolbar'
 import ArrowKeysReact from 'arrow-keys-react'
 import {Link, useHistory } from 'react-router-dom'
-import no_image from './images/no_image.png'
+import '../styles/main.scss'
+import TMDBLogo from '../images/tmdb.svg'
+import Scroolbar from '../Scroolbar/Scroolbar'
+import no_image from '../images/no_image.png'
 
 
 export default function SearchBox (props) {
