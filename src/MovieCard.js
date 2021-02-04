@@ -55,7 +55,7 @@ useEffect(() => {
   return (
     <TransitionGroup className='TransitionGroup'>
     <CSSTransition 
-      key={props.data}
+      key={movieData}
       timeout={2000}
       classNames='fadeMovieCard'
       >

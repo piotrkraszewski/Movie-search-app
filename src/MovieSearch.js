@@ -7,7 +7,14 @@ import {Link, useHistory } from 'react-router-dom';
 
 
 export default function SearchBox (props) {
-  const {show, setShow, text, setText, oldText, setOldText, cursor, setCursor, suggestions, setSuggestions, queryData, sliceNumber, setSliceNumber,  node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
+  const {show, setShow, text, setText, oldText, setOldText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber,  node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
+
+
+  const gotoStarPage = () => {
+    setQueryData([])
+    setText('')
+    fetchStartPage()
+  }
 
 
     // ==== Search arrow up and down logic ====
@@ -74,15 +81,17 @@ export default function SearchBox (props) {
   }
 
   useEffect(() => {
-    console.dir(`sliceNumber: ${sliceNumber}`)
-    let movies = queryData
-      .map(a => [
-        a.original_title,
-        a.id,
-        `https://image.tmdb.org/t/p/w500${a.poster_path}`
-      ])
-      .slice(0, sliceNumber)
-    setSuggestions(movies)
+    if(queryData > 0){
+      console.dir(`sliceNumber: ${sliceNumber}`)
+      let movies = queryData
+        .map(a => [
+          a.original_title,
+          a.id,
+          `https://image.tmdb.org/t/p/w500${a.poster_path}`
+        ])
+        .slice(0, sliceNumber)
+      setSuggestions(movies)
+    }
   }, [sliceNumber])
   // END show more button
 
@@ -166,7 +175,7 @@ const renderSugestions = () => {
       <div className='row'>
         <div className='col-xs-12 col-sm-3 col-lg-3'>
         <Link to='/'>
-          <img src={TMDBLogo} className='logo' alt='The Movie Database' onClick={fetchStartPage}/>
+          <img src={TMDBLogo} className='logo' alt='The Movie Database' onClick={gotoStarPage}/>
         </Link>
         </div>
         <div className='col-xs-12 col-sm-9 col-lg-9 searchInside' ref={node}>

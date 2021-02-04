@@ -29,7 +29,6 @@ export default function App () {
   // loads at page starup because searchbarText === '' at start
   // checks this condition every time
   useEffect(() => {
-    console.log('searchbarText: ' + searchbarText)
     if(searchbarText === '' ){fetchStartPage()} 
   }, [searchbarText])
   // ==== END Fetch StartPage ====
@@ -89,34 +88,8 @@ export default function App () {
       setOldSearchbarText('')
     }
   }
-  // ==== END Search state and functions ====
 
-
-  // === Check if input changed ===
-  // const [change, setChange] = useState(0)
-  /*
-  let timer = null
-  const handleCheck = () => {
-    // Clears running timer and starts a new one each time the user types
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      toggleCheck();
-    }, 1000);
-  }
-
-  const toggleCheck = () => {
-    setStartPageSuggestions(suggestions)
-    setChange(() => change + 1)
-    console.log(change)
-  }
-
-  if(text !== oldText){
-    handleCheck()
-  } 
-  */
-// === END Check if input changed ===
-
-// ==== console log stuff ====
+// ==== Console log stuff ====
   useEffect(() => {
     console.log(`%c queryData.length: ${queryData.length}`, 'color: pink')
     console.log(`%c suggestions.length: ${suggestions.length}`, 'color: pink')
@@ -126,7 +99,15 @@ export default function App () {
     console.log({suggestions})
   }, [suggestions])
 
-// ==== END console log stuff ====
+  useEffect(() => {
+    console.log({movieData})
+  }, [movieData])
+
+  useEffect(() => {
+    console.log('searchbarText: ' + searchbarText)
+  }, [searchbarText])
+
+// ==== END Console log stuff ====
 
 
 const routes = [
@@ -154,7 +135,7 @@ const routes = [
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setMovieID, movieData, fetchStartPage}}/>
+                      <Component {...{movieID, text: searchbarText, setText: setSearchbarText, oldText: oldSearchbarText, setOldText: setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, movieData, fetchStartPage}}/>
                     </div>
                   </CSSTransition>
                 )}
