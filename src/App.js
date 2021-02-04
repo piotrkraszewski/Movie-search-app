@@ -11,7 +11,7 @@ import { CSSTransition } from 'react-transition-group'
 export default function App () {
   // ==== Fetch StartPage ====
   const [suggestions, setSuggestions] = useState([])
-  const [searchbarText, setSearchbarText] = useState(null)
+  const [searchbarText, setSearchbarText] = useState('')
   let startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
   
   async function fetchStartPage() {
@@ -24,15 +24,12 @@ export default function App () {
     ])
     setSuggestions(popularMovies)
   }
-
-  // Fetch StarPage on app lunch
-  useEffect(() => {
-    fetchStartPage() 
-  }, [])
   
-  // if search is empty on main page it displays start page
+  // if search is empty on main page it displays start page 
+  // loads at page starup because searchbarText === '' at start
   // checks this condition every time
   useEffect(() => {
+    console.log('searchbarText: ' + searchbarText)
     if(searchbarText === '' ){fetchStartPage()} 
   }, [searchbarText])
   // ==== END Fetch StartPage ====
@@ -83,13 +80,7 @@ export default function App () {
         setQueryData(response.data.results)
         setOldSearchbarText(value)
       })
-    } else {
-      setCursor(-1)
-      setTimeout(() => {
-        // suggestion window closes after 500ms - dont think it works
-        setSuggestions([])
-      }, 500)
-    }
+    } 
   }
 
   const handleClickOnInput = e => {
@@ -127,12 +118,12 @@ export default function App () {
 
 // ==== console log stuff ====
   useEffect(() => {
-    console.log(`queryData.length: ${queryData.length}`)
-    console.log(`suggestions.length: ${suggestions.length}`)
+    console.log(`%c queryData.length: ${queryData.length}`, 'color: pink')
+    console.log(`%c suggestions.length: ${suggestions.length}`, 'color: pink')
   }, [queryData])
 
   useEffect(() => {
-    console.log('suggenstions: ' + suggestions)
+    console.log({suggestions})
   }, [suggestions])
 
 // ==== END console log stuff ====
