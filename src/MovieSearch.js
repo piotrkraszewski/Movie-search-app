@@ -3,7 +3,8 @@ import TMDBLogo from './images/tmdb.svg'
 import './styles/main.scss'
 import Scroolbar from './Scroolbar/Scroolbar'
 import ArrowKeysReact from 'arrow-keys-react'
-import {Link, useHistory } from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom'
+import no_image from './images/no_image.png'
 
 
 export default function SearchBox (props) {
@@ -135,7 +136,9 @@ const renderSugestions = () => {
           key={index}
         >
           <div className='row'>
-            <img src={item[2]} className='col-lg-2 col-md-3 col-sm-4 col-3 Image'/>
+            <img 
+            src={item[2] !== 'https://image.tmdb.org/t/p/w500null' ? item[2] : no_image} 
+            className='col-lg-2 col-md-3 col-sm-4 col-3 Image'/>
             <p className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
               {getHighlightedText(item[0], searchbarText, index)}
             </p>

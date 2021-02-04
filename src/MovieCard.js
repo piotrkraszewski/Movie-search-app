@@ -3,9 +3,10 @@ import './styles/main.scss'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import {AppContext} from './AppContext'
+import no_image from './images/no_image.png'
 
 
-function nestedDataToString (nestedData) {
+function nestedDataToString(nestedData) {
   let nestedArray = [],
     resultString
   if (nestedData !== undefined) {
@@ -18,42 +19,35 @@ function nestedDataToString (nestedData) {
 }
 
 export default function Card() {
+  const {movieData} = useContext(AppContext)
 
-const {movieData} = useContext(AppContext)
+  let posterIMG = 'https://image.tmdb.org/t/p/w500' + movieData.poster_path,
+      production = movieData.production_companies,
+      genres = movieData.genres,
+      totalRevenue = movieData.revenue,
+      productionList = nestedDataToString(production),
+      noData = '-',
+      genresList = nestedDataToString(genres),
+      backdropIMG = 'https://image.tmdb.org/t/p/original' + movieData.backdrop_path
 
-let posterIMG = 'https://image.tmdb.org/t/p/w500' + movieData.poster_path,
-    production = movieData.production_companies,
-    genres = movieData.genres,
-    totalRevenue = movieData.revenue,
-    productionList = nestedDataToString(production),
-    noData = '-',
-    genresList = nestedDataToString(genres),
-    backdropIMG = 'https://image.tmdb.org/t/p/original' + movieData.backdrop_path
+  // conditional statements for no data
+  if (movieData.vote_average === 'undefined' || movieData.vote_average === 0) {
+    movieData.vote_average = noData
+  }
 
-// conditional statements for no data
-if (movieData.vote_average === 'undefined' || movieData.vote_average === 0) {
-  movieData.vote_average = noData
-}
+  // dodaje $ i przecinki
+  if (totalRevenue === 'undefined' || totalRevenue === 0)
+    totalRevenue = noData
+  else
+    totalRevenue = numeral(movieData.revenue).format('($0,0)')
 
-// dodaje $ i przecinki
-if (totalRevenue === 'undefined' || totalRevenue === 0) {
-  totalRevenue = noData
-} else {
-  totalRevenue = numeral(movieData.revenue).format('($0,0)')
-}
 
-if (movieData.poster_path == null) {
-  posterIMG = require('./images/no_image.png')
-    // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g'
-}
+  if (movieData.backdrop_path == null)
+    backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
 
-if (movieData.backdrop_path == null) {
-  backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
-}
-
-useEffect(() => {
-  document.body.style.backgroundImage = 'url(' + backdropIMG + ')'
-})
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${backdropIMG})`
+  })
 
   return (
     <TransitionGroup className='TransitionGroup'>
@@ -81,7 +75,8 @@ useEffect(() => {
       </div>
 
       <div className="poster-container nopadding order-md-first col-12 col-md-5 col-lg-4">
-        <img id="postertest" className='poster' src={posterIMG}/>
+        <img id="postertest" className='poster' 
+        src={movieData.poster_path !== 'null' ? posterIMG : no_image}/>
       </div>
     </div>
   </CSSTransition>
