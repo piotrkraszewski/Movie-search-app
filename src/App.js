@@ -61,6 +61,10 @@ export default function App () {
   const handleChange = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
     setSearchbarText(value)
+    showResInSearchBar(value)
+  }
+
+  const showResInSearchBar = (value)=>{
     if (value.length === 0) {
       setOldSearchbarText('')
     }
@@ -82,8 +86,9 @@ export default function App () {
     } 
   }
 
-  const handleClickOnInput = e => {
+  const handleClickOnInput = async e => {
     if (searchbarText === '') {
+      showResInSearchBar(oldSearchbarText)
       setSearchbarText(oldSearchbarText)
       setOldSearchbarText('')
     }
