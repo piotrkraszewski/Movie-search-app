@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import StartPage from './StartPage';
 import Movie from './Movie';
 import axios from 'axios'
@@ -6,7 +6,7 @@ import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Route } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
-
+import {AppContext} from './AppContext'
 
 export default function App () {
   // ==== Fetch StartPage ====
@@ -130,22 +130,26 @@ const routes = [
     >
       <div className='row'>
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
-          {routes.map(({ path, Component }) => (
-              <Route key={path} exact path={path}>
-                {({ match }) => (
-                  <CSSTransition
-                    in={match != null}
-                    timeout={2000}
-                    classNames="Swich"
-                    unmountOnExit
-                  >
-                    <div className="page">
-                      <Component {...{movieID, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, movieData, fetchStartPage}}/>
-                    </div>
-                  </CSSTransition>
-                )}
-              </Route>
-            ))}
+          
+          <AppContext.Provider value={{movieData}}>
+            {routes.map(({ path, Component }) => (
+                <Route key={path} exact path={path}>
+                  {({ match }) => (
+                    <CSSTransition
+                      in={match != null}
+                      timeout={2000}
+                      classNames="Swich"
+                      unmountOnExit
+                    >
+                      <div className="page">
+                        <Component {...{movieID, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage}}/>
+                      </div>
+                    </CSSTransition>
+                  )}
+                </Route>
+              ))}
+          </AppContext.Provider>
+
         </div>
       </div>
     </div>

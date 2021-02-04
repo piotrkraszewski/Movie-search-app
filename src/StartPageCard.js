@@ -1,6 +1,6 @@
 import './styles/main.scss'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import {Route, Link} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import no_image from './images/no_image.png'
 
 export default function FullscreenSearch(props) {

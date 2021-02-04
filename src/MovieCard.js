@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import './styles/main.scss'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import {AppContext} from './AppContext'
+
 
 function nestedDataToString (nestedData) {
   let nestedArray = [],
@@ -15,8 +17,9 @@ function nestedDataToString (nestedData) {
   return resultString
 }
 
-export default function Card(props) {
-let { movieData } = props
+export default function Card() {
+
+const {movieData} = useContext(AppContext)
 
 let posterIMG = 'https://image.tmdb.org/t/p/w500' + movieData.poster_path,
     production = movieData.production_companies,
