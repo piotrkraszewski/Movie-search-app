@@ -2,13 +2,13 @@ import { useEffect, useContext } from 'react'
 import './styles/main.scss'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import {AppContext} from './AppContext'
+import { AppContext } from './AppContext'
 import no_image from './images/no_image.png'
 
 
 function nestedDataToString(nestedData) {
   let nestedArray = [],
-    resultString
+      resultString
   if (nestedData !== undefined) {
     nestedData.forEach(function (item) {
       nestedArray.push(item.name)
@@ -20,31 +20,27 @@ function nestedDataToString(nestedData) {
 
 export default function Card() {
   const {movieData} = useContext(AppContext)
+  const {original_title, overview, tagline, poster_path, production_companies, genres, backdrop_path, release_date, runtime } = movieData
+  let {revenue, vote_average} = movieData
 
-  let posterIMG = 'https://image.tmdb.org/t/p/w500' + movieData.poster_path,
-      production = movieData.production_companies,
-      genres = movieData.genres,
-      totalRevenue = movieData.revenue,
-      productionList = nestedDataToString(production),
-      noData = '-',
-      genresList = nestedDataToString(genres),
-      backdropIMG = 'https://image.tmdb.org/t/p/original' + movieData.backdrop_path
+  const posterIMG = `https://image.tmdb.org/t/p/w500${poster_path}`,
+        productionList = nestedDataToString(production_companies),
+        genresList = nestedDataToString(genres),
+        backdropIMG = `https://image.tmdb.org/t/p/original${backdrop_path}`
 
   // conditional statements for no data
-  if (movieData.vote_average === 'undefined' || movieData.vote_average === 0) {
-    movieData.vote_average = noData
+  if (vote_average === 'undefined' || vote_average === 0) {
+    vote_average = '-'
   }
 
   // dodaje $ i przecinki
-  if (totalRevenue === 'undefined' || totalRevenue === 0)
-    totalRevenue = noData
+  if (revenue === 'undefined' || revenue === 0)
+    revenue = '-'
   else
-    totalRevenue = numeral(movieData.revenue).format('($0,0)')
+    revenue = numeral(revenue).format('($0,0)')
 
-
-  if (movieData.backdrop_path == null)
-    backdropIMG = 'https://wallpaperaccess.com/full/670449.jpg'
-
+// add changing background logic !!!
+    
   useEffect(() => {
     document.body.style.backgroundImage = `url(${backdropIMG})`
   })
@@ -53,30 +49,30 @@ export default function Card() {
     <TransitionGroup className='TransitionGroup'>
     <CSSTransition 
       key={movieData}
-      timeout={2000}
+      timeout={1800}
       classNames='fadeMovieCard'
       >
     <div className='col-12 cardcont nopadding row'>
 
       <div className='meta-data-container col-12 col-md-7 col-lg-8'>
-        <h1>{movieData.original_title}</h1>
-        <span className="tagline">{movieData.tagline}</span>
-        <p>{movieData.overview}</p>
+        <h1>{original_title}</h1>
+        <span className="tagline">{tagline}</span>
+        <p>{overview}</p>
         <div className="additional-details">
           <span className="genre-list">{genresList}</span>
           <span className="production-list">{productionList}</span>
           <div className="row nopadding release-details">
-            <div className="col-6"> Original Release: <span className="meta-data">{movieData.release_date}</span></div>
-            <div className="col-6"> Running Time: <span className="meta-data">{movieData.runtime} min</span> </div>
-            <div className="col-6"> Box Office: <span className="meta-data">{totalRevenue}</span></div>
-            <div className="col-6"> Vote Average: <span className="meta-data">{movieData.vote_average}</span></div>
+            <div className="col-6"> Original Release: <span className="meta-data">{release_date}</span></div>
+            <div className="col-6"> Running Time: <span className="meta-data">{runtime} min</span> </div>
+            <div className="col-6"> Box Office: <span className="meta-data">{revenue}</span></div>
+            <div className="col-6"> Vote Average: <span className="meta-data">{vote_average}</span></div>
           </div>
         </div> 
       </div>
 
       <div className="poster-container nopadding order-md-first col-12 col-md-5 col-lg-4">
         <img id="postertest" className='poster' 
-        src={movieData.poster_path !== 'null' ? posterIMG : no_image}/>
+        src={poster_path !== 'null' ? posterIMG : no_image}/>
       </div>
     </div>
   </CSSTransition>
