@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import {Link, useHistory } from 'react-router-dom'
+import { AppContext } from './AppContext'
 import '../styles/main.scss'
 import TMDBLogo from '../images/tmdb.svg'
 import Scroolbar from '../Scroolbar/Scroolbar'
@@ -8,9 +9,10 @@ import no_image from '../images/no_image.png'
 
 
 export default function SearchBox (props) {
-  const {show, setShow, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber,  node, handleChange, handleClickOnInput, suggestionsSelected, fetchStartPage} = props
+  const {show, setShow, node, suggestionsSelected} = props
 
-
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchStartPage} = useContext(AppContext)
+  
   const gotoStarPage = () => {
     setQueryData([])
     setSearchbarText('')

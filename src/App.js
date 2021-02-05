@@ -132,19 +132,19 @@ const routes = [
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           
           <AppContext.Provider 
-            value={{movieData, searchbarText, oldSearchbarText, suggestions, setMovieID, handleChange, handleClickOnInput}}
+            value={{movieID, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage}}
           >
             {routes.map(({ path, Component }) => (
                 <Route key={path} exact path={path}>
                   {({ match }) => (
                     <CSSTransition
                       in={match != null}
-                      timeout={2000}
+                      timeout={1800}
                       classNames="Swich"
                       unmountOnExit
                     >
                       <div className="page">
-                        <Component {...{movieID, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage}}/>
+                        <Component />
                       </div>
                     </CSSTransition>
                   )}

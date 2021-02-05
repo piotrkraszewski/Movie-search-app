@@ -1,12 +1,13 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import MovieSearch from './MovieSearch'
 import MovieCard from './MovieCard'
+import { AppContext } from './AppContext'
 
 
-export default function Movie(props) {
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage } = props
+export default function Movie() {
+  const {searchbarText, setSearchbarText, setOldSearchbarText, setMovieID} = useContext(AppContext)
 
-
+  
   const suggestionsSelected = value => {
     if (searchbarText && value !== undefined) {
       setOldSearchbarText(searchbarText)
@@ -29,19 +30,16 @@ export default function Movie(props) {
 
   const handleClick = e => {
     if (node.current.contains(e.target)) {
-      // inside click
-      setShow(true)
+      setShow(true) // inside click
     } else {
-      // outside click
-      setShow(false)
+      setShow(false) // outside click
     }
   }
   // ==== END sugeston hide on clic kaway ====
 
   return (
     <div>
-      <MovieSearch {...{show, setShow, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, suggestionsSelected, handleChange, handleClickOnInput, node, queryData, fetchStartPage, setQueryData}}/> 
-
+      <MovieSearch {...{show, setShow, suggestionsSelected, node}}/> 
       <MovieCard/>
     </div>
   )
