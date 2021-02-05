@@ -48,8 +48,8 @@ export default function Card() {
   return (
     <TransitionGroup className='TransitionGroup'>
     <CSSTransition 
-      key={movieData}
-      timeout={1800}
+      key={original_title}
+      timeout={1500}
       classNames='fadeMovieCard'
       >
     <div className='col-12 cardcont nopadding row'>
