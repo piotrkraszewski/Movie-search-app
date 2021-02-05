@@ -19,7 +19,7 @@ function nestedDataToString(nestedData) {
 }
 
 export default function Card() {
-  const {movieData} = useContext(AppContext)
+  const {movieData, backgroundIMG, setBackgroundIMG} = useContext(AppContext)
   const {original_title, overview, tagline, poster_path, production_companies, genres, backdrop_path, release_date, runtime } = movieData
   let {revenue, vote_average} = movieData
 
@@ -42,7 +42,7 @@ export default function Card() {
 // add changing background logic !!!
     
   useEffect(() => {
-    document.body.style.backgroundImage = `url(${backdropIMG})`
+    setBackgroundIMG(backdropIMG)
   })
 
   return (
@@ -52,7 +52,7 @@ export default function Card() {
       timeout={1500}
       classNames='fadeMovieCard'
       >
-    <div className='col-12 cardcont nopadding row'>
+    <div className='col-12 Card nopadding row'> 
 
       <div className='meta-data-container col-12 col-md-7 col-lg-8'>
         <h1>{original_title}</h1>

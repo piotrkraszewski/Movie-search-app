@@ -1,5 +1,10 @@
 .search-container {
+  position: absolute;
   margin: 20px 0;
+  z-index: 10;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: 5%;
 }
 
 // suggestions text

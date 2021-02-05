@@ -7,6 +7,7 @@ import ArrowKeysReact from 'arrow-keys-react'
 import { Route } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 import {AppContext} from './AppFiles/AppContext'
+import CrossfadeImage from './hooks/CrossfadeImage'
 
 export default function App () {
   // ==== Fetch StartPage ====
@@ -40,7 +41,7 @@ export default function App () {
   const movieUrl = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
 
   useEffect(() => {
-    document.body.style.backgroundImage = 'url(https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg)'
+    // document.body.style.backgroundImage = 'url(https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg)'
       // 'url(https://wallpaperaccess.com/full/670449.jpg)'
     async function fetchMovieFromApi () {
       const res = await axios.get(movieUrl)
@@ -118,6 +119,8 @@ export default function App () {
 
 // ==== END Console log stuff ====
 
+const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')
+
 
 const routes = [
   { path: '/', name: 'StartPage', Component: StartPage },
@@ -125,31 +128,27 @@ const routes = [
 ]
 
   return (
-    <div
-      className='container-fluid w-95 h-95'
-      id='app'
-      {...ArrowKeysReact.events}
-      tabIndex='1'
-      style={{ outline: 0 }}
-    >
-      <div className='row'>
-        <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
+    <div>
+      <div
+        id='app'
+        {...ArrowKeysReact.events}
+        tabIndex='1'
+      >
+        <div className='col-11 col-lg-11'>
           
           <AppContext.Provider 
-            value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage}}
+            value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
           >
             {routes.map(({ path, Component }) => (
                 <Route key={path} exact path={path}>
                   {({ match }) => (
                     <CSSTransition
                       in={match != null}
-                      timeout={1800}
+                      timeout={1500}
                       classNames="Swich"
                       unmountOnExit
                     >
-                      <div className="page">
-                        <Component />
-                      </div>
+                      <Component />
                     </CSSTransition>
                   )}
                 </Route>
@@ -158,6 +157,15 @@ const routes = [
 
         </div>
       </div>
+
+      <div className='BgGradient'/>
+      <div className='BgImage'>
+        <CrossfadeImage
+          duration={2000}
+          src={backgroundIMG}
+          />
+      </div>
+      
     </div>
   )
 }

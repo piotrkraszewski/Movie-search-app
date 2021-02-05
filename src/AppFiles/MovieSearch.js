@@ -39,10 +39,6 @@ export default function SearchBox (props) {
       }
     })
   
-    // useEffect(() => {
-    //   console.log(cursor)
-    // }, [cursor])
-  
     const enterPressed = e => {
       var code = e.keyCode || e.which
       if (code === 13) {
@@ -99,7 +95,8 @@ export default function SearchBox (props) {
 
 // ==== Podœwietlenie tekstu ====
 function getHighlightedText(text, highlight, index) {
-  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  const parts = text.split(new RegExp(`(${highlight})`, 'gi'))
+
   return <span> { parts.map((part, i) => 
     <span 
       key={i} 
