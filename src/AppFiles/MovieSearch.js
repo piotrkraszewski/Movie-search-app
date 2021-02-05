@@ -12,7 +12,7 @@ export default function SearchBox (props) {
   const {show, setShow, node, suggestionsSelected} = props
 
   const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchStartPage} = useContext(AppContext)
-  
+
   const gotoStarPage = () => {
     setQueryData([])
     setSearchbarText('')
@@ -78,14 +78,13 @@ export default function SearchBox (props) {
       setSliceNumber(20)  // moze jakos inaczej to rozwiazaæ
     } else {
       if(suggestions.length > 0){
-        setSliceNumber(sliceNumber + 5)
+        setSliceNumber(sliceNumber => sliceNumber + 5)
       }
     }
   }
 
   useEffect(() => {
-    if(queryData > 0){
-      console.dir(`sliceNumber: ${sliceNumber}`)
+    if(queryData.length > 0){
       let movies = queryData
         .map(a => [
           a.original_title,

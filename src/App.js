@@ -112,6 +112,10 @@ export default function App () {
     console.log('searchbarText: ' + searchbarText)
   }, [searchbarText])
 
+  useEffect(() => {
+    console.log(`sliceNumber: ${sliceNumber}`)
+  }, [sliceNumber])
+
 // ==== END Console log stuff ====
 
 
