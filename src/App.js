@@ -132,7 +132,7 @@ const routes = [
         <div className='col-12 col-lg-10 offset-lg-1 myContainer'>
           
           <AppContext.Provider 
-            value={{movieID, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage}}
+            value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage}}
           >
             {routes.map(({ path, Component }) => (
                 <Route key={path} exact path={path}>
