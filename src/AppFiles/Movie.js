@@ -5,9 +5,9 @@ import { AppContext } from './AppContext'
 
 
 export default function Movie() {
-  const {searchbarText, setSearchbarText, setOldSearchbarText, setMovieID} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, setOldSearchbarText, setSliceNumber, setMovieID} = useContext(AppContext)
 
-  
+
   const suggestionsSelected = value => {
     if (searchbarText && value !== undefined) {
       setOldSearchbarText(searchbarText)
@@ -33,6 +33,7 @@ export default function Movie() {
       setShow(true) // inside click
     } else {
       setShow(false) // outside click
+      setSliceNumber(5)
     }
   }
   // ==== END sugeston hide on clic kaway ====

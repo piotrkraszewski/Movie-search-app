@@ -7,10 +7,11 @@ import no_image from '../images/no_image.png'
 
 
 export default function FullscreenSearch() {
-  const {searchbarText, suggestions, setMovieID} = useContext(AppContext)
+  const {searchbarText, suggestions, setSliceNumber,  setMovieID} = useContext(AppContext)
 
   const suggestionsSelectedFullscreen = value => {
     setMovieID(value[1])
+    setSliceNumber(5)
   }
 
   return (
