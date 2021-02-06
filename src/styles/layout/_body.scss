@@ -7,7 +7,7 @@ body {
 .BgImage{
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0) ;
   width: 100vw;
   z-index:-2;
 }
@@ -21,13 +21,23 @@ body {
 }
 
 
-// add here so image gets bigger on phone
-@media only screen and (max-width: 575px) {
-  body{
-    background-size: 2500px;
+// below 1050px
+@media only screen and (max-width: 1050px) {
+  .BgImage{
+    width: 150vw;
   }
-  #outer-container{
-    height: 1300px;
+}
+
+// below 750px
+@media only screen and (max-width: 750px) {
+  .BgImage{
+    width: 230vw;
+  }
+}
+// below 500px
+@media only screen and (max-width: 500px) {
+  .BgImage{
+    width: 320vw;
   }
 }
 
