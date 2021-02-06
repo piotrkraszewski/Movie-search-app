@@ -4,8 +4,9 @@ import Movie from './AppFiles/Movie';
 import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
-import { Route } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
+import { motion, AnimatePresence } from "framer-motion"
 import {AppContext} from './AppFiles/AppContext'
 import CrossfadeImage from './hooks/CrossfadeImage'
 
@@ -122,11 +123,7 @@ export default function App () {
 const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')
 
 
-const routes = [
-  { path: '/', name: 'StartPage', Component: StartPage },
-  { path: `/movie/:movieID`, name: 'Movie', Component: Movie }
-]
-
+const location = useLocation()  // key to anime routes
   return (
     <div>
       <div
@@ -134,24 +131,16 @@ const routes = [
         {...ArrowKeysReact.events}
         tabIndex='1'
       >
-          <AppContext.Provider 
-            value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
-          >
-            {routes.map(({ path, Component }) => (
-                <Route key={path} exact path={path}>
-                  {({ match }) => (
-                    <CSSTransition
-                      in={match != null}
-                      timeout={1500}
-                      classNames="Swich"
-                      unmountOnExit
-                    >
-                      <Component />
-                    </CSSTransition>
-                  )}
-                </Route>
-              ))}
-          </AppContext.Provider>
+        <AppContext.Provider 
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
+        >
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.key}>
+              <Route exact path='/' render={() => <StartPage/>} />
+              <Route exact path={`/movie/:${movieID}`} render={() => <Movie/>} />
+            </Switch>
+          </AnimatePresence>
+        </AppContext.Provider>
       </div>
 
       <div className='BgGradient'/>

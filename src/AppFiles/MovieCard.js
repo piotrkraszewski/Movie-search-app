@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react'
 import '../styles/main.scss'
 import numeral from 'numeral'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppContext'
 import no_image from '../images/no_image.png'

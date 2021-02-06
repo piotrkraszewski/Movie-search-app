@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react'
 import MovieSearch from './MovieSearch'
 import MovieCard from './MovieCard'
 import { AppContext } from './AppContext'
+import { motion, AnimatePresence } from "framer-motion"
 
 
 export default function Movie() {
@@ -39,9 +40,19 @@ export default function Movie() {
   // ==== END sugeston hide on clic kaway ====
 
   return (
-    <div>
+    // <div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1}}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+
+        // key={Component} 
+        // className="Card nopadding row" 
+      >    
       <MovieSearch {...{show, setShow, suggestionsSelected, node}}/> 
       <MovieCard/>
-    </div>
+      </motion.div> 
+    // {/* </div> */}
   )
 }
