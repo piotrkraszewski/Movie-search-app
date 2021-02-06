@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react'
 import '../styles/main.scss'
 import numeral from 'numeral'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppContext'
 import no_image from '../images/no_image.png'
 
@@ -46,14 +47,17 @@ export default function Card() {
   })
 
   return (
-    <TransitionGroup className='MovieCard'>
-    <CSSTransition 
-      key={original_title}
-      timeout={1500}
-      classNames='fadeMovieCard'
-      >
-    <div className='Card nopadding row'> 
+    <div className='MovieCard'>
+      <AnimatePresence exitBeforeEnter>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1}}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
 
+        key={original_title} 
+        className="Card nopadding row" 
+      >      
       <div className='meta-data-container col-12 col-md-7 col-lg-8'>
         <h1>{original_title}</h1>
         <span className="tagline">{tagline}</span>
@@ -74,8 +78,8 @@ export default function Card() {
         <img id="postertest" className='poster' 
         src={poster_path !== 'null' ? posterIMG : no_image}/>
       </div>
-    </div>
-  </CSSTransition>
-  </TransitionGroup>
+    </motion.div >
+    </AnimatePresence>
+  </div>
   )
 }

@@ -19,8 +19,6 @@ body {
   z-index:-1;
 }
 
-
-
 @media only screen and (max-width: 1600px) { // below 1050px 
   .BgImage{
     transform: translate(-50%, 100%) scale(3.5);
@@ -52,6 +50,7 @@ body {
 }
 
 // ====== Swich animation ======
+
 .Swich-enter {
   opacity: 0;
 }

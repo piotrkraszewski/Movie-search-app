@@ -13,6 +13,7 @@
     "bloodhound-js": "^1.2.3",
     "bootstrap": "^4.4.1",
     "bootswatch": "^4.4.1",
+    "framer-motion": "^3.3.0",
     "jquery": "^3.5.0",
     "node-sass": "^4.14.1",
     "numeral": "^2.0.6",
