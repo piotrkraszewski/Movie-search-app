@@ -1,13 +1,15 @@
 .st-search {
+  position: fixed;
   padding: 0;
   margin: 20px 0;
-  position: fixed;
   z-index: 2;
-  left: 50%;
-  transform: translate(-50%, 0);
   background-color: $transparentBackground;
   border-radius: 5px;
   height: 40px;
+
+  // centers saerch bar
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .myForm1{

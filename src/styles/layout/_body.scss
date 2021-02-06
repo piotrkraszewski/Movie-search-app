@@ -6,13 +6,8 @@ body {
 
 .BgImage{
   position: fixed;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 7%;
-  padding-right: 7%;
-  // left: 50%;
-  // transform: translate(-50%, 0) ;
-  // width: 110vw;
+  left: 50%;
+  transform: translate(-50%, 50%) scale(2.1);
   z-index:-2;
 }
 
@@ -28,29 +23,23 @@ body {
 // below 1050px
 @media only screen and (max-width: 1050px) {
   .BgImage{
-    width: 150vw;
+    transform: translate(-50%, 75%) scale(3);
   }
 }
 
 // below 750px
 @media only screen and (max-width: 750px) {
   .BgImage{
-    width: 230vw;
+    transform: translate(0%, 150%) scale(5);
   }
 }
 // below 500px
 @media only screen and (max-width: 500px) {
   .BgImage{
-    width: 320vw;
+    transform: translate(0%, 275%) scale(8);
   }
 }
 
-// below 500px
-@media only screen and (max-width: 400px) {
-  .BgImage{
-    width: 500vw;
-  }
-}
 
 #app {
     animation: fadein ease-out 1.4s;
