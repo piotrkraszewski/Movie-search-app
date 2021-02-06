@@ -2,33 +2,27 @@
 
 .MovieCard {
   position: absolute;
-  margin-top: 70px;
-  max-width: 1200px;
-
-  // // 3 properties: left, transform, width centers starPage images
-  left: 50%;
-  transform: translate(-50%); 
-  width: 90vw;
-
-  // margin-left: auto;
-  // margin-right: auto;
-  // padding-left: 7%;
-  // padding-right: 7%;
+  
+  // center positioning
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 95px;
+  padding: 0 7%;
 }
 
 .Card {
-  border-radius: 3px;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  border-radius: 5px;
   background: rgba(0, 0, 0, 0.85);
-  margin: 0;
-  margin-top: 30px;
 }
 
 /* poster */
 .poster-container {
   .poster {
     width: 100%;
-    // max-width: 350px;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0 0 5px 5px;
   }
 }
 
@@ -93,7 +87,7 @@ p {
 // below 575px
 @media only screen and (max-width: 575px) {
   .MovieCard {
-    margin-top: 110px;
+    margin-top: 150px;
   }
 }
 

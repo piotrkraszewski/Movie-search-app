@@ -52,7 +52,7 @@ export default function Card() {
       timeout={1500}
       classNames='fadeMovieCard'
       >
-    <div className='col-12 Card nopadding row'> 
+    <div className='Card nopadding row'> 
 
       <div className='meta-data-container col-12 col-md-7 col-lg-8'>
         <h1>{original_title}</h1>

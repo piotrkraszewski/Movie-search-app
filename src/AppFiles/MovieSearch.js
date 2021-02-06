@@ -172,14 +172,15 @@ const renderSugestions = () => {
 }
 
   return (
-    <div className='col-xs-12 search-container nopadding'>
-      <div className='row'>
-        <div className='col-xs-12 col-sm-3 col-lg-3'>
-        <Link to='/'>
-          <img src={TMDBLogo} className='logo' alt='The Movie Database' onClick={gotoStarPage}/>
-        </Link>
+    <div className='searchContainer nopadding'>
+      <div className='row searchSecondContainer'>
+        <div className='col-xs-12 col-sm-3 col-lg-3 p-0'>
+          <Link to='/'>
+            <img src={TMDBLogo} className='logo'  alt='The Movie Database' onClick={gotoStarPage}/>
+          </Link>
         </div>
-        <div className='col-xs-12 col-sm-9 col-lg-9 searchInside' ref={node}>
+        
+        <div className='col-xs-12 col-sm-9 col-lg-9 p-0 searchInside' ref={node}>
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
               onChange={handleChange}

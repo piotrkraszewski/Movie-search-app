@@ -1,20 +1,18 @@
-.search-container {
+.searchContainer {
   position: absolute;
-  margin: 20px 0;
   z-index: 10;
-  max-width: 1200px;
 
-  // // // 3 properties: left, transform, width centers starPage images
-  left: 49%;
-  transform: translate(-44.5%); 
-  width: 90vw;
-
-  // margin-left: auto;
-  // margin-right: auto;
-  // padding-left: 7%;
-  // padding-right: 7%;
+  // center positioning
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 7%;
 }
 
+.searchSecondContainer{
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
 
 
 // suggestions text
@@ -106,9 +104,6 @@
   color: $darkGrey !important;
 }
 
-.searchInside{
-  padding-left: 0;  
-}
 .linkStyle{
   text-decoration:none !important;
   color: white;
@@ -116,7 +111,7 @@
 
 @media only screen and (max-width: 575px) {
   .searchInside{
-    padding: 0 1rem !important;
+    padding: 0 4px!important ;
   }
   .list{
     margin-right: 0;
