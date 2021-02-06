@@ -180,7 +180,7 @@ const renderSugestions = () => {
           </Link>
         </div>
         
-        <div className='col-xs-12 col-sm-9 col-lg-9 p-0 searchInside' ref={node}>
+        <div className='col-xs-12 col-sm-9 col-lg-9 p-0 pl-3 searchInside' ref={node}>
           <form className='searchbox' onSubmit={e => { e.preventDefault()}}>
             <input
               onChange={handleChange}
