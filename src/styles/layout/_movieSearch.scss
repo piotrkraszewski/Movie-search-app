@@ -2,9 +2,12 @@
   position: absolute;
   margin: 20px 0;
   z-index: 10;
-  width: 90%;
   max-width: 1200px;
-  margin-left: 5%;
+
+  // // // 3 properties: left, transform, width centers starPage images
+  left: 49%;
+  transform: translate(-44.5%); 
+  width: 90vw;
 }
 
 // suggestions text

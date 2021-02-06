@@ -1,10 +1,20 @@
+.StartPageCard{
+  position: absolute;
+  max-width: 1400px;
+  
+  // 3 properties: left, transform, width centers starPage images
+  left: 49%;
+  transform: translate(-44.5%); 
+  width: 90vw;
+}
+
 .Popular{
-  margin: 0;
   margin-top: 75px;
   color: rgb(230, 230, 230);
   font-size: large;
   text-transform: uppercase;
 }
+
 
 .cardContainer{
   padding: 1%;

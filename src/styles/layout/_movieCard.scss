@@ -1,12 +1,14 @@
 /* card */
 
-.TransitionGroup {
+.MovieCard {
   position: absolute;
   margin-top: 70px;
-  width: 90%;
-  margin-left: 5%;
-  align-items: center;
   max-width: 1200px;
+  
+  // // 3 properties: left, transform, width centers starPage images
+  left: 49%;
+  transform: translate(-44.5%); 
+  width: 90vw;
 }
 
 .Card {
@@ -108,13 +110,6 @@ p {
     }
   }
 }
-
-// === My Animation ===
-
-// body {
-//   transition: background-image 2s ease-in-out;
-// }
-
 
 // ====== movieCard fadeanim ation ======
 

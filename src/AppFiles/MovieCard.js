@@ -46,7 +46,7 @@ export default function Card() {
   })
 
   return (
-    <TransitionGroup className='TransitionGroup'>
+    <TransitionGroup className='MovieCard'>
     <CSSTransition 
       key={original_title}
       timeout={1500}

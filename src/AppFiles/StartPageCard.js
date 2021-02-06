@@ -15,7 +15,7 @@ export default function FullscreenSearch() {
   }
 
   return (
-    <TransitionGroup className='TransitionGroup'>
+    <TransitionGroup className='StartPageCard'>
     <CSSTransition 
       // key={suggestions}
       timeout={1500}
