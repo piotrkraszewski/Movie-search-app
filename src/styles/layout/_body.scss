@@ -7,40 +7,46 @@ body {
 .BgImage{
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 50%) scale(2.1);
+  transform: translate(-50%, 55%) scale(2.1);
   z-index:-2;
 }
 
 .BgGradient{
   position: fixed;
   background-image: linear-gradient(rgba(0, 0, 0, 0.85) 15%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 1) 90%);
-  width: 100vw;
-  height: 100vh;
+  width: 105%;
+  height: 105%;
   z-index:-1;
 }
 
 
-// below 1050px
-@media only screen and (max-width: 1050px) {
+
+@media only screen and (max-width: 1600px) { // below 1050px 
   .BgImage{
-    transform: translate(-50%, 75%) scale(3);
+    transform: translate(-50%, 100%) scale(3.5);
   }
 }
 
-// below 750px
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1150px) { // below 1050px 
   .BgImage{
-    transform: translate(0%, 150%) scale(5);
+    transform: translate(-40%, 150%) scale(4.5);
   }
 }
-// below 500px
-@media only screen and (max-width: 500px) {
+
+@media only screen and (max-width: 770px) { // below 750px
   .BgImage{
-    transform: translate(0%, 275%) scale(8);
+    transform: translate(-40%, 200%) scale(5);
+  }
+}
+
+@media only screen and (max-width: 500px) { // below 500px
+  .BgImage{
+    transform: translate(0%, 350%) scale(8);
   }
 }
 
 
+// App fade in on opening site
 #app {
     animation: fadein ease-out 1.4s;
 }
