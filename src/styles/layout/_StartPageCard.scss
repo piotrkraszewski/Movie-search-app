@@ -1,7 +1,7 @@
 .StartPageCard{
   position: absolute;
   max-width: 1400px;
-  
+
   // 3 properties: left, transform, width centers starPage images
   left: 49%;
   transform: translate(-44.5%); 
@@ -9,7 +9,8 @@
 }
 
 .Popular{
-  margin-top: 75px;
+  margin-top: 80px;
+  margin-bottom: 8px;
   color: rgb(230, 230, 230);
   font-size: large;
   text-transform: uppercase;
@@ -54,7 +55,7 @@
 
 @media only screen and (max-width: 575px) {
   .Popular{
-    margin-top: 50px;
+    margin-top: 55px;
   }
 }
 

@@ -4,7 +4,7 @@
   position: absolute;
   margin-top: 70px;
   max-width: 1200px;
-  
+
   // // 3 properties: left, transform, width centers starPage images
   left: 49%;
   transform: translate(-44.5%); 
@@ -85,24 +85,27 @@ p {
 
 /* Breakpoints */
 
-// sm up
+// below 575px
+@media only screen and (max-width: 575px) {
+  .MovieCard {
+    margin-top: 110px;
+  }
+}
+
+// sm up - over 575px
 @include media-breakpoint-up(sm) {
-  /* meta data */
   .meta-data-container {
     padding: 25px;
   }
 }
-// END sm up
 
 // md up
 @include media-breakpoint-up(md) {
-  /* poster */
   .poster-container {
     .poster {
       border-radius: 3px 0 0 3px;
     }
   }
-  /* meta data */
   .meta-data-container {
     padding: 25px;
     h1 {
