@@ -6,9 +6,13 @@ body {
 
 .BgImage{
   position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0) ;
-  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 7%;
+  padding-right: 7%;
+  // left: 50%;
+  // transform: translate(-50%, 0) ;
+  // width: 110vw;
   z-index:-2;
 }
 
@@ -38,6 +42,13 @@ body {
 @media only screen and (max-width: 500px) {
   .BgImage{
     width: 320vw;
+  }
+}
+
+// below 500px
+@media only screen and (max-width: 400px) {
+  .BgImage{
+    width: 500vw;
   }
 }
 

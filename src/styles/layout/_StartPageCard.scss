@@ -1,12 +1,23 @@
-.StartPageCard{
+.StartPageCardTransition{
   position: absolute;
-  max-width: 1400px;
+  width: 100%;
 
-  // 3 properties: left, transform, width centers starPage images
-  left: 49%;
-  transform: translate(-44.5%); 
-  width: 90vw;
+  // center positioning
+  margin: 0 auto;
+  padding: 0 7%;
 }
+
+.StartPageCard{
+  // centers content
+  margin: 0 auto;
+  max-width: 1400px; // max with that all posters take on page
+}
+
+// .StartPage{
+//   position: relative;
+//   display: flex;
+//   flex-flow: wrap;
+// }
 
 .Popular{
   margin-top: 80px;

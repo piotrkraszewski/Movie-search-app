@@ -134,8 +134,6 @@ const routes = [
         {...ArrowKeysReact.events}
         tabIndex='1'
       >
-        <div className='col-11 col-lg-11'>
-          
           <AppContext.Provider 
             value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
           >
@@ -154,8 +152,6 @@ const routes = [
                 </Route>
               ))}
           </AppContext.Provider>
-
-        </div>
       </div>
 
       <div className='BgGradient'/>
@@ -163,7 +159,7 @@ const routes = [
         <CrossfadeImage
           duration={2000}
           src={backgroundIMG}
-          />
+        />
       </div>
       
     </div>

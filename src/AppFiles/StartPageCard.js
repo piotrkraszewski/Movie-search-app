@@ -15,15 +15,15 @@ export default function FullscreenSearch() {
   }
 
   return (
-    <TransitionGroup className='StartPageCard'>
+    <TransitionGroup className='StartPageCardTransition'>
     <CSSTransition 
       // key={suggestions}
       timeout={1500}
       classNames='fadeStartPage'
     >
-    <div>
+    <div className='StartPageCard'>
       <p className='Popular'>{searchbarText === '' || searchbarText === null ? 'Trending Now' : ''}</p>
-      <div className='row startPage'>
+      <div className='row'>
         {suggestions.map((item, index) => 
           <div className='cardContainer col-xl-2 col-md-3 col-4' key={index}>
             <Link to={`/movie/${item[1]}`} className='linkStyle'>
