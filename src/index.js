@@ -1,7 +1,5 @@
+// This file doesnt update on change remember. need to close server and restar
 import ReactDOM from 'react-dom'
-// import "bootstrap/dist/css/bootstrap.min.css"
-// searchbar only works with bootswatch for some reason - maybe fix in new relese of bootstrap?
-import "bootswatch/dist/darkly/bootstrap.min.css" 
 import App from './App'
 import * as serviceWorker from './testingFiles/serviceWorker'
 import { BrowserRouter } from 'react-router-dom'

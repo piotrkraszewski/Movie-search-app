@@ -21,7 +21,7 @@
   left:0;
   right:0;
   z-index: 2;
-  // min-width: 95%;
+  padding-left: 15px; // neede to center searchbar. compensates for scroolbar
   border-radius: 5px;
 }
 
@@ -30,6 +30,9 @@
 }
 
 @media only screen and (max-width: 575px) {
+  .MovieSearchScroolbar {
+    padding-left: 0;
+  }
   .scroolBar{
     height: 1250px;
   }
