@@ -5,7 +5,6 @@ import axios from 'axios'
 import './styles/main.scss'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Route, Switch, useLocation } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
 import { motion, AnimatePresence } from "framer-motion"
 import {AppContext} from './AppFiles/AppContext'
 import CrossfadeImage from './hooks/CrossfadeImage'
@@ -124,6 +123,12 @@ const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/o
 
 
 const location = useLocation()  // key to anime routes
+const getPathName = () => {
+  let pathname = location.pathname
+  pathname = pathname.substring(0, pathname.lastIndexOf("/") + 1);
+  console.log(pathname)
+  return pathname
+}
   return (
     <div>
       <div
@@ -135,7 +140,7 @@ const location = useLocation()  // key to anime routes
           value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
         >
           <AnimatePresence exitBeforeEnter>
-            <Switch location={location} key={location.key}>
+            <Switch location={location}  key={getPathName()}>
               <Route exact path='/' render={() => <StartPage/>} />
               <Route exact path={`/movie/:${movieID}`} render={() => <Movie/>} />
             </Switch>

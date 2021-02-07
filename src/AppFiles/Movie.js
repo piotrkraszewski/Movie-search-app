@@ -40,19 +40,14 @@ export default function Movie() {
   // ==== END sugeston hide on clic kaway ====
 
   return (
-    // <div>
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1}}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
-
-        // key={Component} 
-        // className="Card nopadding row" 
-      >    
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1}}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >    
       <MovieSearch {...{show, setShow, suggestionsSelected, node}}/> 
       <MovieCard/>
-      </motion.div> 
-    // {/* </div> */}
+    </motion.div> 
   )
 }

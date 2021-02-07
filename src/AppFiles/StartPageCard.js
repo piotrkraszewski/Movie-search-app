@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import '../styles/main.scss'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { Link } from 'react-router-dom'
 import { AppContext } from './AppContext'
 import no_image from '../images/no_image.png'
@@ -15,12 +14,8 @@ export default function FullscreenSearch() {
   }
 
   return (
-    <TransitionGroup className='StartPageCardTransition'>
-    <CSSTransition 
-      // key={suggestions}
-      timeout={1500}
-      classNames='fadeStartPage'
-    >
+    <div className='StartPageCardTransition'>
+
     <div className='StartPageCard'>
       <p className='Popular'>{searchbarText === '' || searchbarText === null ? 'Trending Now' : ''}</p>
       <div className='row'>
@@ -36,7 +31,7 @@ export default function FullscreenSearch() {
         )}
       </div>
     </div>
-  </CSSTransition>
-  </TransitionGroup>
+
+  </div>
   )
 }

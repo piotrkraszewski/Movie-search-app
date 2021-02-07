@@ -25,8 +25,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.2",
-    "react-scrollbar": "^0.5.6",
-    "react-transition-group": "^4.4.1"
+    "react-scrollbar": "^0.5.6"
   },
   "scripts": {
     "start": "react-scripts start",
