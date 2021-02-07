@@ -19,7 +19,6 @@
     "numeral": "^2.0.6",
     "popper.js": "^1.16.1",
     "react": "^17.0.1",
-    "react-animate-on-change": "^2.2.0",
     "react-dom": "^17.0.1",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",

@@ -70,7 +70,7 @@ export default function SearchBox (props) {
 
   const showMore = e => {
     if (sliceNumber >= 10){
-      history.push("/")
+      history.push(`/`)
       setSliceNumber(20)  // moze jakos inaczej to rozwiazaæ
     } else {
       if(suggestions.length > 0){
@@ -175,7 +175,7 @@ const renderSugestions = () => {
     <div className='searchContainer nopadding'>
       <div className='row searchSecondContainer'>
         <div className='col-xs-12 col-sm-3 col-lg-3 p-0'>
-          <Link to='/'>
+          <Link to={`/`}>
             <img src={TMDBLogo} className='logo'  alt='The Movie Database' onClick={gotoStarPage}/>
           </Link>
         </div>

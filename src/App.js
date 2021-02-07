@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './styles/main.scss'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Router, Switch, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/AppContext'
 import axios from 'axios'
@@ -140,7 +140,6 @@ export default function App () {
 
 // ==== END Console log stuff ====
 
-
   return (
     <div>
       <div
@@ -151,14 +150,14 @@ export default function App () {
         <AppContext.Provider 
           value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
         >
+        <AppScroolbar>
           <AnimatePresence exitBeforeEnter>
-            <AppScroolbar>
-              <Switch location={location}  key={getPathName()}>
-                <Route exact path='/' render={() => <StartPage/>} />
-                <Route exact path={`/movie/:${movieID}`} render={() => <Movie/>} />
-              </Switch>
-            </AppScroolbar>
+            <Switch location={location} key={getPathName()}>
+              <Route exact path='/' render={() => <StartPage/>} />
+              <Route exact path={`/movie/:${movieID}`} render={() => <Movie/>} />
+            </Switch>
           </AnimatePresence>
+        </AppScroolbar>
         </AppContext.Provider>
       </div>
 
