@@ -13,12 +13,6 @@
   max-width: 1400px; // max with that all posters take on page
 }
 
-// .StartPage{
-//   position: relative;
-//   display: flex;
-//   flex-flow: wrap;
-// }
-
 .Popular{
   margin-top: 80px;
   margin-bottom: 8px;
@@ -44,7 +38,7 @@
 
 .posterImage{
   width: 100%;
-  border-radius: 7px;
+  border-radius: 15px 15px 0px 0px;
   align-items: center;
 }
 
