@@ -75,7 +75,7 @@ export default function Card() {
 
       <div className="poster-container nopadding order-md-first col-12 col-md-5 col-lg-4">
         <img id="postertest" className='poster' 
-        src={poster_path !== 'null' ? posterIMG : no_image}/>
+          src={poster_path !== null ? posterIMG : no_image}/>
       </div>
     </motion.div >
     </AnimatePresence>

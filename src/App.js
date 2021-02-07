@@ -8,7 +8,7 @@ import AppScroolbar from './Scroolbar/AppScroolbar'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
 import Movie from './AppFiles/Movie'
-// import BG_black from './images/BG_black.jpg'
+import BgGreen2 from './images/BgGreen2.jpg'
 
 export default function App () {
   
@@ -138,6 +138,10 @@ export default function App () {
     console.log(`sliceNumber: ${sliceNumber}`)
   }, [sliceNumber])
 
+  useEffect(() => {
+    console.log(`backgroundIMG: ${backgroundIMG}`)
+  }, [backgroundIMG])
+
 // ==== END Console log stuff ====
 
   return (
@@ -167,9 +171,8 @@ export default function App () {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          // transition={ getPathName() === "movie" ? {duration: 2} : {duration: 1} }
           transition={{duration: 1.5}}
-          src={backgroundIMG}
+          src={backgroundIMG !== 'https://image.tmdb.org/t/p/originalnull' ? backgroundIMG : BgGreen2}
           key={backgroundIMG}
           className='BgImage'
         />
