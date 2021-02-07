@@ -1,9 +1,10 @@
 import ReactDOM from 'react-dom'
-// import 'bootstrap'
-import "bootswatch/dist/darkly/bootstrap.min.css"
+// import "bootstrap/dist/css/bootstrap.min.css"
+// searchbar only works with bootswatch for some reason - maybe fix in new relese of bootstrap?
+import "bootswatch/dist/darkly/bootstrap.min.css" 
 import App from './App'
 import * as serviceWorker from './testingFiles/serviceWorker'
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <BrowserRouter basename={process.env.PUBLIC_URL}>

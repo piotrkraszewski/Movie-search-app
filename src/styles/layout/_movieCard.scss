@@ -1,5 +1,3 @@
-/* card */
-
 .MovieCard {
   position: absolute;
   
@@ -98,7 +96,7 @@ p {
   }
 }
 
-// md up
+// over middle size in bootstrap
 @include media-breakpoint-up(md) {
   .poster-container {
     .poster {
@@ -111,26 +109,4 @@ p {
       font-size: 2em;
     }
   }
-}
-
-// ====== movieCard fadeanim ation ======
-
-.fadeMovieCard-enter {
-  opacity: 0;
-  position: absolute;
-}
-.fadeMovieCard-enter.fadeMovieCard-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms linear 1000ms;
-}
-
-.fadeMovieCard-exit {
-  opacity: 1;
-}
-.fadeMovieCard-exit.fadeMovieCard-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms linear;
-}
-.fadeMovieCard-exit-done {
-  opacity: 0;
 }

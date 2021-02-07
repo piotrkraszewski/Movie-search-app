@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react'
 import MovieSearch from './MovieSearch'
 import MovieCard from './MovieCard'
 import { AppContext } from './AppContext'
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 
 export default function Movie() {
