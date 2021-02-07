@@ -48,6 +48,6 @@ export default function Movie() {
     >    
       <MovieSearch {...{show, setShow, suggestionsSelected, node}}/> 
       <MovieCard/>
-    </motion.div> 
+    </motion.div>
   )
 }

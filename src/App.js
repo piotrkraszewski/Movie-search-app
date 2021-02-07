@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import StartPage from './AppFiles/StartPage';
-import Movie from './AppFiles/Movie';
-import axios from 'axios'
 import './styles/main.scss'
-import ArrowKeysReact from 'arrow-keys-react'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from "framer-motion"
-import {AppContext} from './AppFiles/AppContext'
-import CrossfadeImage from './hooks/CrossfadeImage'
+import { AppContext } from './AppFiles/AppContext'
+import axios from 'axios'
+import ArrowKeysReact from 'arrow-keys-react'
+import StartPage from './AppFiles/StartPage'
+import Movie from './AppFiles/Movie'
+import BG_black from './images/BG_black.jpg'
 
 export default function App () {
   // ==== Fetch StartPage ====
@@ -149,13 +149,18 @@ const getPathName = () => {
       </div>
 
       <div className='BgGradient'/>
-      <div className='BgImage'>
-        <CrossfadeImage
-          duration={2000}
+      <AnimatePresence >
+        <motion.img 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 2 }}
           src={backgroundIMG}
+          key={backgroundIMG}
+          className='BgImage'
         />
-      </div>
-      
+      </AnimatePresence>
+
     </div>
   )
 }

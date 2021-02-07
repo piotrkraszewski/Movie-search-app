@@ -7,8 +7,13 @@ body {
 .BgImage{
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 55%) scale(2.1);
+  transform: translate(-50%);
   z-index:-2;
+
+  // works like background-image. BgImage works on every size !!!
+  object-fit: cover;
+  height: 100vh;
+  width: 100vw;
 }
 
 .BgGradient{
@@ -19,53 +24,7 @@ body {
   z-index:-1;
 }
 
-@media only screen and (max-width: 1600px) { // below 1050px 
-  .BgImage{
-    transform: translate(-50%, 100%) scale(3.5);
-  }
-}
-
-@media only screen and (max-width: 1150px) { // below 1050px 
-  .BgImage{
-    transform: translate(-40%, 150%) scale(4.5);
-  }
-}
-
-@media only screen and (max-width: 770px) { // below 750px
-  .BgImage{
-    transform: translate(-40%, 200%) scale(5);
-  }
-}
-
-@media only screen and (max-width: 500px) { // below 500px
-  .BgImage{
-    transform: translate(0%, 350%) scale(8);
-  }
-}
-
-
 // App fade in on opening site
 #app {
-    animation: fadein ease-out 1.4s;
-}
-
-// ====== Swich animation ======
-
-.Swich-enter {
-  opacity: 0;
-}
-.Swich-enter.Swich-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms linear 1000ms;
-}
-
-.Swich-exit {
-  opacity: 1;
-}
-.Swich-exit.Swich-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms linear;
-}
-.Swich-exit-done {
-  opacity: 0;
+  animation: fadein ease-out 1.4s;
 }
