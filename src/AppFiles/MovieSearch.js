@@ -4,7 +4,7 @@ import {Link, useHistory } from 'react-router-dom'
 import { AppContext } from './AppContext'
 import '../styles/main.scss'
 import TMDBLogo from '../images/tmdb.svg'
-import Scroolbar from '../Scroolbar/Scroolbar'
+import MovieSearchScroolbar from '../Scroolbar/MovieSearchScroolbar'
 import no_image from '../images/no_image.png'
 
 
@@ -121,7 +121,7 @@ const onMouseEnterHandle = e => {
 const renderSugestions = () => {
   if (queryData.length > 0) {
     return (
-      <Scroolbar show={show} text={searchbarText}>
+      <MovieSearchScroolbar show={show} text={searchbarText}>
       <ul 
         className={(show && searchbarText) ? 'animate list' : 'list'} >
       {suggestions.map((item, index) => 
@@ -158,7 +158,7 @@ const renderSugestions = () => {
           </p>
         </li>
       </ul>
-      </Scroolbar>
+      </MovieSearchScroolbar>
     )
   } else {
     if (searchbarText) {

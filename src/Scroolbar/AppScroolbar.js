@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ScrollBar from 'react-perfect-scrollbar';
 import '../styles/main.scss'
 import './ScroolbarStyle.scss';
@@ -9,9 +9,9 @@ export default class Example extends Component {
   }
 
   render() {
-    const {show, text} = this.props
+    // const {show, text} = this.props
     return (
-      <ScrollBar className={(show && text) ? 'scroolBar' : 'offScroolBar scroolBar'}>
+      <ScrollBar className={'AppScroolbar'}>
         {this.props.children}
       </ScrollBar>
     )
