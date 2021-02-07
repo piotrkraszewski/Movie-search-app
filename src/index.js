@@ -1,4 +1,3 @@
-// This file doesnt update on change remember. need to close server and restar
 import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './testingFiles/serviceWorker'
