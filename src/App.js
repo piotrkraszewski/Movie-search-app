@@ -7,10 +7,29 @@ import axios from 'axios'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
 import Movie from './AppFiles/Movie'
-import BG_black from './images/BG_black.jpg'
+// import BG_black from './images/BG_black.jpg'
 
 export default function App () {
-  // ==== Fetch StartPage ====
+  
+// === Routes Data ===
+  const location = useLocation()  // key to app routes
+  const getPathName = () => {
+    let pathname = location.pathname
+    pathname = pathname.substring(0, pathname.lastIndexOf("/") + 1)
+    return pathname
+  }
+  const getInitialMovieID = () => {
+    const pathname = location.pathname
+    const movieID = pathname.substring(pathname.lastIndexOf("/") + 1)
+    return movieID
+  }
+// === END Routes Data ===
+
+
+// ==== Fetch StartPage ====
+  // sets interseallar BgImage image on StarPage. Otherwise BgImage of searched movie
+  const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')
+
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState('')
   let startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
@@ -32,28 +51,26 @@ export default function App () {
   useEffect(() => {
     if(searchbarText === '' ){fetchStartPage()} 
   }, [searchbarText])
-  // ==== END Fetch StartPage ====
+// ==== END Fetch StartPage ====
 
 
-  // ==== Fetch movie page based on movieID parameter ====
-  const [movieID, setMovieID] = useState(157336)
+// ==== Fetch movie page based on movieID parameter ====
+  const [movieID, setMovieID] = useState(getInitialMovieID())
   const [movieData, setMovieData] = useState({})
   const movieUrl = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
 
   useEffect(() => {
-    // document.body.style.backgroundImage = 'url(https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg)'
-      // 'url(https://wallpaperaccess.com/full/670449.jpg)'
     async function fetchMovieFromApi () {
       const res = await axios.get(movieUrl)
       setMovieData(res.data)
     }
     fetchMovieFromApi()
   }, [movieID])
-  // ==== END Fetch movie page ====
+// ==== END Fetch movie page ====
 
 
 
-  // ==== Search state and functions ====
+// ==== Search state and functions ====
   const [queryData, setQueryData] = useState([]) // all data that we get from API
   const [sliceNumber, setSliceNumber] = useState(5) //how many results are displayed on quick search
   const [oldSearchbarText, setOldSearchbarText] = useState('')
@@ -94,6 +111,9 @@ export default function App () {
       setOldSearchbarText('')
     }
   }
+// ==== END Search state and functions ====
+
+
 
 // ==== Console log stuff ====
   useEffect(() => {
@@ -119,15 +139,6 @@ export default function App () {
 
 // ==== END Console log stuff ====
 
-const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')
-
-
-const location = useLocation()  // key to app routes
-const getPathName = () => {
-  let pathname = location.pathname
-  pathname = pathname.substring(0, pathname.lastIndexOf("/") + 1)
-  return pathname
-}
 
   return (
     <div>
@@ -154,7 +165,8 @@ const getPathName = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 2 }}
+          // transition={ getPathName() === "movie" ? {duration: 2} : {duration: 1} }
+          transition={{duration: 1.5}}
           src={backgroundIMG}
           key={backgroundIMG}
           className='BgImage'
