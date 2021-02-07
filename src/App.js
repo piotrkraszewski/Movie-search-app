@@ -122,13 +122,13 @@ export default function App () {
 const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')
 
 
-const location = useLocation()  // key to anime routes
+const location = useLocation()  // key to app routes
 const getPathName = () => {
   let pathname = location.pathname
-  pathname = pathname.substring(0, pathname.lastIndexOf("/") + 1);
-  console.log(pathname)
+  pathname = pathname.substring(0, pathname.lastIndexOf("/") + 1)
   return pathname
 }
+
   return (
     <div>
       <div
