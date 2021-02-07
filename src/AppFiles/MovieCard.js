@@ -1,6 +1,5 @@
 import { useEffect, useContext } from 'react'
 import '../styles/main.scss'
-import numeral from 'numeral'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppContext'
 import no_image from '../images/no_image.png'
@@ -33,11 +32,12 @@ export default function Card() {
     vote_average = '-'
   }
 
-  // dodaje $ i przecinki
+  // dodaje spacje i $
   if (revenue === 'undefined' || revenue === 0)
     revenue = '-'
   else
-    revenue = numeral(revenue).format('($0,0)')
+    revenue = parseInt(revenue).toLocaleString() + ' $'
+
 
 // add changing background logic !!!
     
