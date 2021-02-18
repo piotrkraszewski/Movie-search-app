@@ -14,6 +14,7 @@ import BgGreen2 from './images/BgGreen2.jpg'
 const API_KEY = 'api_key=cfe422613b250f702980a3bbf9e90716'
 const BASE_API_URL = 'https://api.themoviedb.org'
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/'
+const INIT_BG_IMG = 'https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg' // interstellar
 
 
 export default function App () {
@@ -30,21 +31,18 @@ export default function App () {
 
 
 // ==== Fetch StartPage ====
-  // sets intersteallar BgImage image on StarPage. Otherwise BgImage of searched movie
-  const [backgroundIMG, setBackgroundIMG] = useState('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')
-
+  const [backgroundIMG, setBackgroundIMG] = useState(INIT_BG_IMG)
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState('')
   
   
   async function fetchStartPage() {
-    const startPageUrl = `${BASE_API_URL}/3/movie/popular?${API_KEY}`
-    const response = await axios.get(startPageUrl)
+    const response = await axios.get(`${BASE_API_URL}/3/movie/popular?${API_KEY}`)
     const res = response.data.results
-    const popularMovies = res.map(a => [
-      a.original_title,
-      a.id,
-      `${BASE_IMG_URL}w500${a.poster_path}`,
+    const popularMovies = res.map(movie => [
+      movie.original_title,
+      movie.id,
+      `${BASE_IMG_URL}w500${movie.poster_path}`,
     ])
     setSuggestions(popularMovies)
   }
@@ -53,7 +51,7 @@ export default function App () {
   // loads at page starup because searchbarText === '' at start
   // checks this condition every time
   useEffect(() => {
-    if(searchbarText === '' ){fetchStartPage()} 
+    if(searchbarText === '') fetchStartPage()
   }, [searchbarText])
 // ==== END Fetch StartPage ====
 
