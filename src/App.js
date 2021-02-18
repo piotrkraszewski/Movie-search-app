@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './styles/main.scss'
-import { Route, Router, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/AppContext'
 import axios from 'axios'
@@ -14,16 +14,13 @@ export default function App () {
   
 // === Routes Data ===
   const location = useLocation()  // key to app routes
-  const getPathName = () => {
-    let pathname = location.pathname
-    pathname = pathname.substring(0, pathname.lastIndexOf("/") + 1)
-    return pathname
-  }
-  const getInitialMovieID = () => {
-    const pathname = location.pathname
-    const movieID = pathname.substring(pathname.lastIndexOf("/") + 1)
-    return movieID
-  }
+  const pathname = location.pathname
+  const getPathName = () => (
+    pathname.substring(0, pathname.lastIndexOf("/") + 1)
+  )
+  const getInitialMovieID = () => (
+    pathname.substring(pathname.lastIndexOf("/") + 1)
+  )
 // === END Routes Data ===
 
 
@@ -33,19 +30,20 @@ export default function App () {
 
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState('')
-  let startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
   
-  async function fetchStartPage() {
-    const response = await axios.get(startPageUrl)
-    const res = response.data.results
-    const popularMovies = res.map(a => [
-      a.original_title,
-      a.id,
-      `https://image.tmdb.org/t/p/w500${a.poster_path}`,
-    ])
-    setSuggestions(popularMovies)
-  }
+  const startPageUrl = `https://api.themoviedb.org/3/movie/popular?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US&page=1`
   
+    async function fetchStartPage() {
+      const response = await axios.get(startPageUrl)
+      const res = response.data.results
+      const popularMovies = res.map(a => [
+        a.original_title,
+        a.id,
+        `https://image.tmdb.org/t/p/w500${a.poster_path}`,
+      ])
+      setSuggestions(popularMovies)
+    }
+
   // if search is empty on main page it displays start page 
   // loads at page starup because searchbarText === '' at start
   // checks this condition every time
@@ -58,9 +56,10 @@ export default function App () {
 // ==== Fetch movie page based on movieID parameter ====
   const [movieID, setMovieID] = useState(getInitialMovieID())
   const [movieData, setMovieData] = useState({})
-  const movieUrl = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
-
+  
   useEffect(() => {
+    const movieUrl = `https://api.themoviedb.org/3/movie/${movieID}?&api_key=cfe422613b250f702980a3bbf9e90716`
+    
     async function fetchMovieFromApi () {
       const res = await axios.get(movieUrl)
       setMovieData(res.data)
