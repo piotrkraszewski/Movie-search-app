@@ -36,22 +36,27 @@ export default function App () {
   const [searchbarText, setSearchbarText] = useState('')
   
   
-  async function fetchStartPage() {
-    const response = await axios.get(`${BASE_API_URL}/3/movie/popular?${API_KEY}`)
-    const res = response.data.results
-    const popularMovies = res.map(movie => [
+  async function fetchSearchResults(url){
+    const response = await axios.get(url)
+    const allMoviesData = response.data.results
+    const dataToDisplay = allMoviesData.map(movie => [
       movie.original_title,
       movie.id,
       `${BASE_IMG_URL}w500${movie.poster_path}`,
     ])
-    setSuggestions(popularMovies)
+    return [dataToDisplay, allMoviesData]
+  } 
+
+  async function fetchPopularMoviesOnStartPage() {
+    const [dataToDisplay] = await fetchSearchResults(`${BASE_API_URL}/3/movie/popular?${API_KEY}`)
+    setSuggestions(dataToDisplay)
   }
 
-  // if search is empty on main page it displays start page 
+  // if search is empty on main page it displays popular movies
   // loads at page starup because searchbarText === '' at start
   // checks this condition every time
   useEffect(() => {
-    if(searchbarText === '') fetchStartPage()
+    if(searchbarText === '') fetchPopularMoviesOnStartPage()
   }, [searchbarText])
 // ==== END Fetch StartPage ====
 
@@ -69,10 +74,12 @@ export default function App () {
 
 
 // ==== Search state and functions ====
-  const [queryData, setQueryData] = useState([]) // all data that we get from API
-  const [sliceNumber, setSliceNumber] = useState(5) //how many results are displayed on quick search
+  // queryData - all data that we get from API
+  const [queryData, setQueryData] = useState([])
+  // sliceNumber - how many results are displayed on quick search
+  const [sliceNumber, setSliceNumber] = useState(5) 
   const [oldSearchbarText, setOldSearchbarText] = useState('')
-  const [cursor, setCursor] = useState(0)
+
 
   const handleChange = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
@@ -80,24 +87,18 @@ export default function App () {
     showResInSearchBar(value)
   }
 
-  const showResInSearchBar = (value)=>{
+  const showResInSearchBar = async (value) =>{
     if (value.length === 0) setOldSearchbarText('')
     if (value.length >= 1) {
-      let url = `${BASE_API_URL}/3/search/movie?query=%${value}&${API_KEY}`
-      axios.get(url).then(response => {
-        const res = response.data.results
-        const movies = res
-          .map(a => [
-            a.original_title,
-            a.id,
-            `${BASE_IMG_URL}w500${a.poster_path}`,
-          ])
-          .slice(0, sliceNumber)
-        setSuggestions(movies)
-        setQueryData(response.data.results)
-        setOldSearchbarText(value)
-      })
-    } 
+      const url = `${BASE_API_URL}/3/search/movie?query=%${value}&${API_KEY}`
+
+      const [dataToDisplay, allMoviesData] = await fetchSearchResults(url)
+      const movies = dataToDisplay.slice(0, sliceNumber)
+
+      setSuggestions(movies)
+      setQueryData(allMoviesData)
+      setOldSearchbarText(value)
+    }
   }
 
   const handleClickOnInput = async e => {
@@ -147,7 +148,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchStartPage, backgroundIMG, setBackgroundIMG}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchPopularMoviesOnStartPage, backgroundIMG, setBackgroundIMG}}
         >
         <AppScroolbar>
           <AnimatePresence exitBeforeEnter>

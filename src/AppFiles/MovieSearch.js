@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import {Link, useHistory } from 'react-router-dom'
 import { AppContext } from './AppContext'
@@ -9,14 +9,16 @@ import no_image from '../images/no_image.png'
 
 
 export default function SearchBox (props) {
+  const [cursor, setCursor] = useState(0)
+
   const {show, setShow, node, suggestionsSelected} = props
 
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, cursor, setCursor, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchStartPage} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage} = useContext(AppContext)
 
   const gotoStarPage = () => {
     setQueryData([])
     setSearchbarText('')
-    fetchStartPage()
+    fetchPopularMoviesOnStartPage()
   }
 
 
