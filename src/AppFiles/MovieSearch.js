@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
-import {Link, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { AppContext } from './AppContext'
 import '../styles/main.scss'
 import TMDBLogo from '../images/tmdb.svg'
@@ -13,7 +13,7 @@ export default function SearchBox (props) {
 
   const {show, setShow, node, suggestionsSelected} = props
 
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage, BASE_IMG_URL} = useContext(AppContext)
 
   const gotoStarPage = () => {
     setQueryData([])
@@ -87,7 +87,7 @@ export default function SearchBox (props) {
         .map(a => [
           a.original_title,
           a.id,
-          `https://image.tmdb.org/t/p/w500${a.poster_path}`
+          `${BASE_IMG_URL}w500${a.poster_path}`
         ])
         .slice(0, sliceNumber)
       setSuggestions(movies)
@@ -137,7 +137,7 @@ const renderSugestions = () => {
         >
           <div className='row'>
             <img 
-            src={item[2] !== 'https://image.tmdb.org/t/p/w500null' ? item[2] : no_image} 
+            src={item[2] !== `${BASE_IMG_URL}w500null` ? item[2] : no_image} 
             className='col-lg-2 col-md-3 col-sm-4 col-3 Image'/>
             <p className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
               {getHighlightedText(item[0], searchbarText, index)}

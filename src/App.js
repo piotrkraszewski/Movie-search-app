@@ -148,7 +148,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchPopularMoviesOnStartPage, backgroundIMG, setBackgroundIMG}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchPopularMoviesOnStartPage, backgroundIMG, setBackgroundIMG, BASE_IMG_URL}}
         >
         <AppScroolbar>
           <AnimatePresence exitBeforeEnter>
