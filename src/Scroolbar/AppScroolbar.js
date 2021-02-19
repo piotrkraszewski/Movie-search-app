@@ -1,19 +1,13 @@
-import { Component } from 'react';
-import ScrollBar from 'react-perfect-scrollbar';
-import '../styles/main.scss'
-import './ScroolbarStyle.scss';
+import ScrollBar from 'react-perfect-scrollbar'
+import './ScroolbarStyle.scss'
 
-export default class Example extends Component {
-  componentDidMount() {
-      this.setState({ onXReachEnd: () => console.log() });
-  }
-
-  render() {
-    // const {show, text} = this.props
-    return (
-      <ScrollBar className={'AppScroolbar'}>
-        {this.props.children}
-      </ScrollBar>
-    )
-  }
+export default function AppScroolbar (props) {
+  return (
+    <ScrollBar 
+      className={'AppScroolbar'}
+      onYReachStart={() => console.log('helo')}
+    >
+      {props.children}
+    </ScrollBar>
+  )
 }

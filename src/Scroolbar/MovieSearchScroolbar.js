@@ -1,4 +1,4 @@
-import  { Component } from 'react';
+import { Component } from 'react';
 import ScrollBar from 'react-perfect-scrollbar';
 import '../styles/main.scss'
 import './ScroolbarStyle.scss';
