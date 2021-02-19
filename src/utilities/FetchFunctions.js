@@ -1,21 +1,10 @@
 import axios from 'axios'
-
+const API_KEY = 'api_key=cfe422613b250f702980a3bbf9e90716'
+const BASE_API_URL = 'https://api.themoviedb.org'
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/'
 
 
-// export async function fetchSearchResults(url){
-//   const allMoviesData = getAllMoviesData(url)
-//   const dataToDisplay = displayMoviesInSearch(allMoviesData)
-//   return [dataToDisplay, allMoviesData]
-// } 
-
-export async function getAllMoviesData(url){
-  const response = await axios.get(url)
-  console.log(typeof response)
-  return response.data.results
-}
-
-
+//==== Fetch all movies ====
 export async function getMoviesDataToDisplayInSearch(input){
   let allMoviesData
   if (typeof input === 'string'){  // if url
@@ -34,5 +23,16 @@ export async function getMoviesDataToDisplayInSearch(input){
   ])
 }
 
+export async function getAllMoviesData(url){
+  const response = await axios.get(url)
+  console.log(typeof response)
+  return response.data.results
+}
 
+
+//==== Fetch one movie ====
+export async function getMovieData(movieID){
+  const response = await axios.get(`${BASE_API_URL}/3/movie/${movieID}?&${API_KEY}`)
+  return response.data
+}
 
