@@ -6,15 +6,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/AppContext'
 import AppScroolbar from './Scroolbar/AppScroolbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData } from './utilities/FetchFunctions'
+import { API_KEY, BASE_API_URL, BASE_IMG_URL, INIT_BG_IMG, POPULAR_MOVIES_URL } from './utilities/Constans'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
 import Movie from './AppFiles/Movie'
 import BgGreen2 from './images/BgGreen2.jpg'
-
-const API_KEY = 'api_key=cfe422613b250f702980a3bbf9e90716'
-const BASE_API_URL = 'https://api.themoviedb.org'
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/'
-const INIT_BG_IMG = 'https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg' // interstellar
 
 
 export default function App () {
@@ -38,7 +34,7 @@ export default function App () {
   const [searchbarText, setSearchbarText] = useState('')
 
   async function fetchPopularMoviesOnStartPage() {
-    setSuggestions(await getMoviesDataToDisplayInSearch(`${BASE_API_URL}/3/movie/popular?${API_KEY}`))
+    setSuggestions(await getMoviesDataToDisplayInSearch(POPULAR_MOVIES_URL))
   }
 
   // if search is empty on main page it displays popular movies

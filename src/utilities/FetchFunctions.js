@@ -1,7 +1,5 @@
 import axios from 'axios'
-const API_KEY = 'api_key=cfe422613b250f702980a3bbf9e90716'
-const BASE_API_URL = 'https://api.themoviedb.org'
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/'
+import { API_KEY, BASE_API_URL, POSTER_W500 } from '../utilities/Constans'
 
 
 //==== Fetch all movies ====
@@ -19,7 +17,7 @@ export async function getMoviesDataToDisplayInSearch(input){
   return allMoviesData.map(movie => [
     movie.original_title,
     movie.id,
-    `${BASE_IMG_URL}w500${movie.poster_path}`,
+    POSTER_W500 + movie.poster_path
   ])
 }
 

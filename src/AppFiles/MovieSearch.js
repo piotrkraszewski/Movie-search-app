@@ -4,18 +4,19 @@ import ArrowKeysReact from 'arrow-keys-react'
 import { Link, useHistory } from 'react-router-dom'
 import { AppContext } from './AppContext'
 import '../styles/main.scss'
-import { getMoviesDataToDisplayInSearch, getAllMoviesData } from '../utilities/FetchFunctions'
+import { getMoviesDataToDisplayInSearch } from '../utilities/FetchFunctions'
+import { NOT_FOUND_POSTER_W500 } from '../utilities/Constans'
 import TMDBLogo from '../images/tmdb.svg'
 import MovieSearchScroolbar from '../Scroolbar/MovieSearchScroolbar'
 import no_image from '../images/no_image.png'
 
 
-export default function SearchBox (props) {
+export default function MovieSearch (props) {
   const [cursor, setCursor] = useState(0)
 
   const {show, setShow, node, suggestionsSelected} = props
 
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage, BASE_IMG_URL} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage} = useContext(AppContext)
 
   const gotoStarPage = () => {
     setQueryData([])
@@ -126,9 +127,12 @@ const renderSugestions = () => {
         >
           <div className='row'>
             <img 
-            src={item[2] !== `${BASE_IMG_URL}w500null` ? item[2] : no_image} 
-            className='col-lg-2 col-md-3 col-sm-4 col-3 Image'/>
-            <p className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
+              src={item[2] !== NOT_FOUND_POSTER_W500 ? item[2] : no_image} 
+              className='col-lg-2 col-md-3 col-sm-4 col-3 Image'
+              alt='movie poster'
+            />
+            <p 
+              className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
               {getHighlightedText(item[0], searchbarText, index)}
             </p>
           </div>

@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react'
 import '../styles/main.scss'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppContext'
+import { POSTER_W500 } from '../utilities/Constans'
 import no_image from '../images/no_image.png'
 
 
@@ -18,11 +19,11 @@ function nestedDataToString(nestedData) {
 }
 
 export default function Card() {
-  const {movieData, backgroundIMG, setBackgroundIMG} = useContext(AppContext)
+  const {movieData, setBackgroundIMG} = useContext(AppContext)
   const {original_title, overview, tagline, poster_path, production_companies, genres, backdrop_path, release_date, runtime } = movieData
   let {revenue, vote_average} = movieData
 
-  const posterIMG = `https://image.tmdb.org/t/p/w500${poster_path}`,
+  const posterIMG = POSTER_W500 + poster_path,
         productionList = nestedDataToString(production_companies),
         genresList = nestedDataToString(genres),
         backdropIMG = `https://image.tmdb.org/t/p/original${backdrop_path}`
@@ -39,8 +40,6 @@ export default function Card() {
     revenue = parseInt(revenue).toLocaleString() + ' $'
 
 
-// add changing background logic !!!
-    
   useEffect(() => {
     setBackgroundIMG(backdropIMG)
   })
@@ -74,8 +73,11 @@ export default function Card() {
       </div>
 
       <div className="poster-container nopadding order-md-first col-12 col-md-5 col-lg-4">
-        <img id="postertest" className='poster' 
-          src={poster_path !== null ? posterIMG : no_image}/>
+        <img 
+          className='poster' 
+          src={poster_path !== null ? posterIMG : no_image}
+          alt='poster'
+        />
       </div>
     </motion.div >
     </AnimatePresence>
