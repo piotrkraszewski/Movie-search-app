@@ -22,6 +22,7 @@
     margin: 5px 0; // suggestion list spacing
   }
 
+
   &.active, &:focus {
     color: $darkGrey;
     background-color: $limeGreen;
@@ -30,6 +31,13 @@
 
   &:hover {
     cursor: pointer;
+    color: $darkGrey;
+    background-color: $limeGreen;
+    border-radius: 4px;
+    
+    span{
+      color: $darkGrey !important;
+    }
   }
 }
 
@@ -74,6 +82,7 @@
   align-self: center;
   font-size: 1.4rem;
 }
+
 .showMore {
   text-align: center;
   border-radius: 5px;
@@ -94,19 +103,12 @@
   outline-width: 0;
 }
 
-.tt-suggestion:hover {
-  color: $darkGrey;
-  background-color: $limeGreen;
-  border-radius: 4px;
-}
-.tt-suggestion:hover span{
-  color: $darkGrey !important;
-}
-
 .linkStyle{
   text-decoration:none !important;
   color: white;
 }
+
+
 
 @media only screen and (max-width: 575px) {
   .searchInside{

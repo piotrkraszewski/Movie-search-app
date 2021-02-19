@@ -24,7 +24,8 @@ body {
   z-index:-1;
 }
 
-// App fade in on opening site
-#app {
-  animation: fadein ease-out 1.4s;
-}
+// App move from top to bottom on opening site
+// didn't work nicely with  perfect-scrollbar
+// #app {
+//   animation: fadein ease-out 1.4s;
+// }

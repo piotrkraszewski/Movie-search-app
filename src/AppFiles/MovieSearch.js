@@ -128,7 +128,7 @@ const renderSugestions = () => {
           <div className='row'>
             <img 
               src={item[2] !== NOT_FOUND_POSTER_W500 ? item[2] : no_image} 
-              className='col-lg-2 col-md-3 col-sm-4 col-3 Image'
+              className='col-lg-2 col-md-3 col-sm-4 col-3 quickSearchImage'
               alt='movie poster'
             />
             <p 
