@@ -7,7 +7,7 @@ import '../styles/main.scss'
 import { getMoviesDataToDisplayInSearch } from '../utilities/FetchFunctions'
 import { NOT_FOUND_POSTER_W500 } from '../utilities/Constans'
 import TMDBLogo from '../images/tmdb.svg'
-import MovieSearchScroolbar from '../Scroolbar/MovieSearchScroolbar'
+import MovieSearchScroolbar from '../Scroolbar/MovieSearchScrollbar'
 import no_image from '../images/no_image.png'
 
 

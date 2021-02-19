@@ -1,7 +1,7 @@
 import ScrollBar from 'react-perfect-scrollbar';
 import './ScroolbarStyle.scss';
 
-export default function MovieSearchScroolbar(props){
+export default function MovieSearchScrollbar(props){
   const {show, text} = props
   return (
     <ScrollBar 
