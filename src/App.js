@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/AppContext'
 import axios from 'axios'
 import AppScroolbar from './Scroolbar/AppScroolbar'
+import { getMoviesDataToDisplayInSearch, getAllMoviesData } from './utilities/FetchFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
 import Movie from './AppFiles/Movie'
@@ -30,26 +31,15 @@ export default function App () {
 // === END Routes Data ===
 
 
+
+
 // ==== Fetch StartPage ====
   const [backgroundIMG, setBackgroundIMG] = useState(INIT_BG_IMG)
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState('')
-  
-  
-  async function fetchSearchResults(url){
-    const response = await axios.get(url)
-    const allMoviesData = response.data.results
-    const dataToDisplay = allMoviesData.map(movie => [
-      movie.original_title,
-      movie.id,
-      `${BASE_IMG_URL}w500${movie.poster_path}`,
-    ])
-    return [dataToDisplay, allMoviesData]
-  } 
 
   async function fetchPopularMoviesOnStartPage() {
-    const [dataToDisplay] = await fetchSearchResults(`${BASE_API_URL}/3/movie/popular?${API_KEY}`)
-    setSuggestions(dataToDisplay)
+    setSuggestions(await getMoviesDataToDisplayInSearch(`${BASE_API_URL}/3/movie/popular?${API_KEY}`))
   }
 
   // if search is empty on main page it displays popular movies
@@ -92,7 +82,8 @@ export default function App () {
     if (value.length >= 1) {
       const url = `${BASE_API_URL}/3/search/movie?query=%${value}&${API_KEY}`
 
-      const [dataToDisplay, allMoviesData] = await fetchSearchResults(url)
+      const allMoviesData = await getAllMoviesData(url)
+      const dataToDisplay = await getMoviesDataToDisplayInSearch(allMoviesData)
       const movies = dataToDisplay.slice(0, sliceNumber)
 
       setSuggestions(movies)

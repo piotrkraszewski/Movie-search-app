@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Link, useHistory } from 'react-router-dom'
 import { AppContext } from './AppContext'
 import '../styles/main.scss'
+import { getMoviesDataToDisplayInSearch, getAllMoviesData } from '../utilities/FetchFunctions'
 import TMDBLogo from '../images/tmdb.svg'
 import MovieSearchScroolbar from '../Scroolbar/MovieSearchScroolbar'
 import no_image from '../images/no_image.png'
@@ -13,7 +15,7 @@ export default function SearchBox (props) {
 
   const {show, setShow, node, suggestionsSelected} = props
 
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, setSliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage, BASE_IMG_URL} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, queryData, setQueryData, sliceNumber, handleChange, handleClickOnInput, fetchPopularMoviesOnStartPage, BASE_IMG_URL} = useContext(AppContext)
 
   const gotoStarPage = () => {
     setQueryData([])
@@ -71,28 +73,15 @@ export default function SearchBox (props) {
   const history = useHistory()
 
   const showMore = e => {
-    if (sliceNumber >= 10){
       history.push(`/`)
-      setSliceNumber(20)  // moze jakos inaczej to rozwiazaæ
-    } else {
-      if(suggestions.length > 0){
-        setSliceNumber(sliceNumber => sliceNumber + 5)
-      }
-    }
+      // setSliceNumber(20)
   }
 
-  useEffect(() => {
-    if(queryData.length > 0){
-      let movies = queryData
-        .map(a => [
-          a.original_title,
-          a.id,
-          `${BASE_IMG_URL}w500${a.poster_path}`
-        ])
-        .slice(0, sliceNumber)
-      setSuggestions(movies)
-    }
-  }, [sliceNumber])
+  // useEffect(async() => {
+  //   if(queryData.length > 0){
+  //     setSuggestions(await getMoviesDataToDisplayInSearch(queryData).slice(0, sliceNumber))
+  //   }
+  // }, [sliceNumber])
   // END show more button
 
 // ==== Podœwietlenie tekstu ====
@@ -153,10 +142,8 @@ const renderSugestions = () => {
             className={cursor === sliceNumber 
             ? 'active textSugestion showMore tt-suggestion' 
             : 'textSugestion showMore tt-suggestion'}
-            >
-              { sliceNumber >= 10 ? 'full screen search' 
-              : suggestions.length > 0 ? 'show more' 
-              : 'no result'}
+          >
+            show more
           </p>
         </li>
       </ul>
