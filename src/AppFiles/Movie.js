@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 
 export default function Movie() {
-  const {searchbarText, setSearchbarText, setOldSearchbarText, setSliceNumber, setMovieID} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, setOldSearchbarText, setMovieID, showResInSearchBar, oldSearchbarText} = useContext(AppContext)
 
 
   const suggestionsSelected = value => {
@@ -17,27 +17,35 @@ export default function Movie() {
     }
   }
 
-// ==== sugeston hide on click away ====
+// ==== sugeston show and hide on click  ====
   const [show, setShow] = useState(false)
   const node = useRef()
 
+  const hideOnOutsideClick = e => {
+    if (!node.current.contains(e.target)){// outside click
+      setShow(false) 
+    }
+  }
+
   useEffect(() => {
-    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('mousedown', hideOnOutsideClick)
     return () => {
       // return function to be called when unmounted
-      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('mousedown', hideOnOutsideClick)
     }
   }, [])
 
-  const handleClick = e => {
-    if (node.current.contains(e.target)) {
-      setShow(true) // inside click
-    } else {
-      setShow(false) // outside click
-      setSliceNumber(5)
+  
+
+  const handleClickOnMovieSearchBar = async e => {
+    setShow(true)
+    if (searchbarText === '') {
+      showResInSearchBar(oldSearchbarText)
+      setSearchbarText(oldSearchbarText)
+      setOldSearchbarText('')
     }
   }
-  // ==== END sugeston hide on clic kaway ====
+  // ==== END sugeston show and hide on click ====
 
   return (
     <motion.div 
@@ -46,7 +54,7 @@ export default function Movie() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >    
-      <MovieSearch {...{show, setShow, suggestionsSelected, node}}/> 
+      <MovieSearch {...{show, setShow, suggestionsSelected, node,  handleClickOnMovieSearchBar}}/> 
       <MovieCard/>
     </motion.div>
   )

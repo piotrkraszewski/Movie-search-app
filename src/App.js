@@ -61,8 +61,6 @@ export default function App () {
 // ==== Search state and functions ====
   // queryData - all data that we get from API
   const [queryData, setQueryData] = useState([])
-  // sliceNumber - how many results are displayed on quick search
-  const [sliceNumber, setSliceNumber] = useState(5) 
   const [oldSearchbarText, setOldSearchbarText] = useState('')
 
 
@@ -79,21 +77,14 @@ export default function App () {
 
       const allMoviesData = await getAllMoviesData(url)
       const dataToDisplay = await getMoviesDataToDisplayInSearch(allMoviesData)
-      const movies = dataToDisplay.slice(0, sliceNumber)
 
-      setSuggestions(movies)
+      setSuggestions(dataToDisplay)
       setQueryData(allMoviesData)
       setOldSearchbarText(value)
     }
   }
 
-  const handleClickOnInput = async e => {
-    if (searchbarText === '') {
-      showResInSearchBar(oldSearchbarText)
-      setSearchbarText(oldSearchbarText)
-      setOldSearchbarText('')
-    }
-  }
+  
 // ==== END Search state and functions ====
 
 
@@ -117,10 +108,6 @@ export default function App () {
   }, [searchbarText])
 
   useEffect(() => {
-    console.log(`sliceNumber: ${sliceNumber}`)
-  }, [sliceNumber])
-
-  useEffect(() => {
     console.log(`backgroundIMG: ${backgroundIMG}`)
   }, [backgroundIMG])
 
@@ -134,7 +121,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, sliceNumber, setSliceNumber, suggestions, setSuggestions, handleChange, handleClickOnInput, queryData, setQueryData, setMovieID, fetchPopularMoviesOnStartPage, backgroundIMG, setBackgroundIMG, BASE_IMG_URL}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, handleChange, queryData, setQueryData, setMovieID, fetchPopularMoviesOnStartPage, backgroundIMG, setBackgroundIMG, BASE_IMG_URL, showResInSearchBar}}
         >
         <AppScroolbar>
           <AnimatePresence exitBeforeEnter>

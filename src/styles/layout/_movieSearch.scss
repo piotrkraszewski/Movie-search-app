@@ -22,7 +22,6 @@
     margin: 5px 0; // suggestion list spacing
   }
 
-
   &.active, &:focus {
     color: $darkGrey;
     background-color: $limeGreen;
@@ -34,18 +33,14 @@
     color: $darkGrey;
     background-color: $limeGreen;
     border-radius: 4px;
-    
+
     span{
       color: $darkGrey !important;
     }
   }
 }
 
-@include media-breakpoint-up(sm) {
-  .searchbox {
-    margin-top: 8px; //important
-  }
-}
+
 
 // === My new styles ===
 
@@ -66,16 +61,19 @@
   pointer-events: auto;
 }
 
+.quickSearchImage{
+  max-width: 96px;
+}
+
+
+
 .noResult{
-  position: absolute;
   height: 2rem; 
   margin-top: 0.3rem;
-  width: 100%;
-  align-self: center;
-  font-size: 1.1rem;
-}
-.noResult:hover{
-  user-select: none;
+
+  &:hover{
+    user-select: none;
+  }
 }
 
 .textSugestion {
@@ -88,7 +86,7 @@
   border-radius: 5px;
 }
 
-.myform {
+.movieSearchBar {
   color: $lightGrey;
   padding-left: 10px;
   padding-bottom: 5px;
@@ -97,11 +95,13 @@
   border: none;
   border-radius: 0;
   border-bottom: solid 1px white;
+
+  &:focus{
+    outline-width: 0;
+  }
 }
-.myform:focus {
-  color: $lightGrey;
-  outline-width: 0;
-}
+
+  
 
 .linkStyle{
   text-decoration:none !important;
@@ -110,6 +110,12 @@
 
 
 
+@include media-breakpoint-up(sm) {
+  .searchbox {
+    margin-top: 8px; //important
+  }
+}
+
 @media only screen and (max-width: 575px) {
   .searchInside{
     padding: 0 4px!important ;
@@ -117,8 +123,7 @@
   .list{
     margin-right: 0;
   }
-  .tt-suggestion:hover {
-    color: $lightGrey;
-    background-color: $transparentBackground;
+  .quickSearchImage{
+    max-width: 92px;
   }
 }

@@ -7,11 +7,10 @@ import no_image from '../images/no_image.png'
 
 
 export default function FullscreenSearch() {
-  const {searchbarText, suggestions, setSliceNumber,  setMovieID} = useContext(AppContext)
+  const {searchbarText, suggestions, setMovieID} = useContext(AppContext)
 
   const suggestionsSelectedFullscreen = value => {
     setMovieID(value[1])
-    setSliceNumber(5)
   }
 
   return (
@@ -32,7 +31,7 @@ export default function FullscreenSearch() {
                 <h1 className='FS-title'>{item[0]}</h1>
               </div>
             </Link>
-        </div>
+          </div>
         )}
       </div>
     </div>
