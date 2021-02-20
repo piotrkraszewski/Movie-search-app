@@ -23,6 +23,7 @@ export default function MovieSearch (props) {
     setAllMoviesData([])
     setSearchbarText('')
     fetchPopularMoviesOnStartPage()
+    showMore()
   }
 
 
@@ -45,7 +46,7 @@ export default function MovieSearch (props) {
       }
     })
   
-    const enterPressed = e => {
+    const enterPressed = (e, show, sliceNumber) => {
       const code = e.keyCode || e.which
       if (code === 13) {
         // enter key
@@ -143,9 +144,12 @@ const renderSugestions = () => {
     <div className='searchContainer'>
       <div className='row searchSecondContainer'>
         <div className='col-xs-12 col-sm-3 col-lg-3 p-0'>
-          <Link to={`/`}>
-            <img src={TMDBLogo} className='logo'  alt='The Movie Database' onClick={gotoStarPage}/>
-          </Link>
+          <img 
+            src={TMDBLogo} 
+            className='logo'
+            alt='The Movie Database' 
+            onClick={gotoStarPage}
+          />
         </div>
         
         <div className='col-xs-12 col-sm-9 col-lg-9 p-0 pl-3 searchInside' ref={node}>
