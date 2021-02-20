@@ -38,7 +38,7 @@ export default function Card() {
         transition={{ duration: 1 }}
 
         key={original_title} 
-        className="Card nopadding row" 
+        className="Card row" 
       >      
       <div className='meta-data-container col-12 col-md-7 col-lg-8'>
         <h1>{original_title}</h1>
@@ -47,7 +47,7 @@ export default function Card() {
         <div className="additional-details">
           <span className="genre-list">{genresList}</span>
           <span className="production-list">{productionList}</span>
-          <div className="row nopadding release-details">
+          <div className="row release-details">
             <div className="col-6"> Original Release: <span className="meta-data">{release_date}</span></div>
             <div className="col-6"> Running Time: <span className="meta-data">{runtime} min</span> </div>
             <div className="col-6"> Box Office: <span className="meta-data">{revenue}</span></div>
@@ -56,7 +56,7 @@ export default function Card() {
         </div> 
       </div>
 
-      <div className="poster-container nopadding order-md-first col-12 col-md-5 col-lg-4">
+      <div className="posterContainer order-md-first col-12 col-md-5 col-lg-4">
         <img 
           className='poster' 
           src={poster_path !== null ? posterIMG : no_image}
