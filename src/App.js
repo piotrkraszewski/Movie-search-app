@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/AppContext'
 import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl } from './utilities/FetchFunctions'
-import { BASE_IMG_URL, INIT_BG_IMG, POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
+import { INIT_BG_IMG, POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
 import { getCurrentPageUrl, getInitialMovieID } from './utilities/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'

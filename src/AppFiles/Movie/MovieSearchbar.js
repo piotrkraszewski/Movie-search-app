@@ -5,12 +5,13 @@ import { Link, useHistory } from 'react-router-dom'
 import { AppContext } from '../AppContext'
 import '../../styles/main.scss'
 import { NOT_FOUND_POSTER_W500 } from '../../utilities/Consts'
+import { highligthText } from './MovieSearchbarFunctions'
 import TMDBLogo from '../../images/tmdb.svg'
 import no_image from '../../images/no_image.png'
 
 
 export default function MovieSearch (props) {
-  const [cursor, setCursor] = useState(0)
+  const [cursor, setCursor] = useState()
 
   const {show, setShow, node, suggestionsSelected,  handleClickOnMovieSearchBar} = props
 
@@ -45,7 +46,7 @@ export default function MovieSearch (props) {
     })
   
     const enterPressed = e => {
-      var code = e.keyCode || e.which
+      const code = e.keyCode || e.which
       if (code === 13) {
         // enter key
         // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
@@ -79,25 +80,7 @@ export default function MovieSearch (props) {
 
 
 // ==== Podœwietlenie tekstu ====
-function getHighlightedText(text, highlight, index) {
-  const parts = text.split(new RegExp(`(${highlight})`, 'gi'))
-
-  return <span> { parts.map((part, i) => 
-    <span 
-      key={i} 
-      style=
-      {(part.toLowerCase() === highlight.toLowerCase() && cursor !== index)
-        ? { color: '#00FC87', fontWeight: 'bold' } 
-        : part.toLowerCase() === highlight.toLowerCase() 
-          ? { fontWeight: 'bold'}
-          : {}} 
-    >
-      { part }
-    </span>)
-  } </span>;
-}
-
-const onMouseEnterHandle = e => {
+const highlightMovieTextOnHover = e => {
   setCursor(parseInt(e.target.getAttribute('index')))
 }
 // ==== END Podœwietlenie tekstu ====
@@ -114,7 +97,7 @@ const renderSugestions = () => {
         <li 
           className={cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
           onClick={()=> suggestionsSelected(item)}
-          onMouseEnter={onMouseEnterHandle} 
+          onMouseEnter={highlightMovieTextOnHover} 
           index={index}
           key={index}
         >
@@ -126,7 +109,7 @@ const renderSugestions = () => {
             />
             <p 
               className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
-              {getHighlightedText(item[0], searchbarText, index)}
+              {highligthText(item[0], searchbarText, index, cursor)}
             </p>
           </div>
         </li>
