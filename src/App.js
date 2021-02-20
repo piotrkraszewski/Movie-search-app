@@ -4,30 +4,18 @@ import './styles/main.scss'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/AppContext'
-import AppScroolbar from './Scroolbar/AppScrollbar'
-// import CustomScrollbar from './Scroolbar/CustomScrollbar'
-import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData } from './utilities/FetchFunctions'
-import { API_KEY, BASE_API_URL, BASE_IMG_URL, INIT_BG_IMG, POPULAR_MOVIES_URL } from './utilities/Constans'
+import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
+import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl } from './utilities/FetchFunctions'
+import { BASE_IMG_URL, INIT_BG_IMG, POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
+import { getCurrentPageUrl, getInitialMovieID } from './utilities/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
-import Movie from './AppFiles/Movie'
+import Movie from './AppFiles/Movie/Movie'
 import BgGreen2 from './images/BgGreen2.jpg'
 
 
 export default function App () {
-// === Routes Data ===
   const location = useLocation()  // key to app routes
-  const pathname = location.pathname
-  const getPathName = () => (
-    pathname.substring(0, pathname.lastIndexOf("/") + 1)
-  )
-  const getInitialMovieID = () => (
-    pathname.substring(pathname.lastIndexOf("/") + 1)
-  )
-// === END Routes Data ===
-
-
-
 
 // ==== Fetch StartPage ====
   const [backgroundIMG, setBackgroundIMG] = useState(INIT_BG_IMG)
@@ -48,7 +36,7 @@ export default function App () {
 
 
 // ==== Fetch movie page based on movieID parameter ====
-  const [movieID, setMovieID] = useState(getInitialMovieID())
+  const [movieID, setMovieID] = useState(getInitialMovieID(location))
   const [movieData, setMovieData] = useState({})
   
   useEffect(async () => {
@@ -60,7 +48,7 @@ export default function App () {
 
 // ==== Search state and functions ====
   // queryData - all data that we get from API
-  const [queryData, setQueryData] = useState([])
+  const [allMoviesData, setAllMoviesData] = useState([])
   const [oldSearchbarText, setOldSearchbarText] = useState('')
 
 
@@ -70,16 +58,14 @@ export default function App () {
     showResInSearchBar(value)
   }
 
-  const showResInSearchBar = async (value) =>{
+  const showResInSearchBar = async (value) => {
     if (value.length === 0) setOldSearchbarText('')
     if (value.length >= 1) {
-      const url = `${BASE_API_URL}/3/search/movie?query=%${value}&${API_KEY}`
-
-      const allMoviesData = await getAllMoviesData(url)
+      const allMoviesData = await getAllMoviesData(createSearchMoviesUrl(value))
       const dataToDisplay = await getMoviesDataToDisplayInSearch(allMoviesData)
 
+      setAllMoviesData(allMoviesData)
       setSuggestions(dataToDisplay)
-      setQueryData(allMoviesData)
       setOldSearchbarText(value)
     }
   }
@@ -91,9 +77,9 @@ export default function App () {
 
 // ==== Console log stuff ====
   useEffect(() => {
-    console.log(`%c queryData.length: ${queryData.length}`, 'color: pink')
-    console.log(`%c suggestions.length: ${suggestions.length}`, 'color: pink')
-  }, [queryData])
+    console.log(`allMoviesData.length ${allMoviesData.length}`)
+    console.log(`suggestions.length ${allMoviesData.length}`)
+  }, [allMoviesData])
 
   useEffect(() => {
     console.log({suggestions})
@@ -101,6 +87,7 @@ export default function App () {
 
   useEffect(() => {
     console.log({movieData})
+    setBackgroundIMG(`https://image.tmdb.org/t/p/original${movieData.backdrop_path}`)
   }, [movieData])
 
   useEffect(() => {
@@ -121,16 +108,19 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, handleChange, queryData, setQueryData, setMovieID, fetchPopularMoviesOnStartPage, backgroundIMG, setBackgroundIMG, BASE_IMG_URL, showResInSearchBar}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, handleChange, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar}}
         >
-        <AppScroolbar>
-          <AnimatePresence exitBeforeEnter>
-            <Switch location={location} key={getPathName()}>
-              <Route exact path='/' render={() => <StartPage/>} />
-              <Route exact path={`/movie/:${movieID}`} render={() => <Movie/>} />
-            </Switch>
-          </AnimatePresence>
-        </AppScroolbar>
+          <AppScroolbar>
+            <AnimatePresence exitBeforeEnter>
+              <Switch 
+                location={location} 
+                key={getCurrentPageUrl(location)}
+              >
+                <Route exact path='/' render={() => <StartPage/>} />
+                <Route exact path={`/movie/:${movieID}`} render={() => <Movie/>} />
+              </Switch>
+            </AnimatePresence>
+          </AppScroolbar>
         </AppContext.Provider>
       </div>
 
@@ -141,7 +131,7 @@ export default function App () {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{duration: 1.5}}
-          src={backgroundIMG !== `${BASE_IMG_URL}originalnull` ? backgroundIMG : BgGreen2}
+          src={backgroundIMG !== NOT_FOUND_BG_IMG ? backgroundIMG : BgGreen2}
           key={backgroundIMG}
           className='BgImage'
         />

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext } from 'react'
-import MovieSearch from './MovieSearch'
+import MovieSearch from './MovieSearchbar'
 import MovieCard from './MovieCard'
-import { AppContext } from './AppContext'
+import { AppContext } from '../AppContext'
 import { motion } from "framer-motion"
 
 

@@ -1,5 +1,5 @@
 import StartPageCard from './StartPageCard'
-import StartPageSearch from './StartPageSearch'
+import StartPageSearch from './StartPageSearchbar'
 import { motion } from "framer-motion"
 
 export default function StartPage() {

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_KEY, BASE_API_URL, POSTER_W500 } from '../utilities/Constans'
+import { API_KEY, BASE_API_URL, POSTER_W500 } from './Consts'
 
 
 //==== Fetch all movies ====
@@ -23,14 +23,15 @@ export async function getMoviesDataToDisplayInSearch(input){
 
 export async function getAllMoviesData(url){
   const response = await axios.get(url)
-  console.log(typeof response)
   return response.data.results
 }
 
+export function createSearchMoviesUrl(value){
+  return `${BASE_API_URL}/3/search/movie?query=%${value}&${API_KEY}`
+}
 
 //==== Fetch one movie ====
 export async function getMovieData(movieID){
   const response = await axios.get(`${BASE_API_URL}/3/movie/${movieID}?&${API_KEY}`)
   return response.data
 }
-

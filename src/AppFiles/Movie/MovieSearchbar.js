@@ -2,11 +2,11 @@
 import { useState, useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Link, useHistory } from 'react-router-dom'
-import { AppContext } from './AppContext'
-import '../styles/main.scss'
-import { NOT_FOUND_POSTER_W500 } from '../utilities/Constans'
-import TMDBLogo from '../images/tmdb.svg'
-import no_image from '../images/no_image.png'
+import { AppContext } from '../AppContext'
+import '../../styles/main.scss'
+import { NOT_FOUND_POSTER_W500 } from '../../utilities/Consts'
+import TMDBLogo from '../../images/tmdb.svg'
+import no_image from '../../images/no_image.png'
 
 
 export default function MovieSearch (props) {
@@ -14,12 +14,12 @@ export default function MovieSearch (props) {
 
   const {show, setShow, node, suggestionsSelected,  handleClickOnMovieSearchBar} = props
 
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, queryData, setQueryData, handleChange, fetchPopularMoviesOnStartPage} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage} = useContext(AppContext)
 
   const sliceNumber = 5
 
   const gotoStarPage = () => {
-    setQueryData([])
+    setAllMoviesData([])
     setSearchbarText('')
     fetchPopularMoviesOnStartPage()
   }
@@ -104,7 +104,7 @@ const onMouseEnterHandle = e => {
 
 
 const renderSugestions = () => {
-  if (queryData.length > 0) {
+  if (allMoviesData.length > 0) {
     return (
       <ul 
         className={(show && searchbarText) ? 'animate list' : 'list'} 

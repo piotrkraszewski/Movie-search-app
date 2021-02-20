@@ -1,32 +1,20 @@
-import { useEffect, useContext } from 'react'
-import '../styles/main.scss'
+import { useContext } from 'react'
+import '../../styles/main.scss'
 import { motion, AnimatePresence } from "framer-motion"
-import { AppContext } from './AppContext'
-import { POSTER_W500 } from '../utilities/Constans'
-import no_image from '../images/no_image.png'
+import { AppContext } from '../AppContext'
+import { POSTER_W500 } from '../../utilities/Consts'
+import { nestedDataToString } from './MovieCardHelperFunctions'
+import no_image from '../../images/no_image.png'
 
-
-function nestedDataToString(nestedData) {
-  let nestedArray = [],
-      resultString
-  if (nestedData !== undefined) {
-    nestedData.forEach(item => {
-      nestedArray.push(item.name)
-    })
-  }
-  resultString = nestedArray.join(', ') // array to string
-  return resultString
-}
 
 export default function Card() {
-  const {movieData, setBackgroundIMG} = useContext(AppContext)
-  const {original_title, overview, tagline, poster_path, production_companies, genres, backdrop_path, release_date, runtime } = movieData
+  const {movieData} = useContext(AppContext)
+  const {original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let {revenue, vote_average} = movieData
 
   const posterIMG = POSTER_W500 + poster_path,
         productionList = nestedDataToString(production_companies),
-        genresList = nestedDataToString(genres),
-        backdropIMG = `https://image.tmdb.org/t/p/original${backdrop_path}`
+        genresList = nestedDataToString(genres)
 
   // conditional statements for no data
   if (vote_average === 'undefined' || vote_average === 0) {
@@ -39,10 +27,6 @@ export default function Card() {
   else
     revenue = parseInt(revenue).toLocaleString() + ' $'
 
-
-  useEffect(() => {
-    setBackgroundIMG(backdropIMG)
-  })
 
   return (
     <div className='MovieCard'>
