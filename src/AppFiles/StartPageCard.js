@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import '../styles/main.scss'
 import { Link } from 'react-router-dom'
-import { AppContext } from './AppContext'
+import { AppContext } from './Contexts/AppContext'
 import { NOT_FOUND_POSTER_W500 } from '../utilities/Consts'
 import no_image from '../images/no_image.png'
 

@@ -1,10 +1,10 @@
 import { useContext } from 'react'
-import '../../styles/main.scss'
+import '../../../styles/main.scss'
 import { motion, AnimatePresence } from "framer-motion"
-import { AppContext } from '../AppContext'
-import { POSTER_W500 } from '../../utilities/Consts'
+import { AppContext } from '../../Contexts/AppContext'
+import { POSTER_W500 } from '../../../utilities/Consts'
 import { nestedDataToString } from './MovieCardFunctions'
-import no_image from '../../images/no_image.png'
+import no_image from '../../../images/no_image.png'
 
 
 export default function Card() {

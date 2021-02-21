@@ -1,23 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { Link, useHistory } from 'react-router-dom'
-import { AppContext } from '../AppContext'
-import '../../styles/main.scss'
-import { NOT_FOUND_POSTER_W500 } from '../../utilities/Consts'
+import { AppContext } from '../../Contexts/AppContext'
+import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
+import '../../../styles/main.scss'
+import { NOT_FOUND_POSTER_W500 } from '../../../utilities/Consts'
 import { highligthText } from './MovieSearchbarFunctions'
-import TMDBLogo from '../../images/tmdb.svg'
-import no_image from '../../images/no_image.png'
+import MovieSearchbarHooks from './MovieSearchbarHooks'
+import ShowHideQuickSearchMoviesHooks from './ShowHideQuickSearchMoviesHooks'
+import TMDBLogo from '../../../images/tmdb.svg'
+import no_image from '../../../images/no_image.png'
 
+const sliceNumber = 5
 
-export default function MovieSearch (props) {
+export default function MovieSearch () {
+  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage } = useContext(AppContext)
+  const { show, setShow } = useContext(MovieSearchbarContext)
+
   const [cursor, setCursor] = useState()
+  
+  // *** show more button ***
+  const history = useHistory()
+  const showMore = e => history.push(`/`)
 
-  const {show, setShow, node, suggestionsSelected,  handleClickOnMovieSearchBar} = props
 
-  const {searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage} = useContext(AppContext)
-
-  const sliceNumber = 5
+  const [selectedMovieInQuickSearch] = MovieSearchbarHooks()
+  const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchMoviesHooks()
+  
 
   const gotoStarPage = () => {
     setAllMoviesData([])
@@ -46,7 +56,7 @@ export default function MovieSearch (props) {
       }
     })
   
-    const enterPressed = (e, show, sliceNumber) => {
+    const enterPressed = (e) => {
       const code = e.keyCode || e.which
       if (code === 13) {
         // enter key
@@ -56,7 +66,7 @@ export default function MovieSearch (props) {
           if (cursor === sliceNumber) {
             showMore()
           } else {
-            suggestionsSelected(suggestions[cursor])
+            selectedMovieInQuickSearch(suggestions[cursor])
             setShow(false)
             setSearchbarText(oldSearchbarText)
           }
@@ -71,12 +81,6 @@ export default function MovieSearch (props) {
         }
       }
     } // ==== END Search arrow up and down logic ====
-
-
-
-  // *** show more button ***
-  const history = useHistory()
-  const showMore = e => history.push(`/`)
   
 
 
@@ -97,7 +101,7 @@ const renderSugestions = () => {
       <Link to={`/movie/${item[1]}`} className='linkStyle'>
         <li 
           className={cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
-          onClick={()=> suggestionsSelected(item)}
+          onClick={()=> selectedMovieInQuickSearch(item)}
           onMouseEnter={highlightMovieTextOnHover} 
           index={index}
           key={index}
@@ -141,6 +145,7 @@ const renderSugestions = () => {
 }
 
   return (
+    
     <div className='searchContainer'>
       <div className='row searchSecondContainer'>
         <div className='col-xs-12 col-sm-3 col-lg-3 p-0'>
@@ -161,7 +166,7 @@ const renderSugestions = () => {
               placeholder='Search Movie Title...'
               value={searchbarText !== '' ? searchbarText : oldSearchbarText}
               onKeyPress={enterPressed}
-              onClick={handleClickOnMovieSearchBar}
+              onClick={OnMovieSearchBarClicked}
             />
           </form>
           {renderSugestions()}

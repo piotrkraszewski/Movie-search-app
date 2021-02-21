@@ -1,5 +1,3 @@
-
-
 export function highligthText(text, highlight, index, cursor) {
   const parts = text.split(new RegExp(`(${highlight})`, 'gi'))
 
