@@ -12,7 +12,7 @@ import no_image from '../../../images/no_image.png'
 
 export default function MovieSearch () {
   const { searchbarText, setSearchbarText, oldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage, pushToHistory } = useContext(AppContext)
-  const { show, cursor } = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, cursor } = useContext(MovieSearchbarContext)
 
   const [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
   const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
@@ -30,7 +30,7 @@ const renderSugestions = () => {
   if (allMoviesData.length > 0) {
     return (
       <ul 
-        className={(show && searchbarText) ? 'animate list' : 'list'} 
+        className={(showQuickSearchRes && searchbarText) ? 'animate list' : 'list'} 
       >
       {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
         <li 

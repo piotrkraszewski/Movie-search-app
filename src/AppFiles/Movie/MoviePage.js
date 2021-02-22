@@ -6,10 +6,14 @@ import { motion } from "framer-motion"
 
 
 export default function Movie() {
-  const [show, setShow] = useState(false)
-  const [cursor, setCursor] = useState()
+  const [showQuickSearchRes, setShowQuickSearchRes] = useState(false)
+
+  // "cursor" track which "li" is highlighted. 
+  // It represents index which we can use to get movie id from already fetched movies data
+  const [cursor, setCursor] = useState()  // current highlighted movie
+
   return (
-    <MovieSearchbarContext.Provider value={{show, setShow, cursor, setCursor}}>
+    <MovieSearchbarContext.Provider value={{ showQuickSearchRes, setShowQuickSearchRes, cursor, setCursor}}>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1}}

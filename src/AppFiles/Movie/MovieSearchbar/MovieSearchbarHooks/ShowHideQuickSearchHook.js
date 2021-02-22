@@ -4,12 +4,12 @@ import { useEffect, useContext, useRef } from 'react'
 
 export default function ShowHideQuickSearchHook() {
   const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, showResInSearchBar } = useContext(AppContext)
-  const { setShow } = useContext(MovieSearchbarContext)
+  const { setShowQuickSearchRes } = useContext(MovieSearchbarContext)
   const node = useRef()
 
   function hideOnOutsideClick(e) {
     if (!node.current.contains(e.target)){
-      setShow(false) 
+      setShowQuickSearchRes(false) 
     }
   }
 
@@ -22,7 +22,7 @@ export default function ShowHideQuickSearchHook() {
   }, [])
 
   const OnMovieSearchBarClicked = async e => {
-    setShow(true)
+    setShowQuickSearchRes(true)
     if (searchbarText === '') {
       showResInSearchBar(oldSearchbarText)
       setSearchbarText(oldSearchbarText)

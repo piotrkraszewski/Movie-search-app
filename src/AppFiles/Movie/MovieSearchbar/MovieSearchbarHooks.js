@@ -6,7 +6,7 @@ import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Cons
 
 export default function MovieSearchbarHooks() {
   const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setMovieID, pushToHistory} = useContext(AppContext)
-  const { show, setShow, cursor, setCursor } = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, setShowQuickSearchRes, cursor, setCursor } = useContext(MovieSearchbarContext)
 
   function selectedMovieInQuickSearch(item){
     if (searchbarText && item !== undefined) {
@@ -21,24 +21,18 @@ export default function MovieSearchbarHooks() {
   function enterKeyPressedInQuickSearch(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
-      // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
-      // dodanie pojawienie paska po wcisnieciu enter
-      if (show) {
-        if (cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
-          pushToHistory(`/`)
-        } else {
+      if (cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+        pushToHistory(`/`)
+        setSearchbarText(oldSearchbarText)
+        
+        if (showQuickSearchRes) {
           selectedMovieInQuickSearch(suggestions[cursor])
-          setShow(false)
-          setSearchbarText(oldSearchbarText)
-        }
-      } else {
-        if (cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
-          pushToHistory(`/`)
+          setShowQuickSearchRes(false)
         } else {
-          setSearchbarText(oldSearchbarText)
+          // opens quick search suggestions after pressing enter
+          setShowQuickSearchRes(true)
           setOldSearchbarText('')
         }
-        setShow(true)
       }
     }
   }
@@ -50,15 +44,15 @@ export default function MovieSearchbarHooks() {
       isNaN(cursor)
         ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
         : cursor < 0
-        ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
-        : setCursor(prevState => prevState - 1)
+          ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+          : setCursor(prevState => prevState - 1)
     },
     down: () => {
       isNaN(cursor)
         ? setCursor(0)
         : cursor > NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH
-        ? setCursor(0)
-        : setCursor(prevState => prevState + 1)
+          ? setCursor(0)
+          : setCursor(prevState => prevState + 1)
     }
   })
 
