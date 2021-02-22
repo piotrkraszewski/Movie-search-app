@@ -5,7 +5,7 @@ import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
 import '../../../styles/main.scss'
 import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
 import HighlightTextInQuickSearchHooks from './MovieSearchbarHooks/HighlightTextInQuickSearchHooks'
-import MovieSearchbarHooks from './MovieSearchbarHooks'
+import ArrowKeysNavigationInQuickSearchHooks from './MovieSearchbarHooks/ArrowKeysNavigationInQuickSearchHooks'
 import ShowHideQuickSearchHook from './MovieSearchbarHooks/ShowHideQuickSearchHook'
 import GotoOtherRoutesHooks from './MovieSearchbarHooks/GotoOtherRoutesHooks'
 import TMDBLogo from '../../../images/tmdb.svg'
@@ -15,7 +15,7 @@ export default function MovieSearch () {
   const { searchbarText, oldSearchbarText, suggestions, allMoviesData, handleChange, pushToHistory } = useContext(AppContext)
   const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
-  const [enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
+  const [enterKeyPressedInQuickSearch] = ArrowKeysNavigationInQuickSearchHooks()
   const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
   const [highligthText, highlightMovieTextOnHover] = HighlightTextInQuickSearchHooks()
   const [selectedMovieInQuickSearch, gotoStarPage] = GotoOtherRoutesHooks()

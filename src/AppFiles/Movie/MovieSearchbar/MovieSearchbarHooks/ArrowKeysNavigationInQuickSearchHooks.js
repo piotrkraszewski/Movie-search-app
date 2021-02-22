@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
-import { AppContext } from '../../Contexts/AppContext'
-import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
-import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
-import GotoOtherRoutesHooks from './MovieSearchbarHooks/GotoOtherRoutesHooks'
+import { AppContext } from '../../../Contexts/AppContext'
+import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
+import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/Consts'
+import GotoOtherRoutesHooks from './GotoOtherRoutesHooks'
 
-export default function MovieSearchbarHooks() {
+export default function ArrowKeysNavigationInQuickSearchHooks() {
   const {  setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, pushToHistory} = useContext(AppContext)
   const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
@@ -15,18 +15,22 @@ export default function MovieSearchbarHooks() {
   function enterKeyPressedInQuickSearch(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
-      if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
-        pushToHistory(`/`)
-        setSearchbarText(oldSearchbarText)
-
-        if (showQuickSearchRes) {
+      if (showQuickSearchRes) {
+        if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+          pushToHistory(`/`)
+        } else {
           selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie])
           setShowQuickSearchRes(false)
+          setSearchbarText(oldSearchbarText)
+        }
+      } else {
+        if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+          pushToHistory(`/`)
         } else {
-          // opens quick search suggestions after pressing enter
-          setShowQuickSearchRes(true)
+          setSearchbarText(oldSearchbarText)
           setOldSearchbarText('')
         }
+        setShowQuickSearchRes(true)
       }
     }
   }
