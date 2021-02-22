@@ -12,7 +12,7 @@ import no_image from '../../../images/no_image.png'
 
 export default function MovieSearch () {
   const { searchbarText, setSearchbarText, oldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage, pushToHistory } = useContext(AppContext)
-  const { showQuickSearchRes, cursor } = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
   const [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
   const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
@@ -34,7 +34,7 @@ const renderSugestions = () => {
       >
       {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
         <li 
-          className={cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
+          className={indexOfHighlightedMovie === index ? 'active tt-suggestion' : 'tt-suggestion'}
           onClick={()=> selectedMovieInQuickSearch(item)}
           onMouseEnter={highlightMovieTextOnHover} 
           index={index}
@@ -58,7 +58,7 @@ const renderSugestions = () => {
           <p 
             onClick={() => pushToHistory(`/`)} 
             index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
-            className={cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH 
+            className={indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH 
             ? 'active textSugestion showMore tt-suggestion' 
             : 'textSugestion showMore tt-suggestion'}
           >

@@ -6,7 +6,7 @@ import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Cons
 
 export default function MovieSearchbarHooks() {
   const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setMovieID, pushToHistory} = useContext(AppContext)
-  const { showQuickSearchRes, setShowQuickSearchRes, cursor, setCursor } = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
   function selectedMovieInQuickSearch(item){
     if (searchbarText && item !== undefined) {
@@ -21,12 +21,12 @@ export default function MovieSearchbarHooks() {
   function enterKeyPressedInQuickSearch(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
-      if (cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+      if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
         pushToHistory(`/`)
         setSearchbarText(oldSearchbarText)
-        
+
         if (showQuickSearchRes) {
-          selectedMovieInQuickSearch(suggestions[cursor])
+          selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie])
           setShowQuickSearchRes(false)
         } else {
           // opens quick search suggestions after pressing enter
@@ -41,18 +41,18 @@ export default function MovieSearchbarHooks() {
   // allows using up and down key to select movie in quick search
   ArrowKeysReact.config({
     up: () => {
-      isNaN(cursor)
-        ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
-        : cursor < 0
-          ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
-          : setCursor(prevState => prevState - 1)
+      isNaN(indexOfHighlightedMovie)
+        ? setIndexOfHighlightedMovie(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+        : indexOfHighlightedMovie < 0
+          ? setIndexOfHighlightedMovie(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+          : setIndexOfHighlightedMovie(prevState => prevState - 1)
     },
     down: () => {
-      isNaN(cursor)
-        ? setCursor(0)
-        : cursor > NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH
-          ? setCursor(0)
-          : setCursor(prevState => prevState + 1)
+      isNaN(indexOfHighlightedMovie)
+        ? setIndexOfHighlightedMovie(0)
+        : indexOfHighlightedMovie > NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH
+          ? setIndexOfHighlightedMovie(0)
+          : setIndexOfHighlightedMovie(prevState => prevState + 1)
     }
   })
 
