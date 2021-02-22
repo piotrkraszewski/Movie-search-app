@@ -1,23 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext } from 'react'
-import { useHistory } from 'react-router-dom'
 import { AppContext } from '../../Contexts/AppContext'
 import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
 import '../../../styles/main.scss'
 import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
-import { highligthText } from './MovieSearchbarFunctions'
+import HighlightTextInQuickSearchHooks from './MovieSearchbarHooks/HighlightTextInQuickSearchHooks'
 import MovieSearchbarHooks from './MovieSearchbarHooks'
-import ShowHideQuickSearchHook from './ShowHideQuickSearchHook'
+import ShowHideQuickSearchHook from './MovieSearchbarHooks/ShowHideQuickSearchHook'
 import TMDBLogo from '../../../images/tmdb.svg'
 import no_image from '../../../images/no_image.png'
 
 export default function MovieSearch () {
   const { searchbarText, setSearchbarText, oldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage, pushToHistory } = useContext(AppContext)
-  const { show, cursor, setCursor } = useContext(MovieSearchbarContext)
+  const { show, cursor } = useContext(MovieSearchbarContext)
 
   const [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
   const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
-  
+  const [highligthText, highlightMovieTextOnHover] = HighlightTextInQuickSearchHooks()
 
   const gotoStarPage = () => {
     setAllMoviesData([])
@@ -25,14 +24,6 @@ export default function MovieSearch () {
     fetchPopularMoviesOnStartPage()
     pushToHistory(`/`)
   }
-  
-
-
-// ==== Podœwietlenie tekstu ====
-const highlightMovieTextOnHover = e => {
-  setCursor(parseInt(e.target.getAttribute('index')))
-}
-// ==== END Podœwietlenie tekstu ====
 
 
 const renderSugestions = () => {
@@ -57,7 +48,7 @@ const renderSugestions = () => {
             />
             <p 
               className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
-              {highligthText(item[0], searchbarText, index, cursor)}
+              {highligthText(item[0], searchbarText, index)}
             </p>
           </div>
         </li>

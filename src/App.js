@@ -106,7 +106,6 @@ export default function App () {
     console.log(`backgroundIMG: ${backgroundIMG}`)
   }, [backgroundIMG])
 
-  console.dir(location)
 // ==== END Console log stuff ====
 
 
