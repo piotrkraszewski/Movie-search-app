@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 import './styles/main.scss'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/Contexts/AppContext'
 import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl } from './utilities/FetchFunctions'
 import { INIT_BG_IMG, POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
-import { getCurrentPageUrl, getInitialMovieID } from './utilities/RoutesFunctions'
+import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
 import MoviePage from './AppFiles/Movie/MoviePage'
@@ -16,6 +16,15 @@ import BgGreen2 from './images/BgGreen2.jpg'
 
 export default function App () {
   const location = useLocation()  // key to app routes
+  const history = useHistory()
+  const pushToHistory = url => history.push(url)
+
+  // implements back button in browser
+  // allows to go back to previous movie on moviePage
+  useEffect(() => {
+    setMovieID(getMovieIdFromLocationPathname(location))
+  }, [location.pathname])
+
 
 // ==== Fetch StartPage ====
   const [backgroundIMG, setBackgroundIMG] = useState(INIT_BG_IMG)
@@ -36,7 +45,7 @@ export default function App () {
 
 
 // ==== Fetch movie page based on movieID parameter ====
-  const [movieID, setMovieID] = useState(getInitialMovieID(location))
+  const [movieID, setMovieID] = useState(getMovieIdFromLocationPathname(location))
   const [movieData, setMovieData] = useState({})
   
   useEffect(async () => {
@@ -97,8 +106,8 @@ export default function App () {
     console.log(`backgroundIMG: ${backgroundIMG}`)
   }, [backgroundIMG])
 
+  console.dir(location)
 // ==== END Console log stuff ====
-
 
 
   return (
@@ -109,7 +118,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, handleChange, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, handleChange, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory}}
         >
           <AppScroolbar>
             <AnimatePresence exitBeforeEnter>

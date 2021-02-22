@@ -9,3 +9,6 @@ export const NOT_FOUND_BG_IMG = `${BASE_IMG_URL}originalnull`
 
 
 export const POPULAR_MOVIES_URL = `${BASE_API_URL}/3/movie/popular?${API_KEY}` 
+
+
+export const NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH = 5

@@ -1,39 +1,39 @@
 import { useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import ArrowKeysReact from 'arrow-keys-react'
 import { AppContext } from '../../Contexts/AppContext'
 import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
+import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
 
 export default function MovieSearchbarHooks() {
-  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setMovieID} = useContext(AppContext)
-  const { show, setShow } = useContext(MovieSearchbarContext)
-  const history = useHistory()
+  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setMovieID, pushToHistory} = useContext(AppContext)
+  const { show, setShow, cursor, setCursor } = useContext(MovieSearchbarContext)
 
-
-  function selectedMovieInQuickSearch(value){
-    if (searchbarText && value !== undefined) {
+  function selectedMovieInQuickSearch(item){
+    if (searchbarText && item !== undefined) {
+      pushToHistory(`/movie/${item[1]}`)
       setOldSearchbarText(searchbarText)
       setSearchbarText('')
-      setMovieID(value[1])
+      setMovieID(item[1])
     }
   }
   
   
-  function enterKeyPressed(e, sliceNumber, cursor){
+  function enterKeyPressedInQuickSearch(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
       // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
       // dodanie pojawienie paska po wcisnieciu enter
       if (show) {
-        if (cursor === sliceNumber) {
-          history.push(`/`)
+        if (cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+          pushToHistory(`/`)
         } else {
           selectedMovieInQuickSearch(suggestions[cursor])
           setShow(false)
           setSearchbarText(oldSearchbarText)
         }
       } else {
-        if (cursor === sliceNumber) {
-          history.push(`/`)
+        if (cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+          pushToHistory(`/`)
         } else {
           setSearchbarText(oldSearchbarText)
           setOldSearchbarText('')
@@ -43,5 +43,25 @@ export default function MovieSearchbarHooks() {
     }
   }
 
-  return [selectedMovieInQuickSearch, enterKeyPressed]
+  // Up and down arrow keys configuration
+  // allows using up and down key to select movie in quick search
+  ArrowKeysReact.config({
+    up: () => {
+      isNaN(cursor)
+        ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+        : cursor < 0
+        ? setCursor(NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+        : setCursor(prevState => prevState - 1)
+    },
+    down: () => {
+      isNaN(cursor)
+        ? setCursor(0)
+        : cursor > NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH
+        ? setCursor(0)
+        : setCursor(prevState => prevState + 1)
+    }
+  })
+
+
+  return [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch]
 }

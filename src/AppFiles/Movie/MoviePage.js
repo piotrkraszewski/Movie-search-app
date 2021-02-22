@@ -7,9 +7,9 @@ import { motion } from "framer-motion"
 
 export default function Movie() {
   const [show, setShow] = useState(false)
-
+  const [cursor, setCursor] = useState()
   return (
-    <MovieSearchbarContext.Provider value={{show, setShow}}>
+    <MovieSearchbarContext.Provider value={{show, setShow, cursor, setCursor}}>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1}}

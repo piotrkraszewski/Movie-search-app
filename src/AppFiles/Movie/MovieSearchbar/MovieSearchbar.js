@@ -1,86 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useContext } from 'react'
-import ArrowKeysReact from 'arrow-keys-react'
-import { Link, useHistory } from 'react-router-dom'
+import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { AppContext } from '../../Contexts/AppContext'
 import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
 import '../../../styles/main.scss'
-import { NOT_FOUND_POSTER_W500 } from '../../../utilities/Consts'
+import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
 import { highligthText } from './MovieSearchbarFunctions'
 import MovieSearchbarHooks from './MovieSearchbarHooks'
-import ShowHideQuickSearchMoviesHooks from './ShowHideQuickSearchMoviesHooks'
+import ShowHideQuickSearchHook from './ShowHideQuickSearchHook'
 import TMDBLogo from '../../../images/tmdb.svg'
 import no_image from '../../../images/no_image.png'
 
-const sliceNumber = 5
-
 export default function MovieSearch () {
-  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage } = useContext(AppContext)
-  const { show, setShow } = useContext(MovieSearchbarContext)
+  const { searchbarText, setSearchbarText, oldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage, pushToHistory } = useContext(AppContext)
+  const { show, cursor, setCursor } = useContext(MovieSearchbarContext)
 
-  const [cursor, setCursor] = useState()
-  
-  // *** show more button ***
-  const history = useHistory()
-  const showMore = e => history.push(`/`)
-
-
-  const [selectedMovieInQuickSearch] = MovieSearchbarHooks()
-  const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchMoviesHooks()
+  const [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
+  const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
   
 
   const gotoStarPage = () => {
     setAllMoviesData([])
     setSearchbarText('')
     fetchPopularMoviesOnStartPage()
-    showMore()
+    pushToHistory(`/`)
   }
-
-
-    // ==== Search arrow up and down logic ====
-    
-    ArrowKeysReact.config({
-      up: () => {
-        isNaN(cursor)
-          ? setCursor(sliceNumber)
-          : cursor < 0
-          ? setCursor(sliceNumber)
-          : setCursor(prevState => prevState - 1)
-      },
-      down: () => {
-        isNaN(cursor)
-          ? setCursor(0)
-          : cursor > sliceNumber
-          ? setCursor(0)
-          : setCursor(prevState => prevState + 1)
-      }
-    })
-  
-    const enterPressed = (e) => {
-      const code = e.keyCode || e.which
-      if (code === 13) {
-        // enter key
-        // zmienna kursor która œledzi który li jest podœwietlony daje nam indeks za pomoc¹ którego mo¿emy uzyskaæ id filmu z oryginalnej tablicy
-        // dodanie pojawienie paska po wcisnieciu enter
-        if (show) {
-          if (cursor === sliceNumber) {
-            showMore()
-          } else {
-            selectedMovieInQuickSearch(suggestions[cursor])
-            setShow(false)
-            setSearchbarText(oldSearchbarText)
-          }
-        } else {
-          if (cursor === sliceNumber) {
-            showMore()
-          } else {
-            setSearchbarText(oldSearchbarText)
-            setOldSearchbarText('')
-          }
-          setShow(true)
-        }
-      }
-    } // ==== END Search arrow up and down logic ====
   
 
 
@@ -97,8 +41,7 @@ const renderSugestions = () => {
       <ul 
         className={(show && searchbarText) ? 'animate list' : 'list'} 
       >
-      {suggestions.slice(0, sliceNumber).map((item, index) => 
-      <Link to={`/movie/${item[1]}`} className='linkStyle'>
+      {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
         <li 
           className={cursor === index ? 'active tt-suggestion' : 'tt-suggestion'}
           onClick={()=> selectedMovieInQuickSearch(item)}
@@ -118,13 +61,13 @@ const renderSugestions = () => {
             </p>
           </div>
         </li>
-      </Link>)}
+      )}
         
         <li>
           <p 
-            onClick={showMore} 
-            index={sliceNumber}
-            className={cursor === sliceNumber 
+            onClick={() => pushToHistory(`/`)} 
+            index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
+            className={cursor === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH 
             ? 'active textSugestion showMore tt-suggestion' 
             : 'textSugestion showMore tt-suggestion'}
           >
@@ -165,7 +108,7 @@ const renderSugestions = () => {
               type='text'
               placeholder='Search Movie Title...'
               value={searchbarText !== '' ? searchbarText : oldSearchbarText}
-              onKeyPress={enterPressed}
+              onKeyPress={enterKeyPressedInQuickSearch}
               onClick={OnMovieSearchBarClicked}
             />
           </form>
