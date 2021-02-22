@@ -3,19 +3,13 @@ import ArrowKeysReact from 'arrow-keys-react'
 import { AppContext } from '../../Contexts/AppContext'
 import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
 import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
+import GotoOtherRoutesHooks from './MovieSearchbarHooks/GotoOtherRoutesHooks'
 
 export default function MovieSearchbarHooks() {
-  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setMovieID, pushToHistory} = useContext(AppContext)
+  const {  setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, pushToHistory} = useContext(AppContext)
   const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
-  function selectedMovieInQuickSearch(item){
-    if (searchbarText && item !== undefined) {
-      pushToHistory(`/movie/${item[1]}`)
-      setOldSearchbarText(searchbarText)
-      setSearchbarText('')
-      setMovieID(item[1])
-    }
-  }
+  const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
   
   
   function enterKeyPressedInQuickSearch(e){
@@ -57,5 +51,5 @@ export default function MovieSearchbarHooks() {
   })
 
 
-  return [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch]
+  return [enterKeyPressedInQuickSearch]
 }

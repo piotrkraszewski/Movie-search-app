@@ -7,76 +7,71 @@ import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '
 import HighlightTextInQuickSearchHooks from './MovieSearchbarHooks/HighlightTextInQuickSearchHooks'
 import MovieSearchbarHooks from './MovieSearchbarHooks'
 import ShowHideQuickSearchHook from './MovieSearchbarHooks/ShowHideQuickSearchHook'
+import GotoOtherRoutesHooks from './MovieSearchbarHooks/GotoOtherRoutesHooks'
 import TMDBLogo from '../../../images/tmdb.svg'
 import no_image from '../../../images/no_image.png'
 
 export default function MovieSearch () {
-  const { searchbarText, setSearchbarText, oldSearchbarText, suggestions, allMoviesData,  setAllMoviesData, handleChange, fetchPopularMoviesOnStartPage, pushToHistory } = useContext(AppContext)
+  const { searchbarText, oldSearchbarText, suggestions, allMoviesData, handleChange, pushToHistory } = useContext(AppContext)
   const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
-  const [selectedMovieInQuickSearch, enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
+  const [enterKeyPressedInQuickSearch] = MovieSearchbarHooks()
   const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
   const [highligthText, highlightMovieTextOnHover] = HighlightTextInQuickSearchHooks()
-
-  const gotoStarPage = () => {
-    setAllMoviesData([])
-    setSearchbarText('')
-    fetchPopularMoviesOnStartPage()
-    pushToHistory(`/`)
-  }
+  const [selectedMovieInQuickSearch, gotoStarPage] = GotoOtherRoutesHooks()
 
 
-const renderSugestions = () => {
-  if (allMoviesData.length > 0) {
-    return (
-      <ul 
-        className={(showQuickSearchRes && searchbarText) ? 'animate list' : 'list'} 
-      >
-      {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
-        <li 
-          className={indexOfHighlightedMovie === index ? 'active tt-suggestion' : 'tt-suggestion'}
-          onClick={()=> selectedMovieInQuickSearch(item)}
-          onMouseEnter={highlightMovieTextOnHover} 
-          index={index}
-          key={index}
-        >
-          <div className='row'>
-            <img 
-              src={item[2] !== NOT_FOUND_POSTER_W500 ? item[2] : no_image} 
-              className='col-lg-2 col-md-3 col-sm-4 col-3 quickSearchImage'
-              alt='movie poster'
-            />
-            <p 
-              className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
-              {highligthText(item[0], searchbarText, index)}
-            </p>
-          </div>
-        </li>
-      )}
-        
-        <li>
-          <p 
-            onClick={() => pushToHistory(`/`)} 
-            index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
-            className={indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH 
-            ? 'active textSugestion showMore tt-suggestion' 
-            : 'textSugestion showMore tt-suggestion'}
-          >
-            show more
-          </p>
-        </li>
-      </ul>
-    )
-  } else {
-    if (searchbarText) {
+  const renderSugestions = () => {
+    if (allMoviesData.length > 0) {
       return (
-        <ul className='animate list showMore noResult'>
-          <li>no result</li>
+        <ul 
+          className={(showQuickSearchRes && searchbarText) ? 'animate list' : 'list'} 
+        >
+        {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
+          <li 
+            className={indexOfHighlightedMovie === index ? 'active tt-suggestion' : 'tt-suggestion'}
+            onClick={()=> selectedMovieInQuickSearch(item)}
+            onMouseEnter={highlightMovieTextOnHover} 
+            index={index}
+            key={index}
+          >
+            <div className='row'>
+              <img 
+                src={item[2] !== NOT_FOUND_POSTER_W500 ? item[2] : no_image} 
+                className='col-lg-2 col-md-3 col-sm-4 col-3 quickSearchImage'
+                alt='movie poster'
+              />
+              <p 
+                className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
+                {highligthText(item[0], searchbarText, index)}
+              </p>
+            </div>
+          </li>
+        )}
+          
+          <li>
+            <p 
+              onClick={() => pushToHistory(`/`)} 
+              index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
+              className={indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH 
+              ? 'active textSugestion showMore tt-suggestion' 
+              : 'textSugestion showMore tt-suggestion'}
+            >
+              show more
+            </p>
+          </li>
         </ul>
       )
-    } 
+    } else {
+      if (searchbarText) {
+        return (
+          <ul className='animate list showMore noResult'>
+            <li>no result</li>
+          </ul>
+        )
+      } 
+    }
   }
-}
 
   return (
     
