@@ -57,12 +57,11 @@ export default function App () {
 
 
 // ==== Search state and functions ====
-  // queryData - all data that we get from API
   const [allMoviesData, setAllMoviesData] = useState([])
   const [oldSearchbarText, setOldSearchbarText] = useState('')
 
 
-  const handleChange = e => {
+  const onSearchbarTextChanging = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
     setSearchbarText(value)
     showResInSearchBar(value)
@@ -114,14 +113,14 @@ export default function App () {
     <div>
       <CalculateWindowHeightHook/>
       <AppBackground backgroundIMG={backgroundIMG}/>
-      
+
       <div
         id='app'
         {...ArrowKeysReact.events}
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions, handleChange, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory}}
         >
           <AppScroolbar>
             <AnimatePresence exitBeforeEnter>

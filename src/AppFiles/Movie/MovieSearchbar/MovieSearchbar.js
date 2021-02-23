@@ -12,7 +12,7 @@ import TMDBLogo from '../../../images/tmdb.svg'
 import no_image from '../../../images/no_image.png'
 
 export default function MovieSearch () {
-  const { searchbarText, oldSearchbarText, suggestions, allMoviesData, handleChange, pushToHistory } = useContext(AppContext)
+  const { searchbarText, oldSearchbarText, suggestions, allMoviesData, onSearchbarTextChanging, pushToHistory } = useContext(AppContext)
   const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
   const [enterKeyPressedInQuickSearch] = ArrowKeysNavigationInQuickSearchHooks()
@@ -74,7 +74,6 @@ export default function MovieSearch () {
   }
 
   return (
-    
     <div className='searchContainer'>
       <div className='row searchSecondContainer'>
         <div className='col-xs-12 col-sm-3 col-lg-3 p-0'>
@@ -89,7 +88,7 @@ export default function MovieSearch () {
         <div className='col-xs-12 col-sm-9 col-lg-9 p-0 pl-3 searchInside' ref={node}>
           <form className='searchbox' onSubmit={e => e.preventDefault()}>
             <input
-              onChange={handleChange}
+              onChange={onSearchbarTextChanging}
               className='movieSearchBar'
               type='text'
               placeholder='Search Movie Title...'
