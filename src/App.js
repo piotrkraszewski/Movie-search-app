@@ -8,6 +8,7 @@ import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from './utilities/FetchFunctions'
 import { POPULAR_MOVIES_URL } from './utilities/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/RoutesFunctions'
+import CalculateWindowHeightHook from './utilities/CalculateWindowHeightHook'
 import ArrowKeysReact from 'arrow-keys-react'
 import AppBackground from './AppFiles/AppBackground'
 import StartPage from './AppFiles/StartPage'
@@ -24,20 +25,6 @@ export default function App () {
   useEffect(() => {
     setMovieID(getMovieIdFromLocationPathname(location))
   }, [location.pathname])
-
-
-  // calucluleta size of 1% of window height and saves it to variable
-  // Proposal for new units to fix this 
-  // https://github.com/w3c/csswg-drafts/issues/4329
-  // Solution from Jonas Sandstedt comment 
-  // https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html
-  useEffect(() => {
-    function setDocHeight() {
-      document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`)
-    }
-    window.addEventListener('resize', setDocHeight())
-    window.addEventListener('orientationchange', setDocHeight())
-  }, [])
 
 
 // ==== Fetch StartPage ====
@@ -125,6 +112,9 @@ export default function App () {
 
   return (
     <div>
+      <CalculateWindowHeightHook/>
+      <AppBackground backgroundIMG={backgroundIMG}/>
+      
       <div
         id='app'
         {...ArrowKeysReact.events}
@@ -146,9 +136,6 @@ export default function App () {
           </AppScroolbar>
         </AppContext.Provider>
       </div>
-
-      <AppBackground backgroundIMG={backgroundIMG}/>
-
     </div>
   )
 }
