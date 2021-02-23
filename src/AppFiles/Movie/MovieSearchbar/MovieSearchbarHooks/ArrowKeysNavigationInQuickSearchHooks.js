@@ -6,7 +6,7 @@ import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/C
 import GotoOtherRoutesHooks from './GotoOtherRoutesHooks'
 
 export default function ArrowKeysNavigationInQuickSearchHooks() {
-  const {  setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, pushToHistory} = useContext(AppContext)
+  const {  setSearchbarText, oldSearchbarText, suggestions, pushToHistory} = useContext(AppContext)
   const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
   const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
@@ -15,17 +15,14 @@ export default function ArrowKeysNavigationInQuickSearchHooks() {
   function enterKeyPressedInQuickSearch(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
-      if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
-        pushToHistory(`/`)
-      } else {
-        if (showQuickSearchRes) {
-          selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie])
-          setShowQuickSearchRes(false)
-          setSearchbarText(oldSearchbarText)
+      if (!showQuickSearchRes) setShowQuickSearchRes(true)
+      if (showQuickSearchRes) {
+        if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+          pushToHistory(`/`)
         } else {
-          setShowQuickSearchRes(true)
+          selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie])
         }
-      }
+      } 
     }
   }
 
