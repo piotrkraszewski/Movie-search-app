@@ -1,5 +1,5 @@
 import ScrollBar from 'react-perfect-scrollbar'
-import { isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect"
 import './ScroolbarStyle.scss'
 
 export default function AppScrollbar (props) {

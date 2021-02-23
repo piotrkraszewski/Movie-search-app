@@ -4,26 +4,6 @@ body {
   font-size: 18px;
 }
 
-.BgImage{
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%);
-  z-index:-2;
-
-  // works like background-image. BgImage works on every size !!!
-  object-fit: cover;
-  height: 100vh;
-  width: 100vw;
-}
-
-.BgGradient{
-  position: fixed;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.85) 15%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 1) 90%);
-  width: 105%;
-  height: 105%;
-  z-index:-1;
-}
-
 // App move from top to bottom on opening site
 // didn't work nicely with  perfect-scrollbar
 // #app {
