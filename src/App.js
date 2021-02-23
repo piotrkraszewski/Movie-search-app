@@ -2,16 +2,16 @@
 import { useState, useEffect } from 'react'
 import './styles/main.scss'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/Contexts/AppContext'
 import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from './utilities/FetchFunctions'
-import { POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
+import { POPULAR_MOVIES_URL } from './utilities/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
+import AppBackground from './AppFiles/AppBackground'
 import StartPage from './AppFiles/StartPage'
 import MoviePage from './AppFiles/Movie/MoviePage'
-import BgGreen2 from './images/BgGreen2.jpg'
 
 
 export default function App () {
@@ -133,18 +133,7 @@ export default function App () {
         </AppContext.Provider>
       </div>
 
-      <div className='BgGradient'/>
-      <AnimatePresence >
-        <motion.img 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{duration: 1.5}}
-          src={backgroundIMG !== NOT_FOUND_BG_IMG ? backgroundIMG : BgGreen2}
-          key={backgroundIMG}
-          className='BgImage'
-        />
-      </AnimatePresence>
+      <AppBackground backgroundIMG={backgroundIMG}/>
 
     </div>
   )
