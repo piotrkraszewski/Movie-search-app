@@ -15,22 +15,16 @@ export default function ArrowKeysNavigationInQuickSearchHooks() {
   function enterKeyPressedInQuickSearch(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
-      if (showQuickSearchRes) {
-        if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
-          pushToHistory(`/`)
-        } else {
+      if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
+        pushToHistory(`/`)
+      } else {
+        if (showQuickSearchRes) {
           selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie])
           setShowQuickSearchRes(false)
           setSearchbarText(oldSearchbarText)
-        }
-      } else {
-        if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
-          pushToHistory(`/`)
         } else {
-          setSearchbarText(oldSearchbarText)
-          setOldSearchbarText('')
+          setShowQuickSearchRes(true)
         }
-        setShowQuickSearchRes(true)
       }
     }
   }
