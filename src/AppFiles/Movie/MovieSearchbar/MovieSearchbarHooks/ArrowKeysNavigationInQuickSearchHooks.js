@@ -6,7 +6,7 @@ import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/C
 import GotoOtherRoutesHooks from './GotoOtherRoutesHooks'
 
 export default function ArrowKeysNavigationInQuickSearchHooks() {
-  const {  setSearchbarText, oldSearchbarText, suggestions, pushToHistory} = useContext(AppContext)
+  const { suggestions, pushToHistory} = useContext(AppContext)
   const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
   const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()

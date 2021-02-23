@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_KEY, BASE_API_URL, POSTER_W500 } from './Consts'
+import { getMovieIdFromLocationPathname } from './RoutesFunctions'
 
 
 //==== Fetch all movies ====
@@ -34,4 +35,10 @@ export function createSearchMoviesUrl(value){
 export async function getMovieData(movieID){
   const response = await axios.get(`${BASE_API_URL}/3/movie/${movieID}?&${API_KEY}`)
   return response.data
+}
+
+export function setInitMovieID(location){
+  const initMovieID = getMovieIdFromLocationPathname(location)
+  if(initMovieID === '') return '157336' // interstellar
+  return initMovieID
 }

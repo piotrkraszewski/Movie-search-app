@@ -5,8 +5,8 @@ import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { motion, AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/Contexts/AppContext'
 import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
-import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl } from './utilities/FetchFunctions'
-import { INIT_BG_IMG, POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
+import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from './utilities/FetchFunctions'
+import { POPULAR_MOVIES_URL, NOT_FOUND_BG_IMG } from './utilities/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 import StartPage from './AppFiles/StartPage'
@@ -27,7 +27,7 @@ export default function App () {
 
 
 // ==== Fetch StartPage ====
-  const [backgroundIMG, setBackgroundIMG] = useState(INIT_BG_IMG)
+  const [backgroundIMG, setBackgroundIMG] = useState()
   const [suggestions, setSuggestions] = useState([])
   const [searchbarText, setSearchbarText] = useState('')
 
@@ -45,7 +45,7 @@ export default function App () {
 
 
 // ==== Fetch movie page based on movieID parameter ====
-  const [movieID, setMovieID] = useState(getMovieIdFromLocationPathname(location))
+  const [movieID, setMovieID] = useState(setInitMovieID(location))
   const [movieData, setMovieData] = useState({})
   
   useEffect(async () => {
