@@ -1,0 +1,65 @@
+.StartPageCards{
+  position: absolute;
+  width: 100%;
+
+  // center positioning
+  margin: 0 auto;
+  padding: 0 7%;
+
+  .Container{
+    // centers content
+    margin: 0 auto;
+    max-width: 1400px; // max with that all posters take on page
+  
+    .title{
+      margin-top: 80px;
+      margin-bottom: 8px;
+      color: rgb(230, 230, 230);
+      font-size: large;
+      text-transform: uppercase;
+    
+      @media only screen and (max-width: 575px) {
+        margin-top: 55px;
+      }
+    }
+  
+    .smallCard{
+      padding: 1%;
+      
+      div {
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.85);
+        transition: all .5s ease-in-out;
+    
+        &:hover {
+          transform: scale(1.03);
+          transition: all .3s ease-in-out;
+        }
+    
+        img {
+          width: 100%;
+          border-radius: 15px 15px 0px 0px;
+          align-items: center;
+        }
+    
+        p {
+          color: $limeGreen;
+          padding: 8px;
+          font-weight: bold;
+          font-family: $lato;
+          font-size: 0.9em;
+          text-align: center;
+        }
+    
+        @media (max-width: 475px) {
+          font-size: 0.7em;
+        }
+      }
+    }
+  }
+}
+
+
+.linkStyle{
+  text-decoration:none !important;
+}

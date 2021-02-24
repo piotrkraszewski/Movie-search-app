@@ -9,26 +9,28 @@ import no_image from '../../images/no_image.png'
 export default function FullscreenSearch() {
   const {searchbarText, suggestions, setMovieID} = useContext(AppContext)
 
-  const suggestionsSelectedFullscreen = value => {
-    setMovieID(value[1])
-  }
-
   return (
-    <div className='StartPageCardTransition'>
+    <div className='StartPageCards'>
 
-    <div className='StartPageCard'>
-      <p className='Popular'>{searchbarText === '' || searchbarText === null ? 'Trending Now' : ''}</p>
+    <div className='Container'>
+      <p className='title'>
+        {!searchbarText && 'Trending Now'}
+      </p>
       <div className='row'>
         {suggestions.map((item, index) => 
-          <div className='cardContainer col-xl-2 col-md-3 col-4' key={index}>
+          <div 
+            className='smallCard col-xl-2 col-md-3 col-4' 
+            key={index}
+          >
             <Link to={`/movie/${item[1]}`} className='linkStyle'>
-              <div className='cardFS' onClick={() => suggestionsSelectedFullscreen(item)}>
+              <div onClick={() => setMovieID(item[1])}>
                 <img 
-                  className='posterImage' 
-                  src={item[2] !== NOT_FOUND_POSTER_W500 ? item[2] : no_image}
-                  alt='movie poster'
+                  src={item[2] !== NOT_FOUND_POSTER_W500 
+                    ? item[2] 
+                    : no_image}
+                  alt={`poster ${index}`}
                 />
-                <h1 className='FS-title'>{item[0]}</h1>
+                <p>{item[0]}</p>
               </div>
             </Link>
           </div>

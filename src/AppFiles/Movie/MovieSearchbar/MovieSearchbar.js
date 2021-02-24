@@ -17,8 +17,8 @@ export default function MovieSearch () {
 
 
   return (
-    <div className='searchContainer'>
-      <div className='row searchSecondContainer'>
+    <div className='movieSearchBarContainer'>
+      <div className='row movieSearchBar'>
         <div className='col-xs-12 col-sm-3 col-lg-3 p-0'>
           <img 
             src={TMDBLogo} 
@@ -32,7 +32,7 @@ export default function MovieSearch () {
           <form className='searchbox' onSubmit={e => e.preventDefault()}>
             <input
               onChange={onSearchbarTextChanging}
-              className='movieSearchBar'
+              className='movieSearchBarInput'
               type='text'
               placeholder='Search Movie Title...'
               value={searchbarText !== '' ? searchbarText : oldSearchbarText}

@@ -1,4 +1,4 @@
-.searchContainer {
+.movieSearchBarContainer {
   position: absolute;
   z-index: 10;
 
@@ -8,12 +8,12 @@
   padding: 0 7%;
 }
 
-.searchSecondContainer{
+.movieSearchBar{
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.movieSearchBar {
+.movieSearchBarInput {
   color: $lightGrey;
   padding-left: 10px;
   padding-bottom: 5px;
@@ -32,7 +32,7 @@
 //==========================
 @include media-breakpoint-up(sm) {
   .searchbox {
-    margin-top: 8px; //important
+    margin-top: 12px; //important
   }
 }
 

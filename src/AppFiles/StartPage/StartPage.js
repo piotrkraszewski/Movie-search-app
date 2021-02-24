@@ -1,4 +1,4 @@
-import StartPageCard from './StartPageCard'
+import StartPageCard from './StartPageCards'
 import StartPageSearch from './StartPageSearchbar'
 import { motion } from "framer-motion"
 

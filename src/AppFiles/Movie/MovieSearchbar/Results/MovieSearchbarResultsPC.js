@@ -18,7 +18,7 @@ export default function MovieSearchbarResults() {
 
   return (
   <>
-    {allMoviesData.length > 0 
+    {allMoviesData.length > 0 //if
     ? <ul 
         className={'searchbar_ul ' + 
         (showQuickSearchRes && searchbarText && 'fadeIn')} 
