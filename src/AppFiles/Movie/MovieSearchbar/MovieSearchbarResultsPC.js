@@ -20,11 +20,14 @@ export default function MovieSearchbarResults() {
     if (allMoviesData.length > 0) {
       return (
         <ul 
-          className={(showQuickSearchRes && searchbarText) ? 'animate list' : 'list'} 
+          className={'searchbar_ul ' + 
+          (showQuickSearchRes && searchbarText && 'fadeIn')} 
         >
         {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
           <li 
-            className={indexOfHighlightedMovie === index ? 'active tt-suggestion' : 'tt-suggestion'}
+            className={'searchbar_li ' + 
+            (indexOfHighlightedMovie === index && 'active')}
+
             onClick={()=> selectedMovieInQuickSearch(item)}
             onMouseEnter={highlightMovieTextOnHover} 
             index={index}
@@ -37,23 +40,21 @@ export default function MovieSearchbarResults() {
                 alt='movie poster'
               />
               <p 
-                className='col-lg-10 col-md-9 col-sm-8 col-9 textSugestion sugest'>
+                className='col-lg-10 col-md-9 col-sm-8 col-9'>
                 {highligthText(item[0], searchbarText, index)}
               </p>
             </div>
           </li>
         )}
           
-          <li>
-            <p 
-              onClick={() => pushToHistory(`/`)} 
-              index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
-              className={indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH 
-              ? 'active textSugestion showMore tt-suggestion' 
-              : 'textSugestion showMore tt-suggestion'}
-            >
-              show more
-            </p>
+          <li className={'searchbar_li showMore ' + 
+            (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH && 'active')}
+
+            onMouseEnter={highlightMovieTextOnHover} 
+            onClick={() => pushToHistory(`/`)} 
+            index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
+          >
+            show more
           </li>
         </ul>
       )
@@ -61,7 +62,7 @@ export default function MovieSearchbarResults() {
     } else {
       if (searchbarText) {
         return (
-          <ul className='animate list showMore noResult'>
+          <ul className='fadeIn searchbar_li showMore noResult'>
             <li>no result</li>
           </ul>
         )
