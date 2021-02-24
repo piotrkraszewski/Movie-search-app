@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext } from 'react'
-import { AppContext } from '../../Contexts/AppContext'
+import { AppContext } from '../../../Contexts/AppContext'
 import '../../../styles/main.scss'
-import ArrowKeysNavigationInQuickSearchHooks from './MovieSearchbarHooks/ArrowKeysNavigationInQuickSearchHooks'
-import ShowHideQuickSearchHook from './MovieSearchbarHooks/ShowHideQuickSearchHook'
-import GotoOtherRoutesHooks from './MovieSearchbarHooks/GotoOtherRoutesHooks'
+import ArrowKeysNavigationInQuickSearchHooks from '../Hooks/ArrowKeysNavigationInQuickSearchHooks'
+import ShowHideQuickSearchHook from '../Hooks/ShowHideQuickSearchHook'
+import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
 import MovieSearchbarResults from './MovieSearchbarResultsPC'
 import TMDBLogo from '../../../images/tmdb.svg'
 

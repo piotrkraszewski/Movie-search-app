@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { AppContext } from '../../Contexts/AppContext'
-import '../../../styles/main.scss'
-import { MovieSearchbarContext } from '../../Contexts/MovieSearchbarContext'
-import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../utilities/Consts'
-import HighlightTextInQuickSearchHooks from './MovieSearchbarHooks/HighlightTextInQuickSearchHooks'
-import GotoOtherRoutesHooks from './MovieSearchbarHooks/GotoOtherRoutesHooks'
-import no_image from '../../../images/no_image.png'
+import { AppContext } from '../../../Contexts/AppContext'
+import '../../../../styles/main.scss'
+import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
+import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/Consts'
+import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
+import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
+import no_image from '../../../../images/no_image.png'
 
 
 export default function MovieSearchbarResults() {
