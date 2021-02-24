@@ -13,7 +13,7 @@ export default function MovieSearch () {
   
   const [enterKeyPressedInQuickSearch] = ArrowKeysNavigationInQuickSearchHooks()
   const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
-  const [gotoStarPage] = GotoOtherRoutesHooks()
+  const [, gotoStarPage] = GotoOtherRoutesHooks()
 
 
   return (

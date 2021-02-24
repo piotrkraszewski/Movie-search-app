@@ -54,7 +54,7 @@ export default function MovieSearchbarResults() {
             onClick={() => pushToHistory(`/`)} 
             index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
           >
-            show more
+            <p>show more</p>
           </li>
         </ul>
       )

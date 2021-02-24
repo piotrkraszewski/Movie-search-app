@@ -4,7 +4,7 @@ import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
 
 
 export default function GotoOtherRoutesHooks() {
-  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, setMovieID, pushToHistory, setAllMoviesData, fetchPopularMoviesOnStartPage} = useContext(AppContext)
+  const { searchbarText, setSearchbarText, oldSearchbarText,  setMovieID, pushToHistory, setAllMoviesData, fetchPopularMoviesOnStartPage} = useContext(AppContext)
   const { setShowQuickSearchRes } = useContext(MovieSearchbarContext)
 
   function selectedMovieInQuickSearch(item){
