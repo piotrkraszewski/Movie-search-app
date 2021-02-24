@@ -13,76 +13,6 @@
   margin: 0 auto;
 }
 
-
-// suggestions text
-.tt-suggestion {
-  padding: 3px 20px;
-
-  p {
-    margin: 5px 0; // suggestion list spacing
-  }
-
-  &.active, &:focus {
-    color: $darkGrey;
-    background-color: $limeGreen;
-    border-radius: 4px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    color: $darkGrey;
-    background-color: $limeGreen;
-    border-radius: 4px;
-
-    span{
-      color: $darkGrey !important;
-    }
-  }
-}
-
-
-
-// === My new styles ===
-
-.list {
-  color: $lightGrey;
-  background-color: $transparentBackground;
-  list-style-type: none;
-  padding: 0;
-
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  pointer-events: none;
-}
-
-.animate {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.quickSearchImage{
-  max-width: 96px;
-}
-
-.noResult{
-  height: 2rem; 
-  margin-top: 0.3rem;
-
-  &:hover{
-    user-select: none;
-  }
-}
-
-.textSugestion {
-  align-self: center;
-  font-size: 1.4rem;
-}
-
-.showMore {
-  text-align: center;
-  border-radius: 5px;
-}
-
 .movieSearchBar {
   color: $lightGrey;
   padding-left: 10px;
@@ -98,11 +28,6 @@
   }
 }
 
-.linkStyle{
-  text-decoration:none !important;
-  color: white;
-}
-
 
 //==========================
 @include media-breakpoint-up(sm) {
@@ -114,11 +39,5 @@
 @media only screen and (max-width: 575px) {
   .searchInside{
     padding: 0 4px!important ;
-  }
-  .list{
-    margin-right: 0;
-  }
-  .quickSearchImage{
-    max-width: 92px;
   }
 }
