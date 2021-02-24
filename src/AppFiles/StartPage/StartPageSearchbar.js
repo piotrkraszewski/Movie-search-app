@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react'
-import '../styles/main.scss'
+import { useContext } from 'react'
+import '../../styles/main.scss'
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position'
-import { AppContext } from './Contexts/AppContext'
+import { AppContext } from '../Contexts/AppContext'
 
 export default function StartPageSearch() {
   const {searchbarText, oldSearchbarText, onSearchbarTextChanging, handleClickOnInput} = useContext(AppContext)

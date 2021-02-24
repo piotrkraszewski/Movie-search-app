@@ -11,7 +11,7 @@ import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/R
 import CalculateWindowHeightHook from './utilities/CalculateWindowHeightHook'
 import ArrowKeysReact from 'arrow-keys-react'
 import AppBackground from './AppFiles/AppBackground'
-import StartPage from './AppFiles/StartPage'
+import StartPage from './AppFiles/StartPage/StartPage'
 import MoviePage from './AppFiles/Movie/MoviePage'
 
 
