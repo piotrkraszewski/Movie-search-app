@@ -20,12 +20,6 @@ export default function App () {
   const history = useHistory()
   const pushToHistory = url => history.push(url)
 
-  // implements back button in browser
-  // allows to go back to previous movie on moviePage
-  useEffect(() => {
-    setMovieID(getMovieIdFromLocationPathname(location))
-  }, [location.pathname])
-
 
 // ==== Fetch StartPage ====
   const [backgroundIMG, setBackgroundIMG] = useState()
@@ -52,6 +46,13 @@ export default function App () {
   useEffect(async () => {
     setMovieData(await getMovieData(movieID))
   }, [movieID])
+
+  // implements back button in browser
+  // allows to go back to previous movie on moviePage
+  useEffect(() => {
+    setMovieID(getMovieIdFromLocationPathname(location))
+  }, [location.pathname])
+  
 // ==== END Fetch movie page ====
 
 
