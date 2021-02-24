@@ -14,16 +14,17 @@ export default function MovieSearchbarResults() {
 
   const [highligthText, highlightMovieTextOnHover] = HighlightTextInQuickSearchHooks()
   const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
+    
 
-
-  const renderSugestions = () => {
-    if (allMoviesData.length > 0) {
-      return (
-        <ul 
-          className={'searchbar_ul ' + 
-          (showQuickSearchRes && searchbarText && 'fadeIn')} 
-        >
-        {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH).map((item, index) => 
+  return (
+  <>
+    {allMoviesData.length > 0 
+    ? <ul 
+        className={'searchbar_ul ' + 
+        (showQuickSearchRes && searchbarText && 'fadeIn')} 
+      >
+        {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+        .map((item, index) => 
           <li 
             className={'searchbar_li ' + 
             (indexOfHighlightedMovie === index && 'active')}
@@ -39,41 +40,30 @@ export default function MovieSearchbarResults() {
                 className='col-lg-2 col-md-3 col-sm-4 col-3 quickSearchImage'
                 alt='movie poster'
               />
-              <p 
-                className='col-lg-10 col-md-9 col-sm-8 col-9'>
+              <p className='col-lg-10 col-md-9 col-sm-8 col-9'>
                 {highligthText(item[0], searchbarText, index)}
               </p>
             </div>
           </li>
         )}
-          
-          <li className={'searchbar_li showMore ' + 
-            (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH && 'active')}
+        
+        <li className={'searchbar_li showMore ' + 
+          (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH && 'active')}
 
-            onMouseEnter={highlightMovieTextOnHover} 
-            onClick={() => pushToHistory(`/`)} 
-            index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
-          >
-            <p>show more</p>
-          </li>
+          onMouseEnter={highlightMovieTextOnHover} 
+          onClick={() => pushToHistory(`/`)} 
+          index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
+        >
+          <p>show more</p>
+        </li>
+      </ul>
+
+    : //else
+      searchbarText &&
+        <ul className='fadeIn searchbar_ul'>
+          <li className='searchbar_li showMore noResult'>no result</li>
         </ul>
-      )
-      
-    } else {
-      if (searchbarText) {
-        return (
-          <ul className='fadeIn searchbar_li showMore noResult'>
-            <li>no result</li>
-          </ul>
-        )
-      } 
     }
-  }
-    
-
-  return (
-    <>
-      {renderSugestions()}
-    </>
+  </>
   )
 }
