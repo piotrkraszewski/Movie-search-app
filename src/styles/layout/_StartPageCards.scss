@@ -7,11 +7,11 @@
     .title{
       margin-top: 80px;
       margin-bottom: 8px;
-      color: rgb(230, 230, 230);
+      color: $white;
       font-size: large;
       text-transform: uppercase;
     
-      @media only screen and (max-width: 575px) {
+      @media (max-width: 575px){
         margin-top: 55px;
       }
     }
@@ -20,7 +20,8 @@
       padding: 1%;
       
       div {
-        border-radius: 15px;
+        $posterRaious:  10px;
+        border-radius: $posterRaious;
         background: rgba(0, 0, 0, 0.85);
         transition: all .5s ease-in-out;
     
@@ -31,7 +32,7 @@
     
         img {
           width: 100%;
-          border-radius: 15px 15px 0px 0px;
+          border-radius: $posterRaious $posterRaious 0px 0px;
           align-items: center;
         }
     

@@ -1,37 +1,24 @@
-.st-search {
-  position: fixed;
-  padding: 0;
+.startPageSearchbar {
+  @include displayFixedAndCenter;
   margin: 20px 0;
   z-index: 2;
   background-color: $transparentBackground;
   border-radius: 5px;
-  height: 40px;
 
-  // centers saerch bar
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-.myForm1{
-  outline: none;
-  color: $lightGrey;
-  padding-left: 10px;
-  padding-bottom: 5px;
-  width: 99%; 
-  transform: translate(0.5%, 0);
-  background: none;
-  border: none;
-  border-bottom: solid 1px $limeGreen;
-  height: 40px;
-}
-
-@media only screen and (max-width: 575px) {
-  .st-search {
+  @media (max-width: 575px) {
     margin: 0;
-    height: 40px;
   }
-  .myForm1{
+  
+  input{
+    outline: none;
+    color: $lightGrey;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    width: 99%; 
+    transform: translate(0.5%);
+    background: none;
+    border: none;
+    border-bottom: solid 1px $limeGreen;
     height: 40px;
   }
 }
-
