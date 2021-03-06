@@ -17,6 +17,7 @@ export default function FullscreenSearch() {
         {!searchbarText && 'Trending Now'}
       </p>
       <div className='row'>
+
         {suggestions.map((item, index) => 
           <div 
             className='smallCard col-xl-2 col-md-3 col-4' 
@@ -35,6 +36,7 @@ export default function FullscreenSearch() {
             </Link>
           </div>
         )}
+        
       </div>
     </div>
 

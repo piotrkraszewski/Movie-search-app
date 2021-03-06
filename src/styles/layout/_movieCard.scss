@@ -1,38 +1,42 @@
-.MovieCardContainer {
-  position: absolute;
-  
-  // center positioning
-  width: 100%;
-  margin: 0 auto;
+.movieCard {
+  @include pageSettings;
   margin-top: 95px;
-  padding: 0 7%;
-}
 
-.MovieCard {
-  margin: 0 auto;
-  max-width: 1200px;
+  @media(max-width: 575px) {
+    margin-top: 150px;
+  }
 
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.85);
-}
-
-/* poster */
-.movieInfoPosterContainer {
-  padding: 0;
-  .poster {
-    width: 100%;
+  .Container {
+    @include containerSettings(1200px);
+  
     border-radius: 5px;
+    background: rgba(0, 0, 0, 0.85);
+
+    .posterContainer {
+      padding: 0;
+      .poster {
+        width: 100%;
+        border-radius: 3px 0 0 3px;
+    
+        @media(max-width: 575px) {
+          border-radius: 0 0 3px 3px;
+        }
+      }
+    }
   }
 }
 
-p {
-  font-size: 1rem;
-}
-
-/* meta data */
-.meta-data-container {
-  padding: 15px;
+.metaDataContainer {
+  padding: 25px;
   color: $lightGrey;
+
+  @media (max-width: 575px) {
+    padding: 15px;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 
   h1 {
     text-transform: uppercase;
@@ -41,22 +45,30 @@ p {
     font-size: 2em;
   }
 
-  .additional-details {
+  .tagline {
+    display: block;
+    padding-bottom: 0.25em;
+    color: $limeGreen;
+    font-size: 1.2em;
+    font-family: $oswald;
+  }
+
+  .additionalDetails {
     margin: 25px 0 20px;
     font-family: $oswald;
 
-    .genre-list {
+    .genreList {
       display: block;
       color: $limeGreen;
       font-size: 1.2em;
     }
 
-    .production-list {
+    .productionList {
       display: block;
       margin-bottom: 20px;
     }
 
-    .release-details {
+    .releaseDetails {
       div {
         &:nth-child(n+3) {
           margin-top: 15px;
@@ -65,50 +77,10 @@ p {
     }
   }
 
-  .meta-data {
+  .metaData {
     display: block;
     color: $limeGreen;
     font-size: 1.2em;
     line-height: 1em;
   }
 }
-
-.tagline {
-  display: block;
-  padding-bottom: 0.25em;
-  color: $limeGreen;
-  font-size: 1.2em;
-  font-family: $oswald;
-}
-
-/* Breakpoints */
-
-// below 575px
-@media only screen and (max-width: 575px) {
-  .MovieCard {
-    margin-top: 150px;
-  }
-}
-
-// sm up - over 575px
-@include media-breakpoint-up(sm) {
-  .meta-data-container {
-    padding: 25px;
-  }
-}
-
-// over middle size in bootstrap
-@include media-breakpoint-up(md) {
-  .poster-container {
-    .poster {
-      border-radius: 3px 0 0 3px;
-    }
-  }
-  .meta-data-container {
-    padding: 25px;
-    h1 {
-      font-size: 2em;
-    }
-  }
-}
-

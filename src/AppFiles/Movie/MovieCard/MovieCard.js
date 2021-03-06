@@ -17,44 +17,44 @@ export default function MovieInfo () {
 
 
   return (
-    <div className='MovieCardContainer'>
+    <div className='movieCard'>
       <AnimatePresence exitBeforeEnter>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className='MovieCard row'
+          className='Container row'
           key={original_title}
         >
-          <div className='meta-data-container col-12 col-md-7 col-lg-8'>
+          <div className='metaDataContainer col-12 col-md-7 col-lg-8'>
             <h1>{original_title}</h1>
             <span className='tagline'>{tagline}</span>
             <p>{overview}</p>
-            <div className='additional-details'>
-              <span className='genre-list'>{genresList}</span>
-              <span className='production-list'>{productionList}</span>
-              <div className='row release-details'>
+            <div className='additionalDetails'>
+              <span className='genreList'>{genresList}</span>
+              <span className='productionList'>{productionList}</span>
+              <div className='row releaseDetails'>
 
                 <div className='col-6'>
                   Original Release:
-                  <span className='meta-data'>{release_date}</span>
+                  <span className='metaData'>{release_date}</span>
                 </div>
                 <div className='col-6'>
                   Running Time: 
-                  <span className='meta-data'>
+                  <span className='metaData'>
                     {runtime} min
                   </span>
                 </div>
                 <div className='col-6'>
                   Box Office: 
-                  <span className='meta-data'>
+                  <span className='metaData'>
                     {revenue ? `${parseInt(revenue).toLocaleString()} $` : '-'}
                   </span>
                 </div>
                 <div className='col-6'>
                   Vote Average:
-                  <span className='meta-data'>
+                  <span className='metaData'>
                     {vote_average ? vote_average : '-'}
                   </span>
                 </div>
@@ -64,7 +64,7 @@ export default function MovieInfo () {
           </div>
 
           <div 
-          className='movieInfoPosterContainer order-md-first col-12 col-md-5 col-lg-4'>
+          className='posterContainer order-md-first col-12 col-md-5 col-lg-4'>
             <img
               className='poster'
               src={poster_path !== null ? posterIMG : no_image}

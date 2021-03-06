@@ -1,15 +1,8 @@
 .StartPageCards{
-  position: absolute;
-  width: 100%;
-
-  // center positioning
-  margin: 0 auto;
-  padding: 0 7%;
+  @include pageSettings;
 
   .Container{
-    // centers content
-    margin: 0 auto;
-    max-width: 1400px; // max with that all posters take on page
+    @include containerSettings(1400px);
   
     .title{
       margin-top: 80px;
