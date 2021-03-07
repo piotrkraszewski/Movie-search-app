@@ -1,18 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext } from 'react'
-import { AppContext } from '../../Contexts/AppContext'
 import '../../../styles/main.scss'
-import ArrowKeysNavigationInQuickSearchHooks from './Hooks/ArrowKeysNavigationInQuickSearchHooks'
+import KeysPressedInSearchbarHooks from './Hooks/KeysPressedInSearchbarHooks'
 import ShowHideQuickSearchHook from './Hooks/ShowHideQuickSearchHook'
 import GotoOtherRoutesHooks from './Hooks/GotoOtherRoutesHooks'
 import MovieSearchbarResults from './Results/MovieSearchbarResultsPC'
 import TMDBLogo from '../../../images/tmdb.svg'
+import Searchbar from '../MovieSearchbar/Hooks/Searchbar'
 
 export default function MovieSearch () {
-  const { searchbarText, oldSearchbarText, onSearchbarTextChanging } = useContext(AppContext)
-  
-  const [enterKeyPressedInQuickSearch] = ArrowKeysNavigationInQuickSearchHooks()
-  const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
+  const [enterKeyInSearchbar] = KeysPressedInSearchbarHooks()
+  const [node, OnSearchBarClicked] = ShowHideQuickSearchHook()
   const [, gotoStarPage] = GotoOtherRoutesHooks()
 
 
@@ -28,18 +25,11 @@ export default function MovieSearch () {
           />
         </div>
         
-        <div className='col-xs-12 col-sm-9 col-lg-9 p-0 pl-3 searchInside' ref={node}>
-          <form onSubmit={e => e.preventDefault()}>
-            <input
-              onChange={onSearchbarTextChanging}
-              className='movieSearchBarInput'
-              type='text'
-              placeholder='Search Movie Title...'
-              value={searchbarText !== '' ? searchbarText : oldSearchbarText}
-              onKeyPress={enterKeyPressedInQuickSearch}
-              onClick={OnMovieSearchBarClicked}
-            />
-          </form>
+        <div className='col-xs-12 col-sm-9 col-lg-9 p-0' ref={node}>
+          <Searchbar 
+            onClick={OnSearchBarClicked} 
+            onKeyPress={enterKeyInSearchbar}
+          />
           <MovieSearchbarResults/>
         </div>
       </div>

@@ -20,20 +20,11 @@
       }
     }
 
-
     input {
-      color: $lightGrey;
+      @include searchbar;
       margin-top: 5px;
-      padding-left: 10px;
-      padding-bottom: 5px;
       width: 100%; 
-      background: none;
-      border: none;
       border-bottom: solid 1px white;
-    
-      &:focus{
-        outline-width: 0;
-      }
     }
   }
 }

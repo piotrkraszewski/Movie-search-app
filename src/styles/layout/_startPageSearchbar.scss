@@ -10,14 +10,9 @@
   }
   
   input{
-    outline: none;
-    color: $lightGrey;
-    padding-left: 10px;
-    padding-bottom: 5px;
+    @include searchbar;
     width: 99%; 
     transform: translate(0.5%);
-    background: none;
-    border: none;
     border-bottom: solid 1px $limeGreen;
     height: 40px;
   }

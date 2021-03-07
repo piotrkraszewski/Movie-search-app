@@ -5,14 +5,14 @@ import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
 import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/Consts'
 import GotoOtherRoutesHooks from './GotoOtherRoutesHooks'
 
-export default function ArrowKeysNavigationInQuickSearchHooks() {
+export default function KeysPressedInSearchbarHooks() {
   const { suggestions, pushToHistory} = useContext(AppContext)
   const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
   const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
   
   
-  function enterKeyPressedInQuickSearch(e){
+  function enterKeyInSearchbar(e){
     const code = e.keyCode || e.which
     if (code === 13 /* enter key */) {
       if (!showQuickSearchRes) setShowQuickSearchRes(true)
@@ -46,5 +46,5 @@ export default function ArrowKeysNavigationInQuickSearchHooks() {
   })
 
 
-  return [enterKeyPressedInQuickSearch]
+  return [enterKeyInSearchbar]
 }
