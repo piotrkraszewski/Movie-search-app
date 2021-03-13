@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { AppContext } from '../../../Contexts/AppContext'
 import '../../../../styles/main.scss'
 import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
-import { NOT_FOUND_POSTER_W500, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/Consts'
+import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/Consts'
 import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
 import no_image from '../../../../images/no_image.png'
@@ -15,7 +15,7 @@ export default function MovieSearchbarResults() {
   const [highligthText, highlightMovieTextOnHover] = HighlightTextInQuickSearchHooks()
   const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
     
-
+  //TODO put condition in common ul. dont use 2 ul
   return (
   <>
     {allMoviesData.length > 0 //if
@@ -32,16 +32,16 @@ export default function MovieSearchbarResults() {
             onClick={()=> selectedMovieInQuickSearch(item)}
             onMouseEnter={highlightMovieTextOnHover} 
             index={index}
-            key={index}
+            key={item.id}
           >
             <div className='row'>
               <img 
-                src={item[2] !== NOT_FOUND_POSTER_W500 ? item[2] : no_image} 
+                src={item.poster ? item.poster : no_image} 
                 className='col-lg-2 col-md-3 col-sm-4 col-3 quickSearchImage'
                 alt='movie poster'
               />
               <p className='col-lg-10 col-md-9 col-sm-8 col-9'>
-                {highligthText(item[0], searchbarText, index)}
+                {highligthText(item.title, searchbarText, index)}
               </p>
             </div>
           </li>

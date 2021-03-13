@@ -11,9 +11,8 @@ export default function MovieInfo () {
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
 
-  const posterIMG = POSTER_W500 + poster_path,
-    productionList = nestedDataToString(production_companies),
-    genresList = nestedDataToString(genres)
+  const productionList = nestedDataToString(production_companies),
+        genresList = nestedDataToString(genres)
 
 
   return (
@@ -67,7 +66,9 @@ export default function MovieInfo () {
           className='posterContainer order-md-first col-12 col-md-5 col-lg-4'>
             <img
               className='poster'
-              src={poster_path !== null ? posterIMG : no_image}
+              src={poster_path !== null 
+                ? POSTER_W500 + poster_path 
+                : no_image}
               alt='poster'
             />
           </div>
