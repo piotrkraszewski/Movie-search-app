@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import '../../styles/main.scss'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../Contexts/AppContext'
-import { NOT_FOUND_POSTER_W500 } from '../../utilities/Consts'
 import no_image from '../../images/no_image.png'
 
 
@@ -18,20 +17,18 @@ export default function FullscreenSearch() {
       </p>
       <div className='row'>
 
-        {suggestions.map((item, index) => 
+        {suggestions.map((item) => 
           <div 
             className='smallCard col-xl-2 col-md-3 col-4' 
-            key={index}
+            key={item.id}
           >
-            <Link to={`/movie/${item[1]}`} className='linkStyle'>
-              <div onClick={() => setMovieID(item[1])}>
+            <Link to={`/movie/${item.id}`} className='linkStyle'>
+              <div onClick={() => setMovieID(item.id)}>
                 <img 
-                  src={item[2] !== NOT_FOUND_POSTER_W500 
-                    ? item[2] 
-                    : no_image}
-                  alt={`poster ${index}`}
+                  src={item.poster ? item.poster : no_image}
+                  alt={`poster ${item.id}`}
                 />
-                <p>{item[0]}</p>
+                <p>{item.title}</p>
               </div>
             </Link>
           </div>

@@ -15,11 +15,12 @@ export async function getMoviesDataToDisplayInSearch(input){
     return 
   }
 
-  return allMoviesData.map(movie => [
-    movie.original_title,
-    movie.id,
-    POSTER_W500 + movie.poster_path
-  ])
+  return allMoviesData.map(movie => ({
+    title: movie.original_title,
+    id: movie.id,
+    // poster: POSTER_W500 + movie.poster_path
+    poster: movie.poster_path !== null ? POSTER_W500 + movie.poster_path : null
+  }))
 }
 
 export async function getAllMoviesData(url){
