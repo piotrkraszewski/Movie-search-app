@@ -16,7 +16,7 @@ export default function ShowHideQuickSearchHook() {
   useEffect(() => {
     document.addEventListener('mousedown', hideOnOutsideClick)
     return () => {
-      // return function to be called when unmounted
+      // cleanup function - called when unmounted
       document.removeEventListener('mousedown', hideOnOutsideClick)
     }
   }, [])

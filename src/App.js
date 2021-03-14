@@ -40,7 +40,7 @@ export default function App () {
 
 
 // ==== Fetch movie page based on movieID parameter ====
-  const [movieID, setMovieID] = useState(setInitMovieID(location))
+  const [movieID, setMovieID] = useState(() => setInitMovieID(location))
   const [movieData, setMovieData] = useState({})
   
   useEffect(async () => {
