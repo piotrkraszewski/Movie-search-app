@@ -29,7 +29,7 @@ export default function MovieSearchbarResults() {
             className={'searchbar_li ' + 
             (indexOfHighlightedMovie === index && 'active')}
 
-            onClick={()=> selectedMovieInQuickSearch(item)}
+            onClick={()=> selectedMovieInQuickSearch(item.id)}
             onMouseEnter={highlightMovieTextOnHover} 
             index={index}
             key={item.id}

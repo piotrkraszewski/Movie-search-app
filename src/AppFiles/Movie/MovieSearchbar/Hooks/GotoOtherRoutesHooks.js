@@ -7,12 +7,12 @@ export default function GotoOtherRoutesHooks() {
   const { searchbarText, setSearchbarText, oldSearchbarText,  setMovieID, pushToHistory, setAllMoviesData, fetchPopularMoviesOnStartPage} = useContext(AppContext)
   const { setShowQuickSearchRes } = useContext(MovieSearchbarContext)
 
-  function selectedMovieInQuickSearch(item){
-    if (searchbarText && item !== undefined) {
-      pushToHistory(`/movie/${item[1]}`)
+  function selectedMovieInQuickSearch(id){
+    if (searchbarText && id !== undefined) {
+      pushToHistory(`/movie/${id}`)
       setSearchbarText(oldSearchbarText)
       setShowQuickSearchRes(false)
-      setMovieID(item[1])
+      setMovieID(id)
     }
   }
 
