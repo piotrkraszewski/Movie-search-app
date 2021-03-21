@@ -19,9 +19,9 @@ export default function GotoOtherRoutesHooks() {
   const gotoStarPage = () => {
     setAllMoviesData([])
     setSearchbarText('')
-    fetchPopularMoviesOnStartPage()
+    // fetchPopularMoviesOnStartPage()
     pushToHistory(`/`)
   }
 
-  return [selectedMovieInQuickSearch, gotoStarPage]
+  return {selectedMovieInQuickSearch, gotoStarPage}
 }

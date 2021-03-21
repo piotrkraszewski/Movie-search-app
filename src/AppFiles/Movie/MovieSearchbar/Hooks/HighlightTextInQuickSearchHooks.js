@@ -27,5 +27,5 @@ export default function HighlightTextInQuickSearchHooks() {
     setIndexOfHighlightedMovie(parseInt(e.target.getAttribute('index')))
   }
 
-  return [highligthText, highlightMovieTextOnHover]
+  return {highligthText, highlightMovieTextOnHover}
 }

@@ -12,8 +12,8 @@ export default function MovieSearchbarResults() {
   const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
   const { searchbarText, suggestions, allMoviesData, pushToHistory } = useContext(AppContext)
 
-  const [highligthText, highlightMovieTextOnHover] = HighlightTextInQuickSearchHooks()
-  const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
+  const {highligthText, highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
+  const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
     
   //TODO put condition in common ul. dont use 2 ul
   return (

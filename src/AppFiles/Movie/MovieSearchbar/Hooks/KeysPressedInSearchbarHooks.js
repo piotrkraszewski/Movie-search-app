@@ -9,7 +9,7 @@ export default function KeysPressedInSearchbarHooks() {
   const { suggestions, pushToHistory} = useContext(AppContext)
   const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
 
-  const [selectedMovieInQuickSearch] = GotoOtherRoutesHooks()
+  const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
   
   
   function enterKeyInSearchbar(e){
@@ -20,7 +20,7 @@ export default function KeysPressedInSearchbarHooks() {
         if (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH) {
           pushToHistory(`/`)
         } else {
-          selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie])
+          selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie].id)
         }
       } 
     }
@@ -46,5 +46,5 @@ export default function KeysPressedInSearchbarHooks() {
   })
 
 
-  return [enterKeyInSearchbar]
+  return enterKeyInSearchbar
 }

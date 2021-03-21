@@ -8,9 +8,9 @@ import TMDBLogo from '../../../images/tmdb.svg'
 import Searchbar from '../MovieSearchbar/Hooks/Searchbar'
 
 export default function MovieSearch () {
-  const [enterKeyInSearchbar] = KeysPressedInSearchbarHooks()
-  const [node, OnSearchBarClicked] = ShowHideQuickSearchHook()
-  const [, gotoStarPage] = GotoOtherRoutesHooks()
+  const enterKeyInSearchbar = KeysPressedInSearchbarHooks()
+  const {node, OnSearchBarClicked} = ShowHideQuickSearchHook()
+  const {gotoStarPage} = GotoOtherRoutesHooks()
 
 
   return (

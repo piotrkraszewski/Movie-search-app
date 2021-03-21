@@ -30,5 +30,5 @@ export default function ShowHideQuickSearchHook() {
     }
   }
 
-  return [node, OnSearchBarClicked]
+  return {node, OnSearchBarClicked}
 }

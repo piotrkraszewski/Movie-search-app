@@ -44,7 +44,8 @@ export default function App () {
   const [movieData, setMovieData] = useState({})
   
   useEffect(async () => {
-    setMovieData(await getMovieData(movieID))
+    movieID && setMovieData(await getMovieData(movieID))
+    console.log(movieID)
   }, [movieID])
 
   // implements back button in browser

@@ -2,7 +2,6 @@
 import { useContext } from 'react'
 import { AppContext } from '../../../Contexts/AppContext'
 import '../../../styles/main.scss'
-import ArrowKeysNavigationInQuickSearchHooks from '../Hooks/ArrowKeysNavigationInQuickSearchHooks'
 import ShowHideQuickSearchHook from '../Hooks/ShowHideQuickSearchHook'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
 import MovieSearchbarResults from './MovieSearchbarResultsPC'
@@ -11,9 +10,8 @@ import TMDBLogo from '../../../images/tmdb.svg'
 export default function MovieSearch () {
   const { searchbarText, oldSearchbarText, onSearchbarTextChanging } = useContext(AppContext)
   
-  const [enterKeyPressedInQuickSearch] = ArrowKeysNavigationInQuickSearchHooks()
-  const [node, OnMovieSearchBarClicked] = ShowHideQuickSearchHook()
-  const [gotoStarPage] = GotoOtherRoutesHooks()
+  const {node, OnMovieSearchBarClicked} = ShowHideQuickSearchHook()
+  const {gotoStarPage} = GotoOtherRoutesHooks()
 
 
   return (
@@ -36,7 +34,6 @@ export default function MovieSearch () {
               type='text'
               placeholder='Search Movie Title...'
               value={searchbarText !== '' ? searchbarText : oldSearchbarText}
-              onKeyPress={enterKeyPressedInQuickSearch}
               onClick={OnMovieSearchBarClicked}
             />
           </form>
