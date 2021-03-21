@@ -13,4 +13,4 @@ export const POPULAR_MOVIES_URL = `${BASE_API_URL}/3/movie/popular?${API_KEY}`
 
 
 export const NUM_OF_DISP_SUGGESTIONS_PC = 5
-export const NUM_OF_DISP_SUGGESTIONS_MOBILE = 5
+export const NUM_OF_DISP_SUGGESTIONS_MOBILE = 3

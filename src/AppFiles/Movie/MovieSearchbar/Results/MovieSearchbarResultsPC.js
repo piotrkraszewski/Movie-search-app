@@ -17,6 +17,7 @@ export default function MovieSearchbarResults() {
 
 
   return (
+  <div className='searchBarResPC'>
     <ul 
       className={'searchbar_ul ' + 
       (showQuickSearchRes && searchbarText && 'fadeIn')} 
@@ -64,5 +65,6 @@ export default function MovieSearchbarResults() {
         <li className='searchbar_li showMore noResult'>no result</li>
       }
     </ul>
+  </div>
   )
 }
