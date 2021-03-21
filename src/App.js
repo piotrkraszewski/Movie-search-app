@@ -6,7 +6,7 @@ import { AnimatePresence } from "framer-motion"
 import { AppContext } from './AppFiles/Contexts/AppContext'
 import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from './utilities/FetchFunctions'
-import { POPULAR_MOVIES_URL } from './utilities/Consts'
+import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from './utilities/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/RoutesFunctions'
 import CalculateWindowHeightHook from './utilities/CalculateWindowHeightHook'
 import ArrowKeysReact from 'arrow-keys-react'
@@ -97,7 +97,7 @@ export default function App () {
 
   useEffect(() => {
     console.log({movieData})
-    setBackgroundIMG(`https://image.tmdb.org/t/p/original${movieData.backdrop_path}`)
+    setBackgroundIMG(movieData.backdrop_path && `${BASE_BG_IMG_URL}${movieData.backdrop_path}`)
   }, [movieData])
 
   useEffect(() => {

@@ -18,7 +18,6 @@ export async function getMoviesDataToDisplayInSearch(input){
   return allMoviesData.map(movie => ({
     title: movie.original_title,
     id: movie.id,
-    // poster: POSTER_W500 + movie.poster_path
     poster: movie.poster_path !== null ? POSTER_W500 + movie.poster_path : null
   }))
 }

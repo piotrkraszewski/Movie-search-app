@@ -6,7 +6,7 @@ import no_image from '../../images/no_image.png'
 
 
 export default function FullscreenSearch() {
-  const {searchbarText, suggestions, setMovieID} = useContext(AppContext)
+  const {searchbarText, suggestions} = useContext(AppContext)
 
   return (
     <div className='StartPageCards'>
