@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
-import { AppContext } from '../../../Contexts/AppContext'
-import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_SUGGESTIONS_PC } from '../../../../utilities/Consts'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
+import { NUM_OF_DISP_SUGGESTIONS_PC } from 'utilities/Consts'
 import GotoOtherRoutesHooks from './GotoOtherRoutesHooks'
 
 export default function KeysPressedInSearchbarHooks() {

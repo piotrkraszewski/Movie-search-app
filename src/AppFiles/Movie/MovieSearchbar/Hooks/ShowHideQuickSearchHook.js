@@ -1,6 +1,6 @@
-import { AppContext } from '../../../Contexts/AppContext'
-import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
 import { useEffect, useContext, useRef } from 'react'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 
 export default function ShowHideQuickSearchHook() {
   const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, showResInSearchBar } = useContext(AppContext)

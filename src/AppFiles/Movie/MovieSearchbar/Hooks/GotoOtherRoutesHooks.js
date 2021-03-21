@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { AppContext } from '../../../Contexts/AppContext'
-import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 
 
 export default function GotoOtherRoutesHooks() {

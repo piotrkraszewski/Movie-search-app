@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import '../../../../styles/main.scss'
-import { AppContext } from '../../../Contexts/AppContext'
+import 'styles/main.scss'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
 
 export default function Searchbar(props) {
   const {searchbarText, oldSearchbarText, onSearchbarTextChanging} = useContext(AppContext)

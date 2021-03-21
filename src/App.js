@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import './styles/main.scss'
+import 'styles/main.scss'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
-import { AppContext } from './AppFiles/Contexts/AppContext'
-import AppScroolbar from './utilities/Scroolbar/AppScrollbar'
-import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from './utilities/FetchFunctions'
-import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from './utilities/Consts'
-import { getCurrentPageUrl, getMovieIdFromLocationPathname } from './utilities/RoutesFunctions'
-import CalculateWindowHeightHook from './utilities/CalculateWindowHeightHook'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
+import AppScroolbar from 'utilities/Scroolbar/AppScrollbar'
+import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from 'utilities/FetchFunctions'
+import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from 'utilities/Consts'
+import { getCurrentPageUrl, getMovieIdFromLocationPathname } from 'utilities/RoutesFunctions'
+import CalculateWindowHeightHook from 'utilities/CalculateWindowHeightHook'
 import ArrowKeysReact from 'arrow-keys-react'
-import AppBackground from './AppFiles/AppBackground'
-import StartPage from './AppFiles/StartPage/StartPage'
-import MoviePage from './AppFiles/Movie/MoviePage'
+import AppBackground from 'AppFiles/AppBackground'
+import StartPage from 'AppFiles/StartPage/StartPage'
+import MoviePage from 'AppFiles/Movie/MoviePage'
 
 
 export default function App () {

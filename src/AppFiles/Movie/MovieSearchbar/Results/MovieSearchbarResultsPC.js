@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { AppContext } from '../../../Contexts/AppContext'
-import '../../../../styles/main.scss'
-import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_SUGGESTIONS_PC } from '../../../../utilities/Consts'
+import 'styles/main.scss'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
+import { NUM_OF_DISP_SUGGESTIONS_PC } from 'utilities/Consts'
 import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
-import no_image from '../../../../images/no_image.png'
+import no_image from 'images/no_image.png'
 
 
 export default function MovieSearchbarResults() {

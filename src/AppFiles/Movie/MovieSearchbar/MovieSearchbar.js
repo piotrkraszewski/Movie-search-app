@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import '../../../styles/main.scss'
+import 'styles/main.scss'
 import { isMobile } from "react-device-detect"
 import KeysPressedInSearchbarHooks from './Hooks/KeysPressedInSearchbarHooks'
 import ShowHideQuickSearchHook from './Hooks/ShowHideQuickSearchHook'
 import GotoOtherRoutesHooks from './Hooks/GotoOtherRoutesHooks'
 import MovieSearchbarResultsPC from './Results/MovieSearchbarResultsPC'
 import MovieSearchbarResultsMobile from './Results/MovieSearchbarResultsMobile'
-import TMDBLogo from '../../../images/tmdb.svg'
+import TMDBLogo from 'images/tmdb.svg'
 import Searchbar from '../MovieSearchbar/Hooks/Searchbar'
 
 export default function MovieSearch () {
