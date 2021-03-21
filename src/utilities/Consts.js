@@ -12,4 +12,5 @@ export const POSTER_W500 = `${BASE_IMG_URL}w500`
 export const POPULAR_MOVIES_URL = `${BASE_API_URL}/3/movie/popular?${API_KEY}` 
 
 
-export const NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH = 5
+export const NUM_OF_DISP_SUGGESTIONS_PC = 5
+export const NUM_OF_DISP_SUGGESTIONS_MOBILE = 5

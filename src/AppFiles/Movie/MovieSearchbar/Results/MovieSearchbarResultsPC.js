@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { AppContext } from '../../../Contexts/AppContext'
 import '../../../../styles/main.scss'
 import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
-import { NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH } from '../../../../utilities/Consts'
+import { NUM_OF_DISP_SUGGESTIONS_PC } from '../../../../utilities/Consts'
 import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
 import no_image from '../../../../images/no_image.png'
@@ -24,7 +24,7 @@ export default function MovieSearchbarResults() {
       {suggestions.length > 0 //if
       ? //true,  have to return one big fragment <>
       <>  
-        {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
+        {suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_PC)
         .map((item, index) => 
           <li 
             className={'searchbar_li ' + 
@@ -49,11 +49,11 @@ export default function MovieSearchbarResults() {
         )}
 
         {<li className={'searchbar_li showMore ' + 
-          (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH && 'active')}
+          (indexOfHighlightedMovie === NUM_OF_DISP_SUGGESTIONS_PC && 'active')}
 
           onMouseEnter={highlightMovieTextOnHover} 
           onClick={() => pushToHistory(`/`)} 
-          index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
+          index={NUM_OF_DISP_SUGGESTIONS_PC}
         >
           <p>show more</p>
         </li>}
