@@ -10,7 +10,7 @@ import no_image from '../../../../images/no_image.png'
 
 export default function MovieSearchbarResults() {
   const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
-  const { searchbarText, suggestions, allMoviesData, pushToHistory } = useContext(AppContext)
+  const { searchbarText, suggestions, pushToHistory } = useContext(AppContext)
 
   const {highligthText, highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
@@ -18,7 +18,7 @@ export default function MovieSearchbarResults() {
   //TODO put condition in common ul. dont use 2 ul
   return (
   <>
-    {allMoviesData.length > 0 //if
+    {suggestions.length > 0 //if
     ? <ul 
         className={'searchbar_ul ' + 
         (showQuickSearchRes && searchbarText && 'fadeIn')} 

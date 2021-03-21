@@ -86,10 +86,10 @@ export default function App () {
 
 
 // ==== Console log stuff ====
-  useEffect(() => {
-    console.log(`allMoviesData.length ${allMoviesData.length}`)
-    console.log(`suggestions.length ${allMoviesData.length}`)
-  }, [allMoviesData])
+  // useEffect(() => {
+  //   console.log(`allMoviesData.length ${allMoviesData.length}`)
+  //   console.log(`suggestions.length ${allMoviesData.length}`)
+  // }, [allMoviesData])
 
   useEffect(() => {
     console.log({suggestions})
