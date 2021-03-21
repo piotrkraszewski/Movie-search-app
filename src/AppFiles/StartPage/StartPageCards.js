@@ -23,7 +23,7 @@ export default function FullscreenSearch() {
             key={item.id}
           >
             <Link to={`/movie/${item.id}`} className='linkStyle'>
-              <div onClick={() => setMovieID(item.id)}>
+              <div>
                 <img 
                   src={item.poster ? item.poster : no_image}
                   alt={`poster ${item.id}`}
