@@ -14,15 +14,16 @@ export default function MovieSearchbarResults() {
 
   const {highligthText, highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
-    
-  //TODO put condition in common ul. dont use 2 ul
+
+
   return (
-  <>
-    {suggestions.length > 0 //if
-    ? <ul 
-        className={'searchbar_ul ' + 
-        (showQuickSearchRes && searchbarText && 'fadeIn')} 
-      >
+    <ul 
+      className={'searchbar_ul ' + 
+      (showQuickSearchRes && searchbarText && 'fadeIn')} 
+    >
+      {suggestions.length > 0 //if
+      ? //true,  have to return one big fragment <>
+      <>  
         {suggestions.slice(0, NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH)
         .map((item, index) => 
           <li 
@@ -46,8 +47,8 @@ export default function MovieSearchbarResults() {
             </div>
           </li>
         )}
-        
-        <li className={'searchbar_li showMore ' + 
+
+        {<li className={'searchbar_li showMore ' + 
           (indexOfHighlightedMovie === NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH && 'active')}
 
           onMouseEnter={highlightMovieTextOnHover} 
@@ -55,15 +56,13 @@ export default function MovieSearchbarResults() {
           index={NUM_OF_DISPLAYED_MOVIES_IN_QUICK_SEARCH}
         >
           <p>show more</p>
-        </li>
-      </ul>
+        </li>}
+      </>
 
-    : //else
-      searchbarText &&
-        <ul className='fadeIn searchbar_ul'>
-          <li className='searchbar_li showMore noResult'>no result</li>
-        </ul>
-    }
-  </>
+      : //else
+        searchbarText &&
+        <li className='searchbar_li showMore noResult'>no result</li>
+      }
+    </ul>
   )
 }
