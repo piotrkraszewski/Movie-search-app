@@ -20,11 +20,22 @@
       }
     }
 
-    input {
-      @include searchbar;
+    form{
+      display: flex;
       margin-top: 5px;
-      width: 100%; 
       border-bottom: solid 1px white;
+
+      input {
+        @include searchbar;
+        width: 90%;
+      }
+
+      img{
+        max-width: 10px;
+        filter: invert(50%);
+        margin: 0 10px;
+        cursor: pointer;
+      }
     }
   }
 }
