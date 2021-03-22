@@ -4,78 +4,95 @@
   }
 }
 
-.searchbar_div {
+.searchbar_container {
   color: $lightGrey;
-  background-color: $transparentBackground;
+  background-color: $suggestionsLayoutBackground;
   list-style-type: none;
   padding: 0;
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 10px;
+  border: 2px solid $limeGreenDarker;
 
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
-  display: flex;
 
-  .smallCard{
-    padding: 1%;
+  $posterRaious: 10px;
+
+  .searchbar_div{
+    display: flex;
+
+    .smallCard{
+      padding: 1%;
+      
+      div {
+        border-radius: $posterRaious;
+        background-color: rgb(29,29,29);
+        transition: all .5s ease-in-out;
+
+        //setts equal column height
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        &:hover {
+          transform: scale(1.03);
+          transition: all .3s ease-in-out;
+        }
     
-    div {
-      $posterRaious:  10px;
-      border-radius: $posterRaious;
-      background: rgba(0, 0, 0, 0.85);
-      transition: all .5s ease-in-out;
-  
-      &:hover {
-        transform: scale(1.03);
-        transition: all .3s ease-in-out;
-      }
-  
-      img {
-        width: 100%;
-        border-radius: $posterRaious $posterRaious 0px 0px;
-        align-items: center;
-      }
-  
-      p {
-        color: $limeGreen;
-        padding: 8px;
-        font-weight: bold;
-        font-family: $lato;
-        font-size: 0.9em;
-        text-align: center;
-      }
-  
-      @media (max-width: 475px) {
-        font-size: 0.7em;
+        img {
+          width: 100%;
+          border-radius: $posterRaious $posterRaious 0px 0px;
+          max-height: 160px;
+          object-fit: cover;
+        }
+          p {
+            margin: auto 0;
+            color: $limeGreen;
+            padding: 3px;
+            font-family: $lato;
+            text-align: center;
+          }
+    
+        @media (max-width: 475px) {
+          font-size: 0.7em;
+        }
       }
     }
   }
 
   .searchbar_li {
-    padding: 3px 20px;
-    
-    p {
+    padding: 5px;
+    text-align: center;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+
+    .showMoreBtn {
+      width: 76.5%;
+      padding: 2px;
       margin: 0; // suggestion list spacing
-      align-self: center;
-      font-size: 1.4rem;
+      background-color: $limeGreenDark;
+      border-radius: $posterRaious;
+      
+      &:hover, &.active, &:focus {
+        cursor: pointer;
+        background-color: $limeGreenBlack;
+      }
     }
-  
-    &:hover, &.active, &:focus {
-      cursor: pointer;
-      color: $darkGrey;
-      background-color: $limeGreen;
-      border-radius: 5px;
-  
-      span{
-        color: $darkGrey !important;
+
+    .showMoreClose{
+      width: 22%;
+      padding: 2px;
+      margin: 0; // suggestion list spacing
+      background-color: $darkGrey;
+      border-radius: 10px;
+      &:hover, &.active, &:focus {
+        cursor: pointer;
+        background-color: $blackGrey;
       }
     }
   }
 }
 
-
-.showMore {
-  text-align: center;
-}
 
 .noResult{
   height: 2rem; 

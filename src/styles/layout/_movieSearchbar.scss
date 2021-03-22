@@ -7,14 +7,15 @@
     margin-top: 12px; //important
 
     .logo {
-      max-width: 140px;
+      max-width: 115px;
       margin: 0 auto;
-      margin-bottom: 25px;
+      margin-bottom: 5px;
       display: block;
       &:hover{
         cursor: pointer;
       }
       @media (min-width: 575px) {
+        max-width: 140px;
         display: inline-block;
         margin-bottom: 0;
       }

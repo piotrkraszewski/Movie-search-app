@@ -8,19 +8,20 @@ import no_image from 'images/no_image.png'
 
 
 export default function MovieSearchbarResults() {
-  const { showQuickSearchRes } = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, setShowQuickSearchRes} = useContext(MovieSearchbarContext)
   const { searchbarText, suggestions, pushToHistory } = useContext(AppContext)
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
 
   return (
   <div className='searchBarResMobile'>
     <div
-      className={'searchbar_div ' + 
+      className={'searchbar_container ' + 
       (showQuickSearchRes && searchbarText && 'fadeIn')} 
     >
       {suggestions.length > 0 //if
       ? //true,  have to return one big fragment <>
       <>  
+      <div className='searchbar_div'>
         {suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_MOBILE)
         .map((item) => 
         <div 
@@ -37,13 +38,23 @@ export default function MovieSearchbarResults() {
           </div>
         </div>
         )}
+      </div>
 
-        {<li className={'searchbar_li showMore'}
-          onClick={() => pushToHistory(`/`)} 
-          index={NUM_OF_DISP_SUGGESTIONS_MOBILE}
-        >
-          <p>show more</p>
-        </li>}
+        {<div className='searchbar_li'>
+          <p 
+            className='showMoreBtn'
+            onClick={() => pushToHistory(`/`)} 
+            index={NUM_OF_DISP_SUGGESTIONS_MOBILE}
+          >
+            show more
+          </p>
+          <p 
+            className='showMoreClose'
+            onClick={() => setShowQuickSearchRes(false)}
+          >
+            close
+          </p>
+        </div>}
       </>
 
       : //else
