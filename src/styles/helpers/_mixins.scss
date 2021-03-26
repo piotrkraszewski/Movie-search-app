@@ -27,3 +27,58 @@
   background: none;
   border: none;
 }
+
+@mixin searchbarCommonUl {
+  color: $lightGrey;
+  list-style-type: none;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@mixin noResult {
+  .noResult{
+    text-align: center;
+    height: 2rem; 
+    margin-top: 0.3rem;
+  
+    &:hover{
+      user-select: none;
+    }
+  }
+}
+
+
+
+@mixin hideToLongTitle {
+  // hides if title is to long
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin smallCardHoverAnimation {
+  transform: scale(1.03);
+  transition: all .3s ease-in-out;
+}
+
+@mixin smallCardParagraphs {
+  margin: auto 0;
+  color: $limeGreen;
+  font-family: $lato;
+  text-align: center;
+}
+@mixin smallCardDiv {
+  transition: all .5s ease-in-out;
+  border-radius: $posterRaious;
+}
+
+@mixin equalColumnHeight {
+  //setts equal column height
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+

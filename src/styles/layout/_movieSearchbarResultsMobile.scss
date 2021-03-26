@@ -4,56 +4,45 @@
   }
 }
 
+@include noResult;
+
 .searchbar_container {
-  color: $lightGrey;
+  @include searchbarCommonUl;
+  
   background-color: $suggestionsLayoutBackground;
-  list-style-type: none;
-  padding: 0;
   border-radius: 10px;
   border: 2px solid $limeGreenDarker;
-
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-
-  $posterRaious: 10px;
 
   .searchbar_div{
     display: flex;
 
     .smallCard{
-      padding: 1%;
+      padding: calc(min(15px, 1%));
       
       div {
-        border-radius: $posterRaious;
+        @include equalColumnHeight;
+        @include smallCardDiv;
         background-color: rgb(29,29,29);
-        transition: all .5s ease-in-out;
 
-        //setts equal column height
-        display: flex;
-        flex-direction: column;
-        height: 100%;
 
         &:hover {
-          transform: scale(1.03);
-          transition: all .3s ease-in-out;
+          @include smallCardHoverAnimation;
         }
     
         img {
-          width: 100%;
           border-radius: $posterRaious $posterRaious 0px 0px;
           max-height: 160px;
           object-fit: cover;
         }
           p {
-            margin: auto 0;
-            color: $limeGreen;
+            @include hideToLongTitle;
+            @include smallCardParagraphs;
+
             padding: 3px;
-            font-family: $lato;
-            text-align: center;
           }
     
         @media (max-width: 475px) {
-          font-size: 0.7em;
+          font-size: 0.75em;
         }
       }
     }
@@ -90,15 +79,5 @@
         background-color: $blackGrey;
       }
     }
-  }
-}
-
-
-.noResult{
-  height: 2rem; 
-  margin-top: 0.3rem;
-
-  &:hover{
-    user-select: none;
   }
 }

@@ -59,7 +59,7 @@ export default function MovieSearchbarResults() {
 
       : //else
         searchbarText &&
-        <li className='searchbar_li showMore noResult'>no result</li>
+        <li className=' noResult'>no result</li>
       }
     </div>
   </div>

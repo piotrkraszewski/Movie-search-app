@@ -5,14 +5,12 @@
 }
 
 .searchbar_ul {
-  color: $lightGrey;
+  @include noResult;
+  @include searchbarCommonUl;
+
   background-color: $transparentBackground;
-  list-style-type: none;
-  padding: 0;
   border-radius: 0px 0px 5px 5px;
 
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
 
   .searchbar_li {
     padding: 3px 20px;
@@ -41,14 +39,5 @@
 
   .showMore {
     text-align: center;
-  }
-  
-  .noResult{
-    height: 2rem; 
-    margin-top: 0.3rem;
-  
-    &:hover{
-      user-select: none;
-    }
   }
 }
