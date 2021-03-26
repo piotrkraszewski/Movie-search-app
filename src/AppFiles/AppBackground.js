@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
-import '../styles/main.scss'
-import BgGreen2 from '../images/BgGreen2.jpg'
+import 'styles/main.scss'
+import BgGreen2 from 'images/BgGreen2.jpg'
 
 
 export default function AppBackground(props) {

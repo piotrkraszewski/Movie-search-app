@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { MovieSearchbarContext } from '../Contexts/MovieSearchbarContext'
+import { motion } from "framer-motion"
+import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import MovieSearch from './MovieSearchbar/MovieSearchbar'
 import MovieCard from './MovieCard/MovieCard'
-import { motion } from "framer-motion"
 
 
 export default function Movie() {

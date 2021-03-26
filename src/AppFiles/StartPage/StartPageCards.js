@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import '../../styles/main.scss'
+import 'styles/main.scss'
 import { Link } from 'react-router-dom'
-import { AppContext } from '../Contexts/AppContext'
-import no_image from '../../images/no_image.png'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
+import no_image from 'images/no_image.png'
 
 
 export default function FullscreenSearch() {

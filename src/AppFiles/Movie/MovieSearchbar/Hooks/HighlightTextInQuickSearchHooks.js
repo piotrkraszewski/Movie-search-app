@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { MovieSearchbarContext } from '../../../Contexts/MovieSearchbarContext'
+import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 
 
 export default function HighlightTextInQuickSearchHooks() {

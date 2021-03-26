@@ -1,0 +1,43 @@
+.searchBarResPC {
+  .fadeIn {
+    opacity: 1;
+  }
+}
+
+.searchbar_ul {
+  @include noResult;
+  @include searchbarCommonUl;
+
+  background-color: $transparentBackground;
+  border-radius: 0px 0px 5px 5px;
+
+
+  .searchbar_li {
+    padding: 3px 20px;
+    
+    p {
+      margin: 0; // suggestion list spacing
+      align-self: center;
+      font-size: 1.4rem;
+    }
+  
+    &:hover, &.active, &:focus {
+      cursor: pointer;
+      color: $darkGrey;
+      background-color: $limeGreen;
+      border-radius: 5px;
+  
+      span{
+        color: $darkGrey !important;
+      }
+    }
+  
+    .quickSearchImage{
+      max-width: 92px;
+    }
+  }
+
+  .showMore {
+    text-align: center;
+  }
+}

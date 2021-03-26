@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "paths": {
+      "@appFiles/*": ["AppFiles/*"],
+      "@contexts/*": ["AppFiles/Contexts/*"],
+      "@images/*": ["images/*"],
+      "@styles/*": ["styles/*"],
+      "@utilities/*": ["utilities/*"]
+    }
+  },
+  "include": ["src"]
+}
