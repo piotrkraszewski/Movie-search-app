@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect, useRef } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
@@ -13,6 +13,17 @@ export default function MovieSearchbarResults() {
   const { searchbarText, suggestions, pushToHistory } = useContext(AppContext)
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
 
+  // sets initial height of posters container so buttonts don't drop on poster during transition
+  const [divHeight, setDivHeight] = useState()
+  const heightRef = useRef(null)
+  useEffect(() => {
+    if(heightRef.current){
+      setDivHeight(heightRef.current.offsetHeight)
+      console.log(divHeight)
+    }
+  })
+
+
   return (
   <div className='searchBarResMobile'>
     <div
@@ -22,18 +33,18 @@ export default function MovieSearchbarResults() {
       {suggestions.length > 0 //if
       ? //true,  have to return one big fragment <>
       <>  
-      <div className='searchbar_div'>
+      <div className='searchbar_div' ref = { heightRef }>
         {suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_MOBILE)
         .map((item) => 
         <AnimatePresence exitBeforeEnter>
         <motion.div 
-          className='smallCard col-xl-2 col-md-3 col-4' 
+          className='smallCard col-4' 
           key={item.id}
           onClick={() => selectedMovieInQuickSearch(item.id)}
 
-          initial={{ opacity: 0, height: '210px'}}
-          animate={{ opacity: 1, height: '210px'}}
-          exit={{ opacity: 0, height: '210px' }}
+          initial={{ opacity: 0, minHeight: divHeight}}
+          animate={{ opacity: 1, minHeight: divHeight}}
+          exit={{ opacity: 0, minHeight: divHeight }}
           transition={{ duration: 0.25 }}
         >
           <div>

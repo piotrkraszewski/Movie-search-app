@@ -15,7 +15,7 @@
 
   .searchbar_div{
     display: flex;
-
+    
     .smallCard{
       padding: calc(min(15px, 1%));
       
@@ -23,7 +23,7 @@
         @include equalColumnHeight;
         @include smallCardDiv;
         background-color: rgb(29,29,29);
-
+        
 
         &:hover {
           @include smallCardHoverAnimation;
@@ -31,7 +31,7 @@
     
         img {
           border-radius: $posterRaious $posterRaious 0px 0px;
-          max-height: 160px;
+          // max-height: 160px;
           object-fit: cover;
         }
           p {
