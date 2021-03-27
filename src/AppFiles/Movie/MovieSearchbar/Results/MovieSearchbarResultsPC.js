@@ -1,10 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { NUM_OF_DISP_SUGGESTIONS_PC } from 'utilities/Consts'
 import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
+import { motion, AnimatePresence } from "framer-motion"
 import no_image from 'images/no_image.png'
 
 
@@ -15,6 +16,15 @@ export default function MovieSearchbarResults() {
   const {highligthText, highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
 
+  // sets initial height of posters container so buttonts don't drop on poster during transition
+  const [liHeight, setLiHeight] = useState()
+  const heightRef = useRef(null)
+  useEffect(() => {
+    if(heightRef.current){
+      setLiHeight(heightRef.current.offsetHeight)
+      console.log(liHeight)
+    }
+  })
 
   return (
   <div className='searchBarResPC'>
@@ -27,7 +37,8 @@ export default function MovieSearchbarResults() {
       <>  
         {suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_PC)
         .map((item, index) => 
-          <li 
+        <AnimatePresence exitBeforeEnter>
+          <motion.li 
             className={'searchbar_li ' + 
             (indexOfHighlightedMovie === index && 'active')}
 
@@ -35,6 +46,12 @@ export default function MovieSearchbarResults() {
             onMouseEnter={highlightMovieTextOnHover} 
             index={index}
             key={item.id}
+
+            initial={{ opacity: 0, minHeight: liHeight }}
+            animate={{ opacity: 1, minHeight: liHeight }}
+            exit={{ opacity: 0, minHeight: liHeight }}
+            transition={{ duration: 0.25 }}
+            ref = { heightRef }
           >
             <div className='row'>
               <img 
@@ -46,7 +63,8 @@ export default function MovieSearchbarResults() {
                 {highligthText(item.title, searchbarText, index)}
               </p>
             </div>
-          </li>
+          </motion.li>
+          </AnimatePresence>
         )}
 
         {<li className={'searchbar_li showMore ' + 
