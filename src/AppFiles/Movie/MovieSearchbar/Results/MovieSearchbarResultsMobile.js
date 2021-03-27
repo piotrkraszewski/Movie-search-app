@@ -4,6 +4,7 @@ import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { NUM_OF_DISP_SUGGESTIONS_MOBILE } from 'utilities/Consts'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
+import { motion, AnimatePresence } from "framer-motion"
 import no_image from 'images/no_image.png'
 
 
@@ -24,10 +25,16 @@ export default function MovieSearchbarResults() {
       <div className='searchbar_div'>
         {suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_MOBILE)
         .map((item) => 
-        <div 
+        <AnimatePresence exitBeforeEnter>
+        <motion.div 
           className='smallCard col-xl-2 col-md-3 col-4' 
           key={item.id}
           onClick={() => selectedMovieInQuickSearch(item.id)}
+
+          initial={{ opacity: 0, height: '210px'}}
+          animate={{ opacity: 1, height: '210px'}}
+          exit={{ opacity: 0, height: '210px' }}
+          transition={{ duration: 0.25 }}
         >
           <div>
             <img 
@@ -36,7 +43,8 @@ export default function MovieSearchbarResults() {
             />
             <p>{item.title}</p>
           </div>
-        </div>
+        </motion.div>
+        </AnimatePresence>
         )}
       </div>
 
