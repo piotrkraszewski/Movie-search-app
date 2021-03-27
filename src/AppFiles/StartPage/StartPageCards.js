@@ -2,11 +2,12 @@ import { useContext } from 'react'
 import 'styles/main.scss'
 import { Link } from 'react-router-dom'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { motion, AnimatePresence } from "framer-motion"
 import no_image from 'images/no_image.png'
 
 
 export default function FullscreenSearch() {
-  const {searchbarText, suggestions} = useContext(AppContext)
+  const {searchbarText, suggestions } = useContext(AppContext)
 
   return (
     <div className='StartPageCards'>
@@ -15,12 +16,19 @@ export default function FullscreenSearch() {
       <p className='title'>
         {!searchbarText && 'Trending Now'}
       </p>
+      
       <div className='row'>
-
-        {suggestions.map((item) => 
-          <div 
+        {
+        suggestions.map((item) => 
+        <AnimatePresence exitBeforeEnter>
+          <motion.div 
             className='smallCard col-xl-2 col-md-3 col-4' 
             key={item.id}
+
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1}}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
           >
             <Link to={`/movie/${item.id}`} className='linkStyle'>
               <div>
@@ -31,9 +39,9 @@ export default function FullscreenSearch() {
                 <p>{item.title}</p>
               </div>
             </Link>
-          </div>
+          </motion.div>
+          </AnimatePresence>
         )}
-        
       </div>
     </div>
 
