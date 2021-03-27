@@ -19,7 +19,6 @@ export default function MovieSearchbarResults() {
   useEffect(() => {
     if(heightRef.current){
       setDivHeight(heightRef.current.offsetHeight)
-      console.log(divHeight)
     }
   })
 
@@ -45,7 +44,7 @@ export default function MovieSearchbarResults() {
           initial={{ opacity: 0, minHeight: divHeight}}
           animate={{ opacity: 1, minHeight: divHeight}}
           exit={{ opacity: 0, minHeight: divHeight }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.3 }}
         >
           <div>
             <img 

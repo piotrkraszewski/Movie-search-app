@@ -22,7 +22,6 @@ export default function MovieSearchbarResults() {
   useEffect(() => {
     if(heightRef.current){
       setLiHeight(heightRef.current.offsetHeight)
-      console.log(liHeight)
     }
   })
 
@@ -50,7 +49,7 @@ export default function MovieSearchbarResults() {
             initial={{ opacity: 0, minHeight: liHeight }}
             animate={{ opacity: 1, minHeight: liHeight }}
             exit={{ opacity: 0, minHeight: liHeight }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.3 }}
             ref = { heightRef }
           >
             <div className='row'>

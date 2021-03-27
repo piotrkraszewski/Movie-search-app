@@ -13,7 +13,7 @@ import ArrowKeysReact from 'arrow-keys-react'
 import AppBackground from 'AppFiles/AppBackground'
 import StartPage from 'AppFiles/StartPage/StartPage'
 import MoviePage from 'AppFiles/Movie/MoviePage'
-
+import { isMobile } from "react-device-detect"
 
 export default function App () {
   const location = useLocation()  // key to app routes
@@ -34,7 +34,12 @@ export default function App () {
   // loads at page starup because searchbarText === '' at start
   // checks this condition every time
   useEffect(() => {
-    if(searchbarText === '') fetchPopularMoviesOnStartPage()
+    if(searchbarText === '' && location.pathname ==='/') fetchPopularMoviesOnStartPage()
+    else if(searchbarText === '') {
+      setTimeout(() => {
+        setSuggestions([])
+      }, 600) // debounc time + animation time
+    }
   }, [searchbarText])
 // ==== END Fetch StartPage ====
 
@@ -81,6 +86,14 @@ export default function App () {
     }
   }
 
+
+  const [dispPostersNum, setDispPostersNum] = useState(isMobile ? 9 : 12)
+  
+  const infiniteScroll = e => {
+    console.log('helo')
+    // setDispPostersNum(20)
+  }
+
   
 // ==== END Search state and functions ====
 
@@ -122,7 +135,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, infiniteScroll}}
         >
           <AppScroolbar>
             <AnimatePresence exitBeforeEnter>

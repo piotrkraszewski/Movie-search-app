@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import closeImg  from 'images/close.svg'
+import {DebounceInput} from 'react-debounce-input';
 
 export default function Searchbar(props) {
   const {searchbarText, setSearchbarText, setOldSearchbarText,  oldSearchbarText, onSearchbarTextChanging} = useContext(AppContext)
@@ -15,7 +16,8 @@ export default function Searchbar(props) {
 
   return (
     <form onSubmit={e => e.preventDefault()}>
-      <input
+      <DebounceInput
+        debounceTimeout={250}
         onChange={onSearchbarTextChanging}
         type='text'
         placeholder='Search Movie'
