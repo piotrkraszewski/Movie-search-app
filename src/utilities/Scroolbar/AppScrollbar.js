@@ -11,13 +11,18 @@ export default function AppScrollbar (props) {
   const { infiniteScroll } = useContext(AppContext)
 
   return (
-    isMobile ? (
-      <div className="overflow-y-auto">
-        {props.children}
-      </div>
-    ) : (
-      <ScrollBar className='AppScroolbar' onYReachEnd={e => infiniteScroll(e)}>
+    // isMobile ? (
+    //   <div className="overflow-y-auto">
+    //     {props.children}
+    //   </div>
+    // ) : (
+      <ScrollBar 
+        className='AppScroolbar' 
+        onScrollDown={e => infiniteScroll(e)}
+        // onYReachEnd={e => infiniteScroll(e)}
+      >
         {props.children}
       </ScrollBar>
-  ))
+  // )
+  )
 }

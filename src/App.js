@@ -75,6 +75,7 @@ export default function App () {
   }
 
   const showResInSearchBar = async (value) => {
+    setDispPostersNum(isMobile ? 6 : 12)
     if (value.length === 0) setOldSearchbarText('')
     if (value.length >= 1) {
       const allMoviesData = await getAllMoviesData(createSearchMoviesUrl(value))
@@ -84,6 +85,10 @@ export default function App () {
       setSuggestions(dataToDisplay)
       setOldSearchbarText(value)
     }
+    
+    isMobile && setTimeout(() => {
+      setDispPostersNum(9)
+    }, 1000) // adds 3 more posters
   }
 
 
@@ -91,7 +96,7 @@ export default function App () {
   
   const infiniteScroll = e => {
     console.log('helo')
-    // setDispPostersNum(20)
+    setDispPostersNum(20)
   }
 
   
@@ -99,11 +104,6 @@ export default function App () {
 
 
 // ==== Console log stuff ====
-  // useEffect(() => {
-  //   console.log(`allMoviesData.length ${allMoviesData.length}`)
-  //   console.log(`suggestions.length ${allMoviesData.length}`)
-  // }, [allMoviesData])
-
   useEffect(() => {
     console.log({suggestions})
   }, [suggestions])
@@ -135,7 +135,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, infiniteScroll}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll}}
         >
           <AppScroolbar>
             <AnimatePresence exitBeforeEnter>

@@ -7,7 +7,6 @@
   height: 100%;
 }
 
-
 // *** MovieSearchScroolbar ***
 .MovieSearchScroolbar {
   position: relative;
@@ -39,7 +38,7 @@
   overflow: hidden !important;
   overflow-anchor: none;
   -ms-overflow-style: none;
-  touch-action: auto;
+  touch-action: manipulation;
   -ms-touch-action: auto;
 }
 
