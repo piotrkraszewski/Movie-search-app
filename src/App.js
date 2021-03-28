@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import 'styles/main.scss'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
@@ -94,10 +94,14 @@ export default function App () {
 
   const [dispPostersNum, setDispPostersNum] = useState(isMobile ? 9 : 12)
   
+
+  // == ScrollBar stuff ==
   const infiniteScroll = e => {
     console.log('helo')
     setDispPostersNum(20)
   }
+
+  const scrollBarRef = useRef(null)
 
   
 // ==== END Search state and functions ====
@@ -135,7 +139,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef}}
         >
           <AppScroolbar>
             <AnimatePresence exitBeforeEnter>
