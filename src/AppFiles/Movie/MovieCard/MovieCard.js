@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { POSTER_W500 } from 'utilities/Consts'
 import { nestedDataToString } from './MovieCardFunctions'
+import { PAGE_TRANSITION_TIME } from 'utilities/Consts'
 import no_image from 'images/no_image.png'
 
 export default function MovieInfo () {
@@ -22,7 +23,7 @@ export default function MovieInfo () {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: PAGE_TRANSITION_TIME }}
           className='Container row'
           key={original_title}
         >

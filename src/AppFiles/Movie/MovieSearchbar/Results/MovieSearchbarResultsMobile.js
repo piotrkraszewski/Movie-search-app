@@ -2,7 +2,7 @@ import { useContext, useState, useEffect, useRef } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_SUGGESTIONS_MOBILE } from 'utilities/Consts'
+import { NUM_OF_DISP_SUGGESTIONS_MOBILE, QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
 import { motion, AnimatePresence } from "framer-motion"
 import no_image from 'images/no_image.png'
@@ -44,7 +44,7 @@ export default function MovieSearchbarResults() {
           initial={{ opacity: 0, minHeight: divHeight}}
           animate={{ opacity: 1, minHeight: divHeight}}
           exit={{ opacity: 0, minHeight: divHeight }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: QUICK_SEARCH_TRANSITION }}
         >
           <div>
             <img 

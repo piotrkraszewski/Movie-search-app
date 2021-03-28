@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from "framer-motion"
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
+import { PAGE_TRANSITION_TIME } from 'utilities/Consts'
 import MovieSearch from './MovieSearchbar/MovieSearchbar'
 import MovieCard from './MovieCard/MovieCard'
 
@@ -15,7 +16,7 @@ export default function Movie() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, delay :0.2}}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: PAGE_TRANSITION_TIME }}
       >    
         <MovieSearch /> 
         <MovieCard />

@@ -66,7 +66,7 @@ export default function App () {
 // ==== Search state and functions ====
   const [allMoviesData, setAllMoviesData] = useState([])
   const [oldSearchbarText, setOldSearchbarText] = useState('')
-
+  const [dispPostersNum, setDispPostersNum] = useState(isMobile ? 9 : 12)
 
   const onSearchbarTextChanging = e => {
     const value = e.target.value.replace(/[^\w\s]/gi, '')
@@ -90,21 +90,18 @@ export default function App () {
       setDispPostersNum(9)
     }, 1000) // adds 3 more posters
   }
-
-
-  const [dispPostersNum, setDispPostersNum] = useState(isMobile ? 9 : 12)
   
+  // ==== END Search state and functions ====
 
+  
   // == ScrollBar stuff ==
   const infiniteScroll = e => {
-    console.log('helo')
+    // console.log('infinite Scroll')
     setDispPostersNum(20)
   }
 
   const scrollBarRef = useRef(null)
-
-  
-// ==== END Search state and functions ====
+  // == END ScrollBar stuff ==
 
 
 // ==== Console log stuff ====

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_SUGGESTIONS_PC } from 'utilities/Consts'
+import { NUM_OF_DISP_SUGGESTIONS_PC, QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
 import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
 import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
 import { motion, AnimatePresence } from "framer-motion"
@@ -41,7 +41,7 @@ export default function MovieSearchbarResults() {
             className={'searchbar_li ' + 
             (indexOfHighlightedMovie === index && 'active')}
 
-            onClick={()=> selectedMovieInQuickSearch(item.id)}
+            onClick={() => selectedMovieInQuickSearch(item.id)}
             onMouseEnter={highlightMovieTextOnHover} 
             index={index}
             key={item.id}
@@ -49,7 +49,7 @@ export default function MovieSearchbarResults() {
             initial={{ opacity: 0, minHeight: liHeight }}
             animate={{ opacity: 1, minHeight: liHeight }}
             exit={{ opacity: 0, minHeight: liHeight }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: QUICK_SEARCH_TRANSITION }}
             ref = { heightRef }
           >
             <div className='row'>

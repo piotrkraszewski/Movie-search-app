@@ -24,20 +24,23 @@
         @include equalColumnHeight;
         @include smallCardDiv;
         background: rgba(10, 10, 10, 0.9);
-
     
         &:hover {
           @include smallCardHoverAnimation;
         }
-    
-        img {
-          border-radius: $posterRaious $posterRaious 0px 0px;
-        }
+
+          img {
+            border-radius: $posterRaious $posterRaious 0px 0px;
+
+            // maintains aspect ratio
+            max-width:100%;
+            height: auto;
+          }
     
         p {
           @include hideToLongTitle;
           @include smallCardParagraphs;
-
+          
           padding: 5px;
           padding-bottom: 3px;
           font-weight: bold;
@@ -45,7 +48,7 @@
         }
     
         @media (max-width: 475px) {
-          font-size: 0.75em;
+          font-size: 12px;
         }
       }
     }
