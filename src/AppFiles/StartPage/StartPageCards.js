@@ -3,7 +3,7 @@ import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'utilities/Consts'
 import { motion, AnimatePresence } from "framer-motion"
-import PosterCard from './PosterCard'
+import PosterCard from 'utilities/PosterCard'
 
 
 export default function StartPageCards() {
