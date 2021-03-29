@@ -1,6 +1,6 @@
 import { useContext} from 'react'
 import ScrollBar from 'react-perfect-scrollbar'
-import { isMobile } from "react-device-detect"
+// import { isMobile } from "react-device-detect"
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import './ScroolbarStyle.scss'
 

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import StartPageCard from './StartPageCard'
 
 
-export default function FullscreenSearch() {
+export default function StartPageCards() {
   const {searchbarText, suggestions, dispPostersNum} = useContext(AppContext)
 
   return (
@@ -28,7 +28,7 @@ export default function FullscreenSearch() {
 
       <div className='row'>
         {suggestions.slice(0, dispPostersNum).map(item => 
-          <StartPageCard item={item} />
+          <StartPageCard item={item} key={item.id} />
         )}
       </div>
     </div>

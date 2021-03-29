@@ -8,10 +8,13 @@
 
 .searchbar_container {
   @include searchbarCommonUl;
-  
   background-color: $suggestionsLayoutBackground;
-  border-radius: 10px;
   border: 2px solid $limeGreenDarker;
+  border-radius: $posterRaious;
+
+  //moves search bar over white line
+  margin: 0 -7px;
+  margin-top: -2px;
 
   .searchbar_div{
     display: flex;
@@ -31,8 +34,10 @@
     
         img {
           border-radius: $posterRaious $posterRaious 0px 0px;
-          // max-height: 160px;
-          object-fit: cover;
+
+          // maintains aspect ratio
+          max-width:100%;
+          height: auto;
         }
           p {
             @include hideToLongTitle;

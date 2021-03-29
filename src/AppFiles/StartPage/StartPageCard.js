@@ -7,10 +7,11 @@ import ImageFadeIn from "react-image-fade-in";
 
 
 export default function StartPageCard ({item}) {
-  const { pushToHistory, scrollBarRef } = useContext(AppContext)
+  const { pushToHistory, scrollBarRef, setSuggestions } = useContext(AppContext)
 
   // !!!  probably move to one component because it creats duplication in memory !!!
   function selectedMovieInCardsPage(id){
+    setSuggestions([])
     pushToHistory(`/movie/${id}`)
     setTimeout(() => {
       // moves ScrollBar to top
