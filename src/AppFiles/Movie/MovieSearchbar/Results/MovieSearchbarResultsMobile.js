@@ -31,13 +31,13 @@ export default function MovieSearchbarResults() {
   <div className='searchBarResMobile'>
     <AnimatePresence exitBeforeEnter>
       <motion.div
-        key={suggestions.length}
+        key={suggestions.length + showQuickSearchRes}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: QUICK_SEARCH_TRANSITION, ease: 'easeInOut' }}
       >
-        {suggestions.length > 0 //if
+        {suggestions.length > 0 && showQuickSearchRes //if
         ? <ResultsMobile/>
         : //else
         searchbarText && 

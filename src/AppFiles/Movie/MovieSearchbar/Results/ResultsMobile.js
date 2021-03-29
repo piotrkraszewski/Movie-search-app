@@ -15,7 +15,7 @@ export default function ResultsMobile() {
   const [cloneSuggestions, setCloneSuggestions] = useState([])
 
   // makes search results no disappear after are deleted of memory.
-  // holds them for 1s
+  // holds them for 800ms
   useEffect(() => {
     const slicedSuggestions = suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_MOBILE)
     if(suggestions.length > 0){

@@ -58,17 +58,18 @@
   text-overflow: ellipsis;
 }
 
-@mixin smallCardHoverAnimation {
-  transform: scale(1.03);
-  transition: all .3s ease-in-out;
-}
-
 @mixin smallCardParagraphs {
   margin: auto 0;
   color: $limeGreen;
   font-family: $lato;
   text-align: center;
 }
+
+@mixin smallCardHoverAnimation {
+  transform: scale(1.03);
+  transition: all .3s ease-in-out;
+}
+
 @mixin smallCardDiv {
   transition: all .5s ease-in-out;
   border-radius: $posterRaious;
