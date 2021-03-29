@@ -4,7 +4,19 @@
   }
 }
 
-@include noResult;
+.showMoreClose{
+  width: 22%;
+  padding: 2px;
+  margin: 0; // suggestion list spacing
+  background-color: $darkGrey;
+  border-radius: 10px;
+  text-align: center;
+  
+  &:hover, &.active, &:focus {
+    cursor: pointer;
+    background-color: $blackGrey;
+  }
+}
 
 .searchbar_container {
   @include searchbarCommonUl;
@@ -70,18 +82,6 @@
       &:hover, &.active, &:focus {
         cursor: pointer;
         background-color: $limeGreenBlack;
-      }
-    }
-
-    .showMoreClose{
-      width: 22%;
-      padding: 2px;
-      margin: 0; // suggestion list spacing
-      background-color: $darkGrey;
-      border-radius: 10px;
-      &:hover, &.active, &:focus {
-        cursor: pointer;
-        background-color: $blackGrey;
       }
     }
   }

@@ -1,13 +1,25 @@
-import { useContext} from 'react'
+import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { START_PAGE_CARDS_TRANSITION } from 'utilities/Consts'
+import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'utilities/Consts'
 import { motion, AnimatePresence } from "framer-motion"
-import StartPageCard from './StartPageCard'
+import PosterCard from './PosterCard'
 
 
 export default function StartPageCards() {
-  const {searchbarText, suggestions, dispPostersNum} = useContext(AppContext)
+  const {searchbarText, suggestions, dispPostersNum,pushToHistory, scrollBarRef, setSuggestions} = useContext(AppContext)
+
+  function selectedMovieInCardsPage(id){
+    pushToHistory(`/movie/${id}`)
+    setTimeout(() => {
+      // moves ScrollBar to top
+      scrollBarRef.current._ps.element.scrollTop = 0  
+      // console.log(" scrollBarRef", scrollBarRef.current._ps)
+      
+      setSuggestions([])
+    }, PAGE_TRANSITION_TIME * 1000) // exit animation length
+  }
+
 
   return (
     <div className='StartPageCards'>
@@ -28,7 +40,15 @@ export default function StartPageCards() {
 
       <div className='row'>
         {suggestions.slice(0, dispPostersNum).map(item => 
-          <StartPageCard item={item} key={item.id} />
+          <PosterCard 
+            className='smallCard col-xl-2 col-md-3 col-4'
+            cardData={item} 
+            onClick={selectedMovieInCardsPage}
+            cardTransitionDuration={START_PAGE_CARDS_TRANSITION}
+            imgTransition={0.5}
+            imgHeight={'750'}
+            imgWidth={'500'}
+          />
         )}
       </div>
     </div>
