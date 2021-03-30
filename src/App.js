@@ -4,7 +4,7 @@ import 'styles/main.scss'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import AppScroolbar from 'utilities/Scroolbar/AppScrollbar'
+import AppScroolbar from 'ReusableComponents/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from 'utilities/FetchFunctions'
 import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from 'utilities/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from 'utilities/RoutesFunctions'
@@ -50,7 +50,6 @@ export default function App () {
   
   useEffect(async () => {
     movieID && setMovieData(await getMovieData(movieID))
-    console.log(movieID)
   }, [movieID])
 
   // implements back button in browser
@@ -118,9 +117,9 @@ export default function App () {
     console.log(`searchbarText: ${searchbarText}`)
   }, [searchbarText])
 
-  useEffect(() => {
-    console.log(`backgroundIMG: ${backgroundIMG}`)
-  }, [backgroundIMG])
+  // useEffect(() => {
+  //   console.log(`backgroundIMG: ${backgroundIMG}`)
+  // }, [backgroundIMG])
 
 // ==== END Console log stuff ====
 

@@ -36,19 +36,6 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-@mixin noResult {
-  .noResult{
-    text-align: center;
-    height: 2rem; 
-    padding: 2px;
-    margin: 0; // suggestion list spacing
-
-    &:hover{
-      user-select: none;
-    }
-  }
-}
-
 @mixin hideToLongTitle {
   // hides if title is to long
   display: -webkit-box;

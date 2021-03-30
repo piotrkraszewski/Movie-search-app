@@ -1,0 +1,38 @@
+.noResult{
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    width: 95%;
+    text-align: center;
+    padding: 2px;
+    margin: 0; // suggestion list spacing
+
+    &:hover{
+      user-select: none;
+    }
+  }
+
+  .btn {
+    color: $lightGrey;
+    width: 18%;
+    padding: 2px;
+    margin: 0; // suggestion list spacing
+    background-color: $darkGrey;
+    border-radius: 10px;
+    text-align: center;
+    
+    &:hover, &.active, &:focus {
+      cursor: pointer;
+      background-color: $blackGrey;
+    }
+  }
+
+  .closeImg {
+    max-width: 10px;
+    filter: invert(50%);
+    margin: 0 10px;
+    cursor: pointer;
+  }
+}

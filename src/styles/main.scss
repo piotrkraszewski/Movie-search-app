@@ -8,11 +8,15 @@
 @import './helpers/animations';
 @import './helpers/mixins';
 
+
+//reusableComponents
+@import '../ReusableComponents/NoResult/noResult';
+@import '../ReusableComponents/Searchbar/movieSearchbar';
+
+
 @import './layout/app';
 @import './layout/background';
 @import './layout/movieCard';
-@import './layout/noResult';
-@import './layout/movieSearchbar';
 @import './layout/movieSearchbarResultsPC';
 @import './layout/movieSearchbarResultsMobile';
 @import './layout/startPageCards';

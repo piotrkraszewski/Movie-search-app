@@ -2,34 +2,24 @@ import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_SUGGESTIONS_PC, QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
-import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
-import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
+import { QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
+import HighlightTextInQuickSearchHooks from '../AppFiles/Movie/MovieSearchbar/Hooks/HighlightTextInQuickSearchHooks'
+import GotoOtherRoutesHooks from '../AppFiles/Movie/MovieSearchbar/Hooks/GotoOtherRoutesHooks'
 import { motion, AnimatePresence } from "framer-motion"
-import ImageFadeIn from "react-image-fade-in";
+import ImageFadeIn from "react-image-fade-in"
 import no_image from 'images/no_image.png'
 
-
-export default function MovieSearchbarResults() {
-  const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
-  const { searchbarText, suggestions, pushToHistory } = useContext(AppContext)
+export default function PosterLi({item, index}) {
+  const { indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
+  const { searchbarText } = useContext(AppContext)
 
   const {highligthText, highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
 
 
+
   return (
-  <div className='searchBarResPC'>
-    <ul 
-      className={'searchbar_ul ' + 
-      (showQuickSearchRes && searchbarText && 'fadeIn')} 
-    >
-      {suggestions.length > 0 && showQuickSearchRes //if
-      ? //true,  have to return one big fragment <>
-      <>  
-        {suggestions.slice(0, NUM_OF_DISP_SUGGESTIONS_PC)
-        .map((item, index) => 
-        <AnimatePresence exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter>
           <motion.li 
             className={'searchbar_li ' + 
             (indexOfHighlightedMovie === index && 'active')}
@@ -59,24 +49,5 @@ export default function MovieSearchbarResults() {
             </div>
           </motion.li>
           </AnimatePresence>
-        )}
-
-        {<li className={'searchbar_li showMore ' + 
-          (indexOfHighlightedMovie === NUM_OF_DISP_SUGGESTIONS_PC && 'active')}
-
-          onMouseEnter={highlightMovieTextOnHover} 
-          onClick={() => pushToHistory(`/`)} 
-          index={NUM_OF_DISP_SUGGESTIONS_PC}
-        >
-          <p>show more</p>
-        </li>}
-      </>
-
-      : //else
-        searchbarText &&
-        <p className='searchbar_li showMore noResult'>no result</p>
-      }
-    </ul>
-  </div>
   )
 }

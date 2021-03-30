@@ -4,16 +4,16 @@ import { isMobile } from "react-device-detect"
 import KeysPressedInSearchbarHooks from './Hooks/KeysPressedInSearchbarHooks'
 import ShowHideQuickSearchHook from './Hooks/ShowHideQuickSearchHook'
 import GotoOtherRoutesHooks from './Hooks/GotoOtherRoutesHooks'
-import MovieSearchbarResultsPC from './Results/MovieSearchbarResultsPC'
-import MovieSearchbarResultsMobile from './Results/MovieSearchbarResultsMobile'
+import MovieSearchbarPC from './Results/MovieSearchbarPC'
+import MovieSearchbarMobile from './Results/MovieSearchbarMobile'
 import TMDBLogo from 'images/tmdb.svg'
-import Searchbar from '../MovieSearchbar/Hooks/Searchbar'
+import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
 
-export default function MovieSearch () {
+
+export default function MovieSearchbar() {
   const enterKeyInSearchbar = KeysPressedInSearchbarHooks()
   const {node, OnSearchBarClicked} = ShowHideQuickSearchHook()
   const {gotoStarPage} = GotoOtherRoutesHooks()
-
 
   return (
     <div className='movieSearchBar'>
@@ -32,7 +32,9 @@ export default function MovieSearch () {
             onClick={OnSearchBarClicked} 
             onKeyPress={enterKeyInSearchbar}
           />
-          {isMobile ? <MovieSearchbarResultsMobile/> : <MovieSearchbarResultsPC/>}
+          {isMobile 
+          ? <MovieSearchbarMobile/> 
+          : <MovieSearchbarPC/>}
         </div>
       </div>
     </div>

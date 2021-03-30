@@ -1,5 +1,5 @@
 import 'styles/main.scss'
-import Searchbar from 'AppFiles/Movie/MovieSearchbar/Hooks/Searchbar'
+import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
 
 export default function StartPageSearch() {
   return (

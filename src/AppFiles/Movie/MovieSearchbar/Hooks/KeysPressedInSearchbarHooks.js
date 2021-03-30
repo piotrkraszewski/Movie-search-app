@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_SUGGESTIONS_PC } from 'utilities/Consts'
+import { NUM_OF_DISP_RES_PC } from 'utilities/Consts'
 import GotoOtherRoutesHooks from './GotoOtherRoutesHooks'
 
 export default function KeysPressedInSearchbarHooks() {
@@ -17,7 +17,7 @@ export default function KeysPressedInSearchbarHooks() {
     if (code === 13 /* enter key */) {
       if (!showQuickSearchRes) setShowQuickSearchRes(true)
       if (showQuickSearchRes) {
-        if (indexOfHighlightedMovie === NUM_OF_DISP_SUGGESTIONS_PC) {
+        if (indexOfHighlightedMovie === NUM_OF_DISP_RES_PC) {
           pushToHistory(`/`)
         } else {
           selectedMovieInQuickSearch(suggestions[indexOfHighlightedMovie].id)
@@ -31,15 +31,15 @@ export default function KeysPressedInSearchbarHooks() {
   ArrowKeysReact.config({
     up: () => {
       isNaN(indexOfHighlightedMovie)
-        ? setIndexOfHighlightedMovie(NUM_OF_DISP_SUGGESTIONS_PC)
+        ? setIndexOfHighlightedMovie(NUM_OF_DISP_RES_PC)
         : indexOfHighlightedMovie < 0
-          ? setIndexOfHighlightedMovie(NUM_OF_DISP_SUGGESTIONS_PC)
+          ? setIndexOfHighlightedMovie(NUM_OF_DISP_RES_PC)
           : setIndexOfHighlightedMovie(prevState => prevState - 1)
     },
     down: () => {
       isNaN(indexOfHighlightedMovie)
         ? setIndexOfHighlightedMovie(0)
-        : indexOfHighlightedMovie > NUM_OF_DISP_SUGGESTIONS_PC
+        : indexOfHighlightedMovie > NUM_OF_DISP_RES_PC
           ? setIndexOfHighlightedMovie(0)
           : setIndexOfHighlightedMovie(prevState => prevState + 1)
     }

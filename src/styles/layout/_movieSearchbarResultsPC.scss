@@ -5,7 +5,6 @@
 }
 
 .searchbar_ul {
-  @include noResult;
   @include searchbarCommonUl;
 
   background-color: $transparentBackground;
@@ -18,7 +17,7 @@
     p {
       margin: 0; // suggestion list spacing
       align-self: center;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
   
     &:hover, &.active, &:focus {
