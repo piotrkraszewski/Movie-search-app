@@ -20,8 +20,8 @@ export default function StartPageCard ({
     >
       <div >
           <ImageFadeIn
-            height={imgHeight}
             width={imgWidth}
+            height={imgHeight}
             opacityTransition={imgTransition}
             src={cardData.poster ? cardData.poster : no_image}
             alt={`poster ${cardData.id}`}

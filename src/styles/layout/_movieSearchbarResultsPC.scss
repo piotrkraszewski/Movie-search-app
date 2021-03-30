@@ -32,8 +32,11 @@
       }
     }
   
-    .quickSearchImage{
-      max-width: 92px;
+    img{
+      // maintains aspect ratio
+      // width: 100%;
+      max-width:92px;
+      height: auto;
     }
   }
 
