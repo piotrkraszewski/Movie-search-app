@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import 'styles/main.scss'
 import { isMobile } from "react-device-detect"
 import KeysPressedInSearchbarHooks from './Hooks/KeysPressedInSearchbarHooks'
