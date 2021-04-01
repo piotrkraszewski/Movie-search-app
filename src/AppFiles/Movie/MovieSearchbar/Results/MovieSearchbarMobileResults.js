@@ -1,16 +1,18 @@
 import { useContext } from 'react'
 import 'styles/main.scss'
+import { NUM_OF_DISP_RES_MOBILE, QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_RES_MOBILE, QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
-import GotoOtherRoutesHooks from '../../../../Hooks/SearchbarHooks/useGotoOtherRoutes'
+import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'
+import GotoOtherRoutesHooks from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
 import PosterCard from 'ReusableComponents/PosterCard'
 
 
 export default function MovieSearchbarMobileResults() {
-  const { showQuickSearchRes, setShowQuickSearchRes,  cloneSuggestions} = useContext(MovieSearchbarContext)
-  const { searchbarText, pushToHistory } = useContext(AppContext)
+  const { showQuickSearchRes, setShowQuickSearchRes } = useContext(MovieSearchbarContext)
+  const { searchbarText, pushToHistory, suggestions } = useContext(AppContext)
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
+  const displayedSuggestions = useCreateArrayToDisplayAndFadeout(suggestions, NUM_OF_DISP_RES_MOBILE, 800)
 
   return (
     <div
@@ -18,7 +20,7 @@ export default function MovieSearchbarMobileResults() {
       (showQuickSearchRes && searchbarText && 'fadeIn')} 
     >
       <div className='searchbar_div'>
-        {cloneSuggestions.map(item => 
+        {displayedSuggestions.map(item => 
           <PosterCard 
             className='smallCard col-4'
             cardData={item} 

@@ -7,13 +7,14 @@ import MovieSearchbarPCResults from './MovieSearchbarPCResults'
 import SearchbarResultsTransitionWraper from 'ReusableComponents/SearchbarResultsTransitionWraper'
 import useDelayShowNoResults from 'Hooks/SearchbarHooks/useDelayShowNoResults'
 
+
 export default function MovieSearchbarPC() {
   const { showQuickSearchRes, setShowQuickSearchRes} = useContext(MovieSearchbarContext)
   const { searchbarText, suggestions } = useContext(AppContext)
 
   const showNoResults = useDelayShowNoResults(1000, searchbarText)
 
-  
+
   return (
   <div className='searchBarResPC'>
     <SearchbarResultsTransitionWraper render={() => 
