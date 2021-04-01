@@ -5,13 +5,16 @@ import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import NoResult from 'ReusableComponents/NoResult/NoResult'
 import ResultsMobile from './MovieSearchbarMobileResults'
 import SearchbarResultsTransitionWraper from 'ReusableComponents/SearchbarResultsTransitionWraper'
+import useDelayShowNoResults from 'Hooks/SearchbarHooks/useDelayShowNoResults'
 
 
 export default function MovieSearchbarMobile() {
-  const { showNoResults, showQuickSearchRes, setShowQuickSearchRes} = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, setShowQuickSearchRes} = useContext(MovieSearchbarContext)
   const { searchbarText, suggestions } = useContext(AppContext)
 
+  const showNoResults = useDelayShowNoResults(1000, searchbarText)
 
+  
   return (
   <div className='searchBarResMobile'>
     <SearchbarResultsTransitionWraper render={() => 

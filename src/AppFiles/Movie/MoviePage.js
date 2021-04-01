@@ -3,8 +3,6 @@ import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import MovieSearch from './MovieSearchbar/MovieSearchbar'
 import MovieCard from './MovieCard/MovieCard'
-
-
 import { isMobile } from "react-device-detect"
 import {useContext, useState, useEffect} from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
@@ -13,21 +11,7 @@ import { NUM_OF_DISP_RES_MOBILE, NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 export default function MoviePage() {
   const [showQuickSearchRes, setShowQuickSearchRes] = useState(false)
   const [indexOfHighlightedMovie, setIndexOfHighlightedMovie] = useState()
-  const { searchbarText, suggestions } = useContext(AppContext)
-
-  // makes no result pop after 1s of no receveing info from API
-  const [showNoResults, setShowNoResults] = useState(false)
-  useEffect(() => {
-    if(searchbarText === ''){
-      setShowNoResults(false)
-    } else {
-      const timer = setTimeout(() => {
-        setShowNoResults(true)
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [searchbarText]);
-
+  const { suggestions } = useContext(AppContext)
 
   // makes search results no disappear after are deleted of memory.
   // holds them for 800ms that allows to make smooth transition
@@ -50,7 +34,7 @@ export default function MoviePage() {
 
 
   return (
-    <MovieSearchbarContext.Provider value={{ showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie, showNoResults, cloneSuggestions}}>
+    <MovieSearchbarContext.Provider value={{ showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie, cloneSuggestions}}>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, delay :0.2}}
