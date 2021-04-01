@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { PAGE_TRANSITION_TIME } from 'utilities/Consts'
+import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import MovieSearch from './MovieSearchbar/MovieSearchbar'
 import MovieCard from './MovieCard/MovieCard'
 
@@ -8,7 +8,7 @@ import MovieCard from './MovieCard/MovieCard'
 import { isMobile } from "react-device-detect"
 import {useContext, useState, useEffect} from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { NUM_OF_DISP_RES_MOBILE, NUM_OF_DISP_RES_PC } from 'utilities/Consts'
+import { NUM_OF_DISP_RES_MOBILE, NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 
 export default function MoviePage() {
   const [showQuickSearchRes, setShowQuickSearchRes] = useState(false)

@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
-import HighlightTextInQuickSearchHooks from '../AppFiles/Movie/MovieSearchbar/Hooks/HighlightTextInQuickSearchHooks'
-import GotoOtherRoutesHooks from '../AppFiles/Movie/MovieSearchbar/Hooks/GotoOtherRoutesHooks'
+import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
+import HighlightTextInQuickSearchHooks from '../Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
+import GotoOtherRoutesHooks from '../Hooks/SearchbarHooks/useGotoOtherRoutes'
 import { motion, AnimatePresence } from "framer-motion"
 import ImageFadeIn from "react-image-fade-in"
 import no_image from 'images/no_image.png'

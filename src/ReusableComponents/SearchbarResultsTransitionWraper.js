@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
+import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function SearchbarResultsTransitionWraper ({render}) {

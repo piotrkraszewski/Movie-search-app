@@ -1,6 +1,6 @@
 import StartPageCard from './StartPageCards'
 import StartPageSearch from './StartPageSearchbar'
-import { PAGE_TRANSITION_TIME } from 'utilities/Consts'
+import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import { motion } from "framer-motion"
 
 export default function StartPage() {

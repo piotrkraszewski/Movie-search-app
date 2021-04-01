@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import { NUM_OF_DISP_RES_MOBILE, QUICK_SEARCH_TRANSITION } from 'utilities/Consts'
-import GotoOtherRoutesHooks from '../Hooks/GotoOtherRoutesHooks'
+import { NUM_OF_DISP_RES_MOBILE, QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
+import GotoOtherRoutesHooks from '../../../../Hooks/SearchbarHooks/useGotoOtherRoutes'
 import PosterCard from 'ReusableComponents/PosterCard'
 
 

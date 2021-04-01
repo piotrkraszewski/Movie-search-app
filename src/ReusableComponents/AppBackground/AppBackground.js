@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
+import { motion, AnimatePresence } from "framer-motion"
+import './AppBackground.scss'
 
-export default function CalculateWindowHeightHook() {
+
+export default function AppBackground({fetchImg, fallbackImg}) {
 // calucluleta size of 1% of window height and saves it to variable
 // Proposal for new units to fix this 
 // https://github.com/w3c/csswg-drafts/issues/4329
 // Solution from Jonas Sandstedt comment 
 // https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html
+
 
   useEffect(() => {
     function setDocHeight() {
@@ -20,8 +24,23 @@ export default function CalculateWindowHeightHook() {
       document.removeEventListener('orientationchange', setDocHeight)
     }
   }, [])
-  
+
+
   return (
-    <></>
+    <>
+      <div className='BgGradient'/>
+      <AnimatePresence>
+        <motion.img 
+          className='BgImage'
+          src={fetchImg ? fetchImg : fallbackImg}
+          key={fetchImg}
+
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, delay :0.2 }}
+          exit={{ opacity: 0 }}
+          transition={{duration: 1.5}}
+        />
+      </AnimatePresence>
+    </>
   )
 }

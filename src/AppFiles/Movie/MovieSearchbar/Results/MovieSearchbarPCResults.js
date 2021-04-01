@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import 'styles/main.scss'
-import { NUM_OF_DISP_RES_PC } from 'utilities/Consts'
+import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import HighlightTextInQuickSearchHooks from '../Hooks/HighlightTextInQuickSearchHooks'
+import HighlightTextInQuickSearchHooks from '../../../../Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import PosterLi from 'ReusableComponents/PosterLi'
 
 export default function MovieSearchbarPCResults() {

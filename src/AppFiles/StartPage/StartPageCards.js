@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'utilities/Consts'
+import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 import PosterCard from 'ReusableComponents/PosterCard'
 

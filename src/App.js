@@ -5,15 +5,15 @@ import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import AppScroolbar from 'ReusableComponents/Scroolbar/AppScrollbar'
-import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from 'utilities/FetchFunctions'
-import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from 'utilities/Consts'
-import { getCurrentPageUrl, getMovieIdFromLocationPathname } from 'utilities/RoutesFunctions'
-import CalculateWindowHeightHook from 'utilities/CalculateWindowHeightHook'
+import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from 'Utils/FetchFunctions'
+import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from 'Utils/Consts'
+import { getCurrentPageUrl, getMovieIdFromLocationPathname } from 'Utils/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
-import AppBackground from 'AppFiles/AppBackground'
+import AppBackground from 'ReusableComponents/AppBackground/AppBackground'
 import StartPage from 'AppFiles/StartPage/StartPage'
 import MoviePage from 'AppFiles/Movie/MoviePage'
 import { isMobile } from "react-device-detect"
+import BgGreen from 'images/BgGreen.jpg'
 
 export default function App () {
   const location = useLocation()  // key to app routes
@@ -126,8 +126,10 @@ export default function App () {
 
   return (
     <div>
-      <CalculateWindowHeightHook/>
-      <AppBackground backgroundIMG={backgroundIMG}/>
+      <AppBackground 
+        fetchImg={backgroundIMG} 
+        fallbackImg={BgGreen}
+      />
 
       <div
         id='app'

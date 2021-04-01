@@ -1,8 +1,8 @@
 import 'styles/main.scss'
 import { isMobile } from "react-device-detect"
-import KeysPressedInSearchbarHooks from './Hooks/KeysPressedInSearchbarHooks'
-import ShowHideQuickSearchHook from './Hooks/ShowHideQuickSearchHook'
-import GotoOtherRoutesHooks from './Hooks/GotoOtherRoutesHooks'
+import KeysPressedInSearchbarHooks from '../../../Hooks/SearchbarHooks/useKeysPressedInSearchbar'
+import ShowHideQuickSearchHook from '../../../Hooks/SearchbarHooks/useShowHideQuickSearch'
+import GotoOtherRoutesHooks from '../../../Hooks/SearchbarHooks/useGotoOtherRoutes'
 import MovieSearchbarPC from './Results/MovieSearchbarPC'
 import MovieSearchbarMobile from './Results/MovieSearchbarMobile'
 import TMDBLogo from 'images/tmdb.svg'
