@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import ImageFadeIn from "react-image-fade-in";
-import no_image from 'images/no_image.png'
+import no_image from 'Images/no_image.png'
 
 
 export default function StartPageCard ({

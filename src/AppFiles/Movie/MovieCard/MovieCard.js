@@ -5,7 +5,7 @@ import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { POSTER_W500 } from 'Utils/Consts'
 import { nestedDataToString } from './MovieCardFunctions'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
-import no_image from 'images/no_image.png'
+import no_image from 'Images/no_image.png'
 
 export default function MovieInfo () {
   const { movieData } = useContext(AppContext)

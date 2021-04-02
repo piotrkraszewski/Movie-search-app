@@ -13,7 +13,7 @@ import AppBackground from 'ReusableComponents/AppBackground/AppBackground'
 import StartPage from 'AppFiles/StartPage/StartPage'
 import MoviePage from 'AppFiles/Movie/MoviePage'
 import { isMobile } from "react-device-detect"
-import BgGreen from 'images/BgGreen.jpg'
+import BgGreen from 'Images/BgGreen.jpg'
 
 export default function App () {
   const location = useLocation()  // key to app routes

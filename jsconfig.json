@@ -4,9 +4,9 @@
     "paths": {
       "@appFiles/*": ["AppFiles/*"],
       "@contexts/*": ["AppFiles/Contexts/*"],
-      "@images/*": ["images/*"],
+      "@Images/*": ["Images/*"],
       "@styles/*": ["styles/*"],
-      "@utilities/*": ["utilities/*"]
+      "@Utils/*": ["Utils/*"]
     }
   },
   "include": ["src"]

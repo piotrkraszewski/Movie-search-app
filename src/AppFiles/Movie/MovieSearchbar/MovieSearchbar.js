@@ -5,7 +5,7 @@ import ShowHideQuickSearchHook from '../../../Hooks/SearchbarHooks/useShowHideQu
 import GotoOtherRoutesHooks from '../../../Hooks/SearchbarHooks/useGotoOtherRoutes'
 import MovieSearchbarPC from './Results/MovieSearchbarPC'
 import MovieSearchbarMobile from './Results/MovieSearchbarMobile'
-import TMDBLogo from 'images/tmdb.svg'
+import TMDBLogo from 'Images/tmdb.svg'
 import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
 
 

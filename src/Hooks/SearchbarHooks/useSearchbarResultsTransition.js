@@ -4,10 +4,11 @@ import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function SearchbarResultsTransitionWraper ({render}) {
+export default function UseSearchbarResultsTransition (Component) {
   const { showQuickSearchRes } = useContext(MovieSearchbarContext)
   const { suggestions } = useContext(AppContext)
 
+  console.log('helo')
   return (
   <AnimatePresence exitBeforeEnter>
     <motion.div
@@ -17,7 +18,7 @@ export default function SearchbarResultsTransitionWraper ({render}) {
       exit={{ opacity: 0 }}
       transition={{ duration: QUICK_SEARCH_TRANSITION, ease: 'easeInOut' }}
     >
-      {render()}
+      {Component}
     </motion.div>
   </AnimatePresence>
   )

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import closeImg  from 'images/close.svg'
+import closeImg  from 'Images/close.svg'
 import {DebounceInput} from 'react-debounce-input';
 
 export default function Searchbar(props) {
