@@ -8,7 +8,6 @@ export default function UseSearchbarResultsTransition (Component) {
   const { showQuickSearchRes } = useContext(MovieSearchbarContext)
   const { suggestions } = useContext(AppContext)
 
-  console.log('helo')
   return (
   <AnimatePresence exitBeforeEnter>
     <motion.div
