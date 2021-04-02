@@ -1,5 +1,4 @@
 import 'styles/main.scss'
-import { isMobile } from "react-device-detect"
 import KeysPressedInSearchbarHooks from '../../../Hooks/SearchbarHooks/useKeysPressedInSearchbar'
 import ShowHideQuickSearchHook from '../../../Hooks/SearchbarHooks/useShowHideQuickSearch'
 import GotoOtherRoutesHooks from '../../../Hooks/SearchbarHooks/useGotoOtherRoutes'

@@ -16,7 +16,6 @@ export default function MovieSearchbarPCResults() {
   const displayedSuggestions = useCreateArrayToDisplayAndFadeout(suggestions, NUM_OF_DISP_RES_PC, 800)
 
 
-  console.log(indexOfHighlightedMovie)
   return (
     <ul 
       className={'searchbar_ul ' + 
