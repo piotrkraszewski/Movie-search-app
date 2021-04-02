@@ -1,22 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 import './AppBackground.scss'
 
 
 export default function AppBackground({fetchImg, fallbackImg}) {
-  const [width, setWidth] = useState(window.innerWidth)
-  const [height, setHeight] = useState(window.innerHeight)
+// calucluleta size of 1% of window height and saves it to variable
+// Proposal for new units to fix this 
+// https://github.com/w3c/csswg-drafts/issues/4329
+// Solution from Jonas Sandstedt comment 
+// https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html
+
 
   useEffect(() => {
-    const listener = () => {
-      setWidth(window.innerWidth)
-      setHeight(window.innerHeight)
+    function setDocHeight() {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`)
     }
-
-    window.addEventListener("resize", listener)
+    window.addEventListener('resize', setDocHeight())
+    window.addEventListener('orientationchange', setDocHeight())
 
     return () => {
-      window.removeEventListener("resize", listener)
+      // functions to be called when unmounted. not shure if it does anything here
+      document.removeEventListener('resize', setDocHeight)
+      document.removeEventListener('orientationchange', setDocHeight)
     }
   }, [])
 
@@ -29,9 +34,6 @@ export default function AppBackground({fetchImg, fallbackImg}) {
           className='BgImage'
           src={fetchImg ? fetchImg : fallbackImg}
           key={fetchImg}
-
-          width={width}
-          height={height}
 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, delay :0.2 }}
