@@ -17,7 +17,6 @@ export default function PosterLi({item, index}) {
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
 
 
-
   return (
     <AnimatePresence exitBeforeEnter>
           <motion.li 

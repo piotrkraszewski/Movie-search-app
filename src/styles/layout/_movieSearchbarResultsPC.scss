@@ -4,42 +4,67 @@
   }
 }
 
+@mixin highlight {
+  &:hover, &:active, &:focus, &.active {
+    cursor: pointer;
+    color: $darkGrey;
+    background-color: $limeGreen;
+    border-radius: 5px;
+
+    span{
+      color: $darkGrey !important;
+    }
+  }
+}
+
 .searchbar_ul {
   @include searchbarCommonUl;
-
   background-color: $transparentBackground;
   border-radius: 0px 0px 5px 5px;
 
-
   .searchbar_li {
+    @include highlight();
     padding: 3px 20px;
-    
+
     p {
+      color: $white;
       margin: 0; // suggestion list spacing
       align-self: center;
       font-size: 1.2rem;
     }
   
-    &:hover, &.active, &:focus {
-      cursor: pointer;
-      color: $darkGrey;
-      background-color: $limeGreen;
-      border-radius: 5px;
-  
-      span{
-        color: $darkGrey !important;
-      }
-    }
-  
     img{
-      // maintains aspect ratio
-      // width: 100%;
       max-width:92px;
       height: auto;
     }
   }
 
   .showMore {
+    display: flex;
     text-align: center;
+    justify-content: space-between;
+
+    .showMoreParagraph{
+      width: 100%;
+      margin: 0;
+      
+      @include highlight();
+    }
+
+
+
+    // kod do scalenia w mixin !!!!!
+    .closeImg {
+      max-width: 50px;
+      filter: invert(50%);
+      padding: 0 20px;
+      cursor: pointer;
+
+      &:hover {
+        filter: invert(0%);
+        background-color: $limeGreen;
+        border-radius: 5px;
+      }
+    }
   }
 }

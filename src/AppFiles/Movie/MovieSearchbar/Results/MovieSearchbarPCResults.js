@@ -3,16 +3,20 @@ import 'styles/main.scss'
 import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
-import HighlightTextInQuickSearchHooks from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
+import useHighlightTextInQuickSearch from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'
 import PosterLi from 'ReusableComponents/PosterLi'
+import closeImg  from 'Images/close.svg'
+
 
 export default function MovieSearchbarPCResults() {
-  const { showQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
+  const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
   const { searchbarText, pushToHistory, suggestions } = useContext(AppContext)
-  const {highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
+  const {highlightMovieTextOnHover} = useHighlightTextInQuickSearch()
   const displayedSuggestions = useCreateArrayToDisplayAndFadeout(suggestions, NUM_OF_DISP_RES_PC, 800)
 
+
+  console.log(indexOfHighlightedMovie)
   return (
     <ul 
       className={'searchbar_ul ' + 
@@ -22,14 +26,22 @@ export default function MovieSearchbarPCResults() {
         <PosterLi item={item} index={index} />
       )}
 
-      {<li className={'searchbar_li showMore ' + 
-        (indexOfHighlightedMovie === NUM_OF_DISP_RES_PC && 'active')}
-
-        onMouseEnter={highlightMovieTextOnHover} 
-        onClick={() => pushToHistory(`/`)} 
-        index={NUM_OF_DISP_RES_PC}
-      >
-        <p>show more</p>
+      {<li className='showMore'>
+        <p
+          className={'showMoreParagraph ' + 
+          (indexOfHighlightedMovie === NUM_OF_DISP_RES_PC && 'active')}
+          // index={NUM_OF_DISP_RES_PC}
+          onMouseEnter={highlightMovieTextOnHover}
+          onClick={() => pushToHistory(`/`)} 
+        >
+          show more
+        </p>
+        <img 
+          className='closeImg'
+          src={closeImg} 
+          onClick={() => setShowQuickSearchRes(false)}
+          alt="close search results"
+        />
       </li>}
     </ul>
   )
