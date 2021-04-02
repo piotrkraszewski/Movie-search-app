@@ -55,7 +55,11 @@ export default function App () {
   // implements back button in browser
   // allows to go back to previous movie on moviePage
   useEffect(() => {
-    setMovieID(getMovieIdFromLocationPathname(location))
+    if(location.pathname === '/' && !searchbarText){
+      fetchPopularMoviesOnStartPage()
+    }else{
+      setMovieID(getMovieIdFromLocationPathname(location))
+    }
   }, [location.pathname])
   
 // ==== END Fetch movie page ====
