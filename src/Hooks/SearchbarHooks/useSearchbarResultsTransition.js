@@ -4,6 +4,7 @@ import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 
+
 export default function UseSearchbarResultsTransition (Component) {
   const { showQuickSearchRes } = useContext(MovieSearchbarContext)
   const { suggestions } = useContext(AppContext)

@@ -1,7 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion"
 import ImageFadeIn from "react-image-fade-in";
 import no_image from 'Images/no_image.png'
+import PropTypes from 'prop-types'
 
+StartPageCard.propTypes = {
+  cardData: PropTypes.object, 
+  onClick: PropTypes.func, 
+  className: PropTypes.string, 
+  cardTransitionDuration: PropTypes.number, 
+  imgTransition: PropTypes.number, 
+  imgHeight: PropTypes.string, 
+  imgWidth: PropTypes.string
+}
 
 export default function StartPageCard ({
   cardData, onClick, className, cardTransitionDuration, imgTransition, imgHeight, imgWidth}) {

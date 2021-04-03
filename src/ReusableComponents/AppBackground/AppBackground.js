@@ -1,7 +1,13 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
+import PropTypes from 'prop-types'
 import './AppBackground.scss'
 
+
+AppBackground.propTypes = {
+  fetchImg: PropTypes.string.isRequired, 
+  fallbackImg: PropTypes.string
+}
 
 export default function AppBackground({fetchImg, fallbackImg}) {
 // calucluleta size of 1% of window height and saves it to variable

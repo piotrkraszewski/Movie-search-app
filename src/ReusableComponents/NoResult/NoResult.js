@@ -1,6 +1,14 @@
 import {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import closeImg  from 'Images/close.svg'
 
+
+NoResult.propTypes = {
+  className: PropTypes.string,
+  fadeInConditionsArr: PropTypes.array.isRequired,
+  onClose: PropTypes.func.isRequired,
+  closeBtn: PropTypes.string.isRequired
+}
 
 export default function NoResult({className, fadeInConditionsArr, onClose, closeBtn}) {
   const [fadeIn, setFadeIn] = useState(false)
