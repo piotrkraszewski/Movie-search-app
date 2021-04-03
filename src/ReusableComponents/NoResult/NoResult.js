@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import closeImg  from 'Images/close.svg'
 
+
 export default function NoResult({className, fadeInConditionsArr, onClose, closeBtn}) {
   const [fadeIn, setFadeIn] = useState(false)
 
