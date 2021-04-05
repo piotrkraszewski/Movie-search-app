@@ -1,15 +1,14 @@
 import 'styles/main.scss'
 import menuIcon from 'Images/menu.svg'
-import { Link } from 'react-router-dom'
+import StartPageSearchbar from '../Searchbar/StartPageSearchbar'
 
 
-
-export default function Topbar({ openSidebar, gotoHome, render }) {
+export default function Topbar({ openSidebar, gotoHome }) {
   return (
     <nav className='TopBar'>
       <div className='TopBarContainer'>
 
-        {render()}
+      <StartPageSearchbar/>
 
         <div className='hamburgerIconContainer'>
           <img 
@@ -30,7 +29,8 @@ export default function Topbar({ openSidebar, gotoHome, render }) {
           <li className='NavItem'>
             <div 
               className='NavLink'
-              onClick={{}}>
+              // onClick={{}}
+              >
               Sign Up
             </div>
           </li>

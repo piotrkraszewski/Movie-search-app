@@ -1,7 +1,6 @@
 import { motion } from "framer-motion"
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
-import MovieSearch from './MovieSearchbar/MovieSearchbar'
-import MovieCard from './MovieCard/MovieCard'
+import MovieCard from './MovieCard'
 
 
 export default function MoviePage() {
@@ -12,7 +11,6 @@ export default function MoviePage() {
       exit={{ opacity: 0 }}
       transition={{ duration: PAGE_TRANSITION_TIME }}
     >    
-      <MovieSearch /> 
       <MovieCard />
     </motion.div>
   )
