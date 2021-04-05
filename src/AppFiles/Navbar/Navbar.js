@@ -4,7 +4,7 @@ import { AppContext } from 'AppFiles/Contexts/AppContext'
 import Topbar from './Topbar/Topbar'
 import Sidebar from './Sidebar/Sidebar'
 import {BrowserRouter} from 'react-router-dom'
-
+import StartPageSearchbar from './Searchbar/StartPageSearchbar'
 
 export default function Navbar() {
   const { pushToHistory, fetchPopularMoviesOnStartPage, setAllMoviesData} = useContext(AppContext)
@@ -32,6 +32,7 @@ export default function Navbar() {
       <Topbar
         openSidebar={openSidebar}
         gotoHome={gotoHome}
+        render={() => <StartPageSearchbar/>}
       />
     </BrowserRouter>
   )

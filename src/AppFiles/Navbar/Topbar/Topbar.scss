@@ -1,5 +1,5 @@
 .TopBar{
-  $TopBarHeight: 50px;
+  $TopBarHeight: 40px;
 
   background: $transparentBackground;
   height: $TopBarHeight;
@@ -11,7 +11,8 @@
   position: sticky;
   top: 0;
   z-index: 10;
-
+  white-space: nowrap;
+  
   @media (max-width: 960px) {
     transition: 0.8s all ease;
   }
@@ -69,14 +70,13 @@
       text-align: center;
       padding: 0;
       margin: 0;
-      margin-left: auto;
 
       @media screen and (max-width: 768px) {
         display: none;
       }
 
       .NavItem{
-        height: 80px;
+        width: 100%;
 
         .NavLink {
           color: $white;
@@ -107,8 +107,7 @@
         background: $limeGreenSecond;
         color: #010606;
         border-radius: 50px;
-        white-space: nowrap;
-        padding: 6px 14px;
+        padding: 4px 12px;
         outline: none;
         border: none;
         cursor: pointer;

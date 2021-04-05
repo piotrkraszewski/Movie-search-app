@@ -15,6 +15,7 @@
 //Navbar
 @import '../AppFiles/Navbar/Sidebar/Sidebar.scss';
 @import '../AppFiles/Navbar/Topbar/Topbar.scss';
+@import '../AppFiles/Navbar/Searchbar/StartPageSearchbar.scss';
 
 
 @import './layout/app';
@@ -22,6 +23,5 @@
 @import './layout/movieSearchbarResultsPC';
 @import './layout/movieSearchbarResultsMobile';
 @import './layout/startPageCards';
-@import './layout/startPageSearchbar';
 
 @import './layout/footer';

@@ -5,15 +5,11 @@
     @include containerSettings(1400px);
   
     .title{
-      margin-top: 80px;
-      margin-bottom: 8px;
+      margin: 0;
+      margin-top: calc(min(15px, 1%));
       color: $white;
       font-size: large;
       text-transform: uppercase;
-    
-      @media (max-width: 575px){
-        margin-top: 55px;
-      }
     }
   
     .smallCard{

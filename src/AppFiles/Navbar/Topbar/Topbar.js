@@ -1,20 +1,16 @@
 import 'styles/main.scss'
 import menuIcon from 'Images/menu.svg'
-import TMDBLogo from 'Images/tmdb.svg'
 import { Link } from 'react-router-dom'
 
 
-export default function Topbar({ openSidebar, gotoHome }) {
+
+export default function Topbar({ openSidebar, gotoHome, render }) {
   return (
     <nav className='TopBar'>
       <div className='TopBarContainer'>
-        <Link className='NavLogoContainer' to='/'>
-          <img 
-            src={TMDBLogo} 
-            className='NavLogo'
-            alt='The Movie Database Logo' 
-          />
-        </Link>
+
+        {render()}
+
         <div className='hamburgerIconContainer'>
           <img 
             className='hamburgerIcon'
@@ -32,16 +28,20 @@ export default function Topbar({ openSidebar, gotoHome }) {
             </div>
           </li>
           <li className='NavItem'>
-            <Link className='NavLink' to='/signup'>Sign Up</Link>
+            <div 
+              className='NavLink'
+              onClick={{}}>
+              Sign Up
+            </div>
           </li>
         </ul>
         <div className='NavBtn'>
-          <Link 
+          <div 
             className='NavBtnLink' 
             to='/signin'
           >
             Sign In
-          </Link>
+          </div>
         </div>
       </div>
     </nav>

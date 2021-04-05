@@ -1,5 +1,4 @@
 import StartPageCard from './StartPageCards'
-import StartPageSearch from './StartPageSearchbar'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import { motion } from "framer-motion"
 
@@ -11,7 +10,6 @@ export default function StartPage() {
       exit={{ opacity: 0 }}
       transition={{ duration: PAGE_TRANSITION_TIME }}
     > 
-      <StartPageSearch />
       <StartPageCard />
     </motion.div> 
   )

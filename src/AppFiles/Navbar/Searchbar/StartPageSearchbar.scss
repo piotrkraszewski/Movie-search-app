@@ -1,24 +1,17 @@
 .startPageSearchbar {
-  @include displayFixedAndCenter;
-  margin: 20px 0;
+  width: 100%;
   z-index: 2;
-  background-color: $transparentBackground;
   border-radius: 5px;
+  margin-right: 15px;
 
-  @media (max-width: 575px) {
-    margin: 0;
-  }
-  
   form{
     display: flex;
     border-bottom: solid 1px $limeGreen;
-    width: 99%; 
-    transform: translate(0.5%);
+    height: 98%;
 
     input{
       @include searchbar;
       width: 97%;
-      height: 40px;
     }
 
     img{
