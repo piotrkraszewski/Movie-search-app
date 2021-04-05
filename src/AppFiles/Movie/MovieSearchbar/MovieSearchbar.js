@@ -1,16 +1,16 @@
 import 'styles/main.scss'
-import KeysPressedInSearchbarHooks from '../../../Hooks/SearchbarHooks/useKeysPressedInSearchbar'
-import ShowHideQuickSearchHook from '../../../Hooks/SearchbarHooks/useShowHideQuickSearch'
-import GotoOtherRoutesHooks from '../../../Hooks/SearchbarHooks/useGotoOtherRoutes'
+import useKeysPressedInSearchbar from 'Hooks/SearchbarHooks/useKeysPressedInSearchbar'
+import useShowHideQuickSearch from 'Hooks/SearchbarHooks/useShowHideQuickSearch'
+import useGotoOtherRoutes from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
 import MovieSearchbarResults from './Results/MovieSearchbarResults'
 import TMDBLogo from 'Images/tmdb.svg'
 import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
 
 
 export default function MovieSearchbar() {
-  const enterKeyInSearchbar = KeysPressedInSearchbarHooks()
-  const {node, OnSearchBarClicked} = ShowHideQuickSearchHook()
-  const {gotoStarPage} = GotoOtherRoutesHooks()
+  const enterKeyInSearchbar = useKeysPressedInSearchbar()
+  const {node, OnSearchBarClicked} = useShowHideQuickSearch()
+  const {gotoStarPage} = useGotoOtherRoutes()
 
   return (
     <div className='movieSearchBar'>

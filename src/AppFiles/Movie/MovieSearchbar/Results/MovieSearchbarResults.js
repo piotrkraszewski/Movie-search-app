@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import NoResult from 'ReusableComponents/NoResult/NoResult'
 import ResultsMobile from './ResultsMobile'
 import ResultsPC from './ResultsPC'
@@ -11,8 +10,7 @@ import { isMobile } from "react-device-detect"
 
 
 export default function MovieSearchbarResults() {
-  const { showQuickSearchRes, setShowQuickSearchRes} = useContext(MovieSearchbarContext)
-  const { searchbarText, suggestions } = useContext(AppContext)
+  const { searchbarText, suggestions, showQuickSearchRes, setShowQuickSearchRes } = useContext(AppContext)
 
   const showNoResults = useDelayShowNoResults(1000, searchbarText)
   

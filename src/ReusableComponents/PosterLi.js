@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import 'styles/main.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import HighlightTextInQuickSearchHooks from '../Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import GotoOtherRoutesHooks from '../Hooks/SearchbarHooks/useGotoOtherRoutes'
@@ -17,8 +16,7 @@ PosterLi.propTypes = {
 }
 
 export default function PosterLi({item, index}) {
-  const { indexOfHighlightedMovie } = useContext(MovieSearchbarContext)
-  const { searchbarText } = useContext(AppContext)
+  const { searchbarText, indexOfHighlightedMovie} = useContext(AppContext)
 
   const {highligthText, highlightMovieTextOnHover} = HighlightTextInQuickSearchHooks()
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()

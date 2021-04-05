@@ -1,4 +1,3 @@
-
 // bootstrap
 // $icon-font-path: "/fonts/bootstrap/";
 @import '../../node_modules/bootstrap/scss/bootstrap.scss'; 
@@ -12,6 +11,10 @@
 //reusableComponents
 @import '../ReusableComponents/NoResult/noResult';
 @import '../ReusableComponents/Searchbar/movieSearchbar';
+
+//Navbar
+@import '../AppFiles/Navbar/Sidebar/Sidebar.scss';
+@import '../AppFiles/Navbar/Topbar/Topbar.scss';
 
 
 @import './layout/app';

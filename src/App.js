@@ -14,6 +14,8 @@ import StartPage from 'AppFiles/StartPage/StartPage'
 import MoviePage from 'AppFiles/Movie/MoviePage'
 import { isMobile } from "react-device-detect"
 import BgGreen from 'Images/BgGreen.jpg'
+import Navbar from 'AppFiles/Navbar/Navbar'
+
 
 export default function App () {
   const location = useLocation()  // key to app routes
@@ -93,6 +95,10 @@ export default function App () {
       setDispPostersNum(9)
     }, 1000) // adds 3 more posters
   }
+
+  // State of MovieSeachbar
+  const [showQuickSearchRes, setShowQuickSearchRes] = useState(false)
+  const [indexOfHighlightedMovie, setIndexOfHighlightedMovie] = useState()
   
   // ==== END Search state and functions ====
 
@@ -141,9 +147,10 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
           <AppScroolbar>
+          <Navbar/>
             <AnimatePresence exitBeforeEnter>
               <Switch 
                 location={location} 

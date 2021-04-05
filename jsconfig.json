@@ -6,7 +6,8 @@
       "@contexts/*": ["AppFiles/Contexts/*"],
       "@Images/*": ["Images/*"],
       "@styles/*": ["styles/*"],
-      "@Utils/*": ["Utils/*"]
+      "@Utils/*": ["Utils/*"],
+      "@Hooks/*": ["Hooks/*"]
     }
   },
   "include": ["src"]

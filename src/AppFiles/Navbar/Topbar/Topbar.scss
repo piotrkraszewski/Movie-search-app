@@ -1,0 +1,127 @@
+.TopBar{
+  $TopBarHeight: 50px;
+
+  background: $transparentBackground;
+  height: $TopBarHeight;
+  /* margin-top: -80px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  @media (max-width: 960px) {
+    transition: 0.8s all ease;
+  }
+
+
+  .TopBarContainer {
+    display: flex;
+    justify-content: space-between;
+    height: $TopBarHeight;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+
+    .NavLogoContainer {
+      display: flex;
+
+      .NavLogo{
+        padding-left: 25px;
+        width: 115px;
+        align-items: center;
+        display: block;
+        &:hover{
+          cursor: pointer;
+        }
+  
+        @media (min-width: 575px) {
+          max-width: 140px;
+          display: inline-block;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .hamburgerIconContainer{
+      display: flex;
+      
+      .hamburgerIcon {
+        display: block;
+        align-items: center;
+        width: 30px;
+        cursor: pointer;
+        filter: invert(90%);
+        margin-right: 25px;
+        
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }  
+    }
+
+    .NavMenu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      margin-left: auto;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+
+      .NavItem{
+        height: 80px;
+
+        .NavLink {
+          color: $white;
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          padding: 0 1rem;
+          height: 100%;
+          cursor: pointer;
+
+          &.active {
+            border-bottom: 3px solid $limeGreenSecond;
+          }
+        }
+      }
+    }
+
+    .NavBtn {
+      display: flex;
+      align-items: center;
+      margin-right: 25px;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+
+      .NavBtnLink {
+        background: $limeGreenSecond;
+        color: #010606;
+        border-radius: 50px;
+        white-space: nowrap;
+        padding: 6px 14px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        text-decoration: none;
+        
+
+        &:hover {
+          transition: all 0.2s ease-in-out;
+          background: #fff;
+          color: #010606;
+        }
+      }
+    }
+  }
+}

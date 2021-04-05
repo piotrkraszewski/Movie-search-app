@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
+import { AppContext } from 'AppFiles/Contexts/AppContext'
 
 
 export default function HighlightTextInQuickSearchHooks() {
-  const { indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
+  const { indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(AppContext)
 
   function highligthText(text, highlight, index) {
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'))

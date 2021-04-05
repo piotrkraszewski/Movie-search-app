@@ -1,13 +1,12 @@
 import { useContext } from 'react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import GotoOtherRoutesHooks from './useGotoOtherRoutes'
 
+
 export default function KeysPressedInSearchbarHooks() {
-  const { suggestions, pushToHistory} = useContext(AppContext)
-  const { showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie } = useContext(MovieSearchbarContext)
+  const { suggestions, pushToHistory, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie} = useContext(AppContext)
 
   const {selectedMovieInQuickSearch} = GotoOtherRoutesHooks()
   

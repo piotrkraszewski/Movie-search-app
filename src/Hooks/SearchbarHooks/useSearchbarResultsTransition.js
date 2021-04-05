@@ -1,13 +1,11 @@
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 
 
 export default function UseSearchbarResultsTransition (Component) {
-  const { showQuickSearchRes } = useContext(MovieSearchbarContext)
-  const { suggestions } = useContext(AppContext)
+  const { suggestions, showQuickSearchRes } = useContext(AppContext)
 
   return (
   <AnimatePresence exitBeforeEnter>

@@ -1,10 +1,8 @@
 import { useEffect, useContext, useRef } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { MovieSearchbarContext } from 'AppFiles/Contexts/MovieSearchbarContext'
 
 export default function ShowHideQuickSearchHook() {
-  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, showResInSearchBar } = useContext(AppContext)
-  const { setShowQuickSearchRes } = useContext(MovieSearchbarContext)
+  const { searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, showResInSearchBar, setShowQuickSearchRes } = useContext(AppContext)
   const node = useRef()
 
   function hideOnOutsideClick(e) {
