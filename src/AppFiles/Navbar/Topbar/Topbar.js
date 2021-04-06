@@ -1,6 +1,6 @@
 import 'styles/main.scss'
 import menuIcon from 'Images/menu.svg'
-import StartPageSearchbar from '../Searchbar/NavSearchbar'
+import NavSearchbar from '../Searchbar/NavSearchbar'
 
 
 export default function Topbar({ openSidebar, gotoHome }) {
@@ -8,7 +8,7 @@ export default function Topbar({ openSidebar, gotoHome }) {
     <nav className='TopBar'>
       <div className='TopBarContainer'>
 
-      <StartPageSearchbar/>
+      <NavSearchbar/>
 
         <div className='hamburgerIconContainer'>
           <img 

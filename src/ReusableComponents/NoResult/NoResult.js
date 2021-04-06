@@ -20,7 +20,7 @@ export default function NoResult({className, fadeInConditionsArr, onClose, close
   }, [fadeInConditionsArr])
 
   return (
-    <div className={`noResult ${className} ` + (fadeIn && 'fadeIn')}>
+    <div className={`NoResult ${className} ` + (fadeIn && 'fadeIn')}>
         <p>no result</p>
 
         {closeBtn === 'btn' &&

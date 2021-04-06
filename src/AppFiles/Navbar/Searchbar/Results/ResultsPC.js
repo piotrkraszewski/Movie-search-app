@@ -19,10 +19,9 @@ export default function ResultsPC() {
       className={'ResultsPC ' + 
       (showQuickSearchRes && searchbarText && 'fadeIn')} 
     >
-      {displayedSuggestions.map((item, index) => 
-        <PosterLi item={item} index={index} />
-      )}
-
+        {displayedSuggestions.map((item, index) => 
+          <PosterLi item={item} index={index} />
+        )}
       {<li className='showMore'>
         <p
           className={'showMoreParagraph ' + 

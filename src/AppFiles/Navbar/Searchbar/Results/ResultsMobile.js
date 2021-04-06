@@ -20,7 +20,7 @@ export default function ResultsMobile() {
       <div className='searchbar_div'>
         {displayedSuggestions.map(item => 
           <PosterCard 
-            className='smallCard col-4'
+            className='col-4'
             cardData={item} 
             onClick={selectedMovieInQuickSearch}
             cardTransitionDuration={QUICK_SEARCH_TRANSITION}

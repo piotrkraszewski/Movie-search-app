@@ -7,7 +7,7 @@ import { nestedDataToString } from './MoviePageFunctions'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import no_image from 'Images/no_image.png'
 
-export default function MovieInfo () {
+export default function MovieCard () {
   const { movieData } = useContext(AppContext)
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
@@ -19,7 +19,7 @@ export default function MovieInfo () {
   return (
     /* Transition between this and other pages */
     <motion.div 
-      className='movieCard'
+      className='MovieCard'
 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, delay :0.2}}

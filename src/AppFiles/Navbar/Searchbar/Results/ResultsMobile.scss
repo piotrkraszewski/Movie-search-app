@@ -2,54 +2,26 @@
   @include searchbarCommonUl;
   background-color: $suggestionsLayoutBackground;
   border: 2px solid $limeGreenDarker;
+  // border-radius: 0 0 $posterRaious $posterRaious;
   border-radius: $posterRaious;
-  
-  //moves search bar over white line
-  margin: 0 -7px;
-  margin-top: -2px;
+  margin-top: -1px;
+  margin-right: 12px;
+  width: calc(100vw - 14px);
+
+  @media (min-width: 650px) {
+    width: 100%;
+  }
 
   .searchbar_div{
     display: flex;
-    
-    .smallCard{
-      padding: calc(min(15px, 1%));
-      
-      div {
-        @include equalColumnHeight;
-        @include smallCardDiv;
-        background-color: rgb(29,29,29);
-        
-
-        &:hover {
-          @include smallCardHoverAnimation;
-        }
-    
-        img {
-          border-radius: $posterRaious $posterRaious 0px 0px;
-
-          // maintains aspect ratio
-          max-width:100%;
-          height: auto;
-        }
-          p {
-            @include hideToLongTitle;
-            @include smallCardParagraphs;
-            padding: 3px;
-          }
-    
-        @media (max-width: 475px) {
-          font-size: 0.75em;
-        }
-      }
-    }
   }
 
   .searchbar_li {
+    display: flex;
+    justify-content: space-between;
     padding: 5px;
     text-align: center;
     font-size: 1.1rem;
-    display: flex;
-    justify-content: space-between;
 
     .showMoreBtn {
       width: 76.5%;

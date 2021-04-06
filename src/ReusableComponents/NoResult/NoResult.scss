@@ -1,7 +1,5 @@
-.noResult{
+.NoResult{
   display: flex;
-  text-align: center;
-  justify-content: space-between;
   opacity: 0;
 
   p {
@@ -31,6 +29,7 @@
   }
 
   .closeImg {
+    width: 100%;
     max-width: 10px;
     filter: invert(50%);
     margin: 0 10px;

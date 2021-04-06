@@ -1,10 +1,10 @@
 .ResultsPC {
   @include searchbarCommonUl;
   background-color: $transparentBackground;
-  border-radius: 0px 0px 5px 5px;
-
+  
   .showMore {
     display: flex;
+    width: 100%;
     text-align: center;
     justify-content: space-between;
 

@@ -1,9 +1,9 @@
 .TopBar{
   $TopBarHeight: 40px;
+  $menuBreakePoint: 768px;
 
   background: $transparentBackground;
   height: $TopBarHeight;
-  /* margin-top: -80px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,47 +20,44 @@
 
   .TopBarContainer {
     display: flex;
-    justify-content: space-between;
     height: $TopBarHeight;
     z-index: 1;
     width: 100%;
     max-width: 1100px;
 
-    .NavLogoContainer {
-      display: flex;
+    // .NavLogoContainer {
+    //   display: flex;
 
-      .NavLogo{
-        padding-left: 25px;
-        width: 115px;
-        align-items: center;
-        display: block;
-        &:hover{
-          cursor: pointer;
-        }
+    //   .NavLogo{
+    //     padding-left: 25px;
+    //     width: 115px;
+    //     align-items: center;
+    //     display: block;
+    //     &:hover{
+    //       cursor: pointer;
+    //     }
   
-        @media (min-width: 575px) {
-          max-width: 140px;
-          display: inline-block;
-          margin-bottom: 0;
-        }
-      }
-    }
+    //     @media (min-width: 575px) {
+    //       max-width: 140px;
+    //       display: inline-block;
+    //       margin-bottom: 0;
+    //     }
+    //   }
+    // }
 
     .hamburgerIconContainer{
       display: flex;
+      width: 10%;
       
+      padding-left: 3%;
       .hamburgerIcon {
-        display: block;
-        align-items: center;
-        width: 30px;
+        max-width: 30px;
         cursor: pointer;
         filter: invert(90%);
-        margin-right: 25px;
-        
-        @media (min-width: 768px) {
-          display: none;
-        }
       }  
+      @media (min-width: $menuBreakePoint) {
+        display: none;
+      }
     }
 
     .NavMenu {
@@ -71,7 +68,7 @@
       padding: 0;
       margin: 0;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: calc(#{$menuBreakePoint} - 1px)) {
         display: none;
       }
 
@@ -99,7 +96,7 @@
       align-items: center;
       margin-right: 25px;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: calc(#{$menuBreakePoint} - 1px)) {
         display: none;
       }
 

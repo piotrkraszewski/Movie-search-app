@@ -1,5 +1,8 @@
 .SearchbarResults{
+  z-index: 10;
+  
   .fadeIn {
+    z-index: 10;
     opacity: 1;
   }
 }
