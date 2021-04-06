@@ -5,7 +5,7 @@ import './AppBackground.scss'
 
 
 AppBackground.propTypes = {
-  fetchImg: PropTypes.string.isRequired, 
+  fetchImg: PropTypes.string, 
   fallbackImg: PropTypes.string
 }
 

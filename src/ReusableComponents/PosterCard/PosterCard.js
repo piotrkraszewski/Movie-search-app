@@ -3,7 +3,7 @@ import ImageFadeIn from "react-image-fade-in";
 import no_image from 'Images/no_image.png'
 import PropTypes from 'prop-types'
 
-StartPageCard.propTypes = {
+PosterCard.propTypes = {
   cardData: PropTypes.object, 
   onClick: PropTypes.func, 
   className: PropTypes.string, 
@@ -13,13 +13,13 @@ StartPageCard.propTypes = {
   imgWidth: PropTypes.string
 }
 
-export default function StartPageCard ({
+export default function PosterCard ({
   cardData, onClick, className, cardTransitionDuration, imgTransition, imgHeight, imgWidth}) {
  
   return (
   <AnimatePresence exitBeforeEnter>
     <motion.div
-      className={className}
+      className={`PosterCard ${className}`}
       onClick={() => onClick(cardData.id)}
 
       key={cardData.id}

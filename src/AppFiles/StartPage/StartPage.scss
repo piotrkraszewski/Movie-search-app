@@ -1,0 +1,15 @@
+.StartPageCards{
+  @include pageSettings;
+
+  .Container{
+    @include containerSettings(1400px);
+  
+    .title{
+      margin: 0;
+      margin-top: calc(min(15px, 1%));
+      color: $white;
+      font-size: large;
+      text-transform: uppercase;
+    }
+  }
+}

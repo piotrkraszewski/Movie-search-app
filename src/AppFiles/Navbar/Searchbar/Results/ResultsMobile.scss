@@ -1,24 +1,4 @@
-.searchBarResMobile{
-  .fadeIn {
-    opacity: 1;
-  }
-}
-
-.showMoreClose{
-  width: 22%;
-  padding: 2px;
-  margin: 0; // suggestion list spacing
-  background-color: $darkGrey;
-  border-radius: 10px;
-  text-align: center;
-  
-  &:hover, &.active, &:focus {
-    cursor: pointer;
-    background-color: $blackGrey;
-  }
-}
-
-.searchbar_container {
+.ResultsMobile {
   @include searchbarCommonUl;
   background-color: $suggestionsLayoutBackground;
   border: 2px solid $limeGreenDarker;
@@ -81,6 +61,20 @@
       &:hover, &.active, &:focus {
         cursor: pointer;
         background-color: $limeGreenBlack;
+      }
+    }
+
+    .showMoreClose{
+      width: 22%;
+      padding: 2px;
+      margin: 0; // suggestion list spacing
+      background-color: $darkGrey;
+      border-radius: 10px;
+      text-align: center;
+      
+      &:hover, &.active, &:focus {
+        cursor: pointer;
+        background-color: $blackGrey;
       }
     }
   }

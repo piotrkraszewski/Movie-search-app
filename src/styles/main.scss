@@ -9,19 +9,21 @@
 
 
 //reusableComponents
-@import '../ReusableComponents/NoResult/noResult';
-@import '../ReusableComponents/Searchbar/movieSearchbar';
+@import '../ReusableComponents/NoResult/NoResult';
+@import '../ReusableComponents/Searchbar/Searchbar';
+@import '../ReusableComponents/PosterLi/PosterLi.scss';
+@import '../ReusableComponents/PosterCard/PosterCard.scss';
 
 //Navbar
 @import '../AppFiles/Navbar/Sidebar/Sidebar.scss';
 @import '../AppFiles/Navbar/Topbar/Topbar.scss';
-@import '../AppFiles/Navbar/Searchbar/StartPageSearchbar.scss';
+@import '../AppFiles/Navbar/Searchbar/NavSearchbar.scss';
+@import '../AppFiles/Navbar/Searchbar/Results/ResultsPC.scss';
+@import '../AppFiles/Navbar/Searchbar/Results/ResultsMobile.scss';
+@import '../AppFiles/Navbar/Searchbar/Results/SearchbarResults.scss';
+@import '../AppFiles/Movie/MoviePage';
+@import '../AppFiles/StartPage/StartPage.scss';
 
 
 @import './layout/app';
-@import './layout/movieCard';
-@import './layout/movieSearchbarResultsPC';
-@import './layout/movieSearchbarResultsMobile';
-@import './layout/startPageCards';
-
 @import './layout/footer';

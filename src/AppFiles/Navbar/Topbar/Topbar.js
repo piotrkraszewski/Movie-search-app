@@ -1,6 +1,6 @@
 import 'styles/main.scss'
 import menuIcon from 'Images/menu.svg'
-import StartPageSearchbar from '../Searchbar/StartPageSearchbar'
+import StartPageSearchbar from '../Searchbar/NavSearchbar'
 
 
 export default function Topbar({ openSidebar, gotoHome }) {

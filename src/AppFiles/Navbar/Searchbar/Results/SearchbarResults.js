@@ -15,13 +15,13 @@ export default function MovieSearchbarResults() {
   const showNoResults = useDelayShowNoResults(1000, searchbarText)
   
   return (
-  <div className='searchBarResMobile'>
+  <div className='SearchbarResults'>
     {useSearchbarResultsTransition(
       <>
         {suggestions.length > 0 && showQuickSearchRes
         ? isMobile ? <ResultsMobile/> : <ResultsPC/>
         : <NoResult 
-            className={isMobile ? 'searchbar_container' : 'searchbar_ul'}
+            className={isMobile ? 'ResultsMobile' : 'ResultsPC'}
             fadeInConditionsArr={[showQuickSearchRes, searchbarText, showNoResults]}
             onClose={setShowQuickSearchRes}
             closeBtn={isMobile ? 'btn' : 'img'}

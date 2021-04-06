@@ -1,0 +1,32 @@
+.ResultsPC {
+  @include searchbarCommonUl;
+  background-color: $transparentBackground;
+  border-radius: 0px 0px 5px 5px;
+
+  .showMore {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+
+    .showMoreParagraph{
+      width: 100%;
+      margin: 0;
+      
+      @include ResultsPcHighlight();
+    }
+
+    // kod do scalenia w mixin !!!!!
+    .closeImg {
+      max-width: 50px;
+      filter: invert(50%);
+      padding: 0 20px;
+      cursor: pointer;
+
+      &:hover {
+        filter: invert(0%);
+        background-color: $limeGreen;
+        border-radius: 5px;
+      }
+    }
+  }
+}

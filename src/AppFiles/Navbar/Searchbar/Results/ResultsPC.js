@@ -4,11 +4,11 @@ import 'styles/main.scss'
 import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import useHighlightTextInQuickSearch from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'
-import PosterLi from 'ReusableComponents/PosterLi'
+import PosterLi from 'ReusableComponents/PosterLi/PosterLi'
 import closeImg  from 'Images/close.svg'
 
 
-export default function MovieSearchbarPCResults() {
+export default function ResultsPC() {
   const { searchbarText, pushToHistory, suggestions, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie  } = useContext(AppContext)
   const {highlightMovieTextOnHover} = useHighlightTextInQuickSearch()
   const displayedSuggestions = useCreateArrayToDisplayAndFadeout(suggestions, NUM_OF_DISP_RES_PC, 800)
@@ -16,7 +16,7 @@ export default function MovieSearchbarPCResults() {
 
   return (
     <ul 
-      className={'searchbar_ul ' + 
+      className={'ResultsPC ' + 
       (showQuickSearchRes && searchbarText && 'fadeIn')} 
     >
       {displayedSuggestions.map((item, index) => 

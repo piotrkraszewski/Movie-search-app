@@ -4,23 +4,23 @@ import { AppContext } from 'AppFiles/Contexts/AppContext'
 import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
 import useKeysPressedInSearchbar from 'Hooks/SearchbarHooks/useKeysPressedInSearchbar'
 import useShowHideQuickSearch from 'Hooks/SearchbarHooks/useShowHideQuickSearch'
-import MovieSearchbarResults from './Results/MovieSearchbarResults'
+import SearchbarResults from './Results/SearchbarResults'
 
 
-export default function StartPageSearch() {
+export default function NavSearchbar() {
   const { location } = useContext(AppContext)
   const enterKeyInSearchbar = useKeysPressedInSearchbar()
   const {node, OnSearchBarClicked} = useShowHideQuickSearch()
 
 
   return (
-    <div className='startPageSearchbar' ref={node}>
+    <div className='NavSearchbar' ref={node}>
       <Searchbar
         onClick={OnSearchBarClicked} 
         onKeyPress={enterKeyInSearchbar}
       />
       {location.pathname.includes('movie') 
-      && <MovieSearchbarResults/>}
+      && <SearchbarResults/>}
     </div>
   )
 }

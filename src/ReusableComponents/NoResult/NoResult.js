@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import 'styles/main.scss'
 import PropTypes from 'prop-types'
 import closeImg  from 'Images/close.svg'
 

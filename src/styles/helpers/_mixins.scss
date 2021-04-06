@@ -68,3 +68,16 @@
   flex-direction: column;
   height: 100%;
 }
+
+@mixin ResultsPcHighlight {
+  &:hover, &:active, &:focus, &.active {
+    cursor: pointer;
+    color: $darkGrey;
+    background-color: $limeGreen;
+    border-radius: 5px;
+
+    span{
+      color: $darkGrey !important;
+    }
+  }
+}

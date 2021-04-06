@@ -1,0 +1,16 @@
+.PosterLi {
+  @include ResultsPcHighlight;
+  padding: 3px 20px;
+
+  img{
+    max-width:92px;
+    height: auto;
+  }
+
+  p {
+    color: $white;
+    margin: 0; // suggestion list spacing
+    align-self: center;
+    font-size: 1.2rem;
+  }
+}
