@@ -1,9 +1,10 @@
 import 'styles/main.scss'
 import menuIcon from 'Images/menu.svg'
 import NavSearchbar from '../Searchbar/NavSearchbar'
+import { Link } from 'react-router-dom'
 
 
-export default function Topbar({ openSidebar, gotoHome }) {
+export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin }) {
   return (
     <nav className='TopBar'>
       <div className='TopBarContainer'>
@@ -29,18 +30,18 @@ export default function Topbar({ openSidebar, gotoHome }) {
           <li className='NavItem'>
             <div 
               className='NavLink'
-              // onClick={{}}
+              onClick={() => gotoRegister()}
               >
-              Sign Up
+              Register
             </div>
           </li>
         </ul>
         <div className='NavBtn'>
           <div 
             className='NavBtnLink' 
-            to='/signin'
+            onClick={() => gotoLogin()}
           >
-            Sign In
+            login
           </div>
         </div>
       </div>

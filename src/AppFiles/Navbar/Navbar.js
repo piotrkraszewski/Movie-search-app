@@ -7,7 +7,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 
 export default function Navbar() {
-  const { pushToHistory, fetchPopularMoviesOnStartPage, setAllMoviesData} = useContext(AppContext)
+  const { pushToHistory, fetchPopularMoviesOnStartPage, setAllMoviesData,} = useContext(AppContext)
 
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -22,16 +22,30 @@ export default function Navbar() {
     setIsSidebarOpen(false)
   }
 
+  const gotoRegister = () => {
+    pushToHistory(`/register`)
+    setIsSidebarOpen(false)
+  }
+
+  const gotoLogin = () => {
+    pushToHistory(`/login`)
+    setIsSidebarOpen(false)
+  }
+
   return (
     <BrowserRouter>
       <Sidebar 
         isOpen={isSidebarOpen}
         close={closeSidebar}
         gotoHome={gotoHome}
+        gotoRegister={gotoRegister}
+        gotoLogin={gotoLogin}
       />
       <Topbar
         openSidebar={openSidebar}
         gotoHome={gotoHome}
+        gotoRegister={gotoRegister}
+        gotoLogin={gotoLogin}
       />
     </BrowserRouter>
   )

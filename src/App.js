@@ -15,6 +15,8 @@ import MoviePage from 'AppFiles/Movie/MoviePage'
 import { isMobile } from "react-device-detect"
 import BgGreen from 'Images/BgGreen.jpg'
 import Navbar from 'AppFiles/Navbar/Navbar'
+import Register from 'AppFiles/Forms/Register/Register'
+import Login from 'AppFiles/Forms/Login/Login'
 
 
 export default function App () {
@@ -158,6 +160,8 @@ export default function App () {
               >
                 <Route exact path='/' render={() => <StartPage/>} />
                 <Route exact path={`/movie/:${movieID}`} render={() => <MoviePage/>} />
+                <Route exact path={`/register`} render={() => <Register/>} />
+                <Route exact path={`/login`} render={() => <Login/>} />
               </Switch>
             </AnimatePresence>
           </AppScroolbar>
