@@ -28,6 +28,8 @@
 
       input {
         @include searchbar;
+        padding-left: 10px;
+        padding-bottom: 5px;
         width: 100%;
       }
 

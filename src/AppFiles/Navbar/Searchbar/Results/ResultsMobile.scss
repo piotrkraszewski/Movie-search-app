@@ -4,10 +4,10 @@
   border: 2px solid $limeGreenDarker;
   // border-radius: 0 0 $posterRaious $posterRaious;
   border-radius: $posterRaious;
-  margin-top: -1px;
+  margin-top: 1px;
   margin-right: 12px;
   width: calc(100vw - 14px);
-
+  
   @media (min-width: 650px) {
     width: 100%;
   }

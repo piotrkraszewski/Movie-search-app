@@ -17,6 +17,10 @@
     transition: 0.8s all ease;
   }
 
+  @media (max-width: 1024px) {
+    border-bottom: solid 1px rgb(49, 49, 49);
+  }
+
 
   .TopBarContainer {
     display: flex;

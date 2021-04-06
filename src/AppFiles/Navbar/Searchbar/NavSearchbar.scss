@@ -5,12 +5,17 @@
 
   form{
     display: flex;
-    border-bottom: solid 1px $limeGreen;
     height: 98%;
+    
 
+    @media (min-width: 1024px) {
+      border-bottom: solid 1px $limeGreen;
+    }
+    
     input{
       @include searchbar;
       width: 97%;
+        padding-left: 10px
     }
 
     img{

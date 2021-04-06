@@ -5,7 +5,6 @@ import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
 import useKeysPressedInSearchbar from 'Hooks/SearchbarHooks/useKeysPressedInSearchbar'
 import useShowHideQuickSearch from 'Hooks/SearchbarHooks/useShowHideQuickSearch'
 import SearchbarResults from './Results/SearchbarResults'
-import { isMobile } from "react-device-detect"
 
 
 export default function NavSearchbar() {
