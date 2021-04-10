@@ -1,6 +1,5 @@
 import 'styles/main.scss'
 import closeIcon from 'Images/close.svg'
-import { Link } from 'react-router-dom'
 
 
 export default function Sidebar({isOpen, close, gotoHome, gotoRegister, gotoLogin}) {
@@ -28,11 +27,11 @@ export default function Sidebar({isOpen, close, gotoHome, gotoRegister, gotoLogi
           </div>
         </ul>
         <div className="sidebarBtnWrap">
-          <Link 
+          <div 
             className='sidebarBtnLink' 
             onClick={() => gotoLogin()}>
             Login
-          </Link>
+          </div>
         </div>
       </div>
     </nav>

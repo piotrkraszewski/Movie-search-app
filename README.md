@@ -1,8 +1,3 @@
-This project was create with [Create React App](https://github.com/facebook/create-react-app).
-
-Project used npm, yarn. I don't remember which one I ended up using so right now I am using npm. Hope it will not brake some functionallity.
-
-
 ### To start project use:
 
 #### `npm start`

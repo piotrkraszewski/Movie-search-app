@@ -1,4 +1,60 @@
 .Register{
+  // center position
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: $transparentFormBackground;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+
   color: $white;
-  text-align: center;
+  // text-align: center;
+
+  .FormContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+
+      .formControl{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 300px;
+        margin: 5px auto;
+
+        label {
+          font-size: 14px;
+        }
+
+        input, textarea {
+          font-size: 15px;
+          color: $white;
+          padding: 7px;
+          margin-top: 5px;
+          background: rgba(27, 27, 27, 0.95);
+          border: 2px solid #202020;
+          border-radius: 5px;
+          outline: none;
+        }
+        ::placeholder {
+          color: #b6b6b6;
+        }
+      }
+
+      .btn-green{
+        margin-top: 10px;
+        margin-bottom: 8px;
+      }
+    }
+  }
 }
