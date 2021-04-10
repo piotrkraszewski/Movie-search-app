@@ -16,7 +16,7 @@ To see app in action go to this link:  https://piotrkraszewski.github.io/movie-s
 
 <img src="https://user-images.githubusercontent.com/48125112/114281118-deb43780-9a3c-11eb-935a-0a3126eaa6f9.png"
      alt="MainPageMobie"
-     style="max-height: 500px" />
+     style="max-height: 400px" />
 <img src="https://user-images.githubusercontent.com/48125112/114281119-e1169180-9a3c-11eb-86a2-809224990c04.png"
      alt="MoviePageMobile"
-     style="max-height: 500px" />
+     style="max-height: 400px" />
