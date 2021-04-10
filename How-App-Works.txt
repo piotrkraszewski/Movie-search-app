@@ -1,1 +1,0 @@
-Bootstrap is needed for madia queries

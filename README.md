@@ -1,14 +1,22 @@
-### To start project use:
+# Neon Movies
 
-#### `npm start`
+## Description:
+Modern movie search app with stylish transitions made in React. App features dynamic searchbar with suggestions for seamless movie searching and cross-fade route transitions for immersive experience. Users database made with Firebase to provied more interactions with site is in development.
 
-<br>
+To see app in action go to this link:  https://piotrkraszewski.github.io/movie-search-app
 
-This runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<br>
+## Screenshots:
+<img src="./src/Images/ReadmeImgs/MainPage.jpg"
+     alt="MainPage"
+     style="max-height: 300px" />
+<img src="./src/Images/ReadmeImgs/MoviePage.jpg"
+     alt="MainPage"
+     style="max-height: 300px" />
 
-### To deploy project on github pages use:
-
-`npm run deploy`
+<img src="./src/Images/ReadmeImgs/MainPageMobie.png"
+     alt="MainPage"
+     style="max-height: 500px" />
+<img src="./src/Images/ReadmeImgs/MoviePageMobile.png"
+     alt="MainPage"
+     style="max-height: 500px" />
