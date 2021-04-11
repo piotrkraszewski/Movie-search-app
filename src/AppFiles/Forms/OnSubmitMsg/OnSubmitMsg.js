@@ -2,7 +2,7 @@ import './OnSubmitMsg.scss'
 
 export default function OnSubmitMsg({submitStatus}) {
   return (
-    <>
+    <div className='OnSubmitMsg'>
       {submitStatus === 'success' && 
         <p className='submitSuccess'>
           Form successfuly submitted. 
@@ -15,6 +15,6 @@ export default function OnSubmitMsg({submitStatus}) {
           Form submit failed.
         </p>
       }
-    </>
+    </div>
   )
 }
