@@ -1,7 +1,6 @@
 import 'styles/main.scss'
 import menuIcon from 'Images/menu.svg'
 import NavSearchbar from '../Searchbar/NavSearchbar'
-import { Link } from 'react-router-dom'
 
 
 export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin }) {

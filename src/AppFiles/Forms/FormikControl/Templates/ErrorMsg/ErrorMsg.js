@@ -1,4 +1,3 @@
-import React from 'react'
 import './ErrorMsg.scss'
 
 export default function ErrorMsg({children}) {

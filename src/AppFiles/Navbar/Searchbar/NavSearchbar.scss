@@ -2,11 +2,15 @@
   width: 85%;
   z-index: 2;
   border-radius: 5px;
+  font-size: 17px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 
   form{
     display: flex;
     height: 98%;
-    
 
     @media (min-width: 1024px) {
       border-bottom: solid 1px $limeGreen;

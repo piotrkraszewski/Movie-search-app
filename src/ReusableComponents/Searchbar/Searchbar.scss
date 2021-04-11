@@ -5,7 +5,7 @@
   .Container{
     @include containerSettings(1200px);
     margin-top: 12px; //important
-
+    
     .logo {
       max-width: 115px;
       margin: 0 auto;
