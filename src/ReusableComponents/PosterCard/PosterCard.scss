@@ -1,6 +1,6 @@
 .PosterCard{
-  padding: calc(min(15px, 1%));
-  padding-bottom: calc(min(15px, 3%));
+  padding: min(15px, 1%);
+  padding-bottom: min(15px, 3%);
   
   div {
     @include equalColumnHeight;
