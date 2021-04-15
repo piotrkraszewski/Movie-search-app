@@ -4,9 +4,11 @@ import * as Yup from 'yup'
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import 'styles/main.scss'
-
+import { usersCollection } from 'Utils/firebase'
+import { useAuth } from 'AppFiles/Contexts/AuthContext'
 
 export default function Register() {
+  const { register } = useAuth()
   const [submitStatus, setSubmitStatus] = useState('')
 
 
@@ -16,19 +18,35 @@ export default function Register() {
     password: '',
   }
 
-  // remember to comment out validation that is not used because form will not submit
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
     username: Yup.string().required('Required'),
-    password: Yup.string().required('Required'),
+    password: Yup.string().required('Required').min(6),
   })
   
+
   const onSubmit = (values, onSubmitProps) => {
     console.log('Form data', values)
-    // wait for API response and then submit
+
+    register(values.email, values.password).then(res => {
+      console.log('register response', res)
+      
+      usersCollection.doc(res.user.uid).set({
+        username: values.username
+      }).then(res => {
+        setSubmitStatus('success')
+      }).catch(err => {
+        console.log(err)
+      })
+
+    }).catch(err => {
+      console.log(err)
+      setSubmitStatus('error')
+    }) 
+
     onSubmitProps.setSubmitting(false)  //enables button
-    setSubmitStatus('success')
   }
+
 
 
 return (
@@ -45,7 +63,6 @@ return (
       // console.log(formik)
       return (
         <div className='FormContainer'>
-          {/* <h3>{islogged ? 'Logged in' : 'Not logged in'}</h3> */}
           <Form className="form">
 
             <FormikControl 

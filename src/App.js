@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from 'react'
 import 'styles/main.scss'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
@@ -17,6 +16,7 @@ import BgGreen from 'Images/BgGreen.jpg'
 import Navbar from 'AppFiles/Navbar/Navbar'
 import Register from 'AppFiles/Forms/Register/Register'
 import Login from 'AppFiles/Forms/Login/Login'
+import AuthProvider from 'AppFiles/Contexts/AuthContext'
 
 
 export default function App () {
@@ -44,7 +44,7 @@ export default function App () {
         setSuggestions([])
       }, 600) // debounc time + animation time
     }
-  }, [searchbarText])
+  }, [searchbarText, location.pathname])
 // ==== END Fetch StartPage ====
 
 
@@ -56,15 +56,17 @@ export default function App () {
     movieID && setMovieData(await getMovieData(movieID))
   }, [movieID])
 
+  
   // implements back button in browser
   // allows to go back to previous movie on moviePage
   useEffect(() => {
-    if(location.pathname === '/' && !searchbarText){
+    if(location.pathname === '/' && !searchbarText)
       fetchPopularMoviesOnStartPage()
-    }else{
+
+    else if(location.pathname.includes('/movie/'))
       setMovieID(getMovieIdFromLocationPathname(location))
-    }
-  }, [location.pathname])
+    
+  }, [location, searchbarText])
   
 // ==== END Fetch movie page ====
 
@@ -129,9 +131,9 @@ export default function App () {
     console.log(`searchbarText: ${searchbarText}`)
   }, [searchbarText])
 
-  // useEffect(() => {
-  //   console.log(`backgroundIMG: ${backgroundIMG}`)
-  // }, [backgroundIMG])
+  useEffect(() => {
+    console.log(`movieID: ${movieID}`)
+  }, [movieID])
 
 // ==== END Console log stuff ====
 
@@ -151,20 +153,22 @@ export default function App () {
         <AppContext.Provider 
           value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
-          <AppScroolbar>
-          <Navbar/>
-            <AnimatePresence exitBeforeEnter>
-              <Switch 
-                location={location} 
-                key={getCurrentPageUrl(location)}
-              >
-                <Route exact path='/' render={() => <StartPage/>} />
-                <Route exact path={`/movie/:${movieID}`} render={() => <MoviePage/>} />
-                <Route exact path={`/register`} render={() => <Register/>} />
-                <Route exact path={`/login`} render={() => <Login/>} />
-              </Switch>
-            </AnimatePresence>
+          <AuthProvider>
+            <AppScroolbar>
+            <Navbar/>
+              <AnimatePresence exitBeforeEnter>
+                <Switch 
+                  location={location} 
+                  key={getCurrentPageUrl(location)}
+                >
+                  <Route exact path='/' render={() => <StartPage/>} />
+                  <Route exact path={`/movie/:${movieID}`} render={() => <MoviePage/>} />
+                  <Route exact path={`/register`} render={() => <Register/>} />
+                  <Route exact path={`/login`} render={() => <Login/>} />
+                </Switch>
+              </AnimatePresence>
           </AppScroolbar>
+          </AuthProvider>
         </AppContext.Provider>
       </div>
     </div>

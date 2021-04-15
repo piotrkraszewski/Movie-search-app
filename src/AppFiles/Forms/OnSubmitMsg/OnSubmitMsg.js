@@ -6,7 +6,6 @@ export default function OnSubmitMsg({submitStatus}) {
       {submitStatus === 'success' && 
         <p className='submitSuccess'>
           Form successfuly submitted. 
-          Unfortunately database is not running yet so your data wasn't send. Come back in the future.
         </p>
       }
 
