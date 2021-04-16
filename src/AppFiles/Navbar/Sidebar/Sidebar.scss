@@ -4,7 +4,6 @@
   width: 100%;
   height: 100%;
   background: #0d0d0d;
-  // display: grid;
   align-items: center;
   left: 0;
   font-size: 24px;
@@ -26,23 +25,17 @@
   }
   
   .sidebarWrapper{
+    display: flex;
+    flex-direction: column;
 
     .sidebarMenu {
       color: $white;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(2, 80px);
       text-align: center;
       padding: 0;
-    
-      @media (max-width: 480px) {
-        grid-template-rows: repeat(2,60px);
-      }
+      margin: 0;
     
       .sidebarLink {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        margin: 1em 0;
         text-decoration: none;
         list-style: none;
         transition: 0.2s ease-in-out;

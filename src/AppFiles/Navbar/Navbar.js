@@ -32,6 +32,11 @@ export default function Navbar() {
     setIsSidebarOpen(false)
   }
 
+  const gotoUserPanel = () => {
+    pushToHistory(`/user-panel`)
+    setIsSidebarOpen(false)
+  }
+
   return (
     <BrowserRouter>
       <Sidebar 
@@ -40,12 +45,14 @@ export default function Navbar() {
         gotoHome={gotoHome}
         gotoRegister={gotoRegister}
         gotoLogin={gotoLogin}
+        gotoUserPanel={gotoUserPanel}
       />
       <Topbar
         openSidebar={openSidebar}
         gotoHome={gotoHome}
         gotoRegister={gotoRegister}
         gotoLogin={gotoLogin}
+        gotoUserPanel={gotoUserPanel}
       />
     </BrowserRouter>
   )

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import firebase from 'Utils/firebase'
 
 const AuthContext = createContext()
@@ -8,8 +9,9 @@ export function useAuth(){
 }
 
 export default function AuthProvider({children}) {
+  const location = useLocation()
+  const history = useHistory()
   const [currentUser, setCurrentUser] = useState()
-  // const [loading, setLoading] = useState(true)
 
   function register(email, password){
     return firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -23,6 +25,16 @@ export default function AuthProvider({children}) {
     return firebase.auth().signOut()
   }
 
+  async function handleLogout(){
+    try{
+      await logout()
+      if(location.pathname === '/user-panel')
+        history.push('/')
+    } catch(err){
+      console.log(err)
+    }
+  }
+
   function resetPassword(email){
     return firebase.auth().sendPasswordResetEmail(email)
   }
@@ -31,7 +43,6 @@ export default function AuthProvider({children}) {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       console.log(user)
-      // setLoading(false)
       setCurrentUser(user)
     })
     
@@ -39,7 +50,7 @@ export default function AuthProvider({children}) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{currentUser, register, login, logout, resetPassword}}>
+    <AuthContext.Provider value={{currentUser, register, login, logout, handleLogout, resetPassword}}>
       {children}
     </AuthContext.Provider>
   )
