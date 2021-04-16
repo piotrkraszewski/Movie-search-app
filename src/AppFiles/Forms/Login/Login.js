@@ -12,7 +12,7 @@ import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE } from 'Utils/Consts'
 export default function Login() {
   const history = useHistory()
   const { login } = useAuth()
-  const [submitStatus, setSubmitStatus] = useState('')
+  const [submitMsg, setSubmitMsg] = useState()
 
 
   const initialValues = {
@@ -30,12 +30,13 @@ export default function Login() {
     console.log('Form values:', values)
     try {
       const registerRes = await login(values.email, values.password)
-      console.log('login response', registerRes)
-      setSubmitStatus('Login-Success')
+      // console.log('login response', registerRes)
       history.push(PROFILE_PAGE)
     } catch (err){
-      console.log(err)
-      setSubmitStatus('error')
+      setSubmitMsg({
+        submitStatus: 'error',
+        message: err.message
+      })
     }
 
     onSubmitProps.setSubmitting(false)  //enables button
@@ -77,7 +78,7 @@ return (
               >Log In
             </button>
 
-            <OnSubmitMsg submitStatus={submitStatus} />
+            <OnSubmitMsg {...submitMsg} />
 
           </Form>
         </div>

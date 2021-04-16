@@ -13,7 +13,7 @@ import { PROFILE_PAGE, LOGIN_PAGE } from 'Utils/Consts'
 export default function Register() {
   const history = useHistory()
   const { register } = useAuth()
-  const [submitStatus, setSubmitStatus] = useState('')
+  const [submitMsg, setSubmitMsg] = useState()
 
 
   const initialValues = {
@@ -33,22 +33,25 @@ export default function Register() {
     console.log('Form values:', values)
     try {
       const registerRes = await register(values.email, values.password)
-      console.log('register response', registerRes)
+      // console.log('register response', registerRes)
 
       try {
         await usersCollection.doc(registerRes.user.uid).set({
           username: values.username
         })
-        setSubmitStatus('Register-Success')
         history.push(PROFILE_PAGE)
       } catch (err){
-        console.log(err)
-        setSubmitStatus('error')
+        setSubmitMsg({
+          submitStatus: 'error',
+          message: err.message
+        })
       }
 
     } catch (err){
-      console.log(err)
-      setSubmitStatus('error')
+      setSubmitMsg({
+        submitStatus: 'error',
+        message: err.message
+      })
     }
 
     onSubmitProps.setSubmitting(false)  //enables button
@@ -96,7 +99,7 @@ return (
               >Register
             </button>
 
-            <OnSubmitMsg submitStatus={submitStatus} />
+            <OnSubmitMsg {...submitMsg} />
 
           </Form>
         </div>
