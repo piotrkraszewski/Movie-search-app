@@ -41,7 +41,7 @@ export default function App () {
   useEffect(() => {
     // HomePage: if search is empty display popular movies
     // loads at page starup because searchbarText === '' at start
-    if(searchbarText === '' && location.pathname ==='/') 
+    if(location.pathname ==='/') 
       fetchPopularMoviesOnStartPage()
 
     // dont clear movies when we transitioning out of Main page
@@ -161,8 +161,8 @@ export default function App () {
           value={{movieID, movieData, searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
           <AuthProvider>
-            <AppScroolbar>
             <Navbar/>
+            <AppScroolbar>
               <AnimatePresence exitBeforeEnter>
                 <Switch 
                   location={location} 

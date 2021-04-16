@@ -14,7 +14,7 @@ export default function StartPageCards() {
     setTimeout(() => {
       // moves ScrollBar to top
       scrollBarRef.current._ps.element.scrollTop = 0  
-      // console.log(" scrollBarRef", scrollBarRef.current._ps)
+      console.log("scrollBarRef", scrollBarRef.current._ps)
       
       setSuggestions([])
     }, PAGE_TRANSITION_TIME * 1000) // exit animation length

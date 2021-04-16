@@ -1,7 +1,7 @@
 # Neon Movies
 
 ## Description:
-Modern movie search app with stylish transitions made in React. App features dynamic searchbar with suggestions for seamless movie searching and cross-fade route transitions for immersive experience. Users database made with Firebase to provied more interactions with site is in development.
+Modern movie search app with stylish transitions made in React with Firebase. App features dynamic searchbar with suggestions for seamless movie searching and cross-fade route transitions for immersive experience. Users can create an account to use full potential of the app like: creating list of watched movies, ranking movies.
 
 To see app in action go to this link:  https://piotrkraszewski.github.io/movie-search-app
 
