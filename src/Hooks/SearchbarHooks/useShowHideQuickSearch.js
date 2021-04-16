@@ -21,6 +21,8 @@ export default function ShowHideQuickSearchHook() {
 
   const OnSearchBarClicked = async e => {
     setShowQuickSearchRes(true)
+    showResInSearchBar(searchbarText)
+
     if (searchbarText === '') {
       showResInSearchBar(oldSearchbarText)
       setSearchbarText(oldSearchbarText)

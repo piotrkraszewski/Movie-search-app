@@ -52,7 +52,7 @@ export default function AuthProvider({children}) {
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      console.log(user)
+      console.log('currentUser:', user)
       setCurrentUser(user)
     })
     

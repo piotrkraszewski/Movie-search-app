@@ -38,12 +38,14 @@ export default function App () {
     setSuggestions(await getMoviesDataToDisplayInSearch(POPULAR_MOVIES_URL))
   }
 
-  // if search is empty on main page it displays popular movies
-  // loads at page starup because searchbarText === '' at start
-  // checks this condition every time
   useEffect(() => {
-    if(searchbarText === '' && location.pathname ==='/') fetchPopularMoviesOnStartPage()
-    else if(searchbarText === '') {
+    // HomePage: if search is empty display popular movies
+    // loads at page starup because searchbarText === '' at start
+    if(searchbarText === '' && location.pathname ==='/') 
+      fetchPopularMoviesOnStartPage()
+
+    // dont clear movies when we transitioning out of Main page
+    else if(searchbarText === '' && location.pathname !=='/') {
       setTimeout(() => {
         setSuggestions([])
       }, 600) // debounc time + animation time
@@ -134,6 +136,14 @@ export default function App () {
   useEffect(() => {
     console.log(`searchbarText: ${searchbarText}`)
   }, [searchbarText])
+
+  useEffect(() => {
+    console.log(`oldSearchbarText: ${oldSearchbarText}`)
+  }, [oldSearchbarText])
+
+  useEffect(() => {
+    console.log(`showQuickSearchRes: ${showQuickSearchRes}`)
+  }, [showQuickSearchRes])
 
   useEffect(() => {
     console.log(`movieID: ${movieID}`)
