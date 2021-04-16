@@ -6,6 +6,7 @@ import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import 'styles/main.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
+import { LOGIN_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 
 
 export default function ForgotPassword() {
@@ -76,13 +77,13 @@ return (
     </Formik>
       <button 
         className='btn btn-link forgot w-100 mb-1'
-        onClick={() => history.push('/login')}>
+        onClick={() => history.push(LOGIN_PAGE)}>
           Login?
       </button>
     <div className='border-top pt-3'>
       <button 
         className='btn btn-dark w-100'
-        onClick={() => history.push('/register')}>
+        onClick={() => history.push(REGISTER_PAGE)}>
           Need an account? Register
       </button>
     </div>

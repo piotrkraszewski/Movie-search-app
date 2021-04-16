@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion"
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import AppScroolbar from 'ReusableComponents/Scroolbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from 'Utils/FetchFunctions'
-import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL } from 'Utils/Consts'
+import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL, HOME_PAGE, MOVIE_PAGE, REGISTER_PAGE, LOGIN_PAGE, FORGOT_PASSWORD, PROFILE_PAGE } from 'Utils/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from 'Utils/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 import AppBackground from 'ReusableComponents/AppBackground/AppBackground'
@@ -17,7 +17,7 @@ import Navbar from 'AppFiles/Navbar/Navbar'
 import Register from 'AppFiles/Forms/Register/Register'
 import Login from 'AppFiles/Forms/Login/Login'
 import AuthProvider from 'AppFiles/Contexts/AuthContext'
-import UserPanel from 'AppFiles/UserPanel/UserPanel'
+import Profile from 'AppFiles/Profile/Profile'
 import ForgotPassword from 'AppFiles/Forms/ForgotPassword/ForgotPassword'
 import PrivateRoute from 'Utils/PrivateRoute'
 
@@ -164,12 +164,12 @@ export default function App () {
                   location={location} 
                   key={getCurrentPageUrl(location)}
                 >
-                  <Route exact path='/' render={() => <StartPage/>} />
-                  <Route exact path={`/movie/:${movieID}`} render={() => <MoviePage/>} />
-                  <Route exact path={`/register`} render={() => <Register/>} />
-                  <Route exact path={`/login`} render={() => <Login/>} />
-                  <Route exact path={`/forgot-password`} render={() => <ForgotPassword/>} />
-                  <PrivateRoute exact path='/user-panel' component={UserPanel} />
+                  <Route exact path={HOME_PAGE} render={() => <StartPage/>} />
+                  <Route exact path={`${MOVIE_PAGE}:${movieID}`} render={() => <MoviePage/>} />
+                  <Route exact path={REGISTER_PAGE} render={() => <Register/>} />
+                  <Route exact path={LOGIN_PAGE} render={() => <Login/>} />
+                  <Route exact path={FORGOT_PASSWORD} render={() => <ForgotPassword/>} />
+                  <PrivateRoute exact path={PROFILE_PAGE} component={Profile} />
                 </Switch>
               </AnimatePresence>
           </AppScroolbar>

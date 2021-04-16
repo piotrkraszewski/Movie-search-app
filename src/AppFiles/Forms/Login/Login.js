@@ -6,6 +6,7 @@ import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import 'styles/main.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
+import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE } from 'Utils/Consts'
 
 
 export default function Login() {
@@ -31,7 +32,7 @@ export default function Login() {
       const registerRes = await login(values.email, values.password)
       console.log('login response', registerRes)
       setSubmitStatus('Login-Success')
-      history.push("/user-panel")
+      history.push(PROFILE_PAGE)
     } catch (err){
       console.log(err)
       setSubmitStatus('error')
@@ -85,13 +86,13 @@ return (
     </Formik>
       <button 
         className='btn btn-link forgot w-100 mb-1'
-        onClick={() => history.push('/forgot-password')}>
+        onClick={() => history.push(FORGOT_PASSWORD)}>
           Forgot password?
       </button>
     <div className='border-top pt-3'>
       <button 
         className='btn btn-dark w-100'
-        onClick={() => history.push('/register')}>
+        onClick={() => history.push(REGISTER_PAGE)}>
           Need an account? Register
       </button>
     </div>

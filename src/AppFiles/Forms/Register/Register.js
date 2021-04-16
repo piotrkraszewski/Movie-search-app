@@ -7,6 +7,8 @@ import 'styles/main.scss'
 import { usersCollection } from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
+import { PROFILE_PAGE, LOGIN_PAGE } from 'Utils/Consts'
+
 
 export default function Register() {
   const history = useHistory()
@@ -38,7 +40,7 @@ export default function Register() {
           username: values.username
         })
         setSubmitStatus('Register-Success')
-        history.push("/user-panel")
+        history.push(PROFILE_PAGE)
       } catch (err){
         console.log(err)
         setSubmitStatus('error')
@@ -104,7 +106,7 @@ return (
     <div className='border-top pt-3'>
       <button 
         className='btn btn-dark w-100'
-        onClick={() => history.push('/login')}>
+        onClick={() => history.push(LOGIN_PAGE)}>
           Have an account? Login
       </button>
     </div>

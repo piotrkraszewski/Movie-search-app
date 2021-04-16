@@ -4,6 +4,7 @@ import { AppContext } from 'AppFiles/Contexts/AppContext'
 import Topbar from './Topbar/Topbar'
 import Sidebar from './Sidebar/Sidebar'
 import {BrowserRouter} from 'react-router-dom'
+import { HOME_PAGE, LOGIN_PAGE, PROFILE_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 
 
 export default function Navbar() {
@@ -18,22 +19,22 @@ export default function Navbar() {
   const gotoHome = () => {
     setAllMoviesData([])
     fetchPopularMoviesOnStartPage()
-    pushToHistory(`/`)
+    pushToHistory(HOME_PAGE)
     setIsSidebarOpen(false)
   }
 
   const gotoRegister = () => {
-    pushToHistory(`/register`)
+    pushToHistory(REGISTER_PAGE)
     setIsSidebarOpen(false)
   }
 
   const gotoLogin = () => {
-    pushToHistory(`/login`)
+    pushToHistory(LOGIN_PAGE)
     setIsSidebarOpen(false)
   }
 
   const gotoUserPanel = () => {
-    pushToHistory(`/user-panel`)
+    pushToHistory(PROFILE_PAGE)
     setIsSidebarOpen(false)
   }
 
