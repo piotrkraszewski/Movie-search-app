@@ -12,7 +12,7 @@ import { LOGIN_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 export default function ForgotPassword() {
   const history = useHistory()
   const { resetPassword } = useAuth()
-  const [submitStatus, setSubmitStatus] = useState('')
+  const [submitMsg, setSubmitMsg] = useState()
 
 
   const initialValues = {
@@ -25,14 +25,19 @@ export default function ForgotPassword() {
   })
   
   const onSubmit = async(values, onSubmitProps) => {
+    setSubmitMsg({})
     console.log('Form values:', values)
     try {
-      const res = await resetPassword(values.email)
-      console.log('resetPassword response', res)
-      setSubmitStatus('Login-Success')
+      await resetPassword(values.email)
+      setSubmitMsg({
+        submitStatus: 'success',
+        message: 'Instructon for reseting your password were send to your email'
+      })
     } catch (err){
-      console.log(err)
-      setSubmitStatus('error')
+      setSubmitMsg({
+        submitStatus: 'error',
+        message: err.message
+      })
     }
 
     onSubmitProps.setSubmitting(false)  //enables button
@@ -40,7 +45,7 @@ export default function ForgotPassword() {
 
 
 return (
-  <div className='Login'>
+  <div className='ForgotPassword'>
     <h2>Password Reset</h2>
     <Formik 
       initialValues={initialValues}
@@ -68,7 +73,7 @@ return (
               >Reset Password
             </button>
 
-            <OnSubmitMsg submitStatus={submitStatus} />
+            <OnSubmitMsg {...submitMsg} />
 
           </Form>
         </div>

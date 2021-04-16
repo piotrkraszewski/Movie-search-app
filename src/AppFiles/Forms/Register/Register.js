@@ -30,6 +30,7 @@ export default function Register() {
   
 
   const onSubmit = async(values, onSubmitProps) => {
+    setSubmitMsg({})
     console.log('Form values:', values)
     try {
       const registerRes = await register(values.email, values.password)

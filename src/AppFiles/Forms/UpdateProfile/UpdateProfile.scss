@@ -1,4 +1,4 @@
-.ForgotPassword{
+.UpdateProfile{
   // center position
   position: fixed;
   top: 50%;
@@ -57,16 +57,8 @@
 
       .btn-green{
         margin-top: 10px;
-        // margin-bottom: 8px;
+        margin-bottom: 16px;
       }
-
-    }
-  }
-  .forgot{
-    text-decoration: none;
-    color: #b6b6b6;
-    &:hover{
-      color: $white;
     }
   }
 }

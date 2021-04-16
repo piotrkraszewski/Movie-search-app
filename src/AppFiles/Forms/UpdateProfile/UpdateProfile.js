@@ -6,38 +6,56 @@ import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import 'styles/main.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE } from 'Utils/Consts'
+import { PROFILE_PAGE } from 'Utils/Consts'
 
 
-export default function Login() {
+export default function UpdateProfile() {
   const history = useHistory()
-  const { login } = useAuth()
-  const [submitMsg, setSubmitMsg] = useState()
+  const { currentUser, updatePassword, updateEmail } = useAuth()
+  const [emailUpdateMsg, setEmailUpdateMsg] = useState()
+  const [passwordUpdateMsg, setPasswordUpdateMsg] = useState()
 
 
   const initialValues = {
-    email: '',
+    email: currentUser.email,
+    username: currentUser.username,
     password: '',
   }
 
-  // remember to comment out validation that is not used because form will not submit
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Required').min(6),
+    username: Yup.string().required('Required'),
+    password: Yup.string().min(6),
   })
   
+
   const onSubmit = async(values, onSubmitProps) => {
-    setSubmitMsg({})
+    setEmailUpdateMsg({})
+    setPasswordUpdateMsg({})
     console.log('Form values:', values)
-    try {
-      const registerRes = await login(values.email, values.password)
-      // console.log('login response', registerRes)
-      history.push(PROFILE_PAGE)
-    } catch (err){
-      setSubmitMsg({
-        submitStatus: 'error',
-        message: err.message
-      })
+
+    if(values.email !== currentUser.email){
+      try{
+        await updateEmail(values.email)
+        history.push(PROFILE_PAGE)
+      } catch (err){
+        setEmailUpdateMsg({
+          submitStatus: 'error',
+          message: 'Failed to update email. Email is probably used by another user.'
+        })
+      }
+    }
+    
+    if(values.password){
+      try{
+        await updatePassword(values.password)
+        history.push(PROFILE_PAGE)
+      } catch (err){
+        setPasswordUpdateMsg({
+          submitStatus: 'error',
+          message: 'Failed to update password.'
+        })
+      }
     }
 
     onSubmitProps.setSubmitting(false)  //enables button
@@ -45,8 +63,8 @@ export default function Login() {
 
 
 return (
-  <div className='Login'>
-    <h2>Login</h2>
+  <div className='UpdateProfile'>
+    <h2>Update Profile</h2>
     <Formik 
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -68,34 +86,36 @@ return (
 
             <FormikControl 
               control='input' 
+              type='text'
+              name='username'
+              label='username' />
+
+            <FormikControl 
+              control='input' 
               type='password'
               name='password'
-              label='password' />
+              label='password'
+              placeholder='Leave blank to keep the same' />
 
             <button 
               className="btn btn-success btn-green"
               type='submit'
               disabled={!formik.isValid || formik.isSubmitting}
-              >Log In
+              >Update
             </button>
 
-            <OnSubmitMsg {...submitMsg} />
-
+            <OnSubmitMsg {...emailUpdateMsg} />
+            <OnSubmitMsg {...passwordUpdateMsg} />
           </Form>
         </div>
         )}
       }
     </Formik>
-      <button 
-        className='btn btn-link forgot w-100 mb-1'
-        onClick={() => history.push(FORGOT_PASSWORD)}>
-          Forgot password?
-      </button>
     <div className='border-top pt-3'>
       <button 
         className='btn btn-dark w-100'
-        onClick={() => history.push(REGISTER_PAGE)}>
-          Need an account? Register
+        onClick={() => history.push(PROFILE_PAGE)}>
+          Cancel
       </button>
     </div>
   </div>
