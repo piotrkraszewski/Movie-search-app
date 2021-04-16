@@ -5,13 +5,12 @@ import closeImg  from 'Images/close.svg'
 import {DebounceInput} from 'react-debounce-input';
 
 export default function Searchbar(props) {
-  const {searchbarText, setSearchbarText, setOldSearchbarText,  oldSearchbarText, onSearchbarTextChanging} = useContext(AppContext)
+  const {searchbarText, setSearchbarText, onSearchbarTextChanging} = useContext(AppContext)
 
   const {onClick, onKeyPress} = props
 
   function resetSearch() {
     setSearchbarText('')
-    setOldSearchbarText('')
   }
 
   return (
@@ -21,7 +20,7 @@ export default function Searchbar(props) {
         onChange={onSearchbarTextChanging}
         type='text'
         placeholder='Search Movie'
-        value={searchbarText !== '' ? searchbarText : oldSearchbarText}
+        value={searchbarText}
         onKeyPress={onKeyPress}
         onClick={onClick}
       />

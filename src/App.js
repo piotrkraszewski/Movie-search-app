@@ -80,7 +80,6 @@ export default function App () {
 
 // ==== Search state and functions ====
   const [allMoviesData, setAllMoviesData] = useState([])
-  const [oldSearchbarText, setOldSearchbarText] = useState('')
   const [dispPostersNum, setDispPostersNum] = useState(isMobile ? 9 : 12)
 
   const onSearchbarTextChanging = e => {
@@ -91,14 +90,12 @@ export default function App () {
 
   const showResInSearchBar = async (value) => {
     setDispPostersNum(isMobile ? 6 : 12)
-    if (value.length === 0) setOldSearchbarText('')
     if (value.length >= 1) {
       const allMoviesData = await getAllMoviesData(createSearchMoviesUrl(value))
       const dataToDisplay = await getMoviesDataToDisplayInSearch(allMoviesData)
 
       setAllMoviesData(allMoviesData)
       setSuggestions(dataToDisplay)
-      setOldSearchbarText(value)
     }
     
     isMobile && setTimeout(() => {
@@ -138,10 +135,6 @@ export default function App () {
   }, [searchbarText])
 
   useEffect(() => {
-    console.log(`oldSearchbarText: ${oldSearchbarText}`)
-  }, [oldSearchbarText])
-
-  useEffect(() => {
     console.log(`showQuickSearchRes: ${showQuickSearchRes}`)
   }, [showQuickSearchRes])
 
@@ -165,7 +158,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, oldSearchbarText, setOldSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
           <AuthProvider>
             <AppScroolbar>
