@@ -20,10 +20,13 @@
 @import '../AppFiles/Navbar/Searchbar/Results/ResultsPC.scss';
 @import '../AppFiles/Navbar/Searchbar/Results/ResultsMobile.scss';
 @import '../AppFiles/Navbar/Searchbar/Results/SearchbarResults.scss';
+
+
+//Main Pages
 @import '../AppFiles/Movie/MoviePage';
 @import '../AppFiles/StartPage/StartPage.scss';
-@import '../AppFiles/Forms/Login/Login.scss';
-@import '../AppFiles/Forms/Register/Register.scss';
+@import '../AppFiles/UserPanel/UserPanel.scss';
+
 
 //reusableComponents
 @import '../ReusableComponents/NoResult/NoResult';

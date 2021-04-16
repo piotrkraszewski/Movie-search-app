@@ -3,9 +3,15 @@ import './OnSubmitMsg.scss'
 export default function OnSubmitMsg({submitStatus}) {
   return (
     <div className='OnSubmitMsg'>
-      {submitStatus === 'success' && 
+      {submitStatus === 'Register-Success' && 
         <p className='submitSuccess'>
-          Form successfuly submitted. 
+          Created new user
+        </p>
+      }
+
+      {submitStatus === 'Login-Success' && 
+        <p className='submitSuccess'>
+          Logged in
         </p>
       }
 

@@ -4,46 +4,31 @@ import * as Yup from 'yup'
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import 'styles/main.scss'
-import { usersCollection } from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 
-export default function Register() {
+
+export default function ForgotPassword() {
   const history = useHistory()
-  const { register } = useAuth()
+  const { resetPassword } = useAuth()
   const [submitStatus, setSubmitStatus] = useState('')
 
 
   const initialValues = {
     email: '',
-    username: '',
-    password: '',
   }
 
+  // remember to comment out validation that is not used because form will not submit
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
-    username: Yup.string().required('Required'),
-    password: Yup.string().required('Required').min(6),
   })
   
-
   const onSubmit = async(values, onSubmitProps) => {
     console.log('Form values:', values)
     try {
-      const registerRes = await register(values.email, values.password)
-      console.log('register response', registerRes)
-
-      try {
-        await usersCollection.doc(registerRes.user.uid).set({
-          username: values.username
-        })
-        setSubmitStatus('Register-Success')
-        history.push("/user-panel")
-      } catch (err){
-        console.log(err)
-        setSubmitStatus('error')
-      }
-
+      const res = await resetPassword(values.email)
+      console.log('resetPassword response', res)
+      setSubmitStatus('Login-Success')
     } catch (err){
       console.log(err)
       setSubmitStatus('error')
@@ -54,8 +39,8 @@ export default function Register() {
 
 
 return (
-  <div className='Register'>
-    <h2>Register</h2>
+  <div className='Login'>
+    <h2>Password Reset</h2>
     <Formik 
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -75,23 +60,11 @@ return (
               name='email'
               label='email' />
 
-            <FormikControl 
-              control='input' 
-              type='text'
-              name='username'
-              label='username' />
-
-            <FormikControl 
-              control='input' 
-              type='password'
-              name='password'
-              label='password' />
-
             <button 
               className="btn btn-success btn-green"
               type='submit'
               disabled={!formik.isValid || formik.isSubmitting}
-              >Register
+              >Reset Password
             </button>
 
             <OnSubmitMsg submitStatus={submitStatus} />
@@ -101,11 +74,16 @@ return (
         )}
       }
     </Formik>
+      <button 
+        className='btn btn-link forgot w-100 mb-1'
+        onClick={() => history.push('/login')}>
+          Login?
+      </button>
     <div className='border-top pt-3'>
       <button 
         className='btn btn-dark w-100'
-        onClick={() => history.push('/login')}>
-          Have an account? Login
+        onClick={() => history.push('/register')}>
+          Need an account? Register
       </button>
     </div>
   </div>

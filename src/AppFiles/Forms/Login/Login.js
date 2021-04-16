@@ -4,9 +4,13 @@ import * as Yup from 'yup'
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import 'styles/main.scss'
+import { useAuth } from 'AppFiles/Contexts/AuthContext'
+import { useHistory } from 'react-router-dom'
 
 
 export default function Login() {
+  const history = useHistory()
+  const { login } = useAuth()
   const [submitStatus, setSubmitStatus] = useState('')
 
 
@@ -18,14 +22,22 @@ export default function Login() {
   // remember to comment out validation that is not used because form will not submit
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Required'),
+    password: Yup.string().required('Required').min(6),
   })
   
-  const onSubmit = (values, onSubmitProps) => {
-    console.log('Form data', values)
-    // wait for API response and then submit
+  const onSubmit = async(values, onSubmitProps) => {
+    console.log('Form values:', values)
+    try {
+      const registerRes = await login(values.email, values.password)
+      console.log('login response', registerRes)
+      setSubmitStatus('Login-Success')
+      history.push("/user-panel")
+    } catch (err){
+      console.log(err)
+      setSubmitStatus('error')
+    }
+
     onSubmitProps.setSubmitting(false)  //enables button
-    setSubmitStatus('success')
   }
 
 
@@ -71,6 +83,18 @@ return (
         )}
       }
     </Formik>
+      <button 
+        className='btn btn-link forgot w-100 mb-1'
+        onClick={() => history.push('/forgot-password')}>
+          Forgot password?
+      </button>
+    <div className='border-top pt-3'>
+      <button 
+        className='btn btn-dark w-100'
+        onClick={() => history.push('/register')}>
+          Need an account? Register
+      </button>
+    </div>
   </div>
 )
 }

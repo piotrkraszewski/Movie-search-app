@@ -17,6 +17,9 @@ import Navbar from 'AppFiles/Navbar/Navbar'
 import Register from 'AppFiles/Forms/Register/Register'
 import Login from 'AppFiles/Forms/Login/Login'
 import AuthProvider from 'AppFiles/Contexts/AuthContext'
+import UserPanel from 'AppFiles/UserPanel/UserPanel'
+import ForgotPassword from 'AppFiles/Forms/ForgotPassword/ForgotPassword'
+import PrivateRoute from 'Utils/PrivateRoute'
 
 
 export default function App () {
@@ -165,6 +168,8 @@ export default function App () {
                   <Route exact path={`/movie/:${movieID}`} render={() => <MoviePage/>} />
                   <Route exact path={`/register`} render={() => <Register/>} />
                   <Route exact path={`/login`} render={() => <Login/>} />
+                  <Route exact path={`/forgot-password`} render={() => <ForgotPassword/>} />
+                  <PrivateRoute exact path='/user-panel' component={UserPanel} />
                 </Switch>
               </AnimatePresence>
           </AppScroolbar>
