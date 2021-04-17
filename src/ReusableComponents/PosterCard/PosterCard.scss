@@ -1,4 +1,6 @@
-.PosterCard{
+@use '~styles/helpers' as *;
+
+#PosterCard{
   padding: min(15px, 1%);
   padding-bottom: min(15px, 3%);
   

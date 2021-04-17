@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+// import { useHistory, useLocation } from 'react-router-dom'
 import firebase from 'Utils/firebase'
-import { HOME_PAGE, PROFILE_PAGE } from 'Utils/Consts'
+// import { HOME_PAGE, PROFILE_PAGE } from 'Utils/Consts'
 
 
 const AuthContext = createContext()
@@ -11,8 +11,8 @@ export function useAuth(){
 }
 
 export default function AuthProvider({children}) {
-  const location = useLocation()
-  const history = useHistory()
+  // const location = useLocation()
+  // const history = useHistory()
   const [currentUser, setCurrentUser] = useState()
 
   function register(email, password){
@@ -30,8 +30,6 @@ export default function AuthProvider({children}) {
   async function handleLogout(){
     try{
       await logout()
-      if(location.pathname === PROFILE_PAGE)
-        history.push(HOME_PAGE)
     } catch(err){
       console.log(err)
     }

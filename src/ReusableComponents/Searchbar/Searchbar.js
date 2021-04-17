@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import 'styles/main.scss'
+import './Searchbar.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import closeImg  from 'Images/close.svg'
 import {DebounceInput} from 'react-debounce-input';

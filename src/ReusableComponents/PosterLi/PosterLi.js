@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import 'styles/main.scss'
+import './PosterLi.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import HighlightTextInQuickSearchHooks from '../../Hooks/SearchbarHooks/useHighlightTextInQuickSearch'

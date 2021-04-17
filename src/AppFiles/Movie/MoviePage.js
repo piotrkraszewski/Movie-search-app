@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import 'styles/main.scss'
+import './MoviePage.scss'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { POSTER_W500 } from 'Utils/Consts'

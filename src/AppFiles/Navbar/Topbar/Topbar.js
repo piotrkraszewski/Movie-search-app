@@ -1,4 +1,4 @@
-import 'styles/main.scss'
+import './Topbar.scss'
 import menuIcon from 'Images/menu.svg'
 import NavSearchbar from '../Searchbar/NavSearchbar'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'

@@ -1,3 +1,6 @@
+@use '~styles/helpers' as *;
+@use 'node_modules/bootstrap/scss/bootstrap.scss'; 
+
 //usefull properties for every project
 * {
   // size of an element is: content + padding + border 
@@ -6,6 +9,7 @@
 
 body {
   background: black;
+  color: $white;
   font-family: $lato;
   font-size: 18px;
   

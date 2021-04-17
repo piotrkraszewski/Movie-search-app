@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import 'styles/main.scss'
+import './ResultsPC.scss'
 import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import useHighlightTextInQuickSearch from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'

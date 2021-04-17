@@ -1,4 +1,6 @@
-.UserPanel{
+@use '~styles/helpers' as *;
+
+.Profile{
   @include pageSettings;
   max-width: 1400px;
   color: $white;

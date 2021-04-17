@@ -1,3 +1,5 @@
+@use '~styles/helpers' as *;
+
 .MovieCard {
   @include pageSettings;
   margin-top: 15px;

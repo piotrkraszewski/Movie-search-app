@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import 'styles/main.scss'
+import './ResultsMobile.scss'
 import { NUM_OF_DISP_RES_MOBILE, QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'

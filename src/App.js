@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import 'styles/main.scss'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
 import { AppContext } from 'AppFiles/Contexts/AppContext'
@@ -41,7 +40,8 @@ export default function App () {
   useEffect(() => {
     // HomePage: if search is empty display popular movies
     // loads at page starup because searchbarText === '' at start
-    if(location.pathname ==='/') 
+    console.log('location.pathname', location.pathname)
+    if(location.pathname ==='/')
       fetchPopularMoviesOnStartPage()
 
     // dont clear movies when we transitioning out of Main page

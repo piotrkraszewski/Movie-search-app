@@ -1,4 +1,4 @@
-import 'styles/main.scss'
+import './Sidebar.scss'
 import closeIcon from 'Images/close.svg'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 

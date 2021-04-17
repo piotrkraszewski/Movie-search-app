@@ -1,6 +1,7 @@
 import React from 'react'
+import './Profile.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { UPDATE_PROFILE } from 'Utils/Consts'
 
 export default function UserPanel() {
@@ -8,7 +9,7 @@ export default function UserPanel() {
   const { currentUser, handleLogout } = useAuth()
 
   return (
-    <div className='UserPanel'>
+    <div className='Profile'>
       <div className='userData'>
         <h2>Profile</h2>
         <p><strong>Email:</strong> {currentUser.email}</p>

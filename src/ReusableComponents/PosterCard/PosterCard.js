@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
+import './PosterCard.scss'
 import ImageFadeIn from "react-image-fade-in";
 import no_image from 'Images/no_image.png'
 import PropTypes from 'prop-types'
@@ -19,7 +20,8 @@ export default function PosterCard ({
   return (
   <AnimatePresence exitBeforeEnter>
     <motion.div
-      className={`PosterCard ${className}`}
+      id='PosterCard'
+      className={`${className}`}
       onClick={() => onClick(cardData.id)}
 
       key={cardData.id}

@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom'
 import App from 'App'
+import 'styles/App.scss'
 // import * as serviceWorker from 'testingFiles/serviceWorker'
 import { BrowserRouter } from 'react-router-dom'
 

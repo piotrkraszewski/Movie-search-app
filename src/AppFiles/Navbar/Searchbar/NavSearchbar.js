@@ -1,4 +1,4 @@
-import 'styles/main.scss'
+import './NavSearchbar.scss'
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import Searchbar from 'ReusableComponents/Searchbar/Searchbar'

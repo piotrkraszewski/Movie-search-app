@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import 'styles/main.scss'
+import './SearchbarResults.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import NoResult from 'ReusableComponents/NoResult/NoResult'
 import ResultsMobile from './ResultsMobile'

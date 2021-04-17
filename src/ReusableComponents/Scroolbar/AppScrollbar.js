@@ -1,7 +1,7 @@
 import { useContext } from 'react'
+import './ScroolbarStyle.scss'
 import ScrollBar from 'react-perfect-scrollbar'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import './ScroolbarStyle.scss'
 
 export default function AppScrollbar (props) {
   // still can't add refresh gesture on mobile

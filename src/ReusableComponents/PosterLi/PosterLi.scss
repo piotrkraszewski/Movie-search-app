@@ -1,3 +1,5 @@
+@use '~styles/helpers' as *;
+
 .PosterLi {
   @include ResultsPcHighlight;
   padding: 3px 20px;
