@@ -5,7 +5,7 @@ import { useAuth } from 'AppFiles/Contexts/AuthContext'
 
 
 export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin, gotoUserPanel }) {
-  const { currentUser, handleLogout } = useAuth()
+  const { user, handleLogout } = useAuth()
   return (
     <nav className='TopBar'>
       <div className='TopBarContainer'>
@@ -29,7 +29,7 @@ export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin,
             </div>
           </li>
           <li className='NavItem'>
-            {!currentUser && 
+            {!user && 
             <div 
               className='NavLink'
               onClick={() => gotoRegister()}
@@ -38,7 +38,7 @@ export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin,
             </div>}
           </li>
           <li className='NavItem'>
-            {currentUser && 
+            {user && 
             <div 
               className='NavLink'
               onClick={() => gotoUserPanel()}
@@ -48,14 +48,14 @@ export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin,
           </li>
         </ul>
         <div className='NavBtn'>
-        {!currentUser &&
+        {!user &&
           <div 
             className='NavBtnLink' 
             onClick={() => gotoLogin()}
           >
             login
           </div>}
-          {currentUser &&
+          {user &&
           <div 
             className='NavBtnLink' 
             onClick={() => handleLogout()}

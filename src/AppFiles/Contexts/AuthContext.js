@@ -13,7 +13,8 @@ export function useAuth(){
 export default function AuthProvider({children}) {
   // const location = useLocation()
   // const history = useHistory()
-  const [currentUser, setCurrentUser] = useState()
+  const [user, setUser] = useState()
+  const [userData, setUserData] = useState({})
 
   function register(email, password){
     return firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -40,25 +41,25 @@ export default function AuthProvider({children}) {
   }
 
   function updateEmail(email){
-    return currentUser.updateEmail(email)
+    return user.updateEmail(email)
   }
 
   function updatePassword(password){
-    return currentUser.updatePassword(password)
+    return user.updatePassword(password)
   }
 
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      console.log('currentUser:', user)
-      setCurrentUser(user)
+      console.log('user:', user)
+      setUser(user)
     })
     
     return unsubscribe
   }, [])
 
   return (
-    <AuthContext.Provider value={{currentUser, register, login, logout, handleLogout, resetPassword, updateEmail, updatePassword}}>
+    <AuthContext.Provider value={{user, userData, setUserData, register, login, logout, handleLogout, resetPassword, updateEmail, updatePassword}}>
       {children}
     </AuthContext.Provider>
   )

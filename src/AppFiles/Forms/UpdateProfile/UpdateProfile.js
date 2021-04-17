@@ -11,14 +11,14 @@ import { PROFILE_PAGE } from 'Utils/Consts'
 
 export default function UpdateProfile() {
   const history = useHistory()
-  const { currentUser, updatePassword, updateEmail } = useAuth()
+  const { user, updatePassword, updateEmail } = useAuth()
   const [emailUpdateMsg, setEmailUpdateMsg] = useState()
   const [passwordUpdateMsg, setPasswordUpdateMsg] = useState()
 
 
   const initialValues = {
-    email: currentUser.email,
-    username: currentUser.username,
+    email: user.email,
+    username: user.username,
     password: '',
   }
 
@@ -34,7 +34,7 @@ export default function UpdateProfile() {
     setPasswordUpdateMsg({})
     console.log('Form values:', values)
 
-    if(values.email !== currentUser.email){
+    if(values.email !== user.email){
       try{
         await updateEmail(values.email)
         history.push(PROFILE_PAGE)

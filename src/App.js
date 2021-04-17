@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion"
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import AppScroolbar from 'ReusableComponents/Scroolbar/AppScrollbar'
+import AppScroolbar from 'ReusableComponents/AppScroollbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData, getMovieData, createSearchMoviesUrl, setInitMovieID } from 'Utils/FetchFunctions'
 import { POPULAR_MOVIES_URL, BASE_BG_IMG_URL, HOME_PAGE, MOVIE_PAGE, REGISTER_PAGE, LOGIN_PAGE, FORGOT_PASSWORD, PROFILE_PAGE, UPDATE_PROFILE } from 'Utils/Consts'
 import { getCurrentPageUrl, getMovieIdFromLocationPathname } from 'Utils/RoutesFunctions'
@@ -40,7 +40,6 @@ export default function App () {
   useEffect(() => {
     // HomePage: if search is empty display popular movies
     // loads at page starup because searchbarText === '' at start
-    console.log('location.pathname', location.pathname)
     if(location.pathname ==='/')
       fetchPopularMoviesOnStartPage()
 
@@ -111,10 +110,6 @@ export default function App () {
 
   
   // == ScrollBar stuff ==
-  const infiniteScroll = e => {
-    // console.log('infinite Scroll')
-    setDispPostersNum(20)
-  }
 
   const scrollBarRef = useRef(null)
   // == END ScrollBar stuff ==
@@ -130,13 +125,13 @@ export default function App () {
     setBackgroundIMG(movieData.backdrop_path && `${BASE_BG_IMG_URL}${movieData.backdrop_path}`)
   }, [movieData])
 
-  useEffect(() => {
-    console.log(`searchbarText: ${searchbarText}`)
-  }, [searchbarText])
+  // useEffect(() => {
+  //   console.log(`searchbarText: ${searchbarText}`)
+  // }, [searchbarText])
 
-  useEffect(() => {
-    console.log(`showQuickSearchRes: ${showQuickSearchRes}`)
-  }, [showQuickSearchRes])
+  // useEffect(() => {
+  //   console.log(`showQuickSearchRes: ${showQuickSearchRes}`)
+  // }, [showQuickSearchRes])
 
   useEffect(() => {
     console.log(`movieID: ${movieID}`)
@@ -158,7 +153,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, infiniteScroll, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
           <AuthProvider>
             <Navbar/>

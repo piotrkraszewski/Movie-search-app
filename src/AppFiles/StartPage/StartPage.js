@@ -1,14 +1,16 @@
 import { useContext } from 'react'
 import './StartPage.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { useAppScrollbar } from 'ReusableComponents/AppScroollbar/AppScrollbar'
 import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 import PosterCard from 'ReusableComponents/PosterCard/PosterCard'
 
 
 export default function StartPageCards() {
-  const {searchbarText, suggestions, dispPostersNum,pushToHistory, scrollBarRef, setSuggestions} = useContext(AppContext)
-
+  const {searchbarText, suggestions, dispPostersNum,pushToHistory, setSuggestions} = useContext(AppContext)
+  const { scrollBarRef } = useAppScrollbar()
+  
   function selectedMovieInCardsPage(id){
     pushToHistory(`/movie/${id}`)
     setTimeout(() => {

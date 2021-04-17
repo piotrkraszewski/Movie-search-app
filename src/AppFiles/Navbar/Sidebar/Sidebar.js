@@ -4,7 +4,7 @@ import { useAuth } from 'AppFiles/Contexts/AuthContext'
 
 
 export default function Sidebar({isOpen, close, gotoHome, gotoRegister, gotoLogin, gotoUserPanel}) {
-  const { currentUser, handleLogout } = useAuth()
+  const { user, handleLogout } = useAuth()
   return (
     <nav className={'Sidebar ' + (isOpen && 'openSidebar')}>
       <div className='closeIconContainer'>
@@ -22,13 +22,13 @@ export default function Sidebar({isOpen, close, gotoHome, gotoRegister, gotoLogi
             onClick={() => gotoHome()}>
             Home
           </div>
-          {!currentUser &&
+          {!user &&
           <div 
             className="sidebarLink"
             onClick={() => gotoRegister()}>
             Register
           </div>}
-          {currentUser &&
+          {user &&
           <div 
             className="sidebarLink"
             onClick={() => gotoUserPanel()}>
@@ -36,13 +36,13 @@ export default function Sidebar({isOpen, close, gotoHome, gotoRegister, gotoLogi
           </div>}
         </ul>
         <div className="sidebarBtnWrap">
-        {!currentUser &&
+        {!user &&
           <div 
             className='sidebarBtnLink' 
             onClick={() => gotoLogin()}>
             Login
           </div>}
-        {currentUser &&
+        {user &&
           <div 
             className='sidebarBtnLink' 
             onClick={() => handleLogout()}>
