@@ -1,24 +1,40 @@
 import './NavSearchbar.scss'
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import Searchbar from 'ReusableComponents/Searchbar/Searchbar'
+import { DebounceInput } from 'react-debounce-input';
+import closeImg  from 'Images/close.svg'
 import useKeysPressedInSearchbar from 'Hooks/SearchbarHooks/useKeysPressedInSearchbar'
 import useShowHideQuickSearch from 'Hooks/SearchbarHooks/useShowHideQuickSearch'
 import SearchbarResults from './Results/SearchbarResults'
 
 
 export default function NavSearchbar() {
-  const { location } = useContext(AppContext)
+  const { location, searchbarText, setSearchbarText, onSearchbarTextChanging } = useContext(AppContext)
   const enterKeyInSearchbar = useKeysPressedInSearchbar()
   const {node, OnSearchBarClicked} = useShowHideQuickSearch()
 
+  const resetSearch = () => setSearchbarText('')
+  
 
   return (
     <div className='NavSearchbar' ref={node}>
-      <Searchbar
-        onClick={OnSearchBarClicked} 
-        onKeyPress={enterKeyInSearchbar}
-      />
+      <form onSubmit={e => e.preventDefault()}>
+        <DebounceInput
+          debounceTimeout={250}
+          onChange={onSearchbarTextChanging}
+          type='text'
+          placeholder='Search Movie'
+          value={searchbarText}
+          onClick={OnSearchBarClicked}
+          onKeyPress={enterKeyInSearchbar}
+        />
+        <img 
+          src={closeImg} 
+          onClick={resetSearch}
+          alt="close search"
+        />
+      </form>
+
       {location.pathname.includes('movie') 
       && <SearchbarResults />}
     </div>
