@@ -1,14 +1,15 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import './MoviePage.scss'
 import { motion, AnimatePresence } from 'framer-motion'
-import { AppContext } from 'AppFiles/Contexts/AppContext'
+// import { AppContext } from 'AppFiles/Contexts/AppContext'
+import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
 import { POSTER_W500 } from 'Utils/Consts'
 import { nestedDataToString } from './MoviePageFunctions'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import no_image from 'Images/no_image.png'
 
 export default function MovieCard () {
-  const { movieData } = useContext(AppContext)
+  const { movieData } = useMovieContext()
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
 

@@ -1,17 +1,15 @@
 import ReactDOM from 'react-dom'
 import App from 'App'
 import 'styles/App.scss'
-// import * as serviceWorker from 'testingFiles/serviceWorker'
+import MovieProvider from 'AppFiles/Contexts/MovieContext'
+
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <BrowserRouter basename={process.env.PUBLIC_URL}>
-    <App />
+    <MovieProvider>
+      <App />
+    </MovieProvider>
   </BrowserRouter>,
   document.getElementById('root')
 )
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
