@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 import PropTypes from 'prop-types'
-import './AppBackground.scss'
+import s from './AppBackground.module.sass'
 
 
 AppBackground.propTypes = {
@@ -34,10 +34,10 @@ export default function AppBackground({fetchImg, fallbackImg}) {
 
   return (
     <>
-      <div className='BgGradient'/>
+      <div className={s.BgGradient}/>
       <AnimatePresence>
         <motion.img 
-          className='BgImage'
+          className={s.BgImage}
           src={fetchImg ? fetchImg : fallbackImg}
           key={fetchImg}
 

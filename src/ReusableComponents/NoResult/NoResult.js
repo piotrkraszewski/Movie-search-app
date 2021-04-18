@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import './NoResult.scss'
+import s from './NoResult.module.scss'
 import PropTypes from 'prop-types'
 import closeImg  from 'Images/close.svg'
 
@@ -20,19 +20,18 @@ export default function NoResult({className, fadeInConditionsArr, onClose, close
   }, [fadeInConditionsArr])
 
   return (
-    <div className={`NoResult ${className} ` + (fadeIn && 'fadeIn')}>
+    <div className={`${s.NoResult} ${className} ` + (fadeIn && 'fadeIn')}>
         <p>no result</p>
 
         {closeBtn === 'btn' &&
           <p 
-            className='btn'
+            className={s.btn}
             onClick={() => onClose(false)}
           >close</p>
         }
 
         {closeBtn === 'img' &&
           <img 
-            className='closeImg'
             src={closeImg} 
             onClick={() => onClose(false)}
             alt="close search results"

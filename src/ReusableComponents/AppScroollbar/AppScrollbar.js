@@ -16,12 +16,11 @@ export default function AppScrollbar (props) {
   const { dispPostersNum, setDispPostersNum } = useContext(AppContext)
   const scrollBarRef = useRef(null)
 
-  
-
   const infiniteScroll = e => {
     // console.log('infinite Scroll')
     setDispPostersNum(20)
   }
+
 
   return (
     <ScrollBar 

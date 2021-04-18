@@ -1,0 +1,27 @@
+@use '~styles/helpers' as *
+
+@function vh($quantity) 
+  @return calc(var(--vh, 1vh) * #{$quantity})
+
+
+@mixin BgCommonSettings 
+  position: fixed
+  width: 100%
+  height: 100% //falback 
+  height: vh(100) // 100% of device height
+
+
+.BgGradient
+  @include BgCommonSettings
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85) 15%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 1) 90%)
+  z-index:-1
+
+
+.BgImage
+  @include BgCommonSettings
+  left: 50%
+  transform: translate(-50%)
+  z-index:-2
+
+  // works like background-image. works on every size !!!
+  object-fit: cover

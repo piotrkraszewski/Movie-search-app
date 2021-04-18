@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import './Profile.scss'
+import s from './Profile.module.sass'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { UPDATE_PROFILE } from 'Utils/Consts'
@@ -26,9 +26,9 @@ export default function UserPanel() {
 
 
   return (
-    <div className='Profile'>
+    <div className={s.Profile}>
       { !loading &&
-      <div className='userData'>
+      <div className={s.userData}>
         <h2>Profile</h2>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Username:</strong> {userData.username}</p>

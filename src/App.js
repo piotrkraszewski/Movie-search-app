@@ -108,11 +108,6 @@ export default function App () {
   
   // ==== END Search state and functions ====
 
-  
-  // == ScrollBar stuff ==
-
-  const scrollBarRef = useRef(null)
-  // == END ScrollBar stuff ==
 
 
 // ==== Console log stuff ====
@@ -153,7 +148,7 @@ export default function App () {
         tabIndex='1'
       >
         <AppContext.Provider 
-          value={{movieID, movieData, searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, scrollBarRef, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
+          value={{movieID, movieData, searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData, setMovieID, fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
           <AuthProvider>
             <Navbar/>

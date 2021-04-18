@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import './PosterLi.scss'
+import s from './PosterLi.module.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
-import HighlightTextInQuickSearchHooks from '../../Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
-import GotoOtherRoutesHooks from '../../Hooks/SearchbarHooks/useGotoOtherRoutes'
+import HighlightTextInQuickSearchHooks from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
+import GotoOtherRoutesHooks from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
 import { motion, AnimatePresence } from "framer-motion"
 import ImageFadeIn from "react-image-fade-in"
 import no_image from 'Images/no_image.png'
@@ -25,7 +25,7 @@ export default function PosterLi({item, index}) {
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.li 
-        className={'PosterLi ' + 
+        className={`${s.PosterLi} ` +  
         (indexOfHighlightedMovie === index && 'active')}
 
         onClick={() => selectedMovieInQuickSearch(item.id)}
@@ -52,6 +52,6 @@ export default function PosterLi({item, index}) {
           </p>
         </div>
       </motion.li>
-      </AnimatePresence>
+    </AnimatePresence>
   )
 }
