@@ -1,4 +1,4 @@
-import { BASE_BG_IMG_URL } from 'Utils/Consts'
+import { BASE_BG_IMG_URL, INIT_BG_IMG } from 'Utils/Consts'
 import { useState, useEffect, createContext, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getMovieData, setInitMovieID } from 'Utils/FetchFunctions'
@@ -17,7 +17,7 @@ export default function MovieProvider({children}){
   const location = useLocation()
   const [movieID, setMovieID] = useState(() => setInitMovieID(location))
   const [movieData, setMovieData] = useState({})
-  const [backgroundIMG, setBackgroundIMG] = useState()
+  const [backgroundIMG, setBackgroundIMG] = useState(INIT_BG_IMG)
 
 
   // get movieID from location
@@ -41,8 +41,14 @@ export default function MovieProvider({children}){
   //set BackgroundIMG base on movieData 
   useEffect(() => {
     // console.log({movieData})
-    setBackgroundIMG(movieData.backdrop_path && `${BASE_BG_IMG_URL}${movieData.backdrop_path}`)
+    if(movieData.backdrop_path)
+      setBackgroundIMG(`${BASE_BG_IMG_URL}${movieData.backdrop_path}`)
   }, [movieData])
+
+  // useEffect(() => {
+  //   console.log('backgroundIMG: ', backgroundIMG)
+  // }, [backgroundIMG])
+
 
   return (
     <MovieContext.Provider value={{movieID, setMovieID, movieData}}>

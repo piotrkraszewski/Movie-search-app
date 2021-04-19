@@ -52,13 +52,11 @@
 
     .hamburgerIconContainer{
       display: flex;
-      width: 10%;
       
       padding-left: 3%;
       .hamburgerIcon {
         max-width: 30px;
         cursor: pointer;
-        filter: invert(90%);
       }  
       @media (min-width: $menuBreakePoint) {
         display: none;
