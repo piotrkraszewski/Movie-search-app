@@ -28,19 +28,25 @@ export default function UserPanel() {
   return (
     <div className={s.Profile}>
       { !loading &&
-      <div className={s.userData}>
-        <h2>Profile</h2>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Username:</strong> {userData.username}</p>
-        <button 
-          className='btn btn-primary'
-          onClick={() => history.push(UPDATE_PROFILE)}
-          >Update Profile
-        </button>
-        <button 
-          className='btn btn-warning'
-          onClick={() => handleLogout()}>
-          Log out</button>
+      <div className={s.container}>
+        <div className={s.profileCard}>
+          <h2>Profile</h2>
+          <div className={s.userData}>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Username:</strong> {userData.username}</p>
+          </div>
+          <div className={s.buttons}>
+            <button 
+              className={`${s.button} btn btn-success`}
+              onClick={() => history.push(UPDATE_PROFILE)}
+              >Update Profile
+            </button>
+            <button 
+              className={`${s.button} btn btn-dark`}
+              onClick={() => handleLogout()}>
+              Log out</button>
+          </div>
+        </div>
       </div>
       }
     </div>

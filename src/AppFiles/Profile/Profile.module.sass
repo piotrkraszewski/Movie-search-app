@@ -2,20 +2,38 @@
 
 .Profile
   @include pageSettings
-  max-width: 1400px
   color: $white
+  margin-top: 20px
+  // background: rgba(0, 0, 0, 0.5)
+  
+.container
+  @include containerSettings(1400px)
+  
 
-
-.userData
+.profileCard
   display: flex
   flex-direction: column
-  align-items: center
-  // justify-content: center;
 
   background: $transparentFormBackground
   margin: 2em
+  padding: 1.5em
   // border: 1px solid gray;
   border-radius: 10px
   max-width: 500px
   margin: 0 auto
   
+  h2
+    text-align: center
+
+.userData
+  margin-bottom: 1rem
+  font-size: 1rem
+  p
+    margin-bottom: 0.3em
+  
+.buttons
+  display: flex
+  justify-content: center
+
+.button
+  margin: 0 0.5em
