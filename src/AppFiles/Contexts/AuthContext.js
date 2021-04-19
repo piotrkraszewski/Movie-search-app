@@ -15,6 +15,7 @@ export default function AuthProvider({children}) {
   // const history = useHistory()
   const [user, setUser] = useState()
   const [userData, setUserData] = useState({})
+  const [loading, setLoading] = useState(true)
 
   function register(email, password){
     return firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -53,6 +54,7 @@ export default function AuthProvider({children}) {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       console.log('user:', user)
       setUser(user)
+      setLoading(false)
     })
     
     return unsubscribe
@@ -60,7 +62,7 @@ export default function AuthProvider({children}) {
 
   return (
     <AuthContext.Provider value={{user, userData, setUserData, register, login, logout, handleLogout, resetPassword, updateEmail, updatePassword}}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   )
 }
