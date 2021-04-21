@@ -1,12 +1,12 @@
-// import { useContext } from 'react'
 import './MoviePage.scss'
 import { motion, AnimatePresence } from 'framer-motion'
-// import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
 import { POSTER_W500 } from 'Utils/Consts'
 import { nestedDataToString } from './MoviePageFunctions'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import no_image from 'Images/no_image.png'
+
+import MovieStatusWidget from './MovieStatusWidget'
 
 export default function MovieCard () {
   const { movieData } = useMovieContext()
@@ -39,6 +39,7 @@ export default function MovieCard () {
         >
           <div className='metaDataContainer col-12 col-md-7 col-lg-8'>
             <h1>{original_title}</h1>
+            <MovieStatusWidget/>
             <span className='tagline'>{tagline}</span>
             <p>{overview}</p>
             <div className='additionalDetails'>

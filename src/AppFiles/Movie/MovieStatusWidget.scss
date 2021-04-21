@@ -1,0 +1,91 @@
+@use "react-widgets/scss/styles.scss" with (
+  $components: (
+    'Listbox',
+    'DropdownList',
+    'Combobox',
+    // 'Multiselect',
+    // 'DatePicker',
+    // 'Calendar',
+    // 'TimeInput',
+    'NumberPicker'
+  ),
+  $widget-font-size: 16px,
+  $input-height: 2em,
+);
+
+
+.MovieStatusWidgets{
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  @media (min-width: 768px) {
+    // max-width: 300px;
+    flex-direction: row;
+  }
+  
+  .Widget{
+    padding: 0.5rem 0;
+    width: 100%;
+    
+    @media (min-width: 768px) {
+      padding-right: 1rem;
+    }
+
+    p{
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      padding-left: 2px;
+    }
+  }
+}
+
+
+$fontColor: rgb(240, 240, 240);
+$backgroundColor: rgb(30, 30, 30);
+
+
+.rw-widget-container{
+  border: none;
+  background: $backgroundColor;
+  color: $fontColor;
+
+  &:focus {
+    outline: none;
+}
+}
+
+.rw-popup{
+  // hides original outside border that made problems
+  background: transparent;
+  border-radius: 0;
+  border: none!important;
+}
+
+.rw-list {
+  // new border
+  border-radius: 10px;
+  background: $backgroundColor;
+  border: 1px solid rgb(70, 70, 70);
+}
+
+.rw-list-option{
+  color: $fontColor;
+  &:hover{
+    background: rgb(50, 50, 50);
+    border: none;
+  }
+}
+
+.rw-state-focus
+.rw-state-selected{
+  background: #008f4c;
+  border: none;
+}
+
+.rw-btn {
+  filter: invert(80%);  // brighter color
+}
+
+.rw-dropdown-list-input{
+  pointer-events: none;
+}
