@@ -15,13 +15,13 @@ export default function UserPanel() {
     if (userData.username)
       setLoading(false)
 
-    usersCollection.doc(user.uid).get().then(snapshot => {
-      console.log(snapshot.data())
-      setUserData(snapshot.data())
-      setLoading(false)
-    }).catch(err => {
-      console.log(err)
-    })
+    // usersCollection.doc(user.uid).get().then(snapshot => {
+    //   console.log(snapshot.data())
+    //   setUserData(snapshot.data())
+    //   setLoading(false)
+    // }).catch(err => {
+    //   console.log(err)
+    // })
   }, [])
 
 

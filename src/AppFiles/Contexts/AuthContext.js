@@ -1,8 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-// import { useHistory, useLocation } from 'react-router-dom'
 import firebase from 'Utils/firebase'
-// import { HOME_PAGE, PROFILE_PAGE } from 'Utils/Consts'
-
+import { usersCollection } from 'Utils/firebase'
 
 const AuthContext = createContext()
 
@@ -11,8 +9,6 @@ export function useAuth(){
 }
 
 export default function AuthProvider({children}) {
-  // const location = useLocation()
-  // const history = useHistory()
   const [user, setUser] = useState()
   const [userData, setUserData] = useState({})
   const [loading, setLoading] = useState(true)
@@ -49,7 +45,19 @@ export default function AuthProvider({children}) {
     return user.updatePassword(password)
   }
 
+  function loadUserData(){
+    if (user){
+      usersCollection.doc(user.uid).get().then(snapshot => {
+        console.log(snapshot.data())
+        setUserData(snapshot.data())
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  }
+  
 
+  // sets firebase user
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       console.log('user:', user)
@@ -60,8 +68,15 @@ export default function AuthProvider({children}) {
     return unsubscribe
   }, [])
 
+
+  // loads data about user if user exists
+  useEffect(() => {
+    loadUserData()
+  }, [user])
+
+
   return (
-    <AuthContext.Provider value={{user, userData, setUserData, register, login, logout, handleLogout, resetPassword, updateEmail, updatePassword}}>
+    <AuthContext.Provider value={{user, userData, setUserData, loadUserData, register, login, logout, handleLogout, resetPassword, updateEmail, updatePassword}}>
       {!loading && children}
     </AuthContext.Provider>
   )

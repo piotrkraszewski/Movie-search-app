@@ -5,18 +5,21 @@ import { POSTER_W500 } from 'Utils/Consts'
 import { nestedDataToString } from './MoviePageFunctions'
 import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import no_image from 'Images/no_image.png'
-
 import MovieStatusWidget from './MovieStatusWidget'
+import { useAuth } from 'AppFiles/Contexts/AuthContext'
+
 
 export default function MovieCard () {
-  const { movieData } = useMovieContext()
+  const { user, userData } = useAuth()
+
+  const { movieData, movieID } = useMovieContext()
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
 
-  const productionList = nestedDataToString(production_companies),
-        genresList = nestedDataToString(genres)
+  const productionList = nestedDataToString(production_companies)
+  const genresList = nestedDataToString(genres)
 
-
+  
   return (
     /* Transition between this and other pages */
     <motion.div 
@@ -39,7 +42,9 @@ export default function MovieCard () {
         >
           <div className='metaDataContainer col-12 col-md-7 col-lg-8'>
             <h1>{original_title}</h1>
-            <MovieStatusWidget/>
+
+            {userData.movies && <MovieStatusWidget/>}
+
             <span className='tagline'>{tagline}</span>
             <p>{overview}</p>
             <div className='additionalDetails'>
