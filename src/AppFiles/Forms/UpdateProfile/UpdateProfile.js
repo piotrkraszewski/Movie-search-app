@@ -7,18 +7,19 @@ import './UpdateProfile.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { PROFILE_PAGE } from 'Utils/Consts'
+import {usersCollection} from 'Utils/firebase'
 
 
 export default function UpdateProfile() {
   const history = useHistory()
-  const { user, updatePassword, updateEmail } = useAuth()
+  const { user, userData, updatePassword, updateEmail } = useAuth()
   const [emailUpdateMsg, setEmailUpdateMsg] = useState()
   const [passwordUpdateMsg, setPasswordUpdateMsg] = useState()
 
 
   const initialValues = {
     email: user.email,
-    username: user.username,
+    username: userData.username,
     password: '',
   }
 
@@ -58,10 +59,40 @@ export default function UpdateProfile() {
       }
     }
 
+    if(values.email !== user.email){
+      try{
+        await updateEmail(values.email)
+        history.push(PROFILE_PAGE)
+      } catch (err){
+        setEmailUpdateMsg({
+          submitStatus: 'error',
+          message: 'Failed to update email. Email is probably used by another user.'
+        })
+      }
+    }
+
+    if(values.username !== userData.username){
+      try {
+        await usersCollection.doc(user.uid).set({
+          username: values.username
+        }, { merge: true })
+        history.push(PROFILE_PAGE)
+      } catch (err){
+        console.log(err)
+        // setSubmitMsg({
+        //   submitStatus: 'error',
+        //   message: err.message
+        // })
+      }
+    }
+
     onSubmitProps.setSubmitting(false)  //enables button
   }
 
 
+
+
+///////////////////////////////////////////////////
 return (
   <div className='UpdateProfile'>
     <h2>Update Profile</h2>

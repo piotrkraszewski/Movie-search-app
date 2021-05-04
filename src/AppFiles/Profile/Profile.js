@@ -7,21 +7,14 @@ import { usersCollection } from 'Utils/firebase'
 
 export default function UserPanel() {
   const history = useHistory()
-  const { user, handleLogout, userData, setUserData } = useAuth()
+  const { user, handleLogout, userData, loadUserData } = useAuth()
   const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
-    if (userData.username)
+    loadUserData()
+    if (userData)
       setLoading(false)
-
-    // usersCollection.doc(user.uid).get().then(snapshot => {
-    //   console.log(snapshot.data())
-    //   setUserData(snapshot.data())
-    //   setLoading(false)
-    // }).catch(err => {
-    //   console.log(err)
-    // })
   }, [])
 
 
