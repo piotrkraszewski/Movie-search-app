@@ -1,6 +1,6 @@
 @use '~styles/helpers' as *;
 
-.StartPageCards{
+.StartPage{
   @include pageSettings;
 
   .Container{
@@ -13,5 +13,9 @@
       font-size: large;
       text-transform: uppercase;
     }
+  }
+  .fadeout {
+    opacity: 0;
+    transition: opacity 400ms ease-in-out;
   }
 }

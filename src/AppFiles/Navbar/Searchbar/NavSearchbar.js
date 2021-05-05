@@ -9,7 +9,7 @@ import SearchbarResults from './Results/SearchbarResults'
 
 
 export default function NavSearchbar() {
-  const { location, searchbarText, setSearchbarText, onSearchbarTextChanging } = useContext(AppContext)
+  const { location, searchbarText, setSearchbarText, onSearchbarTextChanging, suggestions } = useContext(AppContext)
   const enterKeyInSearchbar = useKeysPressedInSearchbar()
   const {node, OnSearchBarClicked} = useShowHideQuickSearch()
 
@@ -36,7 +36,7 @@ export default function NavSearchbar() {
         />
       </form>
 
-      {location.pathname !=='/' 
+      {(location.pathname !=='/' || suggestions.length === 0)
       && <SearchbarResults />}
     </div>
   )
