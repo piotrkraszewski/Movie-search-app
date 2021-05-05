@@ -3,20 +3,19 @@ import s from './Profile.module.sass'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { UPDATE_PROFILE } from 'Utils/Consts'
-import MoviesCollection from './MoviesCollection/MoviesCollection'
-import EmptyMoviesCollection from './MoviesCollection/EmptyMoviesCollection'
+import MoviesCollectionLogic from './MoviesCollection/MoviesCollectionLogic'
+
 
 export default function Profile() {
   const history = useHistory()
-  const { user, handleLogout, userData, loadUserData } = useAuth()
+  const { user, handleLogout, userData } = useAuth()
   const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
-    loadUserData()
-    if (userData)
+    if (userData.username)
       setLoading(false)
-  }, [])
+  }, [userData])
 
 
   return (
@@ -41,9 +40,9 @@ export default function Profile() {
               Log out</button>
           </div>
         </div>
-          {userData.movies 
-            ? <MoviesCollection/>
-            : <EmptyMoviesCollection/>  }
+          
+        <MoviesCollectionLogic/>
+
       </div>
       }
     </div>

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import s from './ProfilePosterCard.module.scss'
-import ImageFadeIn from "react-image-fade-in";
+import ImageFadeIn from "react-image-fade-in"
 import no_image from 'Images/no_image.png'
 import PropTypes from 'prop-types'
 
@@ -31,13 +31,15 @@ export default function PosterCard ({
       transition={{ duration: cardTransitionDuration, ease: 'easeInOut' }}
     >
       <div >
-          <ImageFadeIn
-            width={imgWidth}
-            height={imgHeight}
-            opacityTransition={imgTransition}
-            src={cardData.poster ? cardData.poster : no_image}
-            alt={`poster ${cardData.id}`}
-          />
+        <p className={s.rating}>{cardData.rating}</p>
+        <ImageFadeIn
+          width={imgWidth}
+          height={imgHeight}
+          opacityTransition={imgTransition}
+          src={cardData.poster ? cardData.poster : no_image}
+          alt={`poster ${cardData.id}`}
+        />
+        <p className={s.status}>{cardData.status}</p>
         <p>{cardData.title}</p>
       </div>
     </motion.div>

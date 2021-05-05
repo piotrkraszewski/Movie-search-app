@@ -1,7 +1,7 @@
 import s from './MoviesCollection.module.sass'
 
 
-export default function MoviesCollection() {
+export default function MoviesCollectionEmpty() {
   return (
     <div className={`${s.MoviesCollection} ${s.Empty}`}>
       <h2>Movie List:</h2>

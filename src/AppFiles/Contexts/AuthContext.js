@@ -28,6 +28,7 @@ export default function AuthProvider({children}) {
   async function handleLogout(){
     try{
       await logout()
+      setUserData({})
     } catch(err){
       console.log(err)
     }

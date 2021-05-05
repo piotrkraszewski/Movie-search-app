@@ -15,7 +15,6 @@ export default function NavSearchbar() {
 
   const resetSearch = () => setSearchbarText('')
   
-  console.log(location.pathname)
 
   return (
     <div className='NavSearchbar' ref={node}>

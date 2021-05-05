@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import './StartPage.scss'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import { NUM_OF_DISP_RES_MOBILE, NUM_OF_DISP_RES_PC, PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'
+import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
 import PosterCard from 'ReusableComponents/PosterCard/PosterCard'
 import useGotoOtherRoutes from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
@@ -13,7 +13,6 @@ export default function StartPage() {
   const {selectedMovieInStartPage} = useGotoOtherRoutes()
   const displayedSuggestions = useCreateArrayToDisplayAndFadeout(suggestions, 20, 800)
 
-  const emptyArr = []
 
   return (
     <motion.div 
