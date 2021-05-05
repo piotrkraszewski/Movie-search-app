@@ -4,6 +4,7 @@ import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { UPDATE_PROFILE } from 'Utils/Consts'
 import MoviesCollection from './MoviesCollection/MoviesCollection'
+import EmptyMoviesCollection from './MoviesCollection/EmptyMoviesCollection'
 
 export default function Profile() {
   const history = useHistory()
@@ -40,7 +41,9 @@ export default function Profile() {
               Log out</button>
           </div>
         </div>
-          {userData.movies && <MoviesCollection/>}
+          {userData.movies 
+            ? <MoviesCollection/>
+            : <EmptyMoviesCollection/>  }
       </div>
       }
     </div>
