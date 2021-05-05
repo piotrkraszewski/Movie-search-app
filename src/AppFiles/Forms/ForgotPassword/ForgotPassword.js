@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { motion } from "framer-motion"
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import './ForgotPassword.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { LOGIN_PAGE, REGISTER_PAGE } from 'Utils/Consts'
+import { LOGIN_PAGE, PAGE_TRANSITION_TIME, REGISTER_PAGE } from 'Utils/Consts'
 
 
 export default function ForgotPassword() {
@@ -45,7 +46,14 @@ export default function ForgotPassword() {
 
 
 return (
-  <div className='ForgotPassword'>
+  <motion.div 
+    className='ForgotPassword'
+    
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, delay :0.2 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: PAGE_TRANSITION_TIME }}
+  >
     <h2>Password Reset</h2>
     <Formik 
       initialValues={initialValues}
@@ -92,6 +100,6 @@ return (
           Need an account? Register
       </button>
     </div>
-  </div>
+  </motion.div>
 )
 }

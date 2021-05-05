@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { motion } from "framer-motion"
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import './Register.scss'
 import { usersCollection } from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PROFILE_PAGE, LOGIN_PAGE } from 'Utils/Consts'
+import { PROFILE_PAGE, LOGIN_PAGE, PAGE_TRANSITION_TIME } from 'Utils/Consts'
 
 
 export default function Register() {
@@ -60,7 +61,14 @@ export default function Register() {
 
 
 return (
-  <div className='Register'>
+  <motion.div 
+    className='Register'
+
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, delay :0.2 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: PAGE_TRANSITION_TIME }}
+  >
     <h2>Register</h2>
     <Formik 
       initialValues={initialValues}
@@ -114,6 +122,6 @@ return (
           Have an account? Login
       </button>
     </div>
-  </div>
+  </motion.div>
 )
 }

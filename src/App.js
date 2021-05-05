@@ -5,7 +5,6 @@ import { AppContext } from 'AppFiles/Contexts/AppContext'
 import AppScroolbar from 'ReusableComponents/AppScroollbar/AppScrollbar'
 import { getMoviesDataToDisplayInSearch, getAllMoviesData,  createSearchMoviesUrl } from 'Utils/FetchFunctions'
 import { POPULAR_MOVIES_URL, HOME_PAGE, MOVIE_PAGE, REGISTER_PAGE, LOGIN_PAGE, FORGOT_PASSWORD, PROFILE_PAGE, UPDATE_PROFILE } from 'Utils/Consts'
-import { getCurrentPageUrl } from 'Utils/RoutesFunctions'
 import ArrowKeysReact from 'arrow-keys-react'
 
 import StartPage from 'AppFiles/StartPage/StartPage'
@@ -120,7 +119,7 @@ export default function App () {
               <AnimatePresence exitBeforeEnter>
                 <Switch 
                   location={location} 
-                  key={getCurrentPageUrl(location)}
+                  key={location.pathname}
                 >
                   <Route exact path={HOME_PAGE} render={() => <StartPage/>} />
                   <Route exact path={`${MOVIE_PAGE}:${movieID}`} render={() => <MoviePage/>} />

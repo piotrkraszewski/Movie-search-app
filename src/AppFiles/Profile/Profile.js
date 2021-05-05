@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react'
 import s from './Profile.module.sass'
+import { motion, AnimatePresence } from "framer-motion"
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { UPDATE_PROFILE } from 'Utils/Consts'
+import { PAGE_TRANSITION_TIME, UPDATE_PROFILE } from 'Utils/Consts'
 import MoviesCollectionLogic from './MoviesCollection/MoviesCollectionLogic'
 
 
@@ -19,7 +20,14 @@ export default function Profile() {
 
 
   return (
-    <div className={s.Profile}>
+    <motion.div 
+      className={s.Profile}
+
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, delay :0.2 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: PAGE_TRANSITION_TIME }}
+    >
       { !loading &&
       <div className={s.container}>
         <div className={s.profileCard}>
@@ -45,6 +53,6 @@ export default function Profile() {
 
       </div>
       }
-    </div>
+    </motion.div>
   )
 }

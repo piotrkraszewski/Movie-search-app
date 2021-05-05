@@ -14,7 +14,7 @@ export const NUM_OF_DISP_RES_PC = 5
 export const NUM_OF_DISP_RES_MOBILE = 3
 
 // Transitions
-export const PAGE_TRANSITION_TIME = 0.7
+export const PAGE_TRANSITION_TIME = 0.55
 export const START_PAGE_CARDS_TRANSITION = 0.35
 export const QUICK_SEARCH_TRANSITION = 0.35
 

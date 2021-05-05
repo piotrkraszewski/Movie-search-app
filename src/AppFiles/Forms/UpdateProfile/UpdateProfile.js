@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { motion } from "framer-motion"
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import './UpdateProfile.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PROFILE_PAGE } from 'Utils/Consts'
+import { PAGE_TRANSITION_TIME, PROFILE_PAGE } from 'Utils/Consts'
 import {usersCollection} from 'Utils/firebase'
 
 
 export default function UpdateProfile() {
   const history = useHistory()
-  const { user, userData, updatePassword, updateEmail } = useAuth()
+  const { user, userData, setUserData, loadUserData, updatePassword, updateEmail } = useAuth()
   const [emailUpdateMsg, setEmailUpdateMsg] = useState()
   const [passwordUpdateMsg, setPasswordUpdateMsg] = useState()
 
@@ -38,6 +39,8 @@ export default function UpdateProfile() {
     if(values.email !== user.email){
       try{
         await updateEmail(values.email)
+        setUserData({})
+        loadUserData()
         history.push(PROFILE_PAGE)
       } catch (err){
         setEmailUpdateMsg({
@@ -50,6 +53,7 @@ export default function UpdateProfile() {
     if(values.password){
       try{
         await updatePassword(values.password)
+        loadUserData()
         history.push(PROFILE_PAGE)
       } catch (err){
         setPasswordUpdateMsg({
@@ -62,6 +66,7 @@ export default function UpdateProfile() {
     if(values.email !== user.email){
       try{
         await updateEmail(values.email)
+        loadUserData()
         history.push(PROFILE_PAGE)
       } catch (err){
         setEmailUpdateMsg({
@@ -76,6 +81,7 @@ export default function UpdateProfile() {
         await usersCollection.doc(user.uid).set({
           username: values.username
         }, { merge: true })
+        loadUserData()
         history.push(PROFILE_PAGE)
       } catch (err){
         console.log(err)
@@ -94,7 +100,14 @@ export default function UpdateProfile() {
 
 ///////////////////////////////////////////////////
 return (
-  <div className='UpdateProfile'>
+  <motion.div 
+    className='UpdateProfile'
+
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, delay :0.2 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: PAGE_TRANSITION_TIME }}
+  >
     <h2>Update Profile</h2>
     <Formik 
       initialValues={initialValues}
@@ -149,6 +162,6 @@ return (
           Cancel
       </button>
     </div>
-  </div>
+  </motion.div>
 )
 }

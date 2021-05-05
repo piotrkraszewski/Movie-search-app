@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
+import { motion } from "framer-motion"
 import * as Yup from 'yup'
 import FormikControl from '../FormikControl/FormikControl'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 import './Login.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE } from 'Utils/Consts'
+import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE, PAGE_TRANSITION_TIME } from 'Utils/Consts'
 
 
 export default function Login() {
@@ -45,7 +46,14 @@ export default function Login() {
 
 
 return (
-  <div className='Login'>
+  <motion.div 
+    className='Login'
+
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, delay :0.2 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: PAGE_TRANSITION_TIME }}
+  >
     <h2>Login</h2>
     <Formik 
       initialValues={initialValues}
@@ -98,6 +106,6 @@ return (
           Need an account? Register
       </button>
     </div>
-  </div>
+  </motion.div>
 )
 }
