@@ -1,0 +1,38 @@
+@use '~styles/helpers' as *;
+
+#PosterCard{
+  padding: min(15px, 1%);
+  padding-bottom: min(15px, 3%);
+  
+  div {
+    @include equalColumnHeight;
+    @include smallCardDiv;
+    background: rgba(10, 10, 10, 0.9);
+    font-size: 0.9rem;
+
+    // &:hover {
+    //   @include smallCardHoverAnimation;
+    // }
+
+      img {
+        border-radius: $posterRaious $posterRaious 0px 0px;
+
+        // maintains aspect ratio
+        max-width:100%;
+        height: auto;
+      }
+
+    p {
+      @include hideToLongTitle;
+      @include smallCardParagraphs;
+      
+      padding: 5px;
+      padding-bottom: 3px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 475px) {
+      font-size: 0.85rem;
+    }
+  }
+}

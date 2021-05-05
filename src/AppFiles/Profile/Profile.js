@@ -3,9 +3,9 @@ import s from './Profile.module.sass'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { UPDATE_PROFILE } from 'Utils/Consts'
-import { usersCollection } from 'Utils/firebase'
+import MoviesCollection from './MoviesCollection/MoviesCollection'
 
-export default function UserPanel() {
+export default function Profile() {
   const history = useHistory()
   const { user, handleLogout, userData, loadUserData } = useAuth()
   const [loading, setLoading] = useState(true)
@@ -40,6 +40,7 @@ export default function UserPanel() {
               Log out</button>
           </div>
         </div>
+          {userData.movies && <MoviesCollection/>}
       </div>
       }
     </div>
