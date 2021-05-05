@@ -15,6 +15,7 @@ export default function NavSearchbar() {
 
   const resetSearch = () => setSearchbarText('')
   
+  console.log(location.pathname)
 
   return (
     <div className='NavSearchbar' ref={node}>
@@ -35,7 +36,7 @@ export default function NavSearchbar() {
         />
       </form>
 
-      {location.pathname.includes('movie') 
+      {location.pathname !=='/' 
       && <SearchbarResults />}
     </div>
   )

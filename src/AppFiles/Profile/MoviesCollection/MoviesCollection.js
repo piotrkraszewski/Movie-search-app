@@ -46,7 +46,7 @@ export default function MoviesCollection() {
 
 return (
   <div className={s.MoviesCollection}>
-    <h2>Movie List</h2>
+    <h2>Movie List:</h2>
     <div className='row'>
       { userMovies.length > 0 && userMovies.map(cardData => (
 
@@ -59,13 +59,11 @@ return (
         imgHeight={'750'}
         imgWidth={'500'}
       />
-        // <div>
-        //   <p>{item.id}</p>
-        //   <p>{item.status}</p>
-        //   <p>{item.rating}</p>
-        //   <img src={item.poster} alt=""/>
-        // </div>
       ))}
+
+      {userMovies.length === 0 && 
+        <p>You didn't add any movies to your list yet</p>  
+      }
     </div>
   </div>
 )
