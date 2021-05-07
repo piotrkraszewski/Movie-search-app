@@ -10,9 +10,9 @@ import { useAuth } from 'AppFiles/Contexts/AuthContext'
 
 
 export default function MovieCard () {
-  const { user, userData } = useAuth()
+  const { user } = useAuth()
 
-  const { movieData, movieID } = useMovieContext()
+  const { movieData } = useMovieContext()
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
 
@@ -43,7 +43,7 @@ export default function MovieCard () {
           <div className='metaDataContainer col-12 col-md-7 col-lg-8'>
             <h1>{original_title}</h1>
 
-            {userData.movies && <MovieStatusWidget/>}
+            {user && <MovieStatusWidget/>}
 
             <span className='tagline'>{tagline}</span>
             <p>{overview}</p>

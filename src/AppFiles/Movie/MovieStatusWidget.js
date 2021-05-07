@@ -12,7 +12,7 @@ export default function MovieStatusWidget() {
   const { movieID } = useMovieContext()
   const { user, userData, loadUserData } = useAuth()
 
-  const initStatus = userData.movies[movieID]
+  const initStatus = userData.movies && userData.movies[movieID]
   const [movieStatus, setMovieStatus] = useState({
     status: initStatus ? initStatus.status : '',
     rating: initStatus ? initStatus.rating : ''
