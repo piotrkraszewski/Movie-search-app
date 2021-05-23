@@ -7,7 +7,7 @@ export const INIT_BG_IMG = 'https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo
 
 // Commbinations of basics
 export const POSTER_W500 = `${BASE_IMG_URL}w500`
-export const POPULAR_MOVIES_URL = `${BASE_API_URL}/3/movie/popular?${API_KEY}` 
+export const POPULAR_MOVIES_URL = `${BASE_API_URL}/3/movie/popular?${API_KEY}`
 
 // Number of dysplayed results
 export const NUM_OF_DISP_RES_PC = 5
@@ -26,3 +26,11 @@ export const REGISTER_PAGE = '/register'
 export const FORGOT_PASSWORD = '/forgot-password'
 export const PROFILE_PAGE = '/profile'
 export const UPDATE_PROFILE = '/profile-update'
+
+//Movie status
+export const WATCHING = 'Watching'
+export const PLAN_TO_WATCH = 'Plan to watch'
+export const COMPLETED = 'Completed'
+export const PAUSED = 'Paused'
+export const DROPPED = 'Dropped'
+export const DELET_MOVIE_DATA = 'Delete movie data'

@@ -6,6 +6,7 @@ import firebase from 'Utils/firebase'
 import {usersCollection} from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
+import { WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA } from 'Utils/Consts'
 
 
 export default function MovieStatusWidget() {
@@ -32,7 +33,7 @@ export default function MovieStatusWidget() {
       else if (actionType === 'delete'){
         command = firebase.firestore.FieldValue.delete()
       }
-       
+
 
       try {
         await usersCollection.doc(user.uid).set({
@@ -84,7 +85,7 @@ export default function MovieStatusWidget() {
             status: nextValue
           })}
           textField="color"
-          data={["Watching", "Plan to watch", "Completed", "Paused", "Dropped", "Delete movie data"]}
+          data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA]}
         />
       </div>
       <div className='Widget'>

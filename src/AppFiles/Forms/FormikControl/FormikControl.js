@@ -6,14 +6,15 @@ import RadioButtons from './Templates/RadioButtons'
 import CheckboxGroup from './Templates/CheckboxGroup'
 
 export default function FormikControl({control, ...rest}) {
-  switch(control) {
-    case 'input': return <Input {...rest} />
-    case 'textarea': return <Textarea {...rest} />
-    case 'select': return <Select {...rest} />
-    case 'radio': return <RadioButtons {...rest} />
-    case 'checkbox': return <CheckboxGroup {...rest} />
-    default: return null
+  const actions = {
+    input: <Input {...rest} />,
+    textarea: <Textarea {...rest} />,
+    select: <Select {...rest} />,
+    radio: <RadioButtons {...rest} />,
+    checkbox: <CheckboxGroup {...rest} />,
   }
+
+  return actions[control] ?? null
 }
 
 FormikControl.propTypes = {

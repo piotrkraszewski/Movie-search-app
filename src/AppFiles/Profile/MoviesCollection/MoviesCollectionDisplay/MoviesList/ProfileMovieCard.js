@@ -1,22 +1,22 @@
 import { motion, AnimatePresence } from "framer-motion"
-import s from './ProfilePosterCard.module.scss'
+import s from './ProfileMovieCard.module.scss'
 import ImageFadeIn from "react-image-fade-in"
 import no_image from 'Images/no_image.png'
 import PropTypes from 'prop-types'
 
 PosterCard.propTypes = {
-  cardData: PropTypes.object, 
-  onClick: PropTypes.func, 
-  className: PropTypes.string, 
-  cardTransitionDuration: PropTypes.number, 
-  imgTransition: PropTypes.number, 
-  imgHeight: PropTypes.string, 
+  cardData: PropTypes.object,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  cardTransitionDuration: PropTypes.number,
+  imgTransition: PropTypes.number,
+  imgHeight: PropTypes.string,
   imgWidth: PropTypes.string
 }
 
 export default function PosterCard ({
   cardData, onClick, className, cardTransitionDuration, imgTransition, imgHeight, imgWidth}) {
- 
+
   return (
   <AnimatePresence exitBeforeEnter>
     <motion.div
