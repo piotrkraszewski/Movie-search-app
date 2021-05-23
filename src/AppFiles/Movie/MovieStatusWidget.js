@@ -1,6 +1,6 @@
 // import "react-widgets/scss/styles.scss"
 import {useState, useEffect} from 'react'
-import './MovieStatusWidget.scss'
+import s from './MovieStatusWidget.module.scss'
 import DropdownList from "react-widgets/DropdownList"
 import firebase from 'Utils/firebase'
 import {usersCollection} from 'Utils/firebase'
@@ -74,8 +74,8 @@ export default function MovieStatusWidget() {
 
 
   return (
-    <div className='MovieStatusWidgets'>
-      <div className='Widget'>
+    <div className={s.MovieStatusWidgets}>
+      <div className={s.Widget}>
         <p>Status</p>
         <DropdownList
           filter={false}  // prevents from writing in box
@@ -88,7 +88,7 @@ export default function MovieStatusWidget() {
           data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA]}
         />
       </div>
-      <div className='Widget'>
+      <div className={s.Widget}>
         <p>Rating</p>
         <DropdownList
           filter={false}  // prevents from writing in box
