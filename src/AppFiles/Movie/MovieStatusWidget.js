@@ -6,7 +6,7 @@ import {usersCollection} from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
-import { WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA } from 'Utils/Consts'
+import { WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA, NO_RATING } from 'Utils/Consts'
 
 
 export default function MovieStatusWidget() {
@@ -89,11 +89,21 @@ export default function MovieStatusWidget() {
         className={s.Widget}
         label={'Rating'}
         value={movieStatus.rating}
-        onChangeFunc={nextValue => setMovieStatus({
-          ...movieStatus,
-          rating: nextValue
-        })}
-        data={[5, 4, 3, 2, 1]}
+        onChangeFunc={nextValue => {
+          if(nextValue === NO_RATING) nextValue = null
+
+          movieStatus.status
+          ? setMovieStatus({
+              ...movieStatus,
+              rating: nextValue
+            })
+            //sets complete status if user only rates show
+          : setMovieStatus({
+              status: COMPLETED,
+              rating: nextValue
+            })
+        }}
+        data={[5, 4, 3, 2, 1, NO_RATING]}
       />
     </div>
   )

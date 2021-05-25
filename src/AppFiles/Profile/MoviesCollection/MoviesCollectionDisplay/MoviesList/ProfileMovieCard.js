@@ -31,7 +31,8 @@ export default function PosterCard ({
       transition={{ duration: cardTransitionDuration, ease: 'easeInOut' }}
     >
       <div >
-        <p className={s.rating}>{cardData.rating}</p>
+        { cardData.rating &&
+        <p className={s.rating}>{cardData.rating}</p> }
         <ImageFadeIn
           width={imgWidth}
           height={imgHeight}
@@ -39,7 +40,6 @@ export default function PosterCard ({
           src={cardData.poster ? cardData.poster : no_image}
           alt={`poster ${cardData.id}`}
         />
-        <p className={s.status}>{cardData.status}</p>
         <p>{cardData.title}</p>
       </div>
     </motion.div>

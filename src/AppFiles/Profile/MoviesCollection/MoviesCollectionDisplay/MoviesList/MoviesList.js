@@ -8,7 +8,6 @@ import useGotoOtherRoutes from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
 export default function MoviesCollectionDisp({listName, movies}) {
   const {selectedMovieInProfilePage} = useGotoOtherRoutes()
 
-
   const MovieCard = (cardData) =>
     <ProfileMovieCard
       className='col-xl-2 col-md-3 col-sm-4 col-6'
@@ -19,6 +18,7 @@ export default function MoviesCollectionDisp({listName, movies}) {
       imgHeight={'750'}
       imgWidth={'500'}
     />
+
 
   return (
     <div className={s.MoviesCollection}>
