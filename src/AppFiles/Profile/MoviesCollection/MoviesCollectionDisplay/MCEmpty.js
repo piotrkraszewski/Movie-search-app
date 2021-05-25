@@ -1,10 +1,11 @@
 import s from './MCEmpty.module.sass'
+import MCLists from './MCLists.module.sass'
 import { useHistory } from 'react-router-dom'
 
 export default function MCEmpty() {
   const history = useHistory()
   return (
-    <div className={`${s.MoviesCollection} ${s.Empty}`}>
+    <div className={`${MCLists.MCLists} ${s.Empty}`}>
       <h2>Movie List:</h2>
       <p>
         Your list is empty. <br></br>

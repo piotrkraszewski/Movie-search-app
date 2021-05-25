@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import MoviesCollectionDisp from './MoviesCollectionDisplay/MCLists'

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import s from './MoviesList.module.sass'
 import ProfileMovieCard from './ProfileMovieCard'
 import { START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'

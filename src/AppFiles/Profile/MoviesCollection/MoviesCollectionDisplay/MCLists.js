@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import s from './MCLists.module.sass'
 import orderBy from 'lodash/orderBy'
 import MoviesList from './MoviesList/MoviesList'
@@ -10,9 +9,20 @@ export default function MCLists({userMovies, setUserMovies}) {
   const [status, setStatus] = useState(WATCHING)
   const [sortBy, setSortBy] = useState(RATING)
   const [order, setOrder] = useState(DESC)
+  const statusOptionsIndex = useRef(0)
+
+
+  // display not empty movie list on page load
+  useEffect(() => {
+    const moviesWithCurrentStatus = userMovies.filter(movie =>
+      movie.status === STATUS_OPTIONS[statusOptionsIndex.current])
+
+    moviesWithCurrentStatus.length
+      ? setStatus(STATUS_OPTIONS[statusOptionsIndex.current])
+      : statusOptionsIndex.current = statusOptionsIndex.current + 1
+  }, [statusOptionsIndex.current])
 
   useEffect(() => {
-    console.log('userMovies', userMovies)
     setUserMovies(orderBy(userMovies, RATING, DESC))
   }, [sortBy])
 
