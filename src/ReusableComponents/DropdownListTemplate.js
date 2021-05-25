@@ -1,0 +1,30 @@
+import React from 'react'
+import DropdownList from "react-widgets/DropdownList"
+import PropTypes from 'prop-types'
+
+
+DropdownList.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
+}
+
+
+export default function DropdownListTemplate(
+  { className, label, value, onChangeFunc, data })
+{
+  return (
+    <div className={className}>
+      <p>{label}</p>
+      <DropdownList
+        filter={false}  // prevents from writing in box
+        value={value}
+        onChange={onChangeFunc}
+        textField="color"
+        data={data}
+      />
+    </div>
+  )
+}

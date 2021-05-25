@@ -1,49 +1,57 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import s from './MoviesCollectionLists.module.scss'
 import orderBy from 'lodash/orderBy'
 import MoviesList from './MoviesList/MoviesList'
-import DropdownList from "react-widgets/DropdownList"
-import { WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED } from 'Utils/Consts'
+import { WATCHING, STATUS_OPTIONS, RATING, ASC, DESC } from 'Utils/Consts'
+import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 
 export default function MoviesCollectionLists({userMovies, setUserMovies}) {
-  const [displayMode, setDisplayMode] = useState(WATCHING)
-  const [sortMode, setSortMode] = useState('Score')
+  const [status, setStatus] = useState(WATCHING)
+  const [sortBy, setSortBy] = useState(RATING)
+  const [order, setOrder] = useState(DESC)
 
-
-  const sort = (e) => {
+  useEffect(() => {
     console.log('userMovies', userMovies)
+    setUserMovies(orderBy(userMovies, RATING, DESC))
+  }, [sortBy])
 
-    setUserMovies(orderBy(userMovies, 'rating', 'asc'))
-  }
+  useEffect(() => {
+    setUserMovies(orderBy(userMovies, sortBy, order))
+  }, [order])
 
-   return (
+
+  return (
     <div>
       <div className={s.MovieStatusWidgets}>
-        <div className={s.Widget}>
-          <p>Lists</p>
-          <DropdownList
-            filter={false}  // prevents from writing in box
-            value={displayMode}
-            onChange={nextValue => setDisplayMode(nextValue)}
-            textField="color"
-            data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED]}
-          />
-        </div>
-        <div className={s.Widget}>
-          <p>Sort</p>
-          <DropdownList
-            filter={false}  // prevents from writing in box
-            value={sortMode}
-            onChange={nextValue => setSortMode(nextValue)}
-            textField="color"
-            data={['Score']}
-          />
-        </div>
+        <DropdownListTemplate
+          className={s.Widget}
+          label={'Status'}
+          value={status}
+          onChangeFunc={value => setStatus(value)}
+          data={STATUS_OPTIONS}
+        />
+        <DropdownListTemplate
+          className={s.Widget}
+          label={'Sort by'}
+          value={sortBy}
+          onChangeFunc={value => setSortBy(value)}
+          data={['rating', 'Title']}
+        />
+        <DropdownListTemplate
+          className={s.Widget}
+          label={'Order'}
+          value={order}
+          onChangeFunc={value => setOrder(value)}
+          data={[DESC, ASC]}
+        />
       </div>
+
       <MoviesList
-        listName={displayMode}
-        movies={userMovies}/>
+        listName={status}
+        movies={userMovies}
+      />
+
     </div>
   )
 }

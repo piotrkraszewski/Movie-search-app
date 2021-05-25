@@ -1,11 +1,11 @@
 // import "react-widgets/scss/styles.scss"
 import {useState, useEffect} from 'react'
 import s from './MovieStatusWidget.module.scss'
-import DropdownList from "react-widgets/DropdownList"
 import firebase from 'Utils/firebase'
 import {usersCollection} from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
+import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 import { WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA } from 'Utils/Consts'
 
 
@@ -16,7 +16,7 @@ export default function MovieStatusWidget() {
   const initStatus = userData.movies && userData.movies[movieID]
   const [movieStatus, setMovieStatus] = useState({
     status: initStatus ? initStatus.status : '',
-    rating: initStatus ? initStatus.rating : ''
+    rating: initStatus ? initStatus.rating : null
   })
 
 
@@ -57,7 +57,7 @@ export default function MovieStatusWidget() {
           await saveMovieStatusToFirebase('delete')
           setMovieStatus({
             status: '',
-            rating: '',
+            rating: null,
           })
         } else {
           await saveMovieStatusToFirebase('update')
@@ -75,32 +75,26 @@ export default function MovieStatusWidget() {
 
   return (
     <div className={s.MovieStatusWidgets}>
-      <div className={s.Widget}>
-        <p>Status</p>
-        <DropdownList
-          filter={false}  // prevents from writing in box
-          value={movieStatus.status}
-          onChange={nextValue => setMovieStatus({
-            ...movieStatus,
-            status: nextValue
-          })}
-          textField="color"
-          data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA]}
-        />
-      </div>
-      <div className={s.Widget}>
-        <p>Rating</p>
-        <DropdownList
-          filter={false}  // prevents from writing in box
-          value={movieStatus.rating}
-          onChange={nextValue => setMovieStatus({
-            ...movieStatus,
-            rating: nextValue
-          })}
-          textField="color"
-          data={['1', '2', '3', '4', '5']}
-        />
-      </div>
+      <DropdownListTemplate
+        className={s.Widget}
+        label={'Status'}
+        value={movieStatus.status}
+        onChangeFunc={nextValue => setMovieStatus({
+          ...movieStatus,
+          status: nextValue
+        })}
+        data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA]}
+      />
+      <DropdownListTemplate
+        className={s.Widget}
+        label={'Rating'}
+        value={movieStatus.rating}
+        onChangeFunc={nextValue => setMovieStatus({
+          ...movieStatus,
+          rating: nextValue
+        })}
+        data={[5, 4, 3, 2, 1]}
+      />
     </div>
   )
 }

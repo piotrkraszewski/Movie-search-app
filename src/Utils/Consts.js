@@ -34,3 +34,12 @@ export const COMPLETED = 'Completed'
 export const PAUSED = 'Paused'
 export const DROPPED = 'Dropped'
 export const DELET_MOVIE_DATA = 'Delete movie data'
+
+export const STATUS_OPTIONS = [WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED]
+
+//Sort by
+export const RATING = 'rating'
+
+//Order by
+export const ASC = 'asc'
+export const DESC = 'desc'
