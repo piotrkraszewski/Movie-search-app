@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import s from './MoviesCollectionLists.module.scss'
+import s from './MCLists.module.sass'
 import orderBy from 'lodash/orderBy'
 import MoviesList from './MoviesList/MoviesList'
 import { WATCHING, STATUS_OPTIONS, RATING, ASC, DESC } from 'Utils/Consts'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 
-export default function MoviesCollectionLists({userMovies, setUserMovies}) {
+export default function MCLists({userMovies, setUserMovies}) {
   const [status, setStatus] = useState(WATCHING)
   const [sortBy, setSortBy] = useState(RATING)
   const [order, setOrder] = useState(DESC)
@@ -22,8 +22,8 @@ export default function MoviesCollectionLists({userMovies, setUserMovies}) {
 
 
   return (
-    <div>
-      <div className={s.MovieStatusWidgets}>
+    <div className={s.MCLists}>
+      <div className={s.Widgets}>
         <DropdownListTemplate
           className={s.Widget}
           label={'Status'}

@@ -4,8 +4,8 @@
   @include pageSettings;
 
   .Container{
-    @include containerSettings(1400px);
-  
+    @include containerSettings(1100px);
+
     .title{
       margin: 0;
       margin-top: min(15px, 1%);

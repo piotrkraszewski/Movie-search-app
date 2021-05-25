@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import s from '../../MoviesCollection.module.sass'
+import s from './MoviesList.module.sass'
 import ProfileMovieCard from './ProfileMovieCard'
 import { START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'
 import useGotoOtherRoutes from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
 
 
-export default function MoviesCollectionDisp({listName, movies}) {
+export default function MoviesList({listName, movies}) {
   const {selectedMovieInProfilePage} = useGotoOtherRoutes()
 
   const MovieCard = (cardData) =>
     <ProfileMovieCard
-      className='col-xl-2 col-md-3 col-sm-4 col-6'
+      className='col-lg-2 col-md-3 col-sm-4 col-6'
       cardData={cardData}
       onClick={selectedMovieInProfilePage}
       cardTransitionDuration={START_PAGE_CARDS_TRANSITION}
@@ -21,7 +21,7 @@ export default function MoviesCollectionDisp({listName, movies}) {
 
 
   return (
-    <div className={s.MoviesCollection}>
+    <div className={s.MoviesList}>
       <div>
         <h2>{listName}</h2>
         <div className='row'>

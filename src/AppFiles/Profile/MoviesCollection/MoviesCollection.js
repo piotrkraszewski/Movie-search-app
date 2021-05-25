@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
-import MoviesCollectionDisp from './MoviesCollectionDisplay/MoviesCollectionLists'
-import MoviesCollectionEmpty from './MoviesCollectionDisplay/MoviesCollectionEmpty'
+import MoviesCollectionDisp from './MoviesCollectionDisplay/MCLists'
+import MoviesCollectionEmpty from './MoviesCollectionDisplay/MCEmpty'
 import { POSTER_W500 } from 'Utils/Consts'
 import {getMovieData} from 'Utils/FetchFunctions'
 import { motion, AnimatePresence } from "framer-motion"
 
 
-export default function MoviesCollectionLogic() {
+export default function MoviesCollection() {
   const { userData } = useAuth()
   const [loading, setLoading] = useState(true)
   const [userMovies, setUserMovies] = useState()

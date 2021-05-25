@@ -1,7 +1,7 @@
-import s from '../MoviesCollection.module.sass'
+import s from './MCEmpty.module.sass'
 import { useHistory } from 'react-router-dom'
 
-export default function MoviesCollectionEmpty() {
+export default function MCEmpty() {
   const history = useHistory()
   return (
     <div className={`${s.MoviesCollection} ${s.Empty}`}>
