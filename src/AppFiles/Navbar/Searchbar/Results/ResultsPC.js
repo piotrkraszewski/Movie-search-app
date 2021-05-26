@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import s from './ResultsPC.module.scss'
-import c from 'styles/helpers/classes.module.scss'
+import c from 'styles/helpers/classes.module.sass'
 import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import useHighlightTextInQuickSearch from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'
@@ -17,8 +17,8 @@ export default function ResultsPC() {
 
   return (
     <ul
-      className={`${s.ResultsPC}
-      ${(showQuickSearchRes && searchbarText && 'fadeIn')}`}
+      className={`${s.ResultsPC} ` +
+      (showQuickSearchRes && searchbarText && c.fadeIn)}
     >
       {displayedSuggestions.map((item, index) =>
         <PosterLi item={item} index={index} />

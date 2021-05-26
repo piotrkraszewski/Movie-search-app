@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import './ResultsMobile.scss'
+import s from './ResultsMobile.module.scss'
+import c from 'styles/helpers/classes.module.sass'
 import { NUM_OF_DISP_RES_MOBILE, QUICK_SEARCH_TRANSITION } from 'Utils/Consts'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'
@@ -14,14 +15,13 @@ export default function ResultsMobile() {
 
   return (
     <div
-      className={'ResultsMobile ' + 
-      (showQuickSearchRes && searchbarText && 'fadeIn')} 
+      className={`${s.ResultsMobile} ` +
+      (showQuickSearchRes && searchbarText && c.fadeIn)}
     >
-      <div className='searchbar_div'>
-        {displayedSuggestions.map(item => 
-          <PosterCard 
-            className='col-4'
-            cardData={item} 
+      <div className={s.searchbar_div}>
+        {displayedSuggestions.map(item =>
+          <PosterCard
+            cardData={item}
             onClick={selectedMovieInQuickSearch}
             cardTransitionDuration={QUICK_SEARCH_TRANSITION}
             imgTransition={0.5}
@@ -31,22 +31,22 @@ export default function ResultsMobile() {
         )}
       </div>
 
-      <div className='searchbar_li'>
-        <p 
-          className='showMoreBtn'
-          onClick={() => pushToHistory(`/`)} 
+      <div className={s.searchbar_li}>
+        <p
+          className={s.showMoreBtn}
+          onClick={() => pushToHistory(`/`)}
           index={NUM_OF_DISP_RES_MOBILE}
         >
           show more
         </p>
-        <p 
-          className='showMoreClose'
+        <p
+          className={s.showMoreClose}
           onClick={() => setShowQuickSearchRes(false)}
         >
           close
         </p>
       </div>
-      
+
     </div>
   )
 }

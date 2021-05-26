@@ -4,18 +4,21 @@
   @include searchbarCommonUl;
   background-color: $suggestionsLayoutBackground;
   border: 2px solid $limeGreenDarker;
-  // border-radius: 0 0 $posterRaious $posterRaious;
   border-radius: $posterRaious;
   margin-top: 1px;
   margin-right: 12px;
   width: calc(100vw - 14px);
-  
+
   @media (min-width: 650px) {
     width: 100%;
   }
 
   .searchbar_div{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, calc(calc(100% / 3) - 6px));
+    gap: 8px;
+    padding: 4px;
+    margin-bottom: 8px;
   }
 
   .searchbar_li {
@@ -31,7 +34,7 @@
       margin: 0; // suggestion list spacing
       background-color: $limeGreenDark;
       border-radius: $posterRaious;
-      
+
       &:hover, &.active, &:focus {
         cursor: pointer;
         background-color: $limeGreenBlack;
@@ -45,7 +48,7 @@
       background-color: $darkGrey;
       border-radius: 10px;
       text-align: center;
-      
+
       &:hover, &.active, &:focus {
         cursor: pointer;
         background-color: $blackGrey;
