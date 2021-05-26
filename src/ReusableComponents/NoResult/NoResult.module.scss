@@ -4,6 +4,7 @@
   display: flex;
   opacity: 0;
 
+  
   p {
     width: 95%;
     text-align: center;
@@ -23,7 +24,7 @@
     background-color: $darkGrey;
     border-radius: 10px;
     text-align: center;
-    
+
     &:hover, &.active, &:focus {
       cursor: pointer;
       background-color: $blackGrey;

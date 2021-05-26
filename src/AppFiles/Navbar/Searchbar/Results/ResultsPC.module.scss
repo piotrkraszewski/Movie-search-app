@@ -3,7 +3,7 @@
 .ResultsPC {
   @include searchbarCommonUl;
   background-color: $transparentBackground;
-  
+
   .showMore {
     display: flex;
     width: 100%;
@@ -13,8 +13,6 @@
     .showMoreParagraph{
       width: 100%;
       margin: 0;
-      
-      @include ResultsPcHighlight();
     }
 
     // kod do scalenia w mixin !!!!!

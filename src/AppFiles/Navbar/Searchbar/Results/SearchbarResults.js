@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import './SearchbarResults.scss'
+import './SearchbarResults.sass'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import NoResult from 'ReusableComponents/NoResult/NoResult'
 import ResultsMobile from './ResultsMobile'
@@ -13,14 +13,14 @@ export default function MovieSearchbarResults() {
   const { searchbarText, suggestions, showQuickSearchRes, setShowQuickSearchRes } = useContext(AppContext)
 
   const showNoResults = useDelayShowNoResults(1000, searchbarText)
-  
+
   return (
   <div className='SearchbarResults'>
     {useSearchbarResultsTransition(
       <>
         {suggestions.length > 0 && showQuickSearchRes
         ? isMobile ? <ResultsMobile/> : <ResultsPC/>
-        : <NoResult 
+        : <NoResult
             className={isMobile ? 'ResultsMobile' : 'ResultsPC'}
             fadeInConditionsArr={[showQuickSearchRes, searchbarText, showNoResults]}
             onClose={setShowQuickSearchRes}

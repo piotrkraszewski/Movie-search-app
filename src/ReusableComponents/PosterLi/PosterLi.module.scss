@@ -1,9 +1,11 @@
 @use '~styles/helpers' as *;
 
 .PosterLi {
-  @include ResultsPcHighlight;
+  &:hover, &:active, &:focus {
+    @include ResultsPcHighlight;
+  }
   padding: 3px 20px;
-  
+
   img{
     max-width:92px;
     height: auto;

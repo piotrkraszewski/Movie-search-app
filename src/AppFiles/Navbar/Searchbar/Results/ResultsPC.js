@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
-import './ResultsPC.scss'
+import s from './ResultsPC.module.scss'
+import c from 'styles/helpers/classes.module.scss'
 import { NUM_OF_DISP_RES_PC } from 'Utils/Consts'
 import useHighlightTextInQuickSearch from 'Hooks/SearchbarHooks/useHighlightTextInQuickSearch'
 import useCreateArrayToDisplayAndFadeout from 'Hooks/SearchbarHooks/useCreateArrayToDisplayAndFadeout'
@@ -15,26 +16,26 @@ export default function ResultsPC() {
 
 
   return (
-    <ul 
-      className={'ResultsPC ' + 
-      (showQuickSearchRes && searchbarText && 'fadeIn')} 
+    <ul
+      className={`${s.ResultsPC}
+      ${(showQuickSearchRes && searchbarText && 'fadeIn')}`}
     >
-        {displayedSuggestions.map((item, index) => 
-          <PosterLi item={item} index={index} />
-        )}
-      {<li className='showMore'>
+      {displayedSuggestions.map((item, index) =>
+        <PosterLi item={item} index={index} />
+      )}
+      {<li className={s.showMore}>
         <p
-          className={'showMoreParagraph ' + 
-          (indexOfHighlightedMovie === NUM_OF_DISP_RES_PC && 'active')}
-          // index={NUM_OF_DISP_RES_PC}
+          className={`${s.showMoreParagraph} ` +
+          (indexOfHighlightedMovie === NUM_OF_DISP_RES_PC && c.ResultsPcHighlight)}
+          index={NUM_OF_DISP_RES_PC}
           onMouseEnter={highlightMovieTextOnHover}
-          onClick={() => pushToHistory(`/`)} 
+          onClick={() => pushToHistory(`/`)}
         >
           show more
         </p>
-        <img 
-          className='closeImg'
-          src={closeImg} 
+        <img
+          className={s.closeImg}
+          src={closeImg}
           onClick={() => setShowQuickSearchRes(false)}
           alt="close search results"
         />
