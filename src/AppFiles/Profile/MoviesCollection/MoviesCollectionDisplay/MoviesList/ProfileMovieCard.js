@@ -20,7 +20,6 @@ export default function PosterCard ({
   return (
   <AnimatePresence exitBeforeEnter>
     <motion.div
-      id={s.PosterCard}
       className={className}
       onClick={() => onClick(cardData.id)}
 
@@ -30,7 +29,7 @@ export default function PosterCard ({
       exit={{ opacity: 0 }}
       transition={{ duration: cardTransitionDuration, ease: 'easeInOut' }}
     >
-      <div >
+      <div className={s.ProfileMovieCard}>
         { cardData.rating &&
         <p className={s.rating}>{cardData.rating}</p> }
         <ImageFadeIn

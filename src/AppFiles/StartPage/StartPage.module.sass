@@ -1,0 +1,32 @@
+@use '~styles/helpers' as *
+
+.StartPage
+  padding: 0 3%
+
+  .Container
+    @include containerSettings(1100px)
+
+    .title
+      margin: min(1em, 1%) 0
+      color: $white
+      font-size: large
+      text-transform: uppercase
+
+  .grid
+    display: grid
+    gap: 1em 0.5em
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+
+    @media ( min-width: 500px )
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr))
+    @media ( min-width: 576px )
+      gap: 1em
+    @media ( min-width: 768px )
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))
+    @media ( min-width: 1024px )
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
+
+
+  .fadeout
+    opacity: 0
+    transition: opacity 400ms ease-in-out

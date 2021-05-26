@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import './StartPage.scss'
+import s from './StartPage.module.sass'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { PAGE_TRANSITION_TIME, START_PAGE_CARDS_TRANSITION } from 'Utils/Consts'
 import { motion, AnimatePresence } from "framer-motion"
@@ -15,43 +15,42 @@ export default function StartPage() {
 
 
   return (
-    <motion.div 
-      className='StartPage'
+    <motion.div
+      className={s.StartPage}
 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, delay :0.2 }}
       exit={{ opacity: 0 }}
       transition={{ duration: PAGE_TRANSITION_TIME }}
-    > 
-      <div className='Container'>
-      <AnimatePresence exitBeforeEnter>
-        <motion.p
-          key={searchbarText}
-          className='title'
-          
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1}}
-          exit={{ opacity: 0 }}
-          transition={{ duration: START_PAGE_CARDS_TRANSITION, ease: "easeInOut"}}>
-            {!searchbarText && 'Trending Now'}
-        </motion.p>
-      </AnimatePresence>
+    >
+      <div className={s.Container}>
+        <AnimatePresence exitBeforeEnter>
+          <motion.p
+            key={searchbarText}
+            className={s.title}
+
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1}}
+            exit={{ opacity: 0 }}
+            transition={{ duration: START_PAGE_CARDS_TRANSITION, ease: "easeInOut"}}>
+              {!searchbarText && 'Trending Now'}
+          </motion.p>
+        </AnimatePresence>
 
 
-      <div className={'row ' + (!suggestions.length && 'fadeout')}>
-        {displayedSuggestions.slice(0, dispPostersNum).map(item => 
-          <PosterCard 
-            className='col-xl-2 col-md-3 col-4 '
-            cardData={item} 
-            onClick={selectedMovieInStartPage}
-            cardTransitionDuration={START_PAGE_CARDS_TRANSITION}
-            imgTransition={0.5}
-            imgHeight={'750'}
-            imgWidth={'500'}
-          />
-        )}
+        <div className={`${s.grid} ${(!suggestions.length && s.fadeout)}`}>
+          {displayedSuggestions.slice(0, dispPostersNum).map(item =>
+            <PosterCard
+              cardData={item}
+              onClick={selectedMovieInStartPage}
+              cardTransitionDuration={START_PAGE_CARDS_TRANSITION}
+              imgTransition={0.5}
+              imgHeight={'750'}
+              imgWidth={'500'}
+            />
+          )}
+        </div>
       </div>
-    </div>
-  </motion.div> 
+    </motion.div>
   )
 }

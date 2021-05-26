@@ -1,14 +1,5 @@
 @use './variables' as *;
 
-@mixin pageSettings() {
-  position: absolute;
-  width: 100%;
-
-  // center positioning
-  margin: 0 auto;
-  padding: 0 7%;
-}
-
 @mixin containerSettings($maxWidth) {
   // centers content
   margin: 0 auto;

@@ -9,7 +9,6 @@ export default function MoviesList({listName, movies}) {
 
   const MovieCard = (cardData) =>
     <ProfileMovieCard
-      className='col-lg-2 col-md-3 col-sm-4 col-6'
       cardData={cardData}
       onClick={selectedMovieInProfilePage}
       cardTransitionDuration={START_PAGE_CARDS_TRANSITION}
@@ -23,7 +22,7 @@ export default function MoviesList({listName, movies}) {
     <div className={s.MoviesList}>
       <div>
         <h2>{listName}</h2>
-        <div className='row'>
+        <div className={s.grid}>
           { movies.length > 0 && movies.map(movie => (
             movie.status === listName && MovieCard(movie)
           ))}

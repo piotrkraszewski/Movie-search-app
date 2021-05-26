@@ -1,14 +1,15 @@
 @use '~styles/helpers' as *;
 
 .MovieCard {
-  @include pageSettings;
+  padding: 0 3%;
   margin-top: 15px;
 
   .Container {
     @include containerSettings(1100px);
-
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-wrap: wrap;
 
     .posterContainer {
       padding: 0;
@@ -68,18 +69,22 @@
     }
 
     .releaseDetails {
+      display: flex;
+      flex-wrap: wrap;
       div {
+        width: 50%;
         &:nth-child(n+3) {
           margin-top: 15px;
         }
+
+        span{
+          display: block;
+          color: $limeGreen;
+          font-size: 1.2em;
+          line-height: 1em;
+        }
       }
     }
-  }
 
-  .metaData {
-    display: block;
-    color: $limeGreen;
-    font-size: 1.2em;
-    line-height: 1em;
   }
 }

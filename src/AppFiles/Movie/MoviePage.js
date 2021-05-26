@@ -1,4 +1,4 @@
-import './MoviePage.scss'
+import s from './MoviePage.module.scss'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
 import { POSTER_W500 } from 'Utils/Consts'
@@ -11,7 +11,6 @@ import { useAuth } from 'AppFiles/Contexts/AuthContext'
 
 export default function MovieCard () {
   const { user } = useAuth()
-
   const { movieData } = useMovieContext()
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
@@ -19,72 +18,69 @@ export default function MovieCard () {
   const productionList = nestedDataToString(production_companies)
   const genresList = nestedDataToString(genres)
 
-  
+
   return (
     /* Transition between this and other pages */
-    <motion.div 
-      className='MovieCard'
+    <motion.div
+      className={s.MovieCard}
 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, delay :0.2}}
       exit={{ opacity: 0 }}
       transition={{ duration: PAGE_TRANSITION_TIME }}
-    >   
+    >
       {/* Transition between cards when we pick another movie on this page */}
-      <AnimatePresence exitBeforeEnter> 
+      <AnimatePresence exitBeforeEnter>
         <motion.div
+          className={s.Container}
+          key={original_title}
+
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: PAGE_TRANSITION_TIME }}
-          className='Container row'
-          key={original_title}
         >
-          <div className='metaDataContainer col-12 col-md-7 col-lg-8'>
+          <div className={s.metaDataContainer + ' col-12 col-md-7 col-lg-8'}>
             <h1>{original_title}</h1>
 
             {user && <MovieStatusWidget/>}
 
-            <span className='tagline'>{tagline}</span>
+            <span className={s.tagline}>{tagline}</span>
             <p>{overview}</p>
-            <div className='additionalDetails'>
-              <span className='genreList'>{genresList}</span>
-              <span className='productionList'>{productionList}</span>
-              <div className='row releaseDetails'>
+            <div className={s.additionalDetails}>
+              <span className={s.genreList}>{genresList}</span>
+              <span className={s.productionList}>{productionList}</span>
 
-                <div className='col-6'>
+
+              <div className={s.releaseDetails}>
+                <div >
                   Original Release:
-                  <span className='metaData'>{release_date}</span>
+                  <span>{release_date}</span>
                 </div>
-                <div className='col-6'>
-                  Running Time: 
-                  <span className='metaData'>
-                    {runtime} min
-                  </span>
+                <div>
+                  Running Time:
+                  <span>{runtime} min</span>
                 </div>
-                <div className='col-6'>
-                  Box Office: 
-                  <span className='metaData'>
-                    {revenue ? `${parseInt(revenue).toLocaleString()} $` : '-'}
-                  </span>
+                <div>
+                  Box Office:
+                  <span>{revenue ? `${parseInt(revenue).toLocaleString()} $` : '-'}</span>
                 </div>
-                <div className='col-6'>
+                <div>
                   Vote Average:
-                  <span className='metaData'>
-                    {vote_average ? vote_average : '-'}
-                  </span>
+                  <span>{vote_average ? vote_average : '-'}</span>
                 </div>
-
               </div>
+
+
             </div>
           </div>
 
-          <div 
-          className='posterContainer order-md-first col-12 col-md-5 col-lg-4'>
+          <div
+          className={s.posterContainer + ' order-md-first col-12 col-md-5 col-lg-4'}>
             <img
-              className='poster'
-              src={poster_path !== null 
-                ? POSTER_W500 + poster_path 
+              className={s.poster}
+              src={poster_path !== null
+                ? POSTER_W500 + poster_path
                 : no_image}
               alt='poster'
             />

@@ -1,56 +1,48 @@
 @use '~styles/helpers' as *;
 
-#PosterCard{
-  padding: min(15px, 1%);
-  padding-bottom: min(15px, 3%);
+.ProfileMovieCard {
+  @include equalColumnHeight;
+  @include smallCardDiv;
+  background: rgba(10, 10, 10, 0.9);
+  font-size: 0.9rem;
 
-  div {
-    @include equalColumnHeight;
-    @include smallCardDiv;
-    background: rgba(10, 10, 10, 0.9);
-    font-size: 0.9rem;
+  img {
+    border-radius: $posterRaious $posterRaious 0px 0px;
 
-    // &:hover {
-    //   @include smallCardHoverAnimation;
-    // }
-
-      img {
-        border-radius: $posterRaious $posterRaious 0px 0px;
-
-        // maintains aspect ratio
-        max-width:100%;
-        height: auto;
-      }
-
-    p {
-      @include hideToLongTitle;
-      @include smallCardParagraphs;
-
-      padding: 5px;
-      padding-bottom: 3px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    @media (max-width: 475px) {
-      font-size: 0.85rem;
-    }
+    // maintains aspect ratio
+    max-width:100%;
+    height: auto;
   }
-  .rating{
-    position: absolute;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    font-size: 15px;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-bottom: -30px;
-    z-index: 100;
-    background-color: rgba(10, 10, 10, 0.9);
-    color: white;
-    padding: 0;
-    border-radius: 10px;
-    width: 30px;
-    height: 30px;
+
+  p {
+    @include hideToLongTitle;
+    @include smallCardParagraphs;
+
+    padding: 5px;
+    padding-bottom: 3px;
+    font-weight: bold;
+    text-align: center;
   }
+
+  @media (max-width: 475px) {
+    font-size: 0.85rem;
+  }
+}
+
+.rating{
+  position: absolute;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: -30px;
+  z-index: 100;
+  background-color: rgba(10, 10, 10, 0.9);
+  color: white;
+  padding: 0;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
 }
