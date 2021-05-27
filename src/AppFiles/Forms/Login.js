@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
+import SubmitBtn from "./FormsHooks/SubmitBtn"
 import * as Yup from 'yup'
 import FormikControl from './FormikControl/FormikControl'
 import s from './FormStyles.module.scss'
@@ -50,10 +51,10 @@ return (<>
     <WithFormTemplate
       title={'Login'}
       submitMsg={submitMsg}
-      bottomBtnText={'Need an account? Register'}
-      onBottomBtnClick={() => history.push(REGISTER_PAGE)}
       linkBtnText={'Forgot password?'}
-      onLinkBtnClickFunc={() => history.push(FORGOT_PASSWORD)}>
+      onLinkBtnClickFunc={() => history.push(FORGOT_PASSWORD)}
+      bottomBtnText={'Need an account? Register'}
+      onBottomBtnClick={() => history.push(REGISTER_PAGE)}>
 
       <Formik
         initialValues={initialValues}
@@ -79,17 +80,10 @@ return (<>
               name='password'
               label='password' />
 
-            <button
-              className={`btn btn-success ${s.btnGreen}`}
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Log In
-            </button>
-
+            <SubmitBtn text={'Log In'} formik={formik} />
 
           </Form>
-          )}
-        }
+          )}}
       </Formik>
 
     </WithFormTemplate>

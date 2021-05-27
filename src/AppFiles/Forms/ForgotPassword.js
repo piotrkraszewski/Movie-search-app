@@ -3,6 +3,7 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
+import SubmitBtn from "./FormsHooks/SubmitBtn"
 import FormikControl from './FormikControl/FormikControl'
 import s from './FormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
@@ -50,10 +51,10 @@ return (<>
     <WithFormTemplate
       title={'Password Reset'}
       submitMsg={submitMsg}
-      bottomBtnText={'Need an account? Register'}
-      onBottomBtnClick={() => history.push(REGISTER_PAGE)}
       linkBtnText={'Login?'}
-      onLinkBtnClickFunc={() => history.push(LOGIN_PAGE)}>
+      onLinkBtnClickFunc={() => history.push(LOGIN_PAGE)}
+      bottomBtnText={'Need an account? Register'}
+      onBottomBtnClick={() => history.push(REGISTER_PAGE)}>
 
       <Formik
         initialValues={initialValues}
@@ -73,12 +74,7 @@ return (<>
               name='email'
               label='email' />
 
-            <button
-              className={`btn btn-success ${s.btnGreen}`}
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Reset Password
-            </button>
+            <SubmitBtn text={'Reset Password'} formik={formik} />
 
           </Form>
           )}

@@ -3,6 +3,7 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
+import SubmitBtn from "./FormsHooks/SubmitBtn"
 import FormikControl from './FormikControl/FormikControl'
 import s from './FormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
@@ -138,12 +139,7 @@ return (<>
               label='password'
               placeholder='Leave blank to keep the same' />
 
-            <button
-              className={`btn btn-success ${s.btnGreen}`}
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Update
-            </button>
+            <SubmitBtn text={'Update'} formik={formik} />
 
           </Form>
           )}

@@ -3,6 +3,7 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
+import SubmitBtn from "./FormsHooks/SubmitBtn"
 import FormikControl from './FormikControl/FormikControl'
 import s from './FormStyles.module.scss'
 import { usersCollection } from 'Utils/firebase'
@@ -97,12 +98,7 @@ return (<>
               name='password'
               label='password' />
 
-            <button
-              className={`btn btn-success ${s.btnGreen}`}
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Register
-            </button>
+            <SubmitBtn text={'Register'} formik={formik} />
 
           </Form>
           )}
