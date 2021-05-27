@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
+import WithFormTemplate from "./FormsHooks/WithFormTemplate"
 import FormikControl from './FormikControl/FormikControl'
 import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
 import s from './FormStyles.module.scss'
@@ -46,54 +47,47 @@ export default function ForgotPassword() {
 
 
 return (<>
-  {useFormTransition(<>
-    <h2>Password Reset</h2>
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-      enableReinitialize
-    >
-    {
-    formik => {
-      // console.log(formik)
-      return (
-        <Form className={s.formFields}>
+  {useFormTransition(
+    <WithFormTemplate
+      title={'Password Reset'}
+      bottomBtnText={'Need an account? Register'}
+      onBottomBtnClick={() => history.push(REGISTER_PAGE)}
+      linkBtnText={'Login?'}
+      onLinkBtnClickFunc={() => history.push(LOGIN_PAGE)}>
 
-          <FormikControl
-            control='input'
-            type='email'
-            name='email'
-            label='email' />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+        enableReinitialize
+      >
+      {
+      formik => {
+        // console.log(formik)
+        return (
+          <Form className={s.formFields}>
 
-          <button
-            className={`btn btn-success ${s.btnGreen}`}
-            type='submit'
-            disabled={!formik.isValid || formik.isSubmitting}
-            >Reset Password
-          </button>
+            <FormikControl
+              control='input'
+              type='email'
+              name='email'
+              label='email' />
 
-          <OnSubmitMsg {...submitMsg} />
+            <button
+              className={`btn btn-success ${s.btnGreen}`}
+              type='submit'
+              disabled={!formik.isValid || formik.isSubmitting}
+              >Reset Password
+            </button>
 
-        </Form>
-        )}
-      }
-    </Formik>
+            <OnSubmitMsg {...submitMsg} />
 
-    <button
-      className={`btn btn-link ${s.forgotBtn} w-100 mb-2`}
-      onClick={() => history.push(LOGIN_PAGE)}>
-        Login?
-    </button>
+          </Form>
+          )}
+        }
+      </Formik>
 
-    <div className='border-top pt-3'>
-      <button
-        className='btn btn-dark w-100'
-        onClick={() => history.push(REGISTER_PAGE)}>
-          Need an account? Register
-      </button>
-    </div>
-
-    </>)}
+    </WithFormTemplate>
+  )}
 </>)
 }
