@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import { motion } from "framer-motion"
+import useFormTransition from "./FormsHooks/useFormTransition"
 import FormikControl from './FormikControl/FormikControl'
 import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
-import s from './BaseFormStyles.module.scss'
+import s from './FormStyles.module.scss'
 import { usersCollection } from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PROFILE_PAGE, LOGIN_PAGE, PAGE_TRANSITION_TIME } from 'Utils/Consts'
+import { PROFILE_PAGE, LOGIN_PAGE } from 'Utils/Consts'
 
 
 export default function Register() {
@@ -60,22 +60,14 @@ export default function Register() {
   }
 
 
-return (
-  <motion.div
-    className={s.formContainer}
-
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1, delay :0.2 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: PAGE_TRANSITION_TIME }}
-  >
+return (<>
+  {useFormTransition(<>
     <h2>Register</h2>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-      enableReinitialize
-    >
+      enableReinitialize>
     {
     formik => {
       // console.log(formik)
@@ -122,6 +114,6 @@ return (
       </button>
     </div>
 
-  </motion.div>
-)
+  </>)}
+</>)
 }

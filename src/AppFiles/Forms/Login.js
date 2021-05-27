@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
-import { motion } from "framer-motion"
+import useFormTransition from "./FormsHooks/useFormTransition"
 import * as Yup from 'yup'
 import FormikControl from './FormikControl/FormikControl'
 import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
-import s from './BaseFormStyles.module.scss'
+import s from './FormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE, PAGE_TRANSITION_TIME } from 'Utils/Consts'
+import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE } from 'Utils/Consts'
 
 
 export default function Login() {
@@ -45,15 +45,8 @@ export default function Login() {
   }
 
 
-return (
-  <motion.div
-    className={s.formContainer}
-
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, delay :0.2 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: PAGE_TRANSITION_TIME }}
-  >
+return (<>
+  {useFormTransition(<>
     <h2>Login</h2>
     <Formik
       initialValues={initialValues}
@@ -93,11 +86,12 @@ return (
       }
     </Formik>
 
-      <button
-        className={`btn btn-link ${s.forgotBtn} w-100 mb-2`}
-        onClick={() => history.push(FORGOT_PASSWORD)}>
-          Forgot password?
-      </button>
+    <button
+      className={`btn btn-link ${s.forgotBtn} w-100 mb-2`}
+      onClick={() => history.push(FORGOT_PASSWORD)}>
+        Forgot password?
+    </button>
+
     <div className='border-top pt-3'>
       <button
         className='btn btn-dark w-100'
@@ -105,6 +99,7 @@ return (
           Need an account? Register
       </button>
     </div>
-  </motion.div>
-)
+
+    </>)}
+</>)
 }
