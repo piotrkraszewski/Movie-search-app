@@ -13,8 +13,8 @@ export default function Navbar() {
   const { pushToHistory, fetchPopularMoviesOnStartPage, setAllMoviesData,} = useContext(AppContext)
   const { handleLogout } = useAuth()
 
-// === highlight current page ===
-const location = useLocation()
+// === Use to highlight current page ===
+  const location = useLocation()
 
 
 // === Open/Close sidebar ===
@@ -23,7 +23,7 @@ const location = useLocation()
   const openSidebar = () => setIsSidebarOpen(true)
 
 
-// === go to other pages functions ===
+// === Goto other pages functions ===
   const gotoHome = () => {
     setAllMoviesData([])
     fetchPopularMoviesOnStartPage()

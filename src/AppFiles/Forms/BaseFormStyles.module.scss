@@ -1,0 +1,41 @@
+@use '~styles/helpers' as *;
+
+.formContainer{
+  // center position
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: $white;
+  background: $transparentFormBackground;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.btnGreen{
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+
+.forgotBtn{
+  color: #b6b6b6 !important;
+  text-decoration: none !important;
+  &:hover{
+    color: $white !important;
+  }
+}

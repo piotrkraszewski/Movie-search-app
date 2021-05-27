@@ -1,21 +1,18 @@
-import './OnSubmitMsg.scss'
+import s from './OnSubmitMsg.module.sass'
 
 export default function OnSubmitMsg({submitStatus, message}) {
+  const classBySubmitStatus = status => {
+    const statuses = {
+      success: s.success,
+      error: s.error,
+    }
+
+    return statuses[status] ?? null
+  }
+
   return (
-    <div className='OnSubmitMsg'>
-
-      {submitStatus === 'success' && 
-        <p className='submitSuccess'>
-          {message}
-        </p>
-      }
-
-      {submitStatus === 'error' && 
-        <p className='submitError'>
-          {message}
-        </p>
-      }
-
+    <div className={classBySubmitStatus(submitStatus)}>
+      {message}
     </div>
   )
 }

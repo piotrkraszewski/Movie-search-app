@@ -1,0 +1,25 @@
+.formControl{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  margin: 5px auto;
+
+  label {
+    font-size: 14px;
+  }
+
+  input, textarea {
+    font-size: 15px;
+    color: rgb(240, 240, 240);
+    padding: 7px;
+    margin-top: 5px;
+    background: rgba(27, 27, 27, 0.95);
+    border: 2px solid #202020;
+    border-radius: 5px;
+    outline: none;
+  }
+  ::placeholder {
+    color: #b6b6b6;
+  }
+}

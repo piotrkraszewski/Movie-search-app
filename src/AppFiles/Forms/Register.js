@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { motion } from "framer-motion"
-import FormikControl from '../FormikControl/FormikControl'
-import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
-import './Register.scss'
+import FormikControl from './FormikControl/FormikControl'
+import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
+import s from './BaseFormStyles.module.scss'
 import { usersCollection } from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
@@ -28,7 +28,7 @@ export default function Register() {
     username: Yup.string().required('Required'),
     password: Yup.string().required('Required').min(6),
   })
-  
+
 
   const onSubmit = async(values, onSubmitProps) => {
     setSubmitMsg({})
@@ -61,8 +61,8 @@ export default function Register() {
 
 
 return (
-  <motion.div 
-    className='Register'
+  <motion.div
+    className={s.formContainer}
 
     initial={{ opacity: 0 }}
     animate={{ opacity: 1, delay :0.2 }}
@@ -70,7 +70,7 @@ return (
     transition={{ duration: PAGE_TRANSITION_TIME }}
   >
     <h2>Register</h2>
-    <Formik 
+    <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -80,48 +80,48 @@ return (
     formik => {
       // console.log(formik)
       return (
-        <div className='FormContainer'>
-          <Form className="form">
+        <Form className={s.formFields}>
 
-            <FormikControl 
-              control='input' 
-              type='email'
-              name='email'
-              label='email' />
+          <FormikControl
+            control='input'
+            type='email'
+            name='email'
+            label='email' />
 
-            <FormikControl 
-              control='input' 
-              type='text'
-              name='username'
-              label='username' />
+          <FormikControl
+            control='input'
+            type='text'
+            name='username'
+            label='username' />
 
-            <FormikControl 
-              control='input' 
-              type='password'
-              name='password'
-              label='password' />
+          <FormikControl
+            control='input'
+            type='password'
+            name='password'
+            label='password' />
 
-            <button 
-              className="btn btn-success btn-green"
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Register
-            </button>
+          <button
+            className={`btn btn-success ${s.btnGreen}`}
+            type='submit'
+            disabled={!formik.isValid || formik.isSubmitting}
+            >Register
+          </button>
 
-            <OnSubmitMsg {...submitMsg} />
+          <OnSubmitMsg {...submitMsg} />
 
-          </Form>
-        </div>
+        </Form>
         )}
       }
     </Formik>
+
     <div className='border-top pt-3'>
-      <button 
+      <button
         className='btn btn-dark w-100'
         onClick={() => history.push(LOGIN_PAGE)}>
           Have an account? Login
       </button>
     </div>
+
   </motion.div>
 )
 }

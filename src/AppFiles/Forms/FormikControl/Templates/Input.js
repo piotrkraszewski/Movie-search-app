@@ -1,17 +1,18 @@
 import { FastField, ErrorMessage} from 'formik'
 import ErrorMsg from './ErrorMsg/ErrorMsg'
 import PropTypes from 'prop-types'
+import s from './Input.module.scss';
 
 export default function Input({label, name, type, ...rest}) {
   return (
-    <div className="formControl">
+    <div className={s.formControl}>
       <label htmlFor={name}>{label}</label>
       <FastField
         id={name}
         name={name}
         type={type}
         {...rest} />
-      <ErrorMessage 
+      <ErrorMessage
         name={name}
         component={ErrorMsg}/>
     </div>

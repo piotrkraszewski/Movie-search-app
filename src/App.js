@@ -12,12 +12,12 @@ import MoviePage from 'AppFiles/Movie/MoviePage'
 import { isMobile } from "react-device-detect"
 
 import Navbar from 'AppFiles/Navbar/Navbar'
-import Register from 'AppFiles/Forms/Register/Register'
-import Login from 'AppFiles/Forms/Login/Login'
+import Register from 'AppFiles/Forms/Register'
+import Login from 'AppFiles/Forms/Login'
 import AuthProvider from 'AppFiles/Contexts/AuthContext'
 import Profile from 'AppFiles/Profile/Profile'
-import ForgotPassword from 'AppFiles/Forms/ForgotPassword/ForgotPassword'
-import UpdateProfile from 'AppFiles/Forms/UpdateProfile/UpdateProfile'
+import ForgotPassword from 'AppFiles/Forms/ForgotPassword'
+import UpdateProfile from 'AppFiles/Forms/UpdateProfile'
 import PrivateRoute from 'Utils/PrivateRoute'
 import { useMovieContext } from 'AppFiles/Contexts/MovieContext'
 
@@ -40,7 +40,7 @@ export default function App () {
   useEffect(() => {
     // HomePage: if search is empty display popular movies
     if(location.pathname === '/' && !searchbarText)
-      fetchPopularMoviesOnStartPage()  
+      fetchPopularMoviesOnStartPage()
 
     // dont clear movies when we transitioning out of Main page
     else if(searchbarText === '' && location.pathname !=='/') {
@@ -73,7 +73,7 @@ export default function App () {
       setAllMoviesData(allMoviesData)
       setSuggestions(dataToDisplay)
     }
-    
+
     isMobile && setTimeout(() => {
       setDispPostersNum(9)
     }, 1000) // adds 3 more posters
@@ -82,7 +82,7 @@ export default function App () {
   // State of MovieSeachbar
   const [showQuickSearchRes, setShowQuickSearchRes] = useState(false)
   const [indexOfHighlightedMovie, setIndexOfHighlightedMovie] = useState()
-  
+
   // ==== END Search state and functions ====
 
 
@@ -110,15 +110,15 @@ export default function App () {
         {...ArrowKeysReact.events}
         tabIndex='1'
       >
-        <AppContext.Provider 
+        <AppContext.Provider
           value={{searchbarText, setSearchbarText, suggestions, setSuggestions,  onSearchbarTextChanging, allMoviesData, setAllMoviesData,  fetchPopularMoviesOnStartPage, showResInSearchBar, history, location, pushToHistory, dispPostersNum, setDispPostersNum, showQuickSearchRes, setShowQuickSearchRes, indexOfHighlightedMovie, setIndexOfHighlightedMovie}}
         >
           <AuthProvider>
             <Navbar/>
             <AppScroolbar>
               <AnimatePresence exitBeforeEnter>
-                <Switch 
-                  location={location} 
+                <Switch
+                  location={location}
                   key={location.pathname}
                 >
                   <Route exact path={HOME_PAGE} render={() => <StartPage/>} />

@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { motion } from "framer-motion"
-import FormikControl from '../FormikControl/FormikControl'
-import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
-import './UpdateProfile.scss'
+import FormikControl from './FormikControl/FormikControl'
+import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
+import s from './BaseFormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { PAGE_TRANSITION_TIME, PROFILE_PAGE } from 'Utils/Consts'
@@ -29,7 +29,7 @@ export default function UpdateProfile() {
     username: Yup.string().required('Required'),
     password: Yup.string().min(6),
   })
-  
+
 
   const onSubmit = async(values, onSubmitProps) => {
     setEmailUpdateMsg({})
@@ -49,7 +49,7 @@ export default function UpdateProfile() {
         })
       }
     }
-    
+
     if(values.password){
       try{
         await updatePassword(values.password)
@@ -100,8 +100,8 @@ export default function UpdateProfile() {
 
 ///////////////////////////////////////////////////
 return (
-  <motion.div 
-    className='UpdateProfile'
+  <motion.div
+    className={s.formContainer}
 
     initial={{ opacity: 0 }}
     animate={{ opacity: 1, delay :0.2 }}
@@ -109,7 +109,7 @@ return (
     transition={{ duration: PAGE_TRANSITION_TIME }}
   >
     <h2>Update Profile</h2>
-    <Formik 
+    <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -119,44 +119,42 @@ return (
     formik => {
       // console.log(formik)
       return (
-        <div className='FormContainer'>
-          <Form className="form">
+        <Form className={s.formFields}>
 
-            <FormikControl 
-              control='input' 
-              type='email'
-              name='email'
-              label='email' />
+          <FormikControl
+            control='input'
+            type='email'
+            name='email'
+            label='email' />
 
-            <FormikControl 
-              control='input' 
-              type='text'
-              name='username'
-              label='username' />
+          <FormikControl
+            control='input'
+            type='text'
+            name='username'
+            label='username' />
 
-            <FormikControl 
-              control='input' 
-              type='password'
-              name='password'
-              label='password'
-              placeholder='Leave blank to keep the same' />
+          <FormikControl
+            control='input'
+            type='password'
+            name='password'
+            label='password'
+            placeholder='Leave blank to keep the same' />
 
-            <button 
-              className="btn btn-success btn-green"
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Update
-            </button>
+          <button
+            className={`btn btn-success ${s.btnGreen}`}
+            type='submit'
+            disabled={!formik.isValid || formik.isSubmitting}
+            >Update
+          </button>
 
-            <OnSubmitMsg {...emailUpdateMsg} />
-            <OnSubmitMsg {...passwordUpdateMsg} />
-          </Form>
-        </div>
+          <OnSubmitMsg {...emailUpdateMsg} />
+          <OnSubmitMsg {...passwordUpdateMsg} />
+        </Form>
         )}
       }
     </Formik>
     <div className='border-top pt-3'>
-      <button 
+      <button
         className='btn btn-dark w-100'
         onClick={() => history.push(PROFILE_PAGE)}>
           Cancel

@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import { motion } from "framer-motion"
 import * as Yup from 'yup'
-import FormikControl from '../FormikControl/FormikControl'
-import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
-import './Login.scss'
+import FormikControl from './FormikControl/FormikControl'
+import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
+import s from './BaseFormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import { PROFILE_PAGE, FORGOT_PASSWORD, REGISTER_PAGE, PAGE_TRANSITION_TIME } from 'Utils/Consts'
@@ -26,7 +26,7 @@ export default function Login() {
     email: Yup.string().email('Invalid email format').required('Required'),
     password: Yup.string().required('Required').min(6),
   })
-  
+
   const onSubmit = async(values, onSubmitProps) => {
     setSubmitMsg({})
     console.log('Form values:', values)
@@ -46,8 +46,8 @@ export default function Login() {
 
 
 return (
-  <motion.div 
-    className='Login'
+  <motion.div
+    className={s.formContainer}
 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, delay :0.2 }}
@@ -55,7 +55,7 @@ return (
       transition={{ duration: PAGE_TRANSITION_TIME }}
   >
     <h2>Login</h2>
-    <Formik 
+    <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -65,42 +65,41 @@ return (
     formik => {
       // console.log(formik)
       return (
-        <div className='FormContainer'>
-          <Form className="form">
+        <Form className={s.formFields}>
 
-            <FormikControl 
-              control='input' 
-              type='email'
-              name='email'
-              label='email' />
+          <FormikControl
+            control='input'
+            type='email'
+            name='email'
+            label='email' />
 
-            <FormikControl 
-              control='input' 
-              type='password'
-              name='password'
-              label='password' />
+          <FormikControl
+            control='input'
+            type='password'
+            name='password'
+            label='password' />
 
-            <button 
-              className="btn btn-success btn-green"
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
-              >Log In
-            </button>
+          <button
+            className={`btn btn-success ${s.btnGreen}`}
+            type='submit'
+            disabled={!formik.isValid || formik.isSubmitting}
+            >Log In
+          </button>
 
-            <OnSubmitMsg {...submitMsg} />
+          <OnSubmitMsg {...submitMsg} />
 
-          </Form>
-        </div>
+        </Form>
         )}
       }
     </Formik>
-      <button 
-        className='btn btn-link forgot w-100 mb-1'
+
+      <button
+        className={`btn btn-link ${s.forgotBtn} w-100 mb-2`}
         onClick={() => history.push(FORGOT_PASSWORD)}>
           Forgot password?
       </button>
     <div className='border-top pt-3'>
-      <button 
+      <button
         className='btn btn-dark w-100'
         onClick={() => history.push(REGISTER_PAGE)}>
           Need an account? Register

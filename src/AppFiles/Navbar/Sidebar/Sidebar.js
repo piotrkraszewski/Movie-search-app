@@ -6,9 +6,9 @@ import { HOME_PAGE, PROFILE_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 
 export default function Sidebar({currentPage, isOpen, close, gotoHome, gotoRegister, gotoLogin, gotoUserPanel, logout}) {
   const { user } = useAuth()
-
   const isActive = url => currentPage === url && s.currentSite
 
+  
   return (
     <nav className={`${s.Sidebar} ${isOpen && s.open}`}>
 
