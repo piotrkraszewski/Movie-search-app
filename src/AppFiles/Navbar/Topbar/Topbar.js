@@ -1,68 +1,52 @@
-import './Topbar.scss'
+import s from './Topbar.module.scss'
 import menuIcon from 'Images/menu.svg'
 import NavSearchbar from '../Searchbar/NavSearchbar'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
+import { HOME_PAGE, PROFILE_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 
 
-export default function Topbar({ openSidebar, gotoHome, gotoRegister, gotoLogin, gotoUserPanel }) {
+export default function Topbar({ currentPage, openSidebar, gotoHome, gotoRegister, gotoLogin, gotoUserPanel }) {
   const { user, handleLogout } = useAuth()
+  const isActive = url => currentPage === url && s.currentSite
+
+
   return (
-    <nav className='TopBar'>
-      <div className='TopBarContainer'>
+    <nav className={s.TopBar}>
+      <div className={s.Container}>
 
-      <NavSearchbar/>
+        <NavSearchbar/>
 
-        <div className='hamburgerIconContainer'>
-          <img 
-            className='hamburgerIcon'
-            src={menuIcon} 
-            alt='menuIcon' 
-            onClick={() => openSidebar()}
-          />
+        <div className={s.hamburgerIcon}>
+          <img
+            src={menuIcon}
+            alt='menuIcon'
+            onClick={() => openSidebar()}/>
         </div>
-        <ul className='NavMenu'>
-          <li className='NavItem'>
-            <div 
-              className='NavLink' 
-              onClick={() => gotoHome()}>
-              Home
-            </div>
-          </li>
-          <li className='NavItem'>
-            {!user && 
-            <div 
-              className='NavLink'
-              onClick={() => gotoRegister()}
-              >
-              Register
-            </div>}
-          </li>
-          <li className='NavItem'>
-            {user && 
-            <div 
-              className='NavLink'
-              onClick={() => gotoUserPanel()}
-              >
-              Profile
-            </div>}
-          </li>
+
+        <ul className={s.NavMenu}>
+          <div
+            className={isActive(HOME_PAGE)}
+            onClick={() => gotoHome()}>
+              Home</div>
+          {user
+          ? <div
+              className={isActive(PROFILE_PAGE)}
+              onClick={() => gotoUserPanel()}>
+                Profile</div>
+          : <div
+              className={isActive(REGISTER_PAGE)}
+              onClick={() => gotoRegister()}>
+                Register</div>
+          }
         </ul>
-        <div className='NavBtn'>
-        {!user &&
-          <div 
-            className='NavBtnLink' 
-            onClick={() => gotoLogin()}
-          >
-            login
-          </div>}
-          {user &&
-          <div 
-            className='NavBtnLink' 
-            onClick={() => handleLogout()}
-          >
-            Logout
-          </div>}
+
+        <div className={s.NavBtn}>
+          {user
+          ? <div onClick={() => handleLogout()}>Logout</div>
+          : <div onClick={() => gotoLogin()}>login</div>
+          }
         </div>
+
       </div>
     </nav>
   )

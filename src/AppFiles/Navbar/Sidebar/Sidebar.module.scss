@@ -1,0 +1,77 @@
+@use '~styles/helpers/variables' as *;
+
+.Sidebar{
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: #0d0d0d;
+  align-items: center;
+  left: 0;
+  font-size: 24px;
+
+  transition: 0.3s ease-in-out;
+  opacity: 0;
+  top: -100%;
+}
+
+
+.closeBtn{
+  display: flex;
+
+  img {
+    margin-left: auto;
+    width: 70px;
+    cursor: pointer;
+    filter: invert(90%);
+    padding: 25px;
+  }
+}
+
+
+.itemsContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.menu {
+  p {
+    display: table;
+    margin: 1em auto;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: $limeGreenSecond;
+    }
+  }
+}
+
+
+.btn {
+  div{
+    border-radius: 50px;
+    background: $limeGreenSecond;
+    padding: 14px 40px;
+    color: #010606;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background: $white;
+      color: #010606;
+    }
+  }
+}
+
+
+.open {
+  opacity: 1;
+  top: 0;
+}
+
+.currentSite{
+  border-bottom: 2px solid $limeGreenSecond;
+  margin-bottom: -2px;
+}

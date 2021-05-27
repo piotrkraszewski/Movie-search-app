@@ -1,4 +1,4 @@
-import './NavSearchbar.scss'
+import s from './NavSearchbar.module.scss'
 import { useContext } from 'react'
 import { AppContext } from 'AppFiles/Contexts/AppContext'
 import { DebounceInput } from 'react-debounce-input';
@@ -14,10 +14,10 @@ export default function NavSearchbar() {
   const {node, OnSearchBarClicked} = useShowHideQuickSearch()
 
   const resetSearch = () => setSearchbarText('')
-  
+
 
   return (
-    <div className='NavSearchbar' ref={node}>
+    <div className={s.NavSearchbar} ref={node}>
       <form onSubmit={e => e.preventDefault()}>
         <DebounceInput
           debounceTimeout={250}
@@ -28,8 +28,8 @@ export default function NavSearchbar() {
           onClick={OnSearchBarClicked}
           onKeyPress={enterKeyInSearchbar}
         />
-        <img 
-          src={closeImg} 
+        <img
+          src={closeImg}
           onClick={resetSearch}
           alt="close search"
         />
