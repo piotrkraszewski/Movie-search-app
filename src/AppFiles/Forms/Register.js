@@ -4,7 +4,6 @@ import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
 import FormikControl from './FormikControl/FormikControl'
-import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
 import s from './FormStyles.module.scss'
 import { usersCollection } from 'Utils/firebase'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
@@ -65,6 +64,7 @@ return (<>
   {useFormTransition(
     <WithFormTemplate
       title={'Register'}
+      submitMsg={submitMsg}
       bottomBtnText={'Have an account? Login'}
       onBottomBtnClick={() => history.push(LOGIN_PAGE)}>
 
@@ -103,8 +103,6 @@ return (<>
               disabled={!formik.isValid || formik.isSubmitting}
               >Register
             </button>
-
-            <OnSubmitMsg {...submitMsg} />
 
           </Form>
           )}

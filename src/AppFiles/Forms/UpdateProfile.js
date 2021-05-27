@@ -4,12 +4,11 @@ import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
 import FormikControl from './FormikControl/FormikControl'
-import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
 import s from './FormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { PAGE_TRANSITION_TIME, PROFILE_PAGE } from 'Utils/Consts'
-import {usersCollection} from 'Utils/firebase'
+import { PROFILE_PAGE } from 'Utils/Consts'
+import { usersCollection } from 'Utils/firebase'
 
 
 export default function UpdateProfile() {
@@ -102,6 +101,8 @@ return (<>
   {useFormTransition(
     <WithFormTemplate
       title={'Update Profile'}
+      emailUpdateMsg={emailUpdateMsg}
+      passwordUpdateMsg={passwordUpdateMsg}
       bottomBtnText={'Cancel'}
       onBottomBtnClick={() => history.push(PROFILE_PAGE)}>
 
@@ -144,8 +145,6 @@ return (<>
               >Update
             </button>
 
-            <OnSubmitMsg {...emailUpdateMsg} />
-            <OnSubmitMsg {...passwordUpdateMsg} />
           </Form>
           )}
         }

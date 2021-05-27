@@ -4,11 +4,10 @@ import * as Yup from 'yup'
 import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
 import FormikControl from './FormikControl/FormikControl'
-import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
 import s from './FormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { LOGIN_PAGE, PAGE_TRANSITION_TIME, REGISTER_PAGE } from 'Utils/Consts'
+import { LOGIN_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 
 
 export default function ForgotPassword() {
@@ -50,6 +49,7 @@ return (<>
   {useFormTransition(
     <WithFormTemplate
       title={'Password Reset'}
+      submitMsg={submitMsg}
       bottomBtnText={'Need an account? Register'}
       onBottomBtnClick={() => history.push(REGISTER_PAGE)}
       linkBtnText={'Login?'}
@@ -79,8 +79,6 @@ return (<>
               disabled={!formik.isValid || formik.isSubmitting}
               >Reset Password
             </button>
-
-            <OnSubmitMsg {...submitMsg} />
 
           </Form>
           )}

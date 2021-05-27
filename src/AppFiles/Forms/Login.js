@@ -4,7 +4,6 @@ import useFormTransition from "./FormsHooks/useFormTransition"
 import WithFormTemplate from "./FormsHooks/WithFormTemplate"
 import * as Yup from 'yup'
 import FormikControl from './FormikControl/FormikControl'
-import OnSubmitMsg from './OnSubmitMsg/OnSubmitMsg'
 import s from './FormStyles.module.scss'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
@@ -50,6 +49,7 @@ return (<>
   {useFormTransition(
     <WithFormTemplate
       title={'Login'}
+      submitMsg={submitMsg}
       bottomBtnText={'Need an account? Register'}
       onBottomBtnClick={() => history.push(REGISTER_PAGE)}
       linkBtnText={'Forgot password?'}
@@ -86,7 +86,6 @@ return (<>
               >Log In
             </button>
 
-            <OnSubmitMsg {...submitMsg} />
 
           </Form>
           )}
