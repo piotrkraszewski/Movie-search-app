@@ -1,5 +1,5 @@
-import s from './MCEmpty.module.sass'
-import MCLists from './MCLists.module.sass'
+import s from './MC_Empty.module.sass'
+import MCLists from './MC_Display.module.sass'
 import { useHistory } from 'react-router-dom'
 
 export default function MCEmpty() {

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
-import MoviesCollectionDisp from './MoviesCollectionDisplay/MCLists'
-import MoviesCollectionEmpty from './MoviesCollectionDisplay/MCEmpty'
+import MCLists from './MoviesCollectionDisplay/MC_Display'
+import MCEmpty from './MoviesCollectionDisplay/MC_Empty'
 import { POSTER_W500 } from 'Utils/Consts'
 import {getMovieData} from 'Utils/FetchFunctions'
 import { motion, AnimatePresence } from "framer-motion"
@@ -57,10 +57,10 @@ export default function MoviesCollection() {
       >
         {!loading &&
         (userMovies && userMovies.length > 0
-          ? <MoviesCollectionDisp
+          ? <MCLists
             userMovies={userMovies}
             setUserMovies={setUserMovies}/>
-          : <MoviesCollectionEmpty/>)}
+          : <MCEmpty/>)}
       </motion.div>
     </AnimatePresence>
     </>
