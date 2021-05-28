@@ -21,7 +21,6 @@ export default function ForgotPassword() {
     email: '',
   }
 
-  // remember to comment out validation that is not used because form will not submit
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
   })

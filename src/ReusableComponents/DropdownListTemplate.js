@@ -9,11 +9,12 @@ DropdownList.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
+  disabled: PropTypes.array,
 }
 
 
 export default function DropdownListTemplate(
-  { className, label, value, onChangeFunc, data })
+  { className, label, value, onChangeFunc, data, disabled })
 {
   return (
     <div className={className}>
@@ -24,6 +25,7 @@ export default function DropdownListTemplate(
         onChange={onChangeFunc}
         textField="color"
         data={data}
+        disabled={disabled}
       />
     </div>
   )

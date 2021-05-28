@@ -2,7 +2,7 @@ import s from '../FormStyles.module.scss'
 import OnSubmitMsg from '../OnSubmitMsg/OnSubmitMsg'
 
 
-export default function WithFormTransition ({children, title, submitMsg, emailUpdateMsg, passwordUpdateMsg, bottomBtnText, onBottomBtnClick, linkBtnText, onLinkBtnClickFunc}) {
+export default function WithFormTransition ({children, title, submitMsg, emailUpdateMsg, passwordUpdateMsg, usernameUpdateMsg, bottomBtnText, onBottomBtnClick, linkBtnText, onLinkBtnClickFunc}) {
   return (<>
     <h2>{title}</h2>
 
@@ -11,6 +11,7 @@ export default function WithFormTransition ({children, title, submitMsg, emailUp
     <OnSubmitMsg {...submitMsg} />
     <OnSubmitMsg {...emailUpdateMsg} />
     <OnSubmitMsg {...passwordUpdateMsg} />
+    <OnSubmitMsg {...usernameUpdateMsg} />
 
     { linkBtnText &&
     <button

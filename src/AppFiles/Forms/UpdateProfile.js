@@ -17,6 +17,7 @@ export default function UpdateProfile() {
   const { user, userData, setUserData, loadUserData, updatePassword, updateEmail } = useAuth()
   const [emailUpdateMsg, setEmailUpdateMsg] = useState()
   const [passwordUpdateMsg, setPasswordUpdateMsg] = useState()
+  const [usernameUpdateMsg, setUsernameUpdateMsg] = useState()
 
 
   const initialValues = {
@@ -35,6 +36,7 @@ export default function UpdateProfile() {
   const onSubmit = async(values, onSubmitProps) => {
     setEmailUpdateMsg({})
     setPasswordUpdateMsg({})
+    setUsernameUpdateMsg({})
     console.log('Form values:', values)
 
     if(values.email !== user.email){
@@ -85,11 +87,10 @@ export default function UpdateProfile() {
         loadUserData()
         history.push(PROFILE_PAGE)
       } catch (err){
-        console.log(err)
-        // setSubmitMsg({
-        //   submitStatus: 'error',
-        //   message: err.message
-        // })
+        setUsernameUpdateMsg({
+          submitStatus: 'error',
+          message: err.message
+        })
       }
     }
 
@@ -104,6 +105,7 @@ return (<>
       title={'Update Profile'}
       emailUpdateMsg={emailUpdateMsg}
       passwordUpdateMsg={passwordUpdateMsg}
+      usernameUpdateMsg={usernameUpdateMsg}
       bottomBtnText={'Cancel'}
       onBottomBtnClick={() => history.push(PROFILE_PAGE)}>
 

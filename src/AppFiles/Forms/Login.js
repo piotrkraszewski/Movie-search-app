@@ -22,7 +22,6 @@ export default function Login() {
     password: '',
   }
 
-  // remember to comment out validation that is not used because form will not submit
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
     password: Yup.string().required('Required').min(6),
@@ -32,8 +31,7 @@ export default function Login() {
     setSubmitMsg({})
     console.log('Form values:', values)
     try {
-      const registerRes = await login(values.email, values.password)
-      // console.log('login response', registerRes)
+      await login(values.email, values.password)
       history.push(PROFILE_PAGE)
     } catch (err){
       setSubmitMsg({

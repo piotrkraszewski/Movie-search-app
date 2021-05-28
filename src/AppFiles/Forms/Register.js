@@ -36,7 +36,6 @@ export default function Register() {
     console.log('Form values:', values)
     try {
       const registerRes = await register(values.email, values.password)
-      // console.log('register response', registerRes)
 
       try {
         await usersCollection.doc(registerRes.user.uid).set({

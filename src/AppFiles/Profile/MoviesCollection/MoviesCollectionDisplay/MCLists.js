@@ -2,25 +2,27 @@ import { useState, useEffect, useRef } from 'react'
 import s from './MCLists.module.sass'
 import orderBy from 'lodash/orderBy'
 import MoviesList from './MoviesList/MoviesList'
-import { WATCHING, STATUS_OPTIONS, RATING, ASC, DESC } from 'Utils/Consts'
+import { STATUS_OPTIONS, RATING, ASC, DESC } from 'Utils/Consts'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 
 export default function MCLists({userMovies, setUserMovies}) {
-  const [status, setStatus] = useState(WATCHING)
+  const [status, setStatus] = useState()
   const [sortBy, setSortBy] = useState(RATING)
   const [order, setOrder] = useState(DESC)
-  const statusOptionsIndex = useRef(0)
+  const disabledList = useRef([])
 
 
   // display not empty movie list on page load
+  // create "disabledList" where lists are empty
   useEffect(() => {
-    const moviesWithCurrentStatus = userMovies.filter(movie =>
-      movie.status === STATUS_OPTIONS[statusOptionsIndex.current])
+    STATUS_OPTIONS.forEach(item => {
+      const moviesWithItemsStatus = userMovies.filter(movie =>
+        movie.status === item)
 
-    moviesWithCurrentStatus.length
-      ? setStatus(STATUS_OPTIONS[statusOptionsIndex.current])
-      : statusOptionsIndex.current = statusOptionsIndex.current + 1
-  }, [statusOptionsIndex.current])
+      if(!moviesWithItemsStatus.length) disabledList.current.push(item)
+      else if(!status) setStatus(item)
+    })
+  }, [])
 
   useEffect(() => {
     setUserMovies(orderBy(userMovies, RATING, DESC))
@@ -40,6 +42,7 @@ export default function MCLists({userMovies, setUserMovies}) {
           value={status}
           onChangeFunc={value => setStatus(value)}
           data={STATUS_OPTIONS}
+          disabled={disabledList.current}
         />
         <DropdownListTemplate
           className={s.Widget}
