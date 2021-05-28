@@ -5,7 +5,7 @@ import Menu from './Menu/MC_Menu'
 
 
 export default function MCLists({userMovies, setUserMovies}) {
-  const [status, setStatus] = useState()
+  const [status, setStatus] = useState('Watching')
 
   return (
     <div className={s.MCLists}>
@@ -18,8 +18,8 @@ export default function MCLists({userMovies, setUserMovies}) {
       />
 
       <MoviesList
-        listName={status}
-        movies={userMovies}
+        status={status}
+        userMovies={userMovies}
       />
 
     </div>

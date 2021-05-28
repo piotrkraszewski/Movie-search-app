@@ -7,7 +7,7 @@ import { HOME_PAGE, PROFILE_PAGE, REGISTER_PAGE } from 'Utils/Consts'
 
 export default function Topbar({ currentPage, openSidebar, gotoHome, gotoRegister, gotoLogin, gotoUserPanel }) {
   const { user, handleLogout } = useAuth()
-  const isActive = url => currentPage === url && s.currentSite
+  const isActive = url => (currentPage === url && s.currentSite).toString()
 
 
   return (

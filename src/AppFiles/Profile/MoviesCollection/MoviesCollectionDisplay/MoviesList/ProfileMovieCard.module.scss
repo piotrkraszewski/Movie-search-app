@@ -2,7 +2,7 @@
 
 .ProfileMovieCard {
   @include equalColumnHeight;
-  @include smallCardDiv;
+  border-radius: $posterRaious;
   background: rgba(10, 10, 10, 0.9);
   font-size: 0.9rem;
 
@@ -13,16 +13,16 @@
     max-width:100%;
     height: auto;
   }
+}
 
-  p {
-    @include hideToLongTitle;
-    @include smallCardParagraphs;
+.title {
+  @include hideToLongTitle;
+  @include smallCardParagraphs;
 
-    padding: 5px;
-    padding-bottom: 3px;
-    font-weight: bold;
-    text-align: center;
-  }
+  padding: 5px;
+  padding-bottom: 3px;
+  font-weight: bold;
+  text-align: center;
 
   @media (max-width: 475px) {
     font-size: 0.85rem;
@@ -30,19 +30,19 @@
 }
 
 .rating{
-  position: absolute;
-  display: flex;
-  justify-content:center;
-  align-items: center;
+  z-index: 2;
   font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+
   margin-top: 5px;
   margin-left: 5px;
-  margin-bottom: -30px;
-  z-index: 100;
+  margin-bottom: -35px;
   background-color: rgba(10, 10, 10, 0.9);
-  color: white;
+  color: $white;
   padding: 0;
+  padding-top: 3px;
   border-radius: 10px;
-  width: 30px;
+  width: 29px;
   height: 30px;
 }
