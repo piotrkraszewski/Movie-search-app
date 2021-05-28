@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import s from './ProfileMovieCard.module.scss'
 import ImageFadeIn from "react-image-fade-in"
 import no_image from 'Images/no_image.png'
@@ -15,29 +15,28 @@ ProfileMovieCard.propTypes = {
 }
 
 export default function ProfileMovieCard ({
-  cardData, onClick, className, cardTransitionDuration, imgTransition, imgHeight, imgWidth,}) {
+  cardData, onClick, className, cardTransitionDuration, imgTransition, imgHeight, imgWidth}) {
 
   return (
-  <motion.div
-    className={s.ProfileMovieCard}
-    onClick={() => onClick(cardData.id)}
+    <motion.div
+      className={s.ProfileMovieCard}
+      onClick={() => onClick(cardData.id)}
 
-    key={cardData.id}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: cardTransitionDuration, ease: 'easeInOut' }}
-  >
-    { cardData.rating &&
-    <p className={s.rating}>{cardData.rating}</p> }
-    <ImageFadeIn
-      width={imgWidth}
-      height={imgHeight}
-      opacityTransition={imgTransition}
-      src={cardData.poster ? cardData.poster : no_image}
-      alt={`poster ${cardData.id}`}
-    />
-    <p className={s.title}>{cardData.title}</p>
-  </motion.div>
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: cardTransitionDuration, ease: 'easeInOut' }}
+    >
+      { cardData.rating &&
+      <p className={s.rating}>{cardData.rating}</p> }
+      <ImageFadeIn
+        width={imgWidth}
+        height={imgHeight}
+        opacityTransition={imgTransition}
+        src={cardData.poster ? cardData.poster : no_image}
+        alt={`poster ${cardData.id}`}
+      />
+      <p className={s.title}>{cardData.title}</p>
+    </motion.div>
   )
 }

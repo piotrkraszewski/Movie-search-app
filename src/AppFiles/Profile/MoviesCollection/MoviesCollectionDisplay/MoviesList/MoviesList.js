@@ -14,10 +14,10 @@ export default function MoviesList({ status, userMovies}) {
         <h2>{status}</h2>
         <div className={s.grid}>
           <AnimatePresence exitBeforeEnter>
-          { userMovies.map(movie => (
+          { userMovies.map((movie) => (
             movie.status === status &&
               <ProfileMovieCard
-                key={movie.id}
+                key={`${movie.id} ${Math.random()}`}
                 cardData={movie}
                 onClick={selectedMovieInProfilePage}
                 cardTransitionDuration={START_PAGE_CARDS_TRANSITION}
