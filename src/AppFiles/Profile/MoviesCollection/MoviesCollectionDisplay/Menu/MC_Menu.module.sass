@@ -1,5 +1,7 @@
 @use '~styles/helpers' as *
 
+$mediaBreakePoint: 576px
+
 .Widgets
   display: flex
   flex-direction: column
@@ -11,7 +13,7 @@
   padding: 1em
   border-radius: 10px
 
-  @media (min-width: 576px)
+  @media (min-width: $mediaBreakePoint)
     min-width: 170px
     max-width: 170px
 
@@ -19,8 +21,34 @@
 .Widget
   padding: 0.5rem 0
   width: 100%
-
   p
     font-size: 0.85rem
     margin-bottom: 0.5rem
     padding-left: 2px
+
+.watchingContainer
+  display: flex
+  justify-content: space-between
+  gap: 1em
+
+.hiddenWiget
+  @media (max-width: $mediaBreakePoint)
+    display: none
+
+
+.hamburgerIcon
+  display: flex
+  height: 32px
+  width: 41px
+  margin-top: auto
+  margin-bottom: 8px
+  justify-content: center
+  background-color: rgba(30, 30, 30,)
+  border-radius: 5px
+
+  img
+    max-width: 22px
+    cursor: pointer
+
+  @media (min-width: $mediaBreakePoint)
+    display: none
