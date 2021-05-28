@@ -17,6 +17,11 @@
 $fontColor: rgb(240, 240, 240);
 $backgroundColor: rgb(30, 30, 30);
 
+// disabled items
+.rw-list-option.rw-state-disabled{
+  color: gray;
+  cursor:inherit;
+}
 
 .rw-widget-container{
   border: none;

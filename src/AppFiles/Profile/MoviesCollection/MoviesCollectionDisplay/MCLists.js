@@ -5,6 +5,7 @@ import MoviesList from './MoviesList/MoviesList'
 import { STATUS_OPTIONS, RATING, ASC, DESC } from 'Utils/Consts'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 
+
 export default function MCLists({userMovies, setUserMovies}) {
   const [status, setStatus] = useState()
   const [sortBy, setSortBy] = useState(RATING)
@@ -15,13 +16,15 @@ export default function MCLists({userMovies, setUserMovies}) {
   // display not empty movie list on page load
   // create "disabledList" where lists are empty
   useEffect(() => {
+    let initStatus
     STATUS_OPTIONS.forEach(item => {
       const moviesWithItemsStatus = userMovies.filter(movie =>
         movie.status === item)
 
       if(!moviesWithItemsStatus.length) disabledList.current.push(item)
-      else if(!status) setStatus(item)
+      else if(!initStatus) initStatus = item
     })
+    setStatus(initStatus)
   }, [])
 
   useEffect(() => {
