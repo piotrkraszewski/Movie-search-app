@@ -5,12 +5,17 @@ import MCEmpty from './MoviesCollectionDisplay/MC_Empty'
 import { POSTER_W500 } from 'Utils/Consts'
 import {getMovieData} from 'Utils/FetchFunctions'
 import { motion, AnimatePresence } from "framer-motion"
+import orderBy from 'lodash/orderBy'
+import { RATING, DESC } from 'Utils/Consts'
 
 
 export default function MoviesCollection() {
   const { userData } = useAuth()
   const [loading, setLoading] = useState(true)
   const [userMovies, setUserMovies] = useState()
+
+  const [sortBy, setSortBy] = useState(RATING)
+  const [order, setOrder] = useState(DESC)
 
 
   useEffect(async() => {
@@ -31,9 +36,8 @@ export default function MoviesCollection() {
         })
       }
 
-      return newArrToDisp // return array of objects
+      return orderBy(newArrToDisp, sortBy, order) // return array of objects
     }
-
 
     userData.movies && setUserMovies(await initUserMovies())
   }, [])
@@ -46,8 +50,9 @@ export default function MoviesCollection() {
     }
   }, [userMovies])
 
-  return (
-    <>
+
+  //===================================
+  return (<>
     <AnimatePresence exitBeforeEnter>
       <motion.div
         initial={{ opacity: 0 }}
@@ -57,12 +62,13 @@ export default function MoviesCollection() {
       >
         {!loading &&
         (userMovies && userMovies.length > 0
-          ? <MCLists
-            userMovies={userMovies}
-            setUserMovies={setUserMovies}/>
+          ? <MCLists props ={{
+              userMovies, setUserMovies,
+              sortBy, setSortBy,
+              order, setOrder
+            }}/>
           : <MCEmpty/>)}
       </motion.div>
     </AnimatePresence>
-    </>
-  )
+  </>)
 }

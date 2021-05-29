@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import s from './MC_Menu.module.sass'
 import dotsIcon from 'Images/ellipsis.svg'
-import orderBy from 'lodash/orderBy'
-import { STATUS_OPTIONS, RATING, ASC, DESC } from 'Utils/Consts'
+import { STATUS_OPTIONS, ASC, DESC } from 'Utils/Consts'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 
 
-export default function MCLists({userMovies, setUserMovies, status, setStatus}) {
+export default function MCLists({props}) {
+  const {userMovies, setUserMovies, status, setStatus, sortBy, setSortBy, order, setOrder} = props
+
   const [hidden, setHidden] = useState(true)
-  const [sortBy, setSortBy] = useState(RATING)
-  const [order, setOrder] = useState(DESC)
   const disabledList = useRef([])
 
 
@@ -27,19 +26,11 @@ export default function MCLists({userMovies, setUserMovies, status, setStatus}) 
     setStatus(initStatus)
   }, [])
 
-  useEffect(() => {
-    setUserMovies(orderBy(userMovies, RATING, DESC))
-  }, [sortBy])
-
-  useEffect(() => {
-    setUserMovies(orderBy(userMovies, sortBy, order))
-  }, [order])
-
 
   return (
     <div className={s.Widgets}>
       <div className={s.watchingContainer}>
-        
+
         <DropdownListTemplate
           className={s.Widget}
           label={'Status'}

@@ -5,8 +5,10 @@ import useGotoOtherRoutes from 'Hooks/SearchbarHooks/useGotoOtherRoutes'
 import { AnimatePresence } from "framer-motion"
 
 
-export default function MoviesList({ status, userMovies}) {
+export default function MoviesList({props}) {
+  const {status, userMovies} = props
   const {selectedMovieInProfilePage} = useGotoOtherRoutes()
+
 
   return (
     <div className={s.MoviesList}>
@@ -14,10 +16,10 @@ export default function MoviesList({ status, userMovies}) {
         <h2>{status}</h2>
         <div className={s.grid}>
           <AnimatePresence exitBeforeEnter>
-          { userMovies.map((movie) => (
+          { userMovies.map(movie => (
             movie.status === status &&
               <ProfileMovieCard
-                key={`${movie.id} ${Math.random()}`}
+                key={movie.id}
                 cardData={movie}
                 onClick={selectedMovieInProfilePage}
                 cardTransitionDuration={START_PAGE_CARDS_TRANSITION}

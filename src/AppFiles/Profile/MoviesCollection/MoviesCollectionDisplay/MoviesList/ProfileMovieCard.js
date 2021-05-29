@@ -19,6 +19,7 @@ export default function ProfileMovieCard ({
 
   return (
     <motion.div
+      layout     //reordering animation
       className={s.ProfileMovieCard}
       onClick={() => onClick(cardData.id)}
 
