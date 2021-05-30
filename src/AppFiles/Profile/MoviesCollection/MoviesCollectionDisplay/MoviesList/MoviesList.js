@@ -11,8 +11,8 @@ export default function MoviesList({props}) {
 
 
   return (
-    <motion.div layout={"position"} className={s.MoviesList}>
-      <h2 layout>{status}</h2>
+    <motion.div layout='position' className={s.MoviesList}>
+      <h2 layout='true'>{status}</h2>
       <div className={s.grid}>
         <AnimatePresence exitBeforeEnter>
         { userMovies.map(movie => (

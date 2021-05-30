@@ -39,7 +39,8 @@ export const NO_RATING = 'no rating'
 export const STATUS_OPTIONS = [WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED]
 
 //Sort by
-export const RATING = 'rating'
+export const RATING = 'Rating'
+export const TITLE = 'Title'
 
 //Order by
 export const ASC = 'asc'

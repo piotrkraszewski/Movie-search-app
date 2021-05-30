@@ -36,7 +36,7 @@ export default function MoviesCollection() {
         })
       }
 
-      return orderBy(newArrToDisp, sortBy, order) // return array of objects
+      return orderBy(newArrToDisp, sortBy.toLowerCase(), order) // return array of objects
     }
 
     userData.movies && setUserMovies(await initUserMovies())
