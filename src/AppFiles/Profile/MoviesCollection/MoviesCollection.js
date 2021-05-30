@@ -32,6 +32,7 @@ export default function MoviesCollection() {
           status: movie.status,
           rating: movie.rating,
           modified: movie.modified,
+          added: movie.added,
           title: tmdb.title,
           poster: tmdb.poster_path !== null ? POSTER_W500 + tmdb.poster_path : null
         })

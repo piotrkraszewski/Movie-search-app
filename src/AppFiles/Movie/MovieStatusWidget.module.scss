@@ -1,5 +1,14 @@
-.MovieStatusWidgets{
+@use '~styles/helpers/variables' as *;
 
+.dates{
+  display: flex;
+  gap: 1em;
+  width: 50%;
+
+  span{
+    display: block;
+    color: $limeGreen;
+  }
 }
 
 .Widgets{

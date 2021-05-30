@@ -12,22 +12,33 @@ export default function MovieStatusWidget() {
   const { movieID } = useMovieContext()
   const { user, userData, loadUserData } = useAuth()
 
-  const initStatus = userData.movies && userData.movies[movieID]
-  const [movieStatus, setMovieStatus] = useState({
-    status: initStatus ? initStatus.status : '',
-    rating: initStatus ? initStatus.rating : null
-  })
+  const initStatus = userData.movies[movieID] ? userData.movies[movieID] : {
+    status: '',
+    rating: null,
+    modified: null,
+  }
 
+  const [movieStatus, setMovieStatus] = useState(initStatus)
+
+  console.log(initStatus)
 
   useEffect(() => {
     // function definition
     async function saveMovieStatusToFirebase(actionType){
       let command
       if (actionType === 'update'){
+        if(initStatus.status)
+          command = {
+            status: movieStatus.status,
+            rating: movieStatus.rating,
+            modified: firebase.firestore.Timestamp.now(),
+          }
+        else
         command = {
           status: movieStatus.status,
           rating: movieStatus.rating,
-          modified: firebase.firestore.Timestamp.now()
+          modified: firebase.firestore.Timestamp.now(),
+          added: firebase.firestore.Timestamp.now(),
         }
       }
       else if (actionType === 'delete'){
@@ -47,10 +58,8 @@ export default function MovieStatusWidget() {
     }
 
     // function execution
-    if(initStatus && (
-      movieStatus.status !== initStatus.status ||
-      movieStatus.rating !== initStatus.rating
-    )){
+    if( movieStatus.status !== initStatus.status ||
+        movieStatus.rating !== initStatus.rating ){
       async function updateMovieStatusToFirebase(){
         if(movieStatus.status === "Delete movie data"){
           await saveMovieStatusToFirebase('delete')
@@ -106,8 +115,12 @@ export default function MovieStatusWidget() {
         />
       </div>
 
-      {initStatus && <p>modified: {initStatus.modified.toDate().toLocaleDateString()}</p>}
-      {/* <p>added: </p> */}
+      <div className={s.dates}>
+        {initStatus.modified &&
+        <p>modified: <span>{initStatus.modified.toDate().toLocaleDateString()}</span></p>}
+        {initStatus.added &&
+        <p>added: <span>{initStatus.modified.toDate().toLocaleDateString()}</span></p>}
+      </div>
     </div>
   )
 }
