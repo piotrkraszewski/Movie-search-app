@@ -3,6 +3,7 @@ import s from './MC_Menu.module.sass'
 import dotsIcon from 'Images/ellipsis.svg'
 import { STATUS_OPTIONS, ASC, DESC } from 'Utils/Consts'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
+import { motion, AnimateSharedLayout } from "framer-motion"
 
 
 export default function MCLists({props}) {
@@ -49,6 +50,7 @@ export default function MCLists({props}) {
 
       </div>
 
+      <motion.div layout>
       <DropdownListTemplate
         className={`${s.Widget} ${hidden && s.hiddenWiget}`}
         label={'Sort by'}
@@ -63,6 +65,7 @@ export default function MCLists({props}) {
         onChangeFunc={value => setOrder(value)}
         data={[DESC, ASC]}
       />
+      </motion.div>
     </div>
   )
 }

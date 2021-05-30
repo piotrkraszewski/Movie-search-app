@@ -4,6 +4,7 @@ import MoviesList from './MoviesList/MoviesList'
 import Menu from './Menu/MC_Menu'
 import orderBy from 'lodash/orderBy'
 import { RATING, DESC } from 'Utils/Consts'
+import { AnimateSharedLayout } from "framer-motion"
 
 
 export default function MC_Display({props}) {
@@ -25,18 +26,18 @@ export default function MC_Display({props}) {
 
 
   return (
-    <div className={s.MCLists}>
+    <div className={s.MC_Display}>
+      <AnimateSharedLayout>
+        <Menu props={{
+            userMovies, setUserMovies,
+            status, setStatus,
+            sortBy, setSortBy,
+            order, setOrder
+          }}
+        />
 
-      <Menu props={{
-          userMovies, setUserMovies,
-          status, setStatus,
-          sortBy, setSortBy,
-          order, setOrder
-        }}
-      />
-
-      <MoviesList props={{userMovies, status}} />
-
+        <MoviesList props={{userMovies, status}} />
+      </AnimateSharedLayout>
     </div>
   )
 }
