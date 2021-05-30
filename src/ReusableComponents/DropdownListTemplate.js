@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 DropdownList.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   disabled: PropTypes.array,

@@ -1,4 +1,8 @@
 .MovieStatusWidgets{
+
+}
+
+.Widgets{
   display: flex;
   flex-direction: column;
   // flex-wrap: wrap;
@@ -6,19 +10,19 @@
     // max-width: 300px;
     flex-direction: row;
   }
+}
 
-  .Widget{
-    padding: 0.5rem 0;
-    width: 100%;
+.Widget{
+  padding: 0.5rem 0;
+  width: 100%;
 
-    @media (min-width: 768px) {
-      padding-right: 1rem;
-    }
+  @media (min-width: 768px) {
+    padding-right: 1rem;
+  }
 
-    p{
-      font-size: 0.85rem;
-      margin-bottom: 0.5rem;
-      padding-left: 2px;
-    }
+  p{
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    padding-left: 2px;
   }
 }

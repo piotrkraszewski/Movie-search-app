@@ -3,7 +3,7 @@ import s from './MC_Display.module.sass'
 import MoviesList from './MoviesList/MoviesList'
 import Menu from './Menu/MC_Menu'
 import orderBy from 'lodash/orderBy'
-import { RATING, TITLE, DESC, ASC } from 'Utils/Consts'
+import { RATING, TITLE, DESC, ASC, MODIFIED } from 'Utils/Consts'
 import { AnimateSharedLayout } from "framer-motion"
 
 
@@ -17,9 +17,10 @@ export default function MC_Display({props}) {
 
 
   useEffect(() => {
-    console.log(userMovies);
     sortBy === TITLE && setOrder(ASC)
     sortBy === RATING && setOrder(DESC)
+    sortBy === MODIFIED && setOrder(DESC)
+    console.log(userMovies)
     setUserMovies(orderBy(userMovies, sortBy.toLowerCase(), order))
   }, [sortBy])
 

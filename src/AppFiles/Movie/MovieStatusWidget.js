@@ -1,4 +1,3 @@
-// import "react-widgets/scss/styles.scss"
 import {useState, useEffect} from 'react'
 import s from './MovieStatusWidget.module.scss'
 import firebase from 'Utils/firebase'
@@ -28,6 +27,7 @@ export default function MovieStatusWidget() {
         command = {
           status: movieStatus.status,
           rating: movieStatus.rating,
+          modified: firebase.firestore.Timestamp.now()
         }
       }
       else if (actionType === 'delete'){
@@ -43,15 +43,14 @@ export default function MovieStatusWidget() {
         }, { merge: true })
       } catch (err){
         console.log(err)
-        // setSubmitMsg({
-        //   submitStatus: 'error',
-        //   message: err.message
-        // })
       }
     }
 
     // function execution
-    if(movieStatus.status || movieStatus.rating){
+    if(initStatus && (
+      movieStatus.status !== initStatus.status ||
+      movieStatus.rating !== initStatus.rating
+    )){
       async function updateMovieStatusToFirebase(){
         if(movieStatus.status === "Delete movie data"){
           await saveMovieStatusToFirebase('delete')
@@ -75,36 +74,40 @@ export default function MovieStatusWidget() {
 
   return (
     <div className={s.MovieStatusWidgets}>
-      <DropdownListTemplate
-        className={s.Widget}
-        label={'Status'}
-        value={movieStatus.status}
-        onChangeFunc={nextValue => setMovieStatus({
-          ...movieStatus,
-          status: nextValue
-        })}
-        data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA]}
-      />
-      <DropdownListTemplate
-        className={s.Widget}
-        label={'Rating'}
-        value={movieStatus.rating}
-        onChangeFunc={nextValue => {
-          if(nextValue === NO_RATING) nextValue = null
+      <div className={s.Widgets}>
+        <DropdownListTemplate
+          className={s.Widget}
+          label={'Status'}
+          value={movieStatus.status}
+          onChangeFunc={nextValue => setMovieStatus({
+            ...movieStatus,
+            status: nextValue
+          })}
+          data={[WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPPED, DELET_MOVIE_DATA]}
+        />
+        <DropdownListTemplate
+          className={s.Widget}
+          label={'Rating'}
+          value={movieStatus.rating}
+          onChangeFunc={nextValue => {
+            if(nextValue === NO_RATING) nextValue = null
+              movieStatus.status
+              ? setMovieStatus({
+                  ...movieStatus,
+                  rating: nextValue
+                })
+                //sets complete status if user only rates show
+              : setMovieStatus({
+                  status: COMPLETED,
+                  rating: nextValue
+                })
+          }}
+          data={[5, 4, 3, 2, 1, NO_RATING]}
+        />
+      </div>
 
-          movieStatus.status
-          ? setMovieStatus({
-              ...movieStatus,
-              rating: nextValue
-            })
-            //sets complete status if user only rates show
-          : setMovieStatus({
-              status: COMPLETED,
-              rating: nextValue
-            })
-        }}
-        data={[5, 4, 3, 2, 1, NO_RATING]}
-      />
+      {initStatus && <p>modified: {initStatus.modified.toDate().toLocaleDateString()}</p>}
+      {/* <p>added: </p> */}
     </div>
   )
 }

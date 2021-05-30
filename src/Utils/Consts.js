@@ -41,6 +41,7 @@ export const STATUS_OPTIONS = [WATCHING, PLAN_TO_WATCH, COMPLETED, PAUSED, DROPP
 //Sort by
 export const RATING = 'Rating'
 export const TITLE = 'Title'
+export const MODIFIED = 'Modified'
 
 //Order by
 export const ASC = 'asc'

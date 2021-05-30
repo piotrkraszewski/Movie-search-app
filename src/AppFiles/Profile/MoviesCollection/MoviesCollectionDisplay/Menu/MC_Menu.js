@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import s from './MC_Menu.module.sass'
 import dotsIcon from 'Images/ellipsis.svg'
-import { STATUS_OPTIONS, ASC, DESC, RATING, TITLE } from 'Utils/Consts'
+import { STATUS_OPTIONS, ASC, DESC, RATING, TITLE, MODIFIED } from 'Utils/Consts'
 import DropdownListTemplate from 'ReusableComponents/DropdownListTemplate'
 import { motion, AnimateSharedLayout } from "framer-motion"
 
@@ -56,7 +56,7 @@ export default function MCLists({props}) {
         label={'Sort by'}
         value={sortBy}
         onChangeFunc={value => setSortBy(value)}
-        data={[RATING, TITLE]}
+        data={[RATING, TITLE, MODIFIED]}
       />
       <DropdownListTemplate
         className={`${s.Widget} ${hidden && s.hiddenWiget}`}
