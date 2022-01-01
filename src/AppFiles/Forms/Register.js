@@ -39,7 +39,8 @@ export default function Register() {
 
       try {
         await usersCollection.doc(registerRes.user.uid).set({
-          username: values.username
+          username: values.username,
+          movies: {},
         })
         history.push(PROFILE_PAGE)
       } catch (err){

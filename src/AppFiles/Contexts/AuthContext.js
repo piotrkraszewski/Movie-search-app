@@ -56,7 +56,7 @@ export default function AuthProvider({children}) {
       })
     }
   }
-  
+
 
   // sets firebase user
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function AuthProvider({children}) {
       setUser(user)
       setLoading(false)
     })
-    
+
     return unsubscribe
   }, [])
 

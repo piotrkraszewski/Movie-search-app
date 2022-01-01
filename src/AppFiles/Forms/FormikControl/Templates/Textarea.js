@@ -12,8 +12,8 @@ export default function Textarea({label, name, ...rest}) {
         id={name}
         name={name}
         {...rest}/>
-      <ErrorMessage 
-        name={name} 
+      <ErrorMessage
+        name={name}
         component={ErrorMsg}/>
     </div>
   )

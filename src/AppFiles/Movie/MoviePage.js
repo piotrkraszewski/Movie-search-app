@@ -7,10 +7,11 @@ import { PAGE_TRANSITION_TIME } from 'Utils/Consts'
 import no_image from 'Images/no_image.png'
 import MovieStatusWidget from './MovieStatusWidget'
 import { useAuth } from 'AppFiles/Contexts/AuthContext'
+// import Comments from './Commnets/Comments';
 
 
 export default function MovieCard () {
-  const { user, userData } = useAuth()
+  const { userData } = useAuth()
   const { movieData } = useMovieContext()
   const { original_title, overview, tagline, poster_path, production_companies, genres, release_date, runtime } = movieData
   let { revenue, vote_average } = movieData
@@ -71,12 +72,14 @@ export default function MovieCard () {
                 </div>
               </div>
 
-
             </div>
+
+          {/* <Comments/> */}
+
           </div>
 
-          <div
-          className={s.posterContainer + ' order-md-first col-12 col-md-5 col-lg-4'}>
+
+          <div className={s.posterContainer + ' order-md-first col-12 col-md-5 col-lg-4'}>
             <img
               className={s.poster}
               src={poster_path !== null
@@ -85,6 +88,7 @@ export default function MovieCard () {
               alt='poster'
             />
           </div>
+
         </motion.div>
       </AnimatePresence>
     </motion.div>

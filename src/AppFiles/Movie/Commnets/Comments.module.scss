@@ -1,0 +1,37 @@
+@use '~styles/helpers/variables' as *;
+
+.commentsContainer{
+  border-top: 1px solid rgb(200, 200, 200);
+  padding-top: 1rem;
+}
+
+.formContainer{
+  padding: 0.6rem;
+  background-color: $inputsDark;
+  border-radius: 5px;
+
+  textarea{
+    overflow:hidden;
+    color: $white;
+    width: 100%;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline:0px none transparent;
+    height : 1rem;
+  }
+}
+
+.btnContainer{
+ display: flex;
+ justify-content: end;
+
+  button{
+    margin-left: auto;
+    background-color: rgb(18, 20, 20);
+    border: 1px solid $limeGreenSecond;
+    color: $white;
+    &:hover{
+      color: $limeGreenSecond;
+    }
+  }
+}
